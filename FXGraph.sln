@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FXGraph", "FXGraph\FXGraph.vcxproj", "{E410F486-3C45-4972-9300-34343DA400A2}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "mdi_template", "mdi_template\mdi_template.vcxproj", "{EE210EF2-ED6C-4D2F-A7A1-2D9CD6745D6F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E410F486-3C45-4972-9300-34343DA400A2}.Debug|Win32.ActiveCfg = Debug|Win32
+		{E410F486-3C45-4972-9300-34343DA400A2}.Debug|Win32.Build.0 = Debug|Win32
+		{E410F486-3C45-4972-9300-34343DA400A2}.Release|Win32.ActiveCfg = Release|Win32
+		{E410F486-3C45-4972-9300-34343DA400A2}.Release|Win32.Build.0 = Release|Win32
+		{EE210EF2-ED6C-4D2F-A7A1-2D9CD6745D6F}.Debug|Win32.ActiveCfg = Debug|Win32
+		{EE210EF2-ED6C-4D2F-A7A1-2D9CD6745D6F}.Debug|Win32.Build.0 = Debug|Win32
+		{EE210EF2-ED6C-4D2F-A7A1-2D9CD6745D6F}.Release|Win32.ActiveCfg = Release|Win32
+		{EE210EF2-ED6C-4D2F-A7A1-2D9CD6745D6F}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

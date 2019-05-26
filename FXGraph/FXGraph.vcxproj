@@ -1,0 +1,359 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{E410F486-3C45-4972-9300-34343DA400A2}</ProjectGuid>
+    <RootNamespace>FXGraph</RootNamespace>
+    <Keyword>MFCProj</Keyword>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <UseOfMfc>Dynamic</UseOfMfc>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+    <UseOfMfc>Dynamic</UseOfMfc>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ShowIncludes>false</ShowIncludes>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <AdditionalIncludeDirectories>C:\Users\Андрей\Documents\Visual Studio 2010\Projects\FXGraph\FXGraph\cparse;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreAllDefaultLibraries>
+      </IgnoreAllDefaultLibraries>
+    </Link>
+    <Midl>
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+      <ValidateAllParameters>true</ValidateAllParameters>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0419</Culture>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+    <Midl>
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+      <ValidateAllParameters>true</ValidateAllParameters>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0419</Culture>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
+    <None Include="ClassDiagram2.cd" />
+    <None Include="FXGraph.reg" />
+    <None Include="ReadMe.txt" />
+    <None Include="res\Align.bmp" />
+    <None Include="res\bitmap1.bmp" />
+    <None Include="res\bmp00001.bmp" />
+    <None Include="res\breakpoint.bmp" />
+    <None Include="res\classview.bmp" />
+    <None Include="res\classview_hc.bmp" />
+    <None Include="res\class_view.ico" />
+    <None Include="res\class_view_hc.ico" />
+    <None Include="res\explorer.bmp" />
+    <None Include="res\explorer_hc.bmp" />
+    <None Include="res\fileview.bmp" />
+    <None Include="res\fileview_hc.bmp" />
+    <None Include="res\file_view.ico" />
+    <None Include="res\file_view_hc.ico" />
+    <None Include="res\FXGraph.ico" />
+    <None Include="res\FXGraph.rc2" />
+    <None Include="res\FXGraphDoc.ico" />
+    <None Include="res\icon1.ico" />
+    <None Include="res\icon2.ico" />
+    <None Include="res\mainfram.bmp" />
+    <None Include="res\menuimages.bmp" />
+    <None Include="res\menuimages_hc.bmp" />
+    <None Include="res\output_wnd.ico" />
+    <None Include="res\output_wnd_hc.ico" />
+    <None Include="res\properties.bmp" />
+    <None Include="res\properties_hc.bmp" />
+    <None Include="res\properties_wnd.ico" />
+    <None Include="res\properties_wnd_hc.ico" />
+    <None Include="res\sort.bmp" />
+    <None Include="res\sort_hc.bmp" />
+    <None Include="res\Toolbar.bmp" />
+    <None Include="res\toolbar1.bmp" />
+    <None Include="res\toolbar2.bmp" />
+    <None Include="res\Toolbar256.bmp" />
+    <None Include="UserImages.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ChildFrm.h" />
+    <ClInclude Include="ClassView.h" />
+    <ClInclude Include="CommentDlg.h" />
+    <ClInclude Include="DragTreeView.h" />
+    <ClInclude Include="FileView.h" />
+    <ClInclude Include="FindByIDDlg.h" />
+    <ClInclude Include="FXBlock.h" />
+    <ClInclude Include="FXBlockBitwiseAnd.h" />
+    <ClInclude Include="FXBlockComment.h" />
+    <ClInclude Include="FXBlockComparatorDown.h" />
+    <ClInclude Include="FXBlockComparatorUp.h" />
+    <ClInclude Include="FXBlockController.h" />
+    <ClInclude Include="FXBlockControllerNiMod01.h" />
+    <ClInclude Include="FXBlockCounter.h" />
+    <ClInclude Include="FXBlockExtension.h" />
+    <ClInclude Include="FXBlockExtensionA01.h" />
+    <ClInclude Include="FXBlockFunctional.h" />
+    <ClInclude Include="FXBlockFunctionalPin.h" />
+    <ClInclude Include="FXBlockLogicalAnd.h" />
+    <ClInclude Include="FXBlockLogicalFallingEdge.h" />
+    <ClInclude Include="FXBlockLogicalFronts.h" />
+    <ClInclude Include="FXBlockLogicalNot.h" />
+    <ClInclude Include="FXBlockLogicalOr.h" />
+    <ClInclude Include="FXBlockLogicalRisingEdge.h" />
+    <ClInclude Include="FXBlockLogicalTriggerRS.h" />
+    <ClInclude Include="FXBlockLogicalTriggerRSRisingEdge.h" />
+    <ClInclude Include="FXBlockLogicalTriggerSR.h" />
+    <ClInclude Include="FXBlockLogicalXor.h" />
+    <ClInclude Include="FXBlockMathAcos.h" />
+    <ClInclude Include="FXBlockMathAsin.h" />
+    <ClInclude Include="FXBlockMathAtan.h" />
+    <ClInclude Include="FXBlockMathBitwiseNot.h" />
+    <ClInclude Include="FXBlockMathBitwiseOr.h" />
+    <ClInclude Include="FXBlockMathBitwisePack.h" />
+    <ClInclude Include="FXBlockMathBitwiseShiftLeft.h" />
+    <ClInclude Include="FXBlockMathBitwiseShiftRight.h" />
+    <ClInclude Include="FXBlockMathBitwiseUnpack.h" />
+    <ClInclude Include="FXBlockMathBitwiseXor.h" />
+    <ClInclude Include="FXBlockMathCastFloatInt.h" />
+    <ClInclude Include="FXBlockMathCastIntFloat.h" />
+    <ClInclude Include="FXBlockMathCos.h" />
+    <ClInclude Include="FXBlockMathExp.h" />
+    <ClInclude Include="FXBlockMathFloatAbs.h" />
+    <ClInclude Include="FXBlockMathFloatEqual.h" />
+    <ClInclude Include="FXBlockMathFloatAdd.h" />
+    <ClInclude Include="FXBlockMathFloatDiv.h" />
+    <ClInclude Include="FXBlockMathFloatFloor.h" />
+    <ClInclude Include="FXBlockMathFloatGreat.h" />
+    <ClInclude Include="FXBlockMathFloatGreatEqual.h" />
+    <ClInclude Include="FXBlockMathFloatLess.h" />
+    <ClInclude Include="FXBlockMathFloatMul.h" />
+    <ClInclude Include="FXBlockMathFloatRound.h" />
+    <ClInclude Include="FXBlockMathFloatSub.h" />
+    <ClInclude Include="FXBlockMathIntAbs.h" />
+    <ClInclude Include="FXBlockMathIntAdd.h" />
+    <ClInclude Include="FXBlockMathIntDiv.h" />
+    <ClInclude Include="FXBlockMathIntEqual.h" />
+    <ClInclude Include="FXBlockMathIntGreat.h" />
+    <ClInclude Include="FXBlockMathIntGreatEqual.h" />
+    <ClInclude Include="FXBlockMathIntLess.h" />
+    <ClInclude Include="FXBlockMathIntLessEqual.h" />
+    <ClInclude Include="FXBlockMathIntMod.h" />
+    <ClInclude Include="FXBlockMathIntMul.h" />
+    <ClInclude Include="FXBlockMathIntNotEqual.h" />
+    <ClInclude Include="FXBlockMathIntSub.h" />
+    <ClInclude Include="FXBlockMathFloatLessEqual.h" />
+    <ClInclude Include="FXBlockMathFloatNotEqual.h" />
+    <ClInclude Include="FXBlockMathLog.h" />
+    <ClInclude Include="FXBlockMathLog10.h" />
+    <ClInclude Include="FXBlockMathPow.h" />
+    <ClInclude Include="FXBlockMathSin.h" />
+    <ClInclude Include="FXBlockMathSqrt.h" />
+    <ClInclude Include="FXBlockMathTan.h" />
+    <ClInclude Include="FXException.h" />
+    <ClInclude Include="FXGraph.h" />
+    <ClInclude Include="FXGraphDoc.h" />
+    <ClInclude Include="FXGraphView.h" />
+    <ClInclude Include="FXLink.h" />
+    <ClInclude Include="FXObject.h" />
+    <ClInclude Include="FXParam.h" />
+    <ClInclude Include="FXPin.h" />
+    <ClInclude Include="FXScenarioItem.h" />
+    <ClInclude Include="GridDlg.h" />
+    <ClInclude Include="MainFrm.h" />
+    <ClInclude Include="OutputWnd.h" />
+    <ClInclude Include="ParamDlg.h" />
+    <ClInclude Include="ProjectDlg.h" />
+    <ClInclude Include="PropertiesWnd.h" />
+    <ClInclude Include="PropertyGridCtrl.h" />
+    <ClInclude Include="Resource.h" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="targetver.h" />
+    <ClInclude Include="ViewTree.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="ChildFrm.cpp" />
+    <ClCompile Include="ClassView.cpp" />
+    <ClCompile Include="CommentDlg.cpp" />
+    <ClCompile Include="cparse\containers.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="cparse\functions.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="cparse\packToken.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="cparse\shunting-yard.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="DragTreeView.cpp" />
+    <ClCompile Include="FileView.cpp" />
+    <ClCompile Include="FindByIDDlg.cpp" />
+    <ClCompile Include="FXBlock.cpp" />
+    <ClCompile Include="FXBlockBitwiseAnd.cpp" />
+    <ClCompile Include="FXBlockComment.cpp" />
+    <ClCompile Include="FXBlockComparatorDown.cpp" />
+    <ClCompile Include="FXBlockComparatorUp.cpp" />
+    <ClCompile Include="FXBlockController.cpp" />
+    <ClCompile Include="FXBlockControllerNiMod01.cpp" />
+    <ClCompile Include="FXBlockCounter.cpp" />
+    <ClCompile Include="FXBlockExtension.cpp" />
+    <ClCompile Include="FXBlockExtensionA01.cpp" />
+    <ClCompile Include="FXBlockFunctional.cpp" />
+    <ClCompile Include="FXBlockFunctionalPin.cpp" />
+    <ClCompile Include="FXBlockLogicalAnd.cpp" />
+    <ClCompile Include="FXBlockLogicalFallingEdge.cpp" />
+    <ClCompile Include="FXBlockLogicalFronts.cpp" />
+    <ClCompile Include="FXBlockLogicalNot.cpp" />
+    <ClCompile Include="FXBlockLogicalOr.cpp" />
+    <ClCompile Include="FXBlockLogicalRisingEdge.cpp" />
+    <ClCompile Include="FXBlockLogicalTriggerRS.cpp" />
+    <ClCompile Include="FXBlockLogicalTriggerRSRisingEdge.cpp" />
+    <ClCompile Include="FXBlockLogicalTriggerSR.cpp" />
+    <ClCompile Include="FXBlockLogicalXor.cpp" />
+    <ClCompile Include="FXBlockMathAcos.cpp" />
+    <ClCompile Include="FXBlockMathAsin.cpp" />
+    <ClCompile Include="FXBlockMathAtan.cpp" />
+    <ClCompile Include="FXBlockMathBitwiseNot.cpp" />
+    <ClCompile Include="FXBlockMathBitwiseOr.cpp" />
+    <ClCompile Include="FXBlockMathBitwisePack.cpp" />
+    <ClCompile Include="FXBlockMathBitwiseShiftLeft.cpp" />
+    <ClCompile Include="FXBlockMathBitwiseShiftRight.cpp" />
+    <ClCompile Include="FXBlockMathBitwiseUnpack.cpp" />
+    <ClCompile Include="FXBlockMathBitwiseXor.cpp" />
+    <ClCompile Include="FXBlockMathCastFloatInt.cpp" />
+    <ClCompile Include="FXBlockMathCastIntFloat.cpp" />
+    <ClCompile Include="FXBlockMathCos.cpp" />
+    <ClCompile Include="FXBlockMathExp.cpp" />
+    <ClCompile Include="FXBlockMathFloatAbs.cpp" />
+    <ClCompile Include="FXBlockMathFloatEqual.cpp" />
+    <ClCompile Include="FXBlockMathFloatAdd.cpp" />
+    <ClCompile Include="FXBlockMathFloatDiv.cpp" />
+    <ClCompile Include="FXBlockMathFloatFloor.cpp" />
+    <ClCompile Include="FXBlockMathFloatGreat.cpp" />
+    <ClCompile Include="FXBlockMathFloatGreatEqual.cpp" />
+    <ClCompile Include="FXBlockMathFloatLess.cpp" />
+    <ClCompile Include="FXBlockMathFloatMul.cpp" />
+    <ClCompile Include="FXBlockMathFloatRound.cpp" />
+    <ClCompile Include="FXBlockMathFloatSub.cpp" />
+    <ClCompile Include="FXBlockMathIntAbs.cpp" />
+    <ClCompile Include="FXBlockMathIntAdd.cpp" />
+    <ClCompile Include="FXBlockMathIntDiv.cpp" />
+    <ClCompile Include="FXBlockMathIntEqual.cpp" />
+    <ClCompile Include="FXBlockMathIntGreat.cpp" />
+    <ClCompile Include="FXBlockMathIntGreatEqual.cpp" />
+    <ClCompile Include="FXBlockMathIntLess.cpp" />
+    <ClCompile Include="FXBlockMathIntLessEqual.cpp" />
+    <ClCompile Include="FXBlockMathIntMod.cpp" />
+    <ClCompile Include="FXBlockMathIntMul.cpp" />
+    <ClCompile Include="FXBlockMathIntNotEqual.cpp" />
+    <ClCompile Include="FXBlockMathIntSub.cpp" />
+    <ClCompile Include="FXBlockMathFloatLessEqual.cpp" />
+    <ClCompile Include="FXBlockMathFloatNotEqual.cpp" />
+    <ClCompile Include="FXBlockMathLog.cpp" />
+    <ClCompile Include="FXBlockMathLog10.cpp" />
+    <ClCompile Include="FXBlockMathPow.cpp" />
+    <ClCompile Include="FXBlockMathSin.cpp" />
+    <ClCompile Include="FXBlockMathSqrt.cpp" />
+    <ClCompile Include="FXBlockMathTan.cpp" />
+    <ClCompile Include="FXException.cpp" />
+    <ClCompile Include="FXGraph.cpp" />
+    <ClCompile Include="FXGraphDoc.cpp" />
+    <ClCompile Include="FXGraphView.cpp" />
+    <ClCompile Include="FXLink.cpp" />
+    <ClCompile Include="FXObject.cpp" />
+    <ClCompile Include="FXParam.cpp" />
+    <ClCompile Include="FXPin.cpp" />
+    <ClCompile Include="FXScenarioItem.cpp" />
+    <ClCompile Include="GridDlg.cpp" />
+    <ClCompile Include="MainFrm.cpp" />
+    <ClCompile Include="OutputWnd.cpp" />
+    <ClCompile Include="ParamDlg.cpp" />
+    <ClCompile Include="ProjectDlg.cpp" />
+    <ClCompile Include="PropertiesWnd.cpp" />
+    <ClCompile Include="PropertyGridCtrl.cpp" />
+    <ClCompile Include="stdafx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="ViewTree.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="FXGraph.rc" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties RESOURCE_FILE="FXGraph.rc" />
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>
