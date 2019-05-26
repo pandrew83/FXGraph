@@ -57,6 +57,7 @@
       <ShowIncludes>false</ShowIncludes>
       <ExceptionHandling>Async</ExceptionHandling>
       <AdditionalIncludeDirectories>C:\Users\Андрей\Documents\Visual Studio 2010\Projects\FXGraph\FXGraph\cparse;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp14</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

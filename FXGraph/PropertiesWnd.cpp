@@ -431,7 +431,6 @@ void CPropertiesWnd::UpdateProperties(CFXObject* pObject)
 void CPropertiesWnd::UpdateProperty(int nProperty, int v)
 {
 	TracePrint(TRACE_LEVEL_2,"CPropertiesWnd::UpdateProperty:");
-	return;
 	CMFCPropertyGridProperty* pProp = m_wndPropList.FindItemByData(nProperty);
 	if (pProp){
 		pProp->SetValue((variant_t)v);

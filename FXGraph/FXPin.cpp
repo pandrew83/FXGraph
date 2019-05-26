@@ -272,7 +272,7 @@ void CFXPin::FillProperties(CPropertiesWnd* pWnd)
 
 	pWnd->m_wndPropList.RemoveAll();
 	CFXObject::FillProperties(pWnd);
-	pProp = new CProperty(_T("Функция"),(variant_t)m_FuncName,_T("Функциональное имя"),PROP_FUNCNAME);
+	pProp = new CMFCPropertyGridProperty(_T("Функция"),(variant_t)m_FuncName,_T("Функциональное имя"),PROP_FUNCNAME);
 	pCtrl->AddProperty(pProp);
 	if (m_Type == Float || m_Type == Int){
 		pProp = new CProperty(_T("Формат"),(variant_t)m_Format,_T("Формат вывода значения пина"),PROP_FORMAT);

@@ -2,6 +2,13 @@
 
 
 
+#define AFX_FORMAT_CHAR   _T("%Tc")
+#define AFX_FORMAT_SHORT  _T("%d")
+#define AFX_FORMAT_LONG   _T("%ld")
+#define AFX_FORMAT_USHORT _T("%u")
+#define AFX_FORMAT_ULONG  _T("%u")
+#define AFX_FORMAT_FLOAT  _T("%f")
+#define AFX_FORMAT_DOUBLE _T("%lf")
 
 
 class CPropertyGridCtrl : public CMFCPropertyGridCtrl
@@ -142,36 +149,36 @@ public:
 			break;
 
 		case VT_I2:
-			strVal.Format(m_strFormatShort, (short)var.iVal);
+			strVal.Format(AFX_FORMAT_SHORT, (short)var.iVal);
 			break;
 
 		case VT_I4:
 		case VT_INT:
-			strVal.Format(m_strFormatLong, (long)var.lVal);
+			strVal.Format(AFX_FORMAT_LONG, (long)var.lVal);
 			break;
 
 		case VT_UI1:
 			if ((BYTE)var.bVal != 0)
 			{
-				strVal.Format(m_strFormatChar, (TCHAR)(BYTE)var.bVal);
+				strVal.Format(AFX_FORMAT_CHAR, (TCHAR)(BYTE)var.bVal);
 			}
 			break;
 
 		case VT_UI2:
-			strVal.Format( m_strFormatUShort, var.uiVal);
+			strVal.Format(AFX_FORMAT_USHORT, var.uiVal);
 			break;
 
 		case VT_UINT:
 		case VT_UI4:
-			strVal.Format(m_strFormatULong, var.ulVal);
+			strVal.Format(AFX_FORMAT_ULONG, var.ulVal);
 			break;
 
 		case VT_R4:
-			strVal.Format(m_strFormatFloat, (float)var.fltVal);
+			strVal.Format(AFX_FORMAT_DOUBLE, (float)var.fltVal);
 			break;
 
 		case VT_R8:
-			strVal.Format(m_strFormatDouble, (double)var.dblVal);
+			strVal.Format(AFX_FORMAT_DOUBLE, (double)var.dblVal);
 			break;
 
 		case VT_BOOL:
@@ -230,7 +237,7 @@ public:
 
 				if (!strVal.IsEmpty())
 				{
-					_stscanf_s(strVal, m_strFormatFloat, &fVal);
+					_stscanf_s(strVal, _T("")/*m_strFormatFloat*/, &fVal);
 				}
 
 				m_varValue = fVal;
@@ -246,7 +253,7 @@ public:
 
 				if (!strVal.IsEmpty())
 				{
-					_stscanf_s(strVal, m_strFormatDouble, &dblVal);
+					_stscanf_s(strVal, _T("")/*m_strFormatDouble*/, &dblVal);
 				}
 
 				m_varValue = dblVal;
