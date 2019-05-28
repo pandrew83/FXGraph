@@ -10,6 +10,7 @@ class CFXBlockFunctional;
 class CFXLink;
 class CFXParam;
 class CFXPin;
+class CFXScenarioItem;
 //class CListParam;
 
 class CFXGraphDoc : public CDocument
@@ -97,5 +98,7 @@ public:
 	int m_DebugTimer;
 	afx_msg void OnProjectScenario();
 	CString m_DebugScenario;
-	void InitializeScenario(void);
+	bool InitializeScenario(void);
+	CList<CFXScenarioItem*, CFXScenarioItem*> m_Scenario;
+	void RemoveScenario();
 };

@@ -1,7 +1,6 @@
 #include <cmath>
 
 namespace builtin_operations {
-using namespace cparser;
 
 // Assignment operator "="
 packToken Assign(const packToken& left, const packToken& right, evaluationData* data) {

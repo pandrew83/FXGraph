@@ -1,6 +1,6 @@
 
 namespace builtin_reservedWords {
-using namespace cparser;
+
 // Literal Tokens: True, False and None:
 packToken trueToken = packToken(true);
 packToken falseToken = packToken(false);

@@ -76,5 +76,6 @@ public:
 	}
 	void RemovePinLinks(CFXPin* pPin);
 	void Initialize(void);
+	void UpdateView();
 };
 

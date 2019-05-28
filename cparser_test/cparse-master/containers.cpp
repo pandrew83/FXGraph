@@ -5,7 +5,6 @@
 #include "./containers.h"
 #include "./functions.h"
 
-using namespace cparser;
 /* * * * * Initialize TokenMap * * * * */
 
 // Using the "Construct On First Use Idiom"

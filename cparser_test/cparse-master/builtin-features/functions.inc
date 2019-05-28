@@ -3,7 +3,7 @@
 namespace builtin_functions {
 
 /* * * * * Built-in Functions: * * * * */
-using namespace cparser;
+
 packToken default_print(TokenMap scope) {
   // Get the argument list:
   TokenList list = scope["args"].asList();
@@ -101,8 +101,8 @@ packToken default_type(TokenMap scope) {
   case NONE: return "none";
   case VAR: return "variable";
   case REAL: return "real";
-  case cparser::INT: return "integer";
-  case cparser::BOOL: return "boolean";
+  case INT: return "integer";
+  case BOOL: return "boolean";
   case STR: return "string";
   case FUNC: return "function";
   case IT: return "iterable";
@@ -118,11 +118,6 @@ packToken default_type(TokenMap scope) {
     }
   default: return "unknown_type";
   }
-}
-
-packToken default_rand(TokenMap scope){
-	int number = scope["num"].asInt();
-	return rand()%number;
 }
 
 packToken default_sqrt(TokenMap scope) {
@@ -241,7 +236,6 @@ struct Startup {
 
     global["print"] = CppFunction(&default_print, "print");
     global["sum"] = CppFunction(&default_sum, "sum");
-	global["rand"] = CppFunction(&default_rand,{"num"},"rand");
     global["sqrt"] = CppFunction(&default_sqrt, {"num"}, "sqrt");
     global["sin"] = CppFunction(&default_sin, {"num"}, "sin");
     global["cos"] = CppFunction(&default_cos, {"num"}, "cos");

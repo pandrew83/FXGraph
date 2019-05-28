@@ -24,7 +24,10 @@
 #include "ChildFrm.h"
 #include "ProjectDlg.h"
 #include "FindByIDDlg.h"
-
+#include <iostream>
+#include "shunting-yard.h"
+#include "./cparse/builtin-features.inc"
+#include "FXScenarioItem.h"
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
@@ -73,6 +76,7 @@ CFXGraphDoc::~CFXGraphDoc()
 	while (pos)
 		delete m_OutputParams.GetNext(pos);
 	delete m_pBlock;
+	RemoveScenario();
 }
 
 BOOL CFXGraphDoc::OnNewDocument()
@@ -538,6 +542,9 @@ void CFXGraphDoc::OnDebugCycleEnd(void)
 {
 	TracePrint(TRACE_LEVEL_1,"CFXGraphDoc::OnDebugCycleEnd");
 	m_SysTick += m_CycleTicks;
+//	m_pBlock->UpdateView();
+//	UpdateAllViews(NULL);
+
 }
 
 
@@ -612,10 +619,48 @@ void CFXGraphDoc::DebugRun(void)
 	CMainFrame* pMainFrame = (CMainFrame*)AfxGetApp()->m_pMainWnd;
 	ASSERT(pMainFrame);
 	if (m_pDebugCur){
+		// применить сценарий
+		POSITION pos = m_Scenario.GetHeadPosition();
+		while (pos) {
+			CFXScenarioItem* pItem = m_Scenario.GetNext(pos);
+			using namespace cparser;
+			TokenMap vars;
+			vars["ticks"] = m_SysTick;
+			switch (pItem->m_pPin->m_Type) {
+			case Int:
+				vars["value"] = (int)pItem->m_pPin->GetValue();
+				break;
+			case Float:
+				vars["value"] = (double)pItem->m_pPin->GetValue();
+				break;
+			case Logical:
+				vars["value"] = (bool)pItem->m_pPin->GetValue();
+				break;
+			}
+			if (pItem->EvalCondition(vars)) {
+				pItem->EvalExpression(vars);
+				switch (pItem->m_pPin->m_Type) {
+				case Int:
+					pItem->m_pPin->SetValue(vars["value"].asInt());
+					break;
+				case Float:
+					pItem->m_pPin->SetValue(vars["value"].asDouble());
+					break;
+				case Logical:
+					pItem->m_pPin->SetValue(vars["value"].asBool());
+					break;
+				}
+				UpdateBlock((CFXBlock*)pItem->m_pPin->m_pBlock, false);
+				// execute scenario
+
+			}
+		
+		}
 		do{
 //			DebugStep();
 			m_pDebugCur->Calc();
 //			UpdateBlock(m_pDebugCur);
+			UpdateBlock(m_pDebugCur, false);
 			CFXBlockFunctional* pBlockFunc = dynamic_cast<CFXBlockFunctional*>(m_pDebugCur);
 			if (pBlockFunc){
 				m_pDebugCur = pBlockFunc->m_pDebugFirst;
@@ -624,7 +669,8 @@ void CFXGraphDoc::DebugRun(void)
 				m_pDebugCur = m_pDebugCur->m_pNextBlock;
 			}
 			if (m_pDebugCur && m_pDebugCur->m_bBreakPoint){
-				UpdateBlock(m_pDebugCur,true);
+				//UpdateBlock(m_pDebugCur,true);
+				UpdateAllViews(NULL);
 				
 				pMainFrame->OnDebugBreakPoint(this);
 				break;
@@ -709,8 +755,10 @@ void CFXGraphDoc::OnProjectScenario()
 }
 
 
-void CFXGraphDoc::InitializeScenario(void)
+bool CFXGraphDoc::InitializeScenario(void)
 {
+	RemoveScenario();
+	cparse_startup();
 	int curpos = 0;
 	CString line;
 	do{
@@ -719,7 +767,43 @@ void CFXGraphDoc::InitializeScenario(void)
 			TRACE(line);
 			if (line.Left(2) == "//")
 				continue;
+			int curpos1 = 0;
+			int n = 0;
+			CString ar[3];
+			do {
+				CString s = line.Tokenize(_T(","), curpos1);
+				if (s.IsEmpty())
+					break;
+				ar[n++] = s;
+			} while (true);
+			if (n != 3) {
+				AfxMessageBox(_T("Ошибка при разборе строки сценария"));
+				return false;
+			}
+			CFXScenarioItem* pItem = new CFXScenarioItem;
+			pItem->m_Condition = ar[0];
+			CStringA s = CW2A(ar[1],CP_UTF8);
+			pItem->m_pPin = dynamic_cast<CFXPin*>(m_pBlock->GetByID(atoi(s)));
+			pItem->m_Expression = ar[2];
+			if (!pItem->m_pPin) {
+				CString msg;
+				msg.Format(_T("Ошибка в сценарии: объект с идентификатором %s не найден в текущем проекте"), ar[1]);
+				AfxMessageBox(msg);
+				delete pItem;
+				return false;
+			}
+			m_Scenario.AddTail(pItem);
+
 		}
 	} while(!line.IsEmpty());
-	
+	return true;
 }	
+
+
+void CFXGraphDoc::RemoveScenario()
+{
+	while (!m_Scenario.IsEmpty()) {
+		CFXScenarioItem* pCur = m_Scenario.RemoveTail();
+		delete pCur;
+	}
+}

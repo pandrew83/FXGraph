@@ -1,6 +1,6 @@
 
 namespace builtin_typeSpecificFunctions {
-using namespace cparser;
+
 /* * * * * MAP Type built-in functions * * * * */
 
 const args_t map_pop_args = {"key", "default"};

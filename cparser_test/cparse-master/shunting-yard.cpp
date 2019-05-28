@@ -10,7 +10,7 @@
 #include <stack>
 #include <utility>  // For std::pair
 #include <cstring>  // For strchr()
-using namespace cparser;
+
 /* * * * * Operation class: * * * * */
 
 // Convert a type into an unique mask for bit wise operations:

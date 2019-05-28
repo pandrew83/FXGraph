@@ -301,8 +301,10 @@ void CFXBlockFunctional::CalcOrder(void){
 		}
 		pPrev = pCur;
 	}
-	pCur->m_pNextBlock = m_pNextBlock;
-	pCur = m_pDebugFirst;
+	if (pCur) {
+		pCur->m_pNextBlock = m_pNextBlock;
+		pCur = m_pDebugFirst;
+	}
 	while (pCur){
 		CFXBlockFunctional* pBlockFunc = dynamic_cast<CFXBlockFunctional*>(pCur);
 		if (pBlockFunc)
@@ -342,5 +344,25 @@ void CFXBlockFunctional::Initialize(void)
 	while (pos){
 		CFXBlock* pBlock = m_Blocks.GetNext(pos);
 		pBlock->Initialize();
+	}
+}
+
+
+void CFXBlockFunctional::UpdateView()
+{
+	CFXGraphDoc* pDoc = GetActiveDocument();
+	CFXGraphView* pView = pDoc->GetBlockView(this);
+	if (pView) {
+		POSITION pos = m_Blocks.GetHeadPosition();
+		while (pos) {
+			CFXBlock* pBlock = m_Blocks.GetNext(pos);
+			CFXBlockFunctional* pBlockFunc = dynamic_cast<CFXBlockFunctional*>(pBlock);
+			if (pBlockFunc) {
+				pBlockFunc->UpdateView();
+			}
+			else {
+				pBlock->Invalidate(pView, REGION_LEFT | REGION_RIGHT);
+			}
+		}
 	}
 }
