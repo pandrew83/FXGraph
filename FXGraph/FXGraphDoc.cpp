@@ -542,6 +542,8 @@ void CFXGraphDoc::OnDebugCycleEnd(void)
 {
 	TracePrint(TRACE_LEVEL_1,"CFXGraphDoc::OnDebugCycleEnd");
 	m_SysTick += m_CycleTicks;
+	CMainFrame* pMainFrame = (CMainFrame*)AfxGetApp()->m_pMainWnd;
+	pMainFrame->OnDebugEndCycle(this);
 //	m_pBlock->UpdateView();
 //	UpdateAllViews(NULL);
 

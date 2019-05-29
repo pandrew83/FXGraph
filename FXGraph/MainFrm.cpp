@@ -618,6 +618,7 @@ void CMainFrame::OnDebugStart()
 			}
 		}
 	}
+	m_DataCollector.Initialize();
 	m_bDebugRunning = true;
 	m_pDebugCurDoc->DebugRun();
 	SetTimer(1,m_pDebugCurDoc->m_DebugTimer,0);
@@ -662,7 +663,9 @@ void CMainFrame::OnDebugStop()
 		m_bDebugRunning = false;
 //		m_SysTick = 0;
 //		UpdateAllViews(NULL);
+
 		KillTimer(1);
+		m_DataCollector.Excel(_T("asd.xls"));
 	}
 
 	// TODO: добавьте свой код обработчика команд
@@ -767,4 +770,11 @@ void CMainFrame::OnUpdateProjectScenario(CCmdUI *pCmdUI)
 {
 	pCmdUI->Enable(GetCurDoc() && m_pDebugCurDoc == NULL);
 	// TODO: добавьте свой код обработчика ИП обновления команд
+}
+
+
+void CMainFrame::OnDebugEndCycle(CFXGraphDoc* pDoc)
+{
+	m_DataCollector.Collect(pDoc->m_SysTick, pDoc->m_pBlock);
+	// TODO: Добавьте сюда код реализации.
 }

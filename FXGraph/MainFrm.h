@@ -7,13 +7,14 @@
 #include "ClassView.h"
 #include "OutputWnd.h"
 #include "PropertiesWnd.h"
-
+#include "CFXDataCollector.h"
 
 class CMainFrame : public CMDIFrameWndEx
 {
 	DECLARE_DYNAMIC(CMainFrame)
 public:
 	CMainFrame();
+	CFXDataCollector m_DataCollector;
 // Атрибуты
 public:
 
@@ -86,6 +87,7 @@ public:
 	afx_msg void OnDebugPause();
 	afx_msg void OnUpdateDebugPause(CCmdUI *pCmdUI);
 	afx_msg void OnUpdateProjectScenario(CCmdUI *pCmdUI);
+	void OnDebugEndCycle(CFXGraphDoc* pDoc);
 };
 
 
