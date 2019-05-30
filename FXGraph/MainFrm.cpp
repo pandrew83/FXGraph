@@ -618,7 +618,7 @@ void CMainFrame::OnDebugStart()
 			}
 		}
 	}
-	m_DataCollector.Initialize();
+//	m_DataCollector.Initialize();
 	m_bDebugRunning = true;
 	m_pDebugCurDoc->DebugRun();
 	SetTimer(1,m_pDebugCurDoc->m_DebugTimer,0);
@@ -648,7 +648,9 @@ void CMainFrame::OnTimer(UINT_PTR nIDEvent)
 {
 	// TODO: добавьте свой код обработчика сообщений или вызов стандартного
 	TracePrint(TRACE_LEVEL_1,"CMainFrame::OnTimer");
-	m_pDebugCurDoc->DebugRun();
+	if (m_pDebugCurDoc) {
+		m_pDebugCurDoc->DebugRun();
+	}
 //	m_pDebugCurDoc->UpdateAllViews(NULL);
 	CMDIFrameWndEx::OnTimer(nIDEvent);
 }
@@ -658,14 +660,14 @@ void CMainFrame::OnDebugStop()
 {
 	TracePrint(TRACE_LEVEL_1,"CMainFrame::OnDebugStop");
 	if (m_pDebugCurDoc){
+		KillTimer(1);
 		m_pDebugCurDoc->DebugStop();
 		m_pDebugCurDoc = NULL;
 		m_bDebugRunning = false;
 //		m_SysTick = 0;
 //		UpdateAllViews(NULL);
 
-		KillTimer(1);
-		m_DataCollector.Excel(_T("asd.xls"));
+//		m_DataCollector.Excel(_T("asd.xls"));
 	}
 
 	// TODO: добавьте свой код обработчика команд
@@ -775,6 +777,6 @@ void CMainFrame::OnUpdateProjectScenario(CCmdUI *pCmdUI)
 
 void CMainFrame::OnDebugEndCycle(CFXGraphDoc* pDoc)
 {
-	m_DataCollector.Collect(pDoc->m_SysTick, pDoc->m_pBlock);
+//	m_DataCollector.Collect(pDoc->m_SysTick, pDoc->m_pBlock);
 	// TODO: Добавьте сюда код реализации.
 }

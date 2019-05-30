@@ -146,7 +146,9 @@
     <None Include="UserImages.bmp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CFXBlockAntiBounce.h" />
     <ClInclude Include="CFXDataCollector.h" />
+    <ClInclude Include="CFXGraphViewGraphic.h" />
     <ClInclude Include="ChildFrm.h" />
     <ClInclude Include="ClassView.h" />
     <ClInclude Include="CommentDlg.h" />
@@ -242,7 +244,9 @@
     <ClInclude Include="ViewTree.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CFXBlockAntiBounce.cpp" />
     <ClCompile Include="CFXDataCollector.cpp" />
+    <ClCompile Include="CFXGraphViewGraphic.cpp" />
     <ClCompile Include="ChildFrm.cpp" />
     <ClCompile Include="ClassView.cpp" />
     <ClCompile Include="CommentDlg.cpp" />
