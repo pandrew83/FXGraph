@@ -28,6 +28,7 @@
 #include "shunting-yard.h"
 #include "./cparse/builtin-features.inc"
 #include "FXScenarioItem.h"
+#include "CFXDataCollector.h"
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
@@ -306,6 +307,7 @@ void CFXGraphDoc::DebugStart()
 	m_pBlock->CalcOrder();
 	InitializeBlocks();
 	InitializeScenario();
+	m_DataCollector.Initialize();
 	m_pDebugCur = m_pBlock->m_pDebugFirst;
 	if (!m_pBlock->m_pDebugFirst){
 		AfxMessageBox(_T("Проект пустой"));
@@ -542,8 +544,11 @@ void CFXGraphDoc::OnDebugCycleEnd(void)
 {
 	TracePrint(TRACE_LEVEL_1,"CFXGraphDoc::OnDebugCycleEnd");
 	m_SysTick += m_CycleTicks;
-	CMainFrame* pMainFrame = (CMainFrame*)AfxGetApp()->m_pMainWnd;
-	pMainFrame->OnDebugEndCycle(this);
+	m_DataCollector.Collect(m_SysTick, m_pBlock);
+
+//	CMainFrame* pMainFrame = (CMainFrame*)AfxGetApp()->m_pMainWnd;
+
+//	pMainFrame->OnDebugEndCycle(this);
 //	m_pBlock->UpdateView();
 //	UpdateAllViews(NULL);
 
@@ -696,7 +701,9 @@ void CFXGraphDoc::CalcOrder(void)
 void CFXGraphDoc::DebugStop(void)
 {
 	m_bDebug = false;
+	m_DataCollector.Excel(_T("asd.xls"));
 	UpdateAllViews(NULL);
+
 }
 
 

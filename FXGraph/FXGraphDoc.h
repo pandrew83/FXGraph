@@ -4,7 +4,7 @@
 
 #pragma once
 #include "FXParam.h"
-
+#include "CFXDataCollector.h"
 class CFXBlock;
 class CFXBlockFunctional;
 class CFXLink;
@@ -22,6 +22,7 @@ protected: // создать только из сериализации
 // Атрибуты
 public:
 	CFXBlockFunctional* m_pBlock;
+	CFXDataCollector m_DataCollector;
 //	int m_LastID;
 // Операции
 public:

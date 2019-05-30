@@ -14,7 +14,7 @@ class CMainFrame : public CMDIFrameWndEx
 	DECLARE_DYNAMIC(CMainFrame)
 public:
 	CMainFrame();
-	CFXDataCollector m_DataCollector;
+//	CFXDataCollector m_DataCollector;
 // Атрибуты
 public:
 
