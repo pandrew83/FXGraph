@@ -28,7 +28,6 @@ END_MESSAGE_MAP()
 void CFXGraphViewGraphic::OnDraw(CDC* pDC)
 {
 	CDocument* pDoc = GetDocument();
-	// TODO: добавьте код отрисовки
 }
 
 

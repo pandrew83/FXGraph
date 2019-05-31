@@ -51,10 +51,6 @@ END_MESSAGE_MAP()
 // обработчики сообщений CParamDlg
 
 
-//void CParamDlg::OnBnClickedRadio2()
-//{
-//	// TODO: добавьте свой код обработчика уведомлений
-//}
 
 
 void CParamDlg::OnCbnSelchangeCombo1()
@@ -89,7 +85,6 @@ BOOL CParamDlg::OnInitDialog()
 {
 	CDialog::OnInitDialog();
 
-	// TODO:  Добавить дополнительную инициализацию
 	if (m_Type == "Logical"){
 		m_ctrlInt.ShowWindow(SW_HIDE);
 		m_ctrlDouble.ShowWindow(SW_HIDE);
@@ -107,23 +102,6 @@ BOOL CParamDlg::OnInitDialog()
 	return TRUE;  // return TRUE unless you set the focus to a control
 	// Исключение: страница свойств OCX должна возвращать значение FALSE
 }
-
-
-//void CParamDlg::OnSelendokCombo1()
-//{
-//}
-
-
-//void CParamDlg::OnEnChangeEdit2()
-//{
-//	// TODO:  Если это элемент управления RICHEDIT, то элемент управления не будет
-//	// send this notification unless you override the CDialog::OnInitDialog()
-//	// function and call CRichEditCtrl().SetEventMask()
-//	// with the ENM_CHANGE flag ORed into the mask.
-//
-//	// TODO:  Добавьте код элемента управления
-//}
-
 
 void CParamDlg::OnBnClickedRadio1()
 {

@@ -220,9 +220,15 @@ void CClassView::FillClassView()
 		InsertBlock(hClass,_T("Восходящий фронт"),BLOCK_LOGICAL_RISING_EDGE);
 		InsertBlock(hClass,_T("Нисходящий фронт"),BLOCK_LOGICAL_FALLING_EDGE);
 		InsertBlock(hClass,_T("Фронты"),BLOCK_LOGICAL_FRONTS);
-
 		m_wndClassView.Expand(hClass1, TVE_EXPAND);
 		m_wndClassView.Expand(hClass,TVE_EXPAND);
+
+	hClass = m_wndClassView.InsertItem(_T("Задержки"), hRoot, 0);
+		InsertBlock(hClass, _T("Дребезг"), BLOCK_ANTIBOUNCE);
+		InsertBlock(hClass, _T("Задержка включения"), BLOCK_DELAY_ON);
+		InsertBlock(hClass, _T("Задержка выключения"), BLOCK_DELAY_OFF);
+		m_wndClassView.Expand(hClass1, TVE_EXPAND);
+		m_wndClassView.Expand(hClass, TVE_EXPAND);
 
 	hClass = m_wndClassView.InsertItem(_T("Счетчики, триггеры"),hRoot,0);
 		InsertBlock(hClass,_T("Счетчик"),BLOCK_COUNTER);
@@ -237,7 +243,38 @@ void CClassView::FillClassView()
 		InsertBlock(hClass,_T("Контроллер NiMod-01"),BLOCK_CONTROLLER_NIMOD01);
 		InsertBlock(hClass,_T("Модуль расширения NiMod-A01"),BLOCK_EXTENSION_NIMODA01);
 		m_wndClassView.Expand(hClass,TVE_EXPAND);
-
+	hClass = m_wndClassView.InsertItem(_T("Датчики"), hRoot, 0);
+		hClass1 = m_wndClassView.InsertItem(_T("Термосопротивления 2-проводные"), hClass, 0);
+			InsertBlock(hClass1, _T("М50"), BLOCK_SENSOR_TRD_2W_M50);
+			InsertBlock(hClass1, _T("М100"), BLOCK_SENSOR_TRD_2W_M100);
+			InsertBlock(hClass1, _T("P50"), BLOCK_SENSOR_TRD_2W_P50);
+			InsertBlock(hClass1, _T("P100"), BLOCK_SENSOR_TRD_2W_P100);
+			InsertBlock(hClass1, _T("Pt100"), BLOCK_SENSOR_TRD_2W_PT100);
+			InsertBlock(hClass1, _T("Pt500"), BLOCK_SENSOR_TRD_2W_PT500);
+			InsertBlock(hClass1, _T("Pt1000"), BLOCK_SENSOR_TRD_2W_PT1000);
+			m_wndClassView.Expand(hClass1, TVE_EXPAND);
+		hClass1 = m_wndClassView.InsertItem(_T("Термосопротивления 3-проводные"), hClass, 0);
+			InsertBlock(hClass1, _T("М50"), BLOCK_SENSOR_TRD_3W_M50);
+			InsertBlock(hClass1, _T("М100"), BLOCK_SENSOR_TRD_3W_M100);
+			InsertBlock(hClass1, _T("P50"), BLOCK_SENSOR_TRD_3W_P50);
+			InsertBlock(hClass1, _T("P100"), BLOCK_SENSOR_TRD_3W_P100);
+			InsertBlock(hClass1, _T("Pt100"), BLOCK_SENSOR_TRD_3W_PT100);
+			InsertBlock(hClass1, _T("Pt500"), BLOCK_SENSOR_TRD_3W_PT500);
+			InsertBlock(hClass1, _T("Pt1000"), BLOCK_SENSOR_TRD_3W_PT1000);
+			m_wndClassView.Expand(hClass1, TVE_EXPAND);
+		hClass1 = m_wndClassView.InsertItem(_T("Термосопротивления 4-проводные"), hClass, 0);
+			InsertBlock(hClass1, _T("М50"), BLOCK_SENSOR_TRD_4W_M50);
+			InsertBlock(hClass1, _T("М100"), BLOCK_SENSOR_TRD_4W_M100);
+			InsertBlock(hClass1, _T("P50"), BLOCK_SENSOR_TRD_4W_P50);
+			InsertBlock(hClass1, _T("P100"), BLOCK_SENSOR_TRD_4W_P100);
+			InsertBlock(hClass1, _T("Pt100"), BLOCK_SENSOR_TRD_4W_PT100);
+			InsertBlock(hClass1, _T("Pt500"), BLOCK_SENSOR_TRD_4W_PT500);
+			InsertBlock(hClass1, _T("Pt1000"), BLOCK_SENSOR_TRD_4W_PT1000);
+			m_wndClassView.Expand(hClass1, TVE_EXPAND);
+		hClass1 = m_wndClassView.InsertItem(_T("Прочие"), hRoot, 0);
+			InsertBlock(hClass1, _T("Токовый 0-20мА, 4-20 мА"), BLOCK_SENSOR_CURRENT);
+			m_wndClassView.Expand(hClass1, TVE_EXPAND);
+		m_wndClassView.Expand(hClass, TVE_EXPAND);
 	m_wndClassView.Expand(hRoot, TVE_EXPAND);
 	
 
@@ -379,19 +416,16 @@ void CClassView::OnClassAddMemberFunction()
 void CClassView::OnClassAddMemberVariable()
 {
 	TracePrint(TRACE_LEVEL_1,__FUNCTION__);
-	// TODO: добавьте сюда код обработчика команд
 }
 
 void CClassView::OnClassDefinition()
 {
 	TracePrint(TRACE_LEVEL_1,__FUNCTION__);
-	// TODO: добавьте сюда код обработчика команд
 }
 
 void CClassView::OnClassProperties()
 {
 	TracePrint(TRACE_LEVEL_1,__FUNCTION__);
-	// TODO: добавьте сюда код обработчика команд
 }
 
 void CClassView::OnNewFolder()

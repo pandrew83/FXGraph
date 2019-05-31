@@ -40,4 +40,5 @@ CFXBlockLogicalFallingEdge::~CFXBlockLogicalFallingEdge(void)
 void CFXBlockLogicalFallingEdge::Initialize(void)
 {
 	CFXBlock::Initialize();
+	m_Prev = false;
 }

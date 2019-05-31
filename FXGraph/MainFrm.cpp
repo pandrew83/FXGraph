@@ -74,7 +74,6 @@ CMainFrame::CMainFrame()
 {
 	TracePrint(TRACE_LEVEL_1,"CMainFrame::CMainFrame");
 
-	// TODO: добавьте код инициализации члена
 	theApp.m_nAppLook = theApp.GetInt(_T("ApplicationLook"), ID_VIEW_APPLOOK_VS_2008);
 }
 
@@ -167,7 +166,6 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	m_wndStatusBar.SetIndicators(indicators, sizeof(indicators)/sizeof(UINT));
 	m_wndStatusBar.SetPaneInfo(m_wndStatusBar.CommandToIndex(ID_INDICATOR_COORD),ID_INDICATOR_COORD,0,100);
 
-	// TODO: удалите эти пять строк, если панель инструментов и строка меню не должны быть закрепляемыми
 	m_wndMenuBar.EnableDocking(CBRS_ALIGN_ANY);
 	m_wndToolBar.EnableDocking(CBRS_ALIGN_ANY);
 	m_wndToolBarDebug.EnableDocking(CBRS_ALIGN_ANY);
@@ -226,8 +224,6 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 		}
 	}
 
-	// включить персонализацию меню (последние использованные команды)
-	// TODO: определите свои основные команды так, чтобы каждое раскрывающееся меню содержало по крайней мере одну основную команду.
 	CList<UINT, UINT> lstBasicCommands;
 
 	lstBasicCommands.AddTail(ID_FILE_NEW);
@@ -267,9 +263,6 @@ BOOL CMainFrame::PreCreateWindow(CREATESTRUCT& cs)
 {
 	if( !CMDIFrameWndEx::PreCreateWindow(cs) )
 		return FALSE;
-	// TODO: изменить класс Window или стили посредством изменения
-	//  CREATESTRUCT cs
-
 	return TRUE;
 }
 
@@ -500,7 +493,6 @@ void CMainFrame::OnSettingChange(UINT uFlags, LPCTSTR lpszSection)
 
 void CMainFrame::UpdatePropertiesWindow(void)
 {
-//	m_wndProperties.SendMessage(WM_COMMAND,ID_PROPERTIES1);
 	CMDIChildWnd* pFrame = ((CMDIFrameWnd*)(AfxGetApp()->m_pMainWnd))->MDIGetActive();
 	CFXGraphView* pView = (CFXGraphView*)pFrame->GetActiveView();
 	if (pView){
@@ -525,43 +517,6 @@ BOOL CMainFrame::ValidateProperty(int nProperty, variant_t& value)
 		if (!valid)
 			return false;
 		pView->UpdatePropertiesWnd();
-		// Значение свойства установлено
-		// Нужно применить зависимые свойства 
-//		if (nProperty == PROP_CONST){
-//			pView->UpdatePropertiesWnd();
-////			bool v = !wcscmp(value.bstrVal,_T("True"));
-//		}
-//		if (nProperty == PROP_PARAM){
-//			bool empty = value.bstrVal[0] == 0;
-//			CFXPin* pPin = dynamic_cast<CFXPin*>(pView->m_pCur);
-//			if (!empty){
-//				pPin->m_bConst = false;
-//			}
-//		}
-//		if (nProperty == PROP_VALUE){
-//			CFXPin* pPin = dynamic_cast<CFXPin*>(pView->m_pCur);
-//			bool valBool;
-//			int valInt;
-//			double valDbl;
-//			if (pPin && pPin->m_Dir == Input && pPin->m_pParam){
-//				switch(pPin->m_Type){
-//					case Logical:
-//						valBool	= !wcscmp(value.bstrVal,_T("True"));
-//						pPin->m_pParam->m_Value = valBool;
-//						break;
-//					case Int:
-//						valInt = _ttoi(value.bstrVal);
-//						pPin->m_pParam->m_Value = valInt;
-//						break;
-//					case Float:
-//						valDbl = _ttof(value.bstrVal);
-//						pPin->m_pParam->m_Value = valDbl;
-//						break;
-//				}
-//				pDoc->OnParameterUpdated(NULL);
-//			}
-//		}
-//		pView->Invalidate(0);
 		return valid;
 	}
 	else 
@@ -592,13 +547,11 @@ void CMainFrame::OnUpdateIndicatorTicks(CCmdUI *pCmdUI)
 
 void CMainFrame::OnIndicatorTicks()
 {
-	// TODO: добавьте свой код обработчика команд
 }
 
 
 void CMainFrame::OnClassviewmenuWebhelp()
 {
-	// TODO: добавьте свой код обработчика команд
 }
 
 	
@@ -618,17 +571,10 @@ void CMainFrame::OnDebugStart()
 			}
 		}
 	}
-//	m_DataCollector.Initialize();
 	m_bDebugRunning = true;
 	m_pDebugCurDoc->DebugRun();
 	SetTimer(1,m_pDebugCurDoc->m_DebugTimer,0);
 }
-
-//
-//void CMainFrame::StartDebug(CFXGraphDoc* pDoc)
-//{
-//}
-
 
 CFXGraphDoc* CMainFrame::GetCurDoc(void)
 {
@@ -646,12 +592,10 @@ CFXGraphDoc* CMainFrame::GetCurDoc(void)
 
 void CMainFrame::OnTimer(UINT_PTR nIDEvent)
 {
-	// TODO: добавьте свой код обработчика сообщений или вызов стандартного
 	TracePrint(TRACE_LEVEL_1,"CMainFrame::OnTimer");
 	if (m_pDebugCurDoc) {
 		m_pDebugCurDoc->DebugRun();
 	}
-//	m_pDebugCurDoc->UpdateAllViews(NULL);
 	CMDIFrameWndEx::OnTimer(nIDEvent);
 }
 
@@ -664,13 +608,8 @@ void CMainFrame::OnDebugStop()
 		m_pDebugCurDoc->DebugStop();
 		m_pDebugCurDoc = NULL;
 		m_bDebugRunning = false;
-//		m_SysTick = 0;
-//		UpdateAllViews(NULL);
-
-//		m_DataCollector.Excel(_T("asd.xls"));
 	}
 
-	// TODO: добавьте свой код обработчика команд
 }
 
 
@@ -685,7 +624,6 @@ void CMainFrame::OnDebugRestart(){
 	if (m_pDebugCurDoc && m_pDebugCurDoc->m_bDebug){
 		m_pDebugCurDoc->DebugStart();
 	}
-//	 TODO: добавьте свой код обработчика команд
 }
 
 
@@ -694,25 +632,6 @@ void CMainFrame::OnDebugStepOver(){
 	if (m_pDebugCurDoc && m_pDebugCurDoc->m_bDebug){
 		m_pDebugCurDoc->DebugStepOver();
 	}
-//		do {
-//			if (!m_pDebugCur->Calc()){
-//				m_bDebug = false;
-//				Log(Debug,_T("Ошибка расчета блока"));
-//				return;
-//			}
-//			m_pDebugCur->UpdateConnectedPins();
-//			m_pDebugCur = m_pDebugCur->m_pNextBlock;
-//			if (!m_pDebugCur){
-//				// Достигли конца цепочки
-//				// Переходим на начало
-//				// Вызываем событие перехода на начало цепочки
-//				OnDebugCycleEnd();
-//			}
-//		}
-//		while (!m_pDebugCur->m_bCalc);
-//		UpdateAllViews(NULL);
-//	}
-//	// TODO: добавьте свой код обработчика команд
 }
 
 
@@ -728,7 +647,6 @@ void CMainFrame::OnDebugStepInto()
 void CMainFrame::OnUpdateDebugStart(CCmdUI *pCmdUI)
 {
 	pCmdUI->Enable(GetCurDoc() && !m_bDebugRunning);
-	// TODO: добавьте свой код обработчика ИП обновления команд
 }
 
 
@@ -764,19 +682,15 @@ void CMainFrame::OnDebugPause()
 void CMainFrame::OnUpdateDebugPause(CCmdUI *pCmdUI)
 {
 	pCmdUI->Enable(m_pDebugCurDoc!=NULL && m_bDebugRunning);
-	// TODO: добавьте свой код обработчика ИП обновления команд
 }
 
 
 void CMainFrame::OnUpdateProjectScenario(CCmdUI *pCmdUI)
 {
 	pCmdUI->Enable(GetCurDoc() && m_pDebugCurDoc == NULL);
-	// TODO: добавьте свой код обработчика ИП обновления команд
 }
 
 
 void CMainFrame::OnDebugEndCycle(CFXGraphDoc* pDoc)
 {
-//	m_DataCollector.Collect(pDoc->m_SysTick, pDoc->m_pBlock);
-	// TODO: Добавьте сюда код реализации.
 }

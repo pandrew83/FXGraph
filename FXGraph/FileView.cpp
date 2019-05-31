@@ -209,37 +209,31 @@ void CFileView::OnProperties()
 void CFileView::OnFileOpen()
 {
 	TracePrint(TRACE_LEVEL_1,"CFileView::OnFileOpen");
-	// TODO: добавьте сюда код обработчика команд
 }
 
 void CFileView::OnFileOpenWith()
 {
 	TracePrint(TRACE_LEVEL_1,"CFileView::OnFileOpenWith");
-	// TODO: добавьте сюда код обработчика команд
 }
 
 void CFileView::OnDummyCompile()
 {
 	TracePrint(TRACE_LEVEL_1,"CFileView::OnDummyCompile");
-	// TODO: добавьте сюда код обработчика команд
 }
 
 void CFileView::OnEditCut()
 {
 	TracePrint(TRACE_LEVEL_1,"CFileView::OnEditCut");
-	// TODO: добавьте сюда код обработчика команд
 }
 
 void CFileView::OnEditCopy()
 {
 	TracePrint(TRACE_LEVEL_1,"CFileView::OnEditCopy");
-	// TODO: добавьте сюда код обработчика команд
 }
 
 void CFileView::OnEditClear()
 {
 	TracePrint(TRACE_LEVEL_1,"CFileView::OnEditClear");
-	// TODO: добавьте сюда код обработчика команд
 }
 
 void CFileView::OnPaint()
@@ -331,12 +325,6 @@ int CFileView::UpdateFileView(CFXGraphDoc*pDoc)
 		m_wndFileView.SetItemData(hItem,(DWORD_PTR)p);
 	}
 
-	//HTREEITEM hRes = m_wndFileView.InsertItem(_T("Файлы ресурсов FakeApp"), 0, 0, hRoot);
-
-	//m_wndFileView.InsertItem(_T("FakeApp.ico"), 2, 2, hRes);
-	//m_wndFileView.InsertItem(_T("FakeApp.rc2"), 2, 2, hRes);
-	//m_wndFileView.InsertItem(_T("FakeAppDoc.ico"), 2, 2, hRes);
-	//m_wndFileView.InsertItem(_T("FakeToolbar.bmp"), 2, 2, hRes);
 
 	m_wndFileView.Expand(hRoot, TVE_EXPAND);
 	m_wndFileView.Expand(hInput, TVE_EXPAND);
@@ -415,7 +403,6 @@ void CFileView::OnParamRemove()
 		pMainFrame->UpdatePropertiesWindow();
 		return;
 	}
-	// TODO: добавьте свой код обработчика команд
 }
 
 

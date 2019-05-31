@@ -51,15 +51,6 @@ BOOL CViewTree::OnNotify(WPARAM wParam, LPARAM lParam, LRESULT* pResult)
 	return bRes;
 }
 
-
-//void CViewTree::OnTvnBegindrag(NMHDR *pNMHDR, LRESULT *pResult)
-//{
-//	LPNMTREEVIEW pNMTreeView = reinterpret_cast<LPNMTREEVIEW>(pNMHDR);
-//	// TODO: добавьте свой код обработчика уведомлений
-//	*pResult = 0;
-//}
-
-
 void CViewTree::OnTvnBegindrag(NMHDR *pNMHDR, LRESULT *pResult)
 {
 	if (!m_bAllowDragDrop)
@@ -90,47 +81,3 @@ void CViewTree::OnTvnBegindrag(NMHDR *pNMHDR, LRESULT *pResult)
 	*pResult = 0;
 }
 
-
-//void CViewTree::OnMouseMove(UINT nFlags, CPoint point)
-//{
-//	// TODO: добавьте свой код обработчика сообщений или вызов стандартного
-//	if (m_bDragging){
-//		TracePrint("CViewTree::OnMouseMove with dragging %d %d\n",point.x,point.y);
-//		CPoint pt(point);
-//		ClientToScreen(&pt);
-//		m_pDragDropImage->DragMove(pt);
-////		m_pDragDropImage->DragShowNolock(false);
-//	}
-//	CTreeCtrl::OnMouseMove(nFlags, point);
-//}
-
-
-//void CViewTree::OnLButtonUp(UINT nFlags, CPoint point)
-//{
-//	// TODO: добавьте свой код обработчика сообщений или вызов стандартного
-//	if (m_bDragging){
-//		m_bDragging = false;
-//		ReleaseCapture();
-//		m_pDragDropImage->DragLeave(NULL);
-//		m_pDragDropImage->EndDrag();
-//		delete m_pDragDropImage;
-//		m_pDragDropImage = NULL;
-//		CPoint pt(point);
-//		ClientToScreen(&pt);
-//		CWnd* pDropWnd = WindowFromPoint(pt);
-//		if (pDropWnd->IsKindOf(RUNTIME_CLASS(CFXGraphView))){
-//			DWORD id = GetItemData(m_hItem);
-//			TracePrint("Dropped item data %d\n",id);
-//		}
-//	}
-//	CTreeCtrl::OnLButtonUp(nFlags, point);
-//}
-
-
-//void CViewTree::OnTvnItemChanged(NMHDR *pNMHDR, LRESULT *pResult)
-//{
-//	NMTVITEMCHANGE *pNMTVItemChange = reinterpret_cast<NMTVITEMCHANGE*>(pNMHDR);
-//	// TODO: добавьте свой код обработчика уведомлений
-////	TracePrint("CViewTree::OnTvnItemChanged Property value updated");
-//	*pResult = 0;
-//}

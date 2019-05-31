@@ -15,7 +15,7 @@ class CFXBlock : public CFXObject
 protected:
 	int m_Width;
 	int m_Height;
-	int m_SysTicks;
+//	int m_SysTicks;
 	CFXBlock(void) : m_CalcOrder(0), m_bBreakPoint(0)
 	{}
 	DECLARE_SERIAL(CFXBlock)
@@ -84,12 +84,10 @@ public:
 	virtual int GetHeight() const{
 		return m_Height;
 	}
-	void SetSysTicks(int SysTicks){
-		m_SysTicks = SysTicks;
-	}
-	int GetSysTicks(){
-		return m_SysTicks;
-	}
+	//void SetSysTicks(int SysTicks){
+	//	m_SysTicks = SysTicks;
+	//}
+	int GetSysTicks();
 	virtual CFXPin* AddInputPin(CFXPinType type, CString funcName, bool bAllowConst=true, bool bAllowParam=true, bool bConst=false, int nFormat=0, bool bLinkable=true);
 	virtual CFXPin* AddOutputPin(CFXPinType type, CString funcName, bool bAllowConst=true, bool bAllowParam=true, bool bConst=false, int nFormat=0, bool bLinkable=true);
 	void CalcPinCoords();

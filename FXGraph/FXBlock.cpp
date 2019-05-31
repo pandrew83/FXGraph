@@ -49,6 +49,11 @@ CFXBlock::~CFXBlock(void)
 	m_OutputPins.RemoveAll();
 }
 
+int CFXBlock::GetSysTicks()
+{
+	return GetActiveDocument()->m_SysTick;
+}
+
 CFXPin* CFXBlock::AddInputPin(CFXPinType type, CString funcName, bool bAllowConst, bool bAllowParam, bool bConst, int nFormat, bool bLinkable){
 	if (m_InputPins.GetCount()+1 > m_PinInMaxCount)
 		return NULL;
