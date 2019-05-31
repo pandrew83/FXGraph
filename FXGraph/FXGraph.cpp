@@ -71,10 +71,8 @@ CFXGraphApp::CFXGraphApp()
 
 	// TODO: замените ниже строку идентификатора приложения строкой уникального идентификатора; рекомендуемый
 	// формат для строки: ИмяКомпании.ИмяПродукта.СубПродукт.СведенияОВерсии
-	SetAppID(_T("FXGraph.AppID.NoVersion"));
+	SetAppID(_T("FXGraph.AppID"));
 
-	// TODO: добавьте код создания,
-	// Размещает весь важный код инициализации в InitInstance
 }
 
 // Единственный объект CFXGraphApp
@@ -192,7 +190,6 @@ BOOL CFXGraphApp::InitInstance()
 
 int CFXGraphApp::ExitInstance()
 {
-	//TODO: обработайте дополнительные ресурсы, которые могли быть добавлены
 	AfxOleTerm(FALSE);
 
 	return CWinAppEx::ExitInstance();
@@ -307,7 +304,6 @@ void CFXGraphApp::OnGrid()
 int CFXGraphApp::Run()
 {
 	TracePrint(TRACE_LEVEL_1,"CFXGraphApp:Run");
-	// TODO: добавьте специализированный код или вызов базового класса
 	try{
 		return CWinAppEx::Run();
 	}

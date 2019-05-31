@@ -147,6 +147,30 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CFXBlockAntiBounce.h" />
+    <ClInclude Include="CFXBlockDelayOff.h" />
+    <ClInclude Include="CFXBlockDelayOn.h" />
+    <ClInclude Include="CFXBlockSensorCurrent.h" />
+    <ClInclude Include="CFXBlockSensorTRD2WM100.h" />
+    <ClInclude Include="CFXBlockSensorTRD2WM50.h" />
+    <ClInclude Include="CFXBlockSensorTRD2WP50.h" />
+    <ClInclude Include="CFXBlockSensorTRD2WPt100.h" />
+    <ClInclude Include="CFXBlockSensorTRD2WPt1000.h" />
+    <ClInclude Include="CFXBlockSensorTRD2WPt500.h" />
+    <ClInclude Include="CFXBlockSensorTRD2WP100.h" />
+    <ClInclude Include="CFXBlockSensorTRD3WM100.h" />
+    <ClInclude Include="CFXBlockSensorTRD3WM50.h" />
+    <ClInclude Include="CFXBlockSensorTRD3WP100.h" />
+    <ClInclude Include="CFXBlockSensorTRD3WP50.h" />
+    <ClInclude Include="CFXBlockSensorTRD3WPt100.h" />
+    <ClInclude Include="CFXBlockSensorTRD3WPt1000.h" />
+    <ClInclude Include="CFXBlockSensorTRD3WPt500.h" />
+    <ClInclude Include="CFXBlockSensorTRD4WM100.h" />
+    <ClInclude Include="CFXBlockSensorTRD4WM50.h" />
+    <ClInclude Include="CFXBlockSensorTRD4WP100.h" />
+    <ClInclude Include="CFXBlockSensorTRD4WP50.h" />
+    <ClInclude Include="CFXBlockSensorTRD4WPt100.h" />
+    <ClInclude Include="CFXBlockSensorTRD4WPt1000.h" />
+    <ClInclude Include="CFXBlockSensorTRD4WPt500.h" />
     <ClInclude Include="CFXDataCollector.h" />
     <ClInclude Include="CFXGraphViewGraphic.h" />
     <ClInclude Include="ChildFrm.h" />
@@ -245,6 +269,30 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CFXBlockAntiBounce.cpp" />
+    <ClCompile Include="CFXBlockDelayOff.cpp" />
+    <ClCompile Include="CFXBlockDelayOn.cpp" />
+    <ClCompile Include="CFXBlockSensorCurrent.cpp" />
+    <ClCompile Include="CFXBlockSensorTRD2WM100.cpp" />
+    <ClCompile Include="CFXBlockSensorTRD2WM50.cpp" />
+    <ClCompile Include="CFXBlockSensorTRD2WP50.cpp" />
+    <ClCompile Include="CFXBlockSensorTRD2WPt100.cpp" />
+    <ClCompile Include="CFXBlockSensorTRD2WPt1000.cpp" />
+    <ClCompile Include="CFXBlockSensorTRD2WPt500.cpp" />
+    <ClCompile Include="CFXBlockSensorTRD2WP100.cpp" />
+    <ClCompile Include="CFXBlockSensorTRD3WM100.cpp" />
+    <ClCompile Include="CFXBlockSensorTRD3WM50.cpp" />
+    <ClCompile Include="CFXBlockSensorTRD3WP100.cpp" />
+    <ClCompile Include="CFXBlockSensorTRD3WP50.cpp" />
+    <ClCompile Include="CFXBlockSensorTRD3WPt100.cpp" />
+    <ClCompile Include="CFXBlockSensorTRD3WPt1000.cpp" />
+    <ClCompile Include="CFXBlockSensorTRD3WPt500.cpp" />
+    <ClCompile Include="CFXBlockSensorTRD4WM100.cpp" />
+    <ClCompile Include="CFXBlockSensorTRD4WM50.cpp" />
+    <ClCompile Include="CFXBlockSensorTRD4WP100.cpp" />
+    <ClCompile Include="CFXBlockSensorTRD4WP50.cpp" />
+    <ClCompile Include="CFXBlockSensorTRD4WPt100.cpp" />
+    <ClCompile Include="CFXBlockSensorTRD4WPt1000.cpp" />
+    <ClCompile Include="CFXBlockSensorTRD4WPt500.cpp" />
     <ClCompile Include="CFXDataCollector.cpp" />
     <ClCompile Include="CFXGraphViewGraphic.cpp" />
     <ClCompile Include="ChildFrm.cpp" />

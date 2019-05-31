@@ -52,4 +52,5 @@ CFXBlockComparatorUp::~CFXBlockComparatorUp(void)
 void CFXBlockComparatorUp::Initialize(void)
 {
 	CFXBlock::Initialize();
+	m_Prev = false;
 }

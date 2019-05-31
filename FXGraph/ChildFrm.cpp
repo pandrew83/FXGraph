@@ -36,7 +36,6 @@ CChildFrame::~CChildFrame()
 
 BOOL CChildFrame::PreCreateWindow(CREATESTRUCT& cs)
 {
-	// TODO:  измените класс Window или стили посредством изменения CREATESTRUCT cs
 	if( !CMDIChildWndEx::PreCreateWindow(cs) )
 		return FALSE;
 
@@ -62,16 +61,9 @@ void CChildFrame::Dump(CDumpContext& dc) const
 
 void CChildFrame::OnClose()
 {
-	// TODO: добавьте свой код обработчика сообщений или вызов стандартного
 	TracePrint(TRACE_LEVEL_1,"CChildFrame::OnClose");
 	CMDIChildWndEx::OnClose();
 	CMainFrame* pMainFrame = (CMainFrame*)AfxGetApp()->m_pMainWnd;
 	pMainFrame->m_wndProperties.UpdateProperties(NULL);
 }
 
-
-//void CChildFrame::OnIdclose()
-//{
-//	
-//	TracePrint("CChildFrame::OnIdclose()");
-//}

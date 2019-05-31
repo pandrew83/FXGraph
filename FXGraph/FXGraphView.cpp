@@ -77,7 +77,31 @@
 #include "FXBlockMathAcos.h"
 #include "FXBlockMathAtan.h"
 #include "FXBlockMathFloatRound.h"
-
+#include "CFXBlockAntiBounce.h"
+#include "CFXBlockDelayOn.h"
+#include "CFXBlockDelayOff.h"
+#include "CFXBlockSensorCurrent.h"
+#include "CFXBlockSensorTRD2WM50.h"
+#include "CFXBlockSensorTRD2WM100.h"
+#include "CFXBlockSensorTRD2WPt100.h"
+#include "CFXBlockSensorTRD2WPt500.h"
+#include "CFXBlockSensorTRD2WPt1000.h"
+#include "CFXBlockSensorTRD2WP50.h"
+#include "CFXBlockSensorTRD2WP100.h"
+#include "CFXBlockSensorTRD3WM50.h"
+#include "CFXBlockSensorTRD3WM100.h"
+#include "CFXBlockSensorTRD3WPt100.h"
+#include "CFXBlockSensorTRD3WPt500.h"
+#include "CFXBlockSensorTRD3WPt1000.h"
+#include "CFXBlockSensorTRD3WP50.h"
+#include "CFXBlockSensorTRD3WP100.h"
+#include "CFXBlockSensorTRD4WM50.h"
+#include "CFXBlockSensorTRD4WM100.h"
+#include "CFXBlockSensorTRD4WPt100.h"
+#include "CFXBlockSensorTRD4WPt500.h"
+#include "CFXBlockSensorTRD4WPt1000.h"
+#include "CFXBlockSensorTRD4WP50.h"
+#include "CFXBlockSensorTRD4WP100.h"
 #include "CommentDlg.h"
 
 #ifdef _DEBUG
@@ -981,7 +1005,6 @@ int CFXGraphView::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	if (CView::OnCreate(lpCreateStruct) == -1)
 		return -1;
 
-	// TODO:  Добавьте специализированный код создания
 	m_DropTarget.Register(this);
 	m_x = 0;
 	m_y = 0;
@@ -991,23 +1014,12 @@ int CFXGraphView::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	m_bButtonL = false;
 	m_bButtonR = false;
 	m_bShowLinks = true;
-	//CChildFrame* pFrame = (CChildFrame*)GetParentFrame();
-	//if (pFrame->m_pBlock)
-	//	m_pBlock = pFrame->m_pBlock;
-	//else
-	//	m_pBlock = ((CFXGraphDoc*)GetDocument())->m_pBlock;
 	CPaintDC dc(this);
 	m_Mem1.CreateCompatibleDC(&dc);
 	m_Mem2.CreateCompatibleDC(&dc);
-
-	
-//	dc.DeleteDC();
 	TracePrint(TRACE_LEVEL_1,"CFXGraphView::OnCreate: New view %p\n",this);
 	return 0;
 }
-
-
-
 
 CPoint CFXGraphView::Logic2Local(CPoint point)
 {
@@ -1019,7 +1031,6 @@ CPoint CFXGraphView::Logic2Local(CPoint point)
 	ret.y = (LONG)((point.y-m_y)*m_Scale/100+rect.Height()/2);
 	return ret;
 }
-
 
 CPoint CFXGraphView::Local2Logic(CPoint point)
 {
@@ -1062,8 +1073,7 @@ void CFXGraphView::OnAlignBottom()
 			pObject->SetY(y);
 			pObject->Invalidate(this,REGION_COORD);
 		}
-//		Invalidate(0);
-	}
+}
 }
 
 
@@ -1535,6 +1545,81 @@ CFXBlock* CFXGraphView::AddBlock(DWORD ID, CPoint point)
 		case BLOCK_COUNTER:
 			pBlock = new CFXBlockCounter(m_pBlock);
 			break;
+		case BLOCK_ANTIBOUNCE:
+			pBlock = new CFXBlockAntiBounce(m_pBlock);
+			break;
+		case BLOCK_DELAY_ON:
+			pBlock = new CFXBlockDelayOn(m_pBlock);
+			break;
+		case BLOCK_DELAY_OFF:
+			pBlock = new CFXBlockDelayOff(m_pBlock);
+			break;
+		case BLOCK_SENSOR_CURRENT:
+			pBlock = new CFXBlockSensorCurrent(m_pBlock);
+			break;
+		case BLOCK_SENSOR_TRD_2W_M50:
+			pBlock = new CFXBlockSensorTRD2WM50(m_pBlock);
+			break;
+		case BLOCK_SENSOR_TRD_2W_M100:
+			pBlock = new CFXBlockSensorTRD2WM100(m_pBlock);
+			break;
+		case BLOCK_SENSOR_TRD_2W_P50:
+			pBlock = new CFXBlockSensorTRD2WP50(m_pBlock);
+			break;
+		case BLOCK_SENSOR_TRD_2W_P100:
+			pBlock = new CFXBlockSensorTRD2WP100(m_pBlock);
+			break;
+		case BLOCK_SENSOR_TRD_2W_PT100:
+			pBlock = new CFXBlockSensorTRD2WPt100(m_pBlock);
+			break;
+		case BLOCK_SENSOR_TRD_2W_PT500:
+			pBlock = new CFXBlockSensorTRD2WPt500(m_pBlock);
+			break;
+		case BLOCK_SENSOR_TRD_2W_PT1000:
+			pBlock = new CFXBlockSensorTRD2WPt1000(m_pBlock);
+			break;
+		case BLOCK_SENSOR_TRD_3W_M50:
+			pBlock = new CFXBlockSensorTRD3WM50(m_pBlock);
+			break;
+		case BLOCK_SENSOR_TRD_3W_M100:
+			pBlock = new CFXBlockSensorTRD3WM100(m_pBlock);
+			break;
+		case BLOCK_SENSOR_TRD_3W_P50:
+			pBlock = new CFXBlockSensorTRD3WP50(m_pBlock);
+			break;
+		case BLOCK_SENSOR_TRD_3W_P100:
+			pBlock = new CFXBlockSensorTRD3WP100(m_pBlock);
+			break;
+		case BLOCK_SENSOR_TRD_3W_PT100:
+			pBlock = new CFXBlockSensorTRD3WPt100(m_pBlock);
+			break;
+		case BLOCK_SENSOR_TRD_3W_PT500:
+			pBlock = new CFXBlockSensorTRD3WPt500(m_pBlock);
+			break;
+		case BLOCK_SENSOR_TRD_3W_PT1000:
+			pBlock = new CFXBlockSensorTRD3WPt1000(m_pBlock);
+			break;
+		case BLOCK_SENSOR_TRD_4W_M50:
+			pBlock = new CFXBlockSensorTRD4WM50(m_pBlock);
+			break;
+		case BLOCK_SENSOR_TRD_4W_M100:
+			pBlock = new CFXBlockSensorTRD4WM100(m_pBlock);
+			break;
+		case BLOCK_SENSOR_TRD_4W_P50:
+			pBlock = new CFXBlockSensorTRD4WP50(m_pBlock);
+			break;
+		case BLOCK_SENSOR_TRD_4W_P100:
+			pBlock = new CFXBlockSensorTRD4WP100(m_pBlock);
+			break;
+		case BLOCK_SENSOR_TRD_4W_PT100:
+			pBlock = new CFXBlockSensorTRD4WPt100(m_pBlock);
+			break;
+		case BLOCK_SENSOR_TRD_4W_PT500:
+			pBlock = new CFXBlockSensorTRD4WPt500(m_pBlock);
+			break;
+		case BLOCK_SENSOR_TRD_4W_PT1000:
+			pBlock = new CFXBlockSensorTRD4WPt1000(m_pBlock);
+			break;
 		default:
 			return NULL;
 	}
@@ -1788,7 +1873,6 @@ void CFXGraphView::SetViewAt(CFXObject* pObject)
 void CFXGraphViewScenario::OnUpdate(CView* /*pSender*/, LPARAM /*lHint*/, CObject* /*pHint*/)
 {
 	TracePrint(TRACE_LEVEL_1,"CFXGraphViewScenario::OnUpdate");
-	// TODO: добавьте специализированный код или вызов базового класса
 }
 BEGIN_MESSAGE_MAP(CFXGraphViewScenario, CEditView)
 	ON_CONTROL_REFLECT(EN_CHANGE, &CFXGraphViewScenario::OnEnChange)
@@ -1799,12 +1883,6 @@ END_MESSAGE_MAP()
 void CFXGraphViewScenario::OnEnChange()
 {
 	TracePrint(TRACE_LEVEL_1,"CFXGraphViewScenario::OnEnChange");
-	// TODO:  Если это элемент управления RICHEDIT, то элемент управления не будет
-	// send this notification unless you override the CEditView::OnInitDialog()
-	// function and call CRichEditCtrl().SetEventMask()
-	// with the ENM_CHANGE flag ORed into the mask.
-
-	// TODO:  Добавьте код элемента управления
 	CFXGraphDoc* pDoc = (CFXGraphDoc*)GetDocument();
 	GetEditCtrl().GetWindowTextW(pDoc->m_DebugScenario);
 }
@@ -1813,10 +1891,4 @@ void CFXGraphViewScenario::OnEnChange()
 void CFXGraphViewScenario::OnEnUpdate()
 {
 	TracePrint(TRACE_LEVEL_1,"CFXGraphViewScenario::OnEnUpdate");
-	// TODO:  Если это элемент управления RICHEDIT, то элемент управления не будет
-	// send this notification unless you override the CEditView::OnInitDialog()
-	// function to send the EM_SETEVENTMASK message to the control
-	// с флагом ENM_UPDATE ORed в маске lParam mask.
-
-	// TODO:  Добавьте код элемента управления
 }
