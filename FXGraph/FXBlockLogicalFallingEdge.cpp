@@ -9,6 +9,7 @@ CFXBlockLogicalFallingEdge::CFXBlockLogicalFallingEdge(void)
 
 CFXBlockLogicalFallingEdge::CFXBlockLogicalFallingEdge(CFXBlock* pBlock):CFXBlock(pBlock){
 	m_Prev = false;
+	m_MinHeight = m_Height = 50;
 	m_Name = "Fall Edge";
 	m_InputPinTypes.AddTail(Logical);
 	m_OutputPinTypes.AddTail(Logical);

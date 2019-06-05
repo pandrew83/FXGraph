@@ -139,6 +139,10 @@ public:
 	void SelectObject(CFXObject* pObject);
 	void SetActiveObject(CFXObject* pObject);
 	void SetViewAt(CFXObject* pObject);
+	afx_msg void OnPinGraphNew();
+	afx_msg void OnPinGraph(UINT nID);
+//	afx_msg void OnPaint();
+//	afx_msg void OnSetFocus(CWnd* pOldWnd);
 };
 
 #ifndef _DEBUG  // отладочная версия в FXGraphView.cpp

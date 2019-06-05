@@ -7,7 +7,7 @@ public:
 	CFXBlockMathIntDiv(void);
 	DECLARE_SERIAL(CFXBlockMathIntDiv);
 	CFXBlockMathIntDiv(CFXBlock* pBlock):CFXBlock(pBlock){
-		m_Name = "Div";
+		m_Name = "X / Y";
 		m_PinInMinCount = 2;
 		m_PinInMaxCount = 32;
 		m_PinOutMinCount = 1;

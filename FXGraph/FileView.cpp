@@ -86,7 +86,6 @@ int CFileView::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	m_wndToolBar.SetRouteCommandsViaFrame(FALSE);
 
 	// Введите некоторые данные статического представления в виде дерева (пустой код, ничего более)
-	FillFileView();
 	AdjustLayout();
 
 	return 0;
@@ -97,11 +96,6 @@ void CFileView::OnSize(UINT nType, int cx, int cy)
 	TracePrint(TRACE_LEVEL_2,"CFileView::OnSize");
 	CDockablePane::OnSize(nType, cx, cy);
 	AdjustLayout();
-}
-
-void CFileView::FillFileView()
-{
-	TracePrint(TRACE_LEVEL_1,"CFileView::FillFileView");
 }
 
 void CFileView::OnContextMenu(CWnd* pWnd, CPoint point)
@@ -290,7 +284,7 @@ void CFileView::OnChangeVisualStyle()
 
 
 
-int CFileView::UpdateFileView(CFXGraphDoc*pDoc)
+int CFileView::UpdateView(CFXGraphDoc*pDoc)
 {
 	TracePrint(TRACE_LEVEL_2,"CFileView::UpdateFileView");
 	TracePrint(TRACE_LEVEL_2,"CFileView::UpdateFileView Updating file view pCurDoc=%p pDoc=%p\n",m_pCurDoc,pDoc);
@@ -370,7 +364,7 @@ void CFileView::OnParamOutputAdd()
 		m_pCurDoc->m_OutputParams.AddTail(new CFXParam(dlg.m_Name,type,value));
 		CFXGraphDoc* pDoc = m_pCurDoc;
 		m_pCurDoc = NULL;
-		UpdateFileView(pDoc);
+		UpdateView(pDoc);
 		CMainFrame* pMainFrame = (CMainFrame*)AfxGetApp()->m_pMainWnd;
 		pMainFrame->UpdatePropertiesWindow();
 	}
@@ -444,7 +438,7 @@ void CFileView::OnParamInputAdd()
 		m_pCurDoc->m_InputParams.AddTail(new CFXParam(dlg.m_Name,type,value));
 		CFXGraphDoc* pDoc = m_pCurDoc;
 		m_pCurDoc = NULL;
-		UpdateFileView(pDoc);
+		UpdateView(pDoc);
 		CMainFrame* pMainFrame = (CMainFrame*)AfxGetApp()->m_pMainWnd;
 		pMainFrame->UpdatePropertiesWindow();
 	}

@@ -9,6 +9,12 @@ using namespace libxl;
 
 CFXDataCollector::CFXDataCollector()
 {
+	//CFXDataCollectorItem* pRow;
+	//for (int i = 0; i < 10; i++) {
+	//	pRow = new CFXDataCollectorItem(200);
+	//	pRow->m_Values[27] = 1;
+	//	m_DataRows.AddTail(pRow);
+	//}
 }
 //
 //CFXDataCollectorItem& CFXDataCollectorItem::operator=(CFXDataCollectorItem& item)
@@ -29,10 +35,14 @@ void CFXDataCollector::Initialize()
 
 void CFXDataCollector::Collect(int ticks, CFXBlockFunctional* pBlockFunc)
 {
-	CFXDataCollectorItem* pRow = new CFXDataCollectorItem();
-	pRow->m_Ticks = ticks;
+	CFXDataCollectorItem* pRow = new CFXDataCollectorItem(ticks);
 	CollectRecurse(pRow, pBlockFunc);
 	m_DataRows.AddTail(pRow);
+}
+
+CFXDataCollectorColumn* CFXDataCollector::GetColumn(int id)
+{
+	return m_Columns[id];
 }
 
 //variant_t CFXDataCollector::GetValue(int ticks, int id)
@@ -51,11 +61,11 @@ void CFXDataCollector::Excel(CString filename)
 			sheet->writeStr(line, 0, L"Tick");
 			POSITION pos = m_Columns.GetStartPosition();
 			while (pos) {
-				CFXPin* pPin;
+				CFXDataCollectorColumn* pColumn;
 				int id;
-				m_Columns.GetNextAssoc(pos, id, pPin);
+				m_Columns.GetNextAssoc(pos, id, pColumn);
 				sheet->writeNum(line, col, id);
-				sheet->writeStr(line + 1, col, pPin->GetName());
+				sheet->writeStr(line + 1, col, pColumn->m_Name);
 				col++;
 			}
 			line+=2;
@@ -67,9 +77,9 @@ void CFXDataCollector::Excel(CString filename)
 				POSITION pos1 = m_Columns.GetStartPosition();
 				while (pos1) {
 					int id;
-					CFXPin* pPin;
-					m_Columns.GetNextAssoc(pos1, id, pPin);
-					switch (pPin->m_Type) {
+					CFXDataCollectorColumn* pColumn;
+					m_Columns.GetNextAssoc(pos1, id, pColumn);
+					switch (pColumn->m_Type) {
 					case Logical:
 						sheet->writeBool(line, col++, pRow->m_Values[id]);
 						break;
@@ -94,7 +104,25 @@ void CFXDataCollector::RemoveAll()
 		CFXDataCollectorItem* pCur = m_DataRows.GetNext(pos);
 		delete pCur;
 	}
+	pos = m_Columns.GetStartPosition();
+	while (pos) {
+		int id;
+		CFXDataCollectorColumn* pColumn;
+		m_Columns.GetNextAssoc(pos, id, pColumn);
+		delete pColumn;
+	}
 	m_DataRows.RemoveAll();
+	m_Columns.RemoveAll();
+}
+
+POSITION CFXDataCollector::GetFirstDataRow()
+{
+	return m_DataRows.GetHeadPosition();
+}
+
+CFXDataCollectorItem* CFXDataCollector::GetNextDataRow(POSITION& pos)
+{
+	return m_DataRows.GetNext(pos);
 }
 
 void CFXDataCollector::CollectRecurse(CFXDataCollectorItem* pRow, CFXBlockFunctional* pCur)
@@ -108,7 +136,8 @@ void CFXDataCollector::CollectRecurse(CFXDataCollectorItem* pRow, CFXBlockFuncti
 		while (pos1) {
 			CFXPin* pPin = pBlock->m_InputPins.GetNext(pos1);
 			if (!m_Columns[pPin->m_ID]) {
-				m_Columns[pPin->m_ID] = pPin;
+				CFXDataCollectorColumn* pColumn = new CFXDataCollectorColumn(pPin->m_ID, pPin->GetName(), pPin->m_Type);
+				m_Columns[pPin->m_ID] = pColumn;
 			}
 			pRow->m_Values[pPin->m_ID] = pPin->GetValue();
 		}
@@ -122,4 +151,9 @@ void CFXDataCollector::CollectRecurse(CFXDataCollectorItem* pRow, CFXBlockFuncti
 		}
 
 	}
+}
+
+CFXDataCollectorItem::CFXDataCollectorItem(int Ticks)
+{
+	m_Ticks = Ticks;
 }

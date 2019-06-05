@@ -8,7 +8,7 @@ CFXBlockMathIntSub::CFXBlockMathIntSub(void)
 }
 
 CFXBlockMathIntSub::CFXBlockMathIntSub(CFXBlock* pBlock):CFXBlock(pBlock){
-	m_Name = "Sub";
+	m_Name = "X - Y";
 	m_PinInMinCount = 2;
 	m_PinInMaxCount = 32;
 	m_PinOutMinCount = 1;

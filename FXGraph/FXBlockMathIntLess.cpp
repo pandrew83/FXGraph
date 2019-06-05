@@ -7,7 +7,7 @@ CFXBlockMathIntLess::CFXBlockMathIntLess(void)
 }
 
 CFXBlockMathIntLess::CFXBlockMathIntLess(CFXBlock*pBlock):CFXBlock(pBlock){
-	m_Name = "<";
+	m_Name = "X < Y";
 	m_PinInMinCount = 2;
 	m_PinInMaxCount = 2;
 	m_PinOutMinCount = 2;

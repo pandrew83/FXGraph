@@ -7,7 +7,7 @@ public:
 	CFXBlockMathIntMul(void);
 	DECLARE_SERIAL(CFXBlockMathIntMul);
 	CFXBlockMathIntMul(CFXBlock* pBlock):CFXBlock(pBlock){
-		m_Name = "Mul";
+		m_Name = "X * Y";
 		m_PinInMinCount = 2;
 		m_PinInMaxCount = 32;
 		m_PinOutMinCount = 1;

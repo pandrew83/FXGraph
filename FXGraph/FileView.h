@@ -29,8 +29,6 @@ protected:
 	CImageList m_FileViewImages;
 	CFileViewToolBar m_wndToolBar;
 
-protected:
-	void FillFileView();
 
 // Реализация
 public:
@@ -52,7 +50,7 @@ protected:
 
 	DECLARE_MESSAGE_MAP()
 public:
-	int UpdateFileView(CFXGraphDoc*pDoc);
+	int UpdateView(CFXGraphDoc*pDoc);
 	CFXGraphDoc* m_pCurDoc;
 	afx_msg void OnParamOutputAdd();
 	afx_msg void OnParamRemove();

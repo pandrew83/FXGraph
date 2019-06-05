@@ -149,7 +149,8 @@
     <ClInclude Include="CFXBlockAntiBounce.h" />
     <ClInclude Include="CFXBlockDelayOff.h" />
     <ClInclude Include="CFXBlockDelayOn.h" />
-    <ClInclude Include="CFXBlockSensorCurrent.h" />
+    <ClInclude Include="CFXBlockTransformLinear.h" />
+    <ClInclude Include="CFXBlockTransformCurrent.h" />
     <ClInclude Include="CFXBlockSensorTRD2WM100.h" />
     <ClInclude Include="CFXBlockSensorTRD2WM50.h" />
     <ClInclude Include="CFXBlockSensorTRD2WP50.h" />
@@ -171,8 +172,14 @@
     <ClInclude Include="CFXBlockSensorTRD4WPt100.h" />
     <ClInclude Include="CFXBlockSensorTRD4WPt1000.h" />
     <ClInclude Include="CFXBlockSensorTRD4WPt500.h" />
+    <ClInclude Include="CFXBlockTransformLinearLimits.h" />
     <ClInclude Include="CFXDataCollector.h" />
+    <ClInclude Include="CFXGraphic.h" />
+    <ClInclude Include="CFXGraphicVariable.h" />
     <ClInclude Include="CFXGraphViewGraphic.h" />
+    <ClInclude Include="CGraphicDlg.h" />
+    <ClInclude Include="CGraphPinDlg.h" />
+    <ClInclude Include="CGraphView.h" />
     <ClInclude Include="ChildFrm.h" />
     <ClInclude Include="ClassView.h" />
     <ClInclude Include="CommentDlg.h" />
@@ -271,7 +278,8 @@
     <ClCompile Include="CFXBlockAntiBounce.cpp" />
     <ClCompile Include="CFXBlockDelayOff.cpp" />
     <ClCompile Include="CFXBlockDelayOn.cpp" />
-    <ClCompile Include="CFXBlockSensorCurrent.cpp" />
+    <ClCompile Include="CFXBlockTransformLinear.cpp" />
+    <ClCompile Include="CFXBlockTransformCurrent.cpp" />
     <ClCompile Include="CFXBlockSensorTRD2WM100.cpp" />
     <ClCompile Include="CFXBlockSensorTRD2WM50.cpp" />
     <ClCompile Include="CFXBlockSensorTRD2WP50.cpp" />
@@ -293,8 +301,14 @@
     <ClCompile Include="CFXBlockSensorTRD4WPt100.cpp" />
     <ClCompile Include="CFXBlockSensorTRD4WPt1000.cpp" />
     <ClCompile Include="CFXBlockSensorTRD4WPt500.cpp" />
+    <ClCompile Include="CFXBlockTransformLinearLimits.cpp" />
     <ClCompile Include="CFXDataCollector.cpp" />
+    <ClCompile Include="CFXGraphic.cpp" />
+    <ClCompile Include="CFXGraphicVariable.cpp" />
     <ClCompile Include="CFXGraphViewGraphic.cpp" />
+    <ClCompile Include="CGraphicDlg.cpp" />
+    <ClCompile Include="CGraphPinDlg.cpp" />
+    <ClCompile Include="CGraphView.cpp" />
     <ClCompile Include="ChildFrm.cpp" />
     <ClCompile Include="ClassView.cpp" />
     <ClCompile Include="CommentDlg.cpp" />
@@ -404,6 +418,10 @@
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="FXGraph.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\Graph.bmp" />
+    <Image Include="res\graph_view_hc.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

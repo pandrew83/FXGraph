@@ -7,7 +7,7 @@ CFXBlockMathIntMod::CFXBlockMathIntMod(void)
 }
 
 CFXBlockMathIntMod::CFXBlockMathIntMod(CFXBlock *pBlock):CFXBlock(pBlock){
-	m_Name = "Mod";
+	m_Name = "X % Y";
 	m_PinInMinCount = 2;
 	m_PinInMaxCount = 32;
 	m_PinOutMinCount = 1;

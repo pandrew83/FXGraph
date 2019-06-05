@@ -4,6 +4,7 @@ IMPLEMENT_SERIAL(CFXBlockLogicalNot,CFXBlock,1);
 
 CFXBlockLogicalNot::CFXBlockLogicalNot(CFXBlock* pBlock):CFXBlock(pBlock){
 	m_Name = "Not";
+	m_MinHeight = m_Height = 50; 
 	m_PinInMinCount = 1;
 	m_PinInMaxCount = 1;
 	m_PinOutMinCount = 1;

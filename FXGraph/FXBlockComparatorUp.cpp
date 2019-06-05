@@ -10,6 +10,7 @@ CFXBlockComparatorUp::CFXBlockComparatorUp(void)
 CFXBlockComparatorUp::CFXBlockComparatorUp(CFXBlock* pBlock): CFXBlock(pBlock){
 	m_Prev = false;
 	m_Name = "Comp Up";
+	m_MinHeight = m_Height = 100;
 	m_InputPinTypes.AddTail(Float);
 	m_OutputPinTypes.AddTail(Logical);
 	m_PinInMinCount = 3;

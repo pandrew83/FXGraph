@@ -83,7 +83,7 @@ int CClassView::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	// Создание представлений:
 	const DWORD dwViewStyle = WS_CHILD | WS_VISIBLE | TVS_HASLINES | TVS_LINESATROOT | TVS_HASBUTTONS | WS_CLIPSIBLINGS | WS_CLIPCHILDREN;
 
-	if (!m_wndClassView.Create(dwViewStyle, rectDummy, this, 2))
+	if (!m_wndClassView.Create(dwViewStyle, rectDummy, this,2))
 	{
 		TRACE0("Не удалось создать представление классов\n");
 		return -1;      // не удалось создать
@@ -272,7 +272,9 @@ void CClassView::FillClassView()
 			InsertBlock(hClass1, _T("Pt1000"), BLOCK_SENSOR_TRD_4W_PT1000);
 			m_wndClassView.Expand(hClass1, TVE_EXPAND);
 		hClass1 = m_wndClassView.InsertItem(_T("Прочие"), hRoot, 0);
-			InsertBlock(hClass1, _T("Токовый 0-20мА, 4-20 мА"), BLOCK_SENSOR_CURRENT);
+			InsertBlock(hClass1, _T("Токовый 0-20мА, 4-20 мА"), BLOCK_TRANSFORM_CURRENT);
+			InsertBlock(hClass1, _T("Линейное преобразование"), BLOCK_TRANSFORM_LINEAR);
+			InsertBlock(hClass1, _T("Линейное преобразование с ограничением"), BLOCK_TRANSFORM_LINEAR_LIMITS);
 			m_wndClassView.Expand(hClass1, TVE_EXPAND);
 		m_wndClassView.Expand(hClass, TVE_EXPAND);
 	m_wndClassView.Expand(hRoot, TVE_EXPAND);
@@ -486,6 +488,8 @@ void CClassView::OnChangeVisualStyle()
 	m_wndToolBar.CleanUpLockedImages();
 	m_wndToolBar.LoadBitmap(theApp.m_bHiColorIcons ? IDB_SORT_24 : IDR_SORT, 0, 0, TRUE /* Заблокирован */);
 }
+
+
 
 HTREEITEM CClassView::GetCurSel(void)
 {

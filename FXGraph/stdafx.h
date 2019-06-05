@@ -52,6 +52,9 @@ enum CFXMsgType {Debug,Build,Find};
 #include <afxcontrolbars.h>     // поддержка MFC для лент и панелей управления
 #include <afxcview.h>
 #include <afxwin.h>
+#include <afxcontrolbars.h>
+#include <afxcontrolbars.h>
+#include <afxcontrolbars.h>
 
 
 

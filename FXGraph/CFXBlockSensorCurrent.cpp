@@ -1,14 +1,14 @@
 #include "stdafx.h"
-#include "CFXBlockSensorCurrent.h"
-IMPLEMENT_SERIAL(CFXBlockSensorCurrent, CFXBlock, 1);
+#include "CFXBlockTransformCurrent.h"
+IMPLEMENT_SERIAL(CFXBlockTransformCurrent, CFXBlock, 1);
 
-CFXBlockSensorCurrent::CFXBlockSensorCurrent()
+CFXBlockTransformCurrent::CFXBlockTransformCurrent()
 {
 }
 
-CFXBlockSensorCurrent::CFXBlockSensorCurrent(CFXBlock* pBlock) : CFXBlock(pBlock)
+CFXBlockTransformCurrent::CFXBlockTransformCurrent(CFXBlock* pBlock) : CFXBlock(pBlock)
 {
-	m_Name = "Current";
+	m_Name = "Transform Current";
 	m_PinInMaxCount = 1;
 	m_PinInMinCount = 1;
 	m_PinOutMinCount = 1;
@@ -19,7 +19,7 @@ CFXBlockSensorCurrent::CFXBlockSensorCurrent(CFXBlock* pBlock) : CFXBlock(pBlock
 	AddOutputPin(Float, _T("z"));
 }
 
-bool CFXBlockSensorCurrent::Calc()
+bool CFXBlockTransformCurrent::Calc()
 {
 	if (!CFXBlock::Calc())
 		return false;

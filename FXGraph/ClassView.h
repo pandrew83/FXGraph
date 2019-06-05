@@ -21,7 +21,7 @@ public:
 
 	void AdjustLayout();
 	void OnChangeVisualStyle();
-
+	void UpdateView(CFXGraphDoc* pDoc);
 protected:
 	void InsertBlock(HTREEITEM hRoot, CString name, int data);
 	CClassToolBar m_wndToolBar;
