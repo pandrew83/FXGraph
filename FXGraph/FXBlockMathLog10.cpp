@@ -8,7 +8,8 @@ CFXBlockMathLog10::CFXBlockMathLog10(void)
 }
 
 CFXBlockMathLog10::CFXBlockMathLog10(CFXBlock* pBlock):CFXBlock(pBlock){
-	m_Name = "Log10";
+	m_Name = "Log10(X)";
+	m_MinHeight = m_Height = 50;
 	m_PinInMaxCount = 1;
 	m_PinInMinCount = 1;
 	m_PinOutMinCount = 1;

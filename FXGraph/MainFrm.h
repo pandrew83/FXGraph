@@ -5,6 +5,7 @@
 #pragma once
 #include "FileView.h"
 #include "ClassView.h"
+#include "CGraphView.h"
 #include "OutputWnd.h"
 #include "PropertiesWnd.h"
 #include "CFXDataCollector.h"
@@ -44,9 +45,10 @@ public:  // встроенные члены панели элементов управления
 	CMFCToolBar		  m_wndToolBarProject;
 	CMFCStatusBar     m_wndStatusBar;
 	CMFCToolBarImages m_UserImages;
-	CMFCToolBarImages			m_ImagesDebug;
+	CMFCToolBarImages m_ImagesDebug;
 	CFileView         m_wndFileView;
 	CClassView        m_wndClassView;
+	CGraphView		  m_wndGraphView;
 	COutputWnd        m_wndOutput;
 	CPropertiesWnd    m_wndProperties;
 // Созданные функции схемы сообщений
@@ -72,6 +74,7 @@ public:
 	afx_msg void OnClassviewmenuWebhelp();
 	afx_msg void OnDebugStart();
 	CFXGraphDoc* m_pDebugCurDoc;
+	CFXGraphDoc* m_pCurDoc;
 //	void StartDebug(CFXGraphDoc* pDoc);
 	CFXGraphDoc* GetCurDoc(void);
 	afx_msg void OnTimer(UINT_PTR nIDEvent);
@@ -88,6 +91,7 @@ public:
 	afx_msg void OnUpdateDebugPause(CCmdUI *pCmdUI);
 	afx_msg void OnUpdateProjectScenario(CCmdUI *pCmdUI);
 	void OnDebugEndCycle(CFXGraphDoc* pDoc);
+	void OnActiveDocument(CFXGraphDoc* pDoc);
 };
 
 

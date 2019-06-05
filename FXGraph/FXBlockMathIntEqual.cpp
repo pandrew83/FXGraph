@@ -7,7 +7,7 @@ CFXBlockMathIntEqual::CFXBlockMathIntEqual(void)
 }
 
 CFXBlockMathIntEqual::CFXBlockMathIntEqual(CFXBlock* pBlock):CFXBlock(pBlock){
-	m_Name = "==";
+	m_Name = "X == Y";
 	m_PinInMaxCount = 2;
 	m_PinInMinCount = 2;
 	m_PinOutMinCount = 2;

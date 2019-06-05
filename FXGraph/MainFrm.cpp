@@ -197,9 +197,12 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 
 	m_wndFileView.EnableDocking(CBRS_ALIGN_ANY);
 	m_wndClassView.EnableDocking(CBRS_ALIGN_ANY);
+	m_wndGraphView.EnableDocking(CBRS_ALIGN_ANY);
 	DockPane(&m_wndFileView);
+	DockPane(&m_wndGraphView);
 	CDockablePane* pTabbedBar = NULL;
 	m_wndClassView.AttachToTabWnd(&m_wndFileView, DM_SHOW, TRUE, &pTabbedBar);
+//	m_wndClassView.AttachToTabWnd(&m_wndGraphView, DM_SHOW, TRUE, &pTabbedBar);
 	m_wndOutput.EnableDocking(CBRS_ALIGN_ANY);
 	DockPane(&m_wndOutput);
 	m_wndProperties.EnableDocking(CBRS_ALIGN_ANY);
@@ -286,10 +289,17 @@ BOOL CMainFrame::CreateDockingWindows()
 	ASSERT(bNameValid);
 	if (!m_wndFileView.Create(strFileView, this, CRect(0, 0, 200, 200), TRUE, ID_VIEW_FILEVIEW, WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS | WS_CLIPCHILDREN | CBRS_LEFT| CBRS_FLOAT_MULTI))
 	{
-		TRACE0("Не удалось создать окно \"Представление файлов\"\n");
+		TRACE0("Не удалось создать окно \"Представление Параметров\"\n");
 		return FALSE; // не удалось создать
 	}
-
+	// Создать представление графиков
+	CString strGraphView;
+	bNameValid = strGraphView.LoadStringW(IDS_GRAPH_VIEW);
+	ASSERT(bNameValid);
+	if (!m_wndGraphView.Create(strGraphView, this, CRect(0, 0, 200, 200), TRUE, ID_VIEW_GRAPHVIEW, WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS | WS_CLIPCHILDREN | CBRS_LEFT | CBRS_FLOAT_MULTI)) {
+		TRACE0("Не удалось создать окно \"Представление графиков\"\n");
+		return FALSE;
+	}
 	// Создать окно вывода
 	CString strOutputWnd;
 	bNameValid = strOutputWnd.LoadString(IDS_OUTPUT_WND);
@@ -328,6 +338,8 @@ void CMainFrame::SetDockingWindowIcons(BOOL bHiColorIcons)
 	HICON hPropertiesBarIcon = (HICON) ::LoadImage(::AfxGetResourceHandle(), MAKEINTRESOURCE(bHiColorIcons ? IDI_PROPERTIES_WND_HC : IDI_PROPERTIES_WND), IMAGE_ICON, ::GetSystemMetrics(SM_CXSMICON), ::GetSystemMetrics(SM_CYSMICON), 0);
 	m_wndProperties.SetIcon(hPropertiesBarIcon, FALSE);
 
+	HICON hGraphicViewIcon = (HICON) ::LoadImage(::AfxGetResourceHandle(), MAKEINTRESOURCE(bHiColorIcons ? IDI_GRAPH_VIEW_HC : IDI_FILE_VIEW), IMAGE_ICON, ::GetSystemMetrics(SM_CXSMICON), ::GetSystemMetrics(SM_CYSMICON), 0);
+	m_wndGraphView.SetIcon(hGraphicViewIcon, FALSE);
 	UpdateMDITabbedBarsIcons();
 }
 
@@ -579,14 +591,15 @@ void CMainFrame::OnDebugStart()
 CFXGraphDoc* CMainFrame::GetCurDoc(void)
 {
 	TracePrint(TRACE_LEVEL_2,"CMainFrame::GetCurDoc");
-	CMDIChildWnd* pFrame = ((CMDIFrameWnd*)(AfxGetApp()->m_pMainWnd))->MDIGetActive();
-	if (!pFrame)
-		return NULL;
-	CFXGraphView* pView = (CFXGraphView*)pFrame->GetActiveView();
-	if (!pView)
-		return NULL;
-	CFXGraphDoc* pDoc = (CFXGraphDoc*)pView->GetDocument();
-	return pDoc;
+	//CMDIChildWnd* pFrame = ((CMDIFrameWnd*)(AfxGetApp()->m_pMainWnd))->MDIGetActive();
+	//if (!pFrame)
+	//	return NULL;
+	//CFXGraphView* pView = (CFXGraphView*)pFrame->GetActiveView();
+	//if (!pView)
+	//	return NULL;
+	//CFXGraphDoc* pDoc = (CFXGraphDoc*)pView->GetDocument();
+	//return pDoc;
+	return m_pCurDoc;
 }
 
 
@@ -693,4 +706,15 @@ void CMainFrame::OnUpdateProjectScenario(CCmdUI *pCmdUI)
 
 void CMainFrame::OnDebugEndCycle(CFXGraphDoc* pDoc)
 {
+}
+
+
+void CMainFrame::OnActiveDocument(CFXGraphDoc* pDoc)
+{
+	if (m_pCurDoc != pDoc) {
+		// TODO: Need to update child windows
+		m_wndFileView.UpdateView(pDoc);
+		m_wndGraphView.UpdateView(pDoc);
+	}
+	m_pCurDoc = pDoc;
 }

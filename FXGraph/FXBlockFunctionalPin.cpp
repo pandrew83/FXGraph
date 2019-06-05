@@ -23,12 +23,10 @@ CFXBlockFunctionalPin::CFXBlockFunctionalPin(CFXBlock* pBlock,CFXPin* pLinkedPin
 	if (pLinkedPin->m_Dir == Input){
 		m_OutputPinTypes.AddTail(pLinkedPin->m_Type);
 		pPin = AddOutputPin(pLinkedPin->m_Type,pLinkedPin->GetFuncName(),false,false);
-//		pPin->AddConnectedPin(pLinkedPin);
 	}
 	else{
 		m_InputPinTypes.AddTail(pLinkedPin->m_Type);
-		pPin = AddInputPin(pLinkedPin->m_Type,pLinkedPin->GetFuncName(),true,true,false);
-//		pPin->AddConnectedPin(pLinkedPin);
+		pPin = AddInputPin(pLinkedPin->m_Type,pLinkedPin->GetFuncName(),false,false,false);
 	}
 	pPin->SetName(pLinkedPin->GetName());
 	pPin->m_bConst = pLinkedPin->m_bConst;

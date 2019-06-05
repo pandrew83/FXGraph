@@ -8,7 +8,8 @@ CFXBlockMathFloatFloor::CFXBlockMathFloatFloor(void)
 }
 
 CFXBlockMathFloatFloor::CFXBlockMathFloatFloor(CFXBlock* pBlock):CFXBlock(pBlock){
-	m_Name = "Floor";
+	m_Name = "Floor(X)";
+	m_MinHeight = m_Height = 50;
 	m_PinInMaxCount = 1;
 	m_PinInMinCount = 1;
 	m_PinOutMinCount = 1;

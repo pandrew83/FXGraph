@@ -11,7 +11,7 @@
 
 #include "FXGraphDoc.h"
 #include "FXGraphView.h"
-
+#include "CFXGraphViewGraphic.h"
 #include "MainFrm.h"
 
 #include <propkey.h>
@@ -24,11 +24,14 @@
 #include "ChildFrm.h"
 #include "ProjectDlg.h"
 #include "FindByIDDlg.h"
+//#include "CGraphicDlg.h"
 #include <iostream>
 #include "shunting-yard.h"
 #include "./cparse/builtin-features.inc"
 #include "FXScenarioItem.h"
 #include "CFXDataCollector.h"
+#include "CFXGraphicVariable.h"
+
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
@@ -49,6 +52,11 @@ BEGIN_MESSAGE_MAP(CFXGraphDoc, CDocument)
 	ON_COMMAND(ID_PROJECT_PROPERTIES, &CFXGraphDoc::OnProjectProperties)
 	ON_COMMAND(ID_FINDBYID, &CFXGraphDoc::OnFindbyid)
 	ON_COMMAND(ID_PROJECT_SCENARIO, &CFXGraphDoc::OnProjectScenario)
+	ON_COMMAND(ID_PROJECT_GRAPHS, &CFXGraphDoc::OnProjectGraphs)
+//	ON_COMMAND(ID_GRAPH_ADD, &CFXGraphDoc::OnGraphAdd)
+//	ON_COMMAND(ID_GRAPH_REMOVE, &CFXGraphDoc::OnGraphRemove)
+//	ON_COMMAND(ID_GRAPH_OPEN, &CFXGraphDoc::OnGraphOpen)
+//	ON_COMMAND(ID_GRAPH_RENAME, &CFXGraphDoc::OnGraphRename)
 END_MESSAGE_MAP()
 
 
@@ -78,6 +86,12 @@ CFXGraphDoc::~CFXGraphDoc()
 		delete m_OutputParams.GetNext(pos);
 	delete m_pBlock;
 	RemoveScenario();
+
+	pos = m_Graphs.GetHeadPosition();
+	while (pos) {
+		CFXGraphic* pGraphic = m_Graphs.GetNext(pos);
+		delete pGraphic;
+	}
 }
 
 BOOL CFXGraphDoc::OnNewDocument()
@@ -132,6 +146,12 @@ void CFXGraphDoc::Serialize(CArchive& ar)
 		while (pos){
 			ar << m_OutputParams.GetNext(pos);
 		}
+		ar.WriteCount(m_Graphs.GetCount());
+		pos = m_Graphs.GetHeadPosition();
+		while (pos) {
+			CFXGraphic* pGraph = m_Graphs.GetNext(pos);
+			ar << pGraph;
+		}
 		m_pBlock->Serialize(ar);
 	}
 	else{
@@ -159,13 +179,22 @@ void CFXGraphDoc::Serialize(CArchive& ar)
 			ar >> p;
 			m_OutputParams.AddTail(p);
 		}
+		c = ar.ReadCount();
+		for (int i = 0; i < c; i++) {
+			CFXGraphic* p;
+			ar >> p;
+			m_Graphs.AddTail(p);
+		}
+		// TODO: Проверить, а если загрузить проект в другой проект? Скорее всего надо закрыть все виды
 		POSITION pos = GetFirstViewPosition();
-		CMainFrame* pMainFrame = (CMainFrame*)AfxGetMainWnd();
+//		CMainFrame* pMainFrame = (CMainFrame*)AfxGetMainWnd();
 		CFXGraphView* pView = (CFXGraphView*)GetNextView(pos);
 
 		pView->m_pBlock = new CFXBlockFunctional(NULL);
 		m_pBlock = pView->m_pBlock;
 		m_pBlock->Serialize(ar);
+		//////
+		//////
 	}
 }
 
@@ -273,7 +302,8 @@ BOOL CFXGraphDoc::OnOpenDocument(LPCTSTR lpszPathName)
 
 	// TODO:  Добавьте специализированный код создания
 	CMainFrame* pMainFrame = (CMainFrame*)AfxGetApp()->m_pMainWnd;
-	pMainFrame->m_wndFileView.UpdateFileView(this);
+	pMainFrame->m_wndFileView.UpdateView(this);
+	pMainFrame->m_wndGraphView.UpdateView(this);
 	return TRUE;
 }
 
@@ -320,24 +350,11 @@ void CFXGraphDoc::DebugStart()
 	UpdateAllViews(NULL);
 }
 
-
-
-
-//void CFXGraphDoc::OnDebugStop()
-//{
-//	TracePrint(TRACE_LEVEL_1,"CFXGraphDoc::OnDebugStop");
-//	m_bDebug = false;
-//	m_pDebugCur = NULL;
-//	m_SysTick = 0;
-//	UpdateAllViews(NULL);
-//}
-
 void CFXGraphDoc::UpdateCalcOrder(void)
 {
 	TracePrint(TRACE_LEVEL_1,"CFXGraphDoc::UpdateCalcOrder");
 	m_pBlock->CalcOrder();
 }
-
 
 bool CFXGraphDoc::InitializeBlocks(void)
 {
@@ -545,7 +562,12 @@ void CFXGraphDoc::OnDebugCycleEnd(void)
 	TracePrint(TRACE_LEVEL_1,"CFXGraphDoc::OnDebugCycleEnd");
 	m_SysTick += m_CycleTicks;
 	m_DataCollector.Collect(m_SysTick, m_pBlock);
-
+	POSITION pos = GetFirstViewPosition();
+	while (pos) {
+		CFXGraphViewGraphic* pView = dynamic_cast<CFXGraphViewGraphic*>(GetNextView(pos));
+		if (pView)
+			pView->Invalidate(0);
+	}
 //	CMainFrame* pMainFrame = (CMainFrame*)AfxGetApp()->m_pMainWnd;
 
 //	pMainFrame->OnDebugEndCycle(this);
@@ -815,4 +837,139 @@ void CFXGraphDoc::RemoveScenario()
 		CFXScenarioItem* pCur = m_Scenario.RemoveTail();
 		delete pCur;
 	}
+}
+
+extern COLORREF colors[];
+
+void CFXGraphDoc::NewGraph(CFXPin* pPin)
+{
+	TracePrint(TRACE_LEVEL_1, "CFXGraphDoc::NewGraph");
+	ASSERT(pPin);
+	CFXGraphic* pGraphic = new CFXGraphic();
+	pGraphic->SetTitle(_T("Новый график"));
+	pGraphic->AddVariable(pPin->m_ID,pPin->GetName(),pPin->m_Type);
+	m_Graphs.AddTail(pGraphic);
+	CMainFrame* pMainFrame = (CMainFrame*)AfxGetApp()->m_pMainWnd;
+	pMainFrame->m_wndGraphView.UpdateView(this);
+
+//	pView->GetEditCtrl().SetWindowText(m_DebugScenario);
+}
+
+//
+//void CFXGraphDoc::AddGraphicVariable(int idx, CFXPin* pPin)
+//{
+//	int i = 0;
+//
+//	POSITION pos = m_Graphs.GetHeadPosition();
+//	while (pos) {
+//		CFXGraphic* pGraphic = m_Graphs.GetNext(pos);
+//		if (i == idx) {
+//			pGraphic->AddVariable(pPin->m_ID,pPin->GetName(),pPin->m_Type);
+//			return;
+//		}
+//		i++;
+//	}
+//}
+
+
+void CFXGraphDoc::OnProjectGraphs()
+{
+	
+}
+
+
+//void CFXGraphDoc::OnGraphAdd()
+//{
+//	CGraphicDlg dlg;
+//	if (dlg.DoModal() == IDOK) {
+//		CFXGraphic* pGraphic = new CFXGraphic();
+//		pGraphic->SetTitle(dlg.m_Title);
+//		m_Graphs.AddTail(pGraphic);
+//		CMainFrame* pMainFrame = (CMainFrame*)AfxGetApp()->m_pMainWnd;
+//		pMainFrame->m_wndGraphView.UpdateView(this);
+//
+//	}
+//}
+
+
+//void CFXGraphDoc::OnGraphRemove()
+//{
+//	CMainFrame* pMainFrame = (CMainFrame*)AfxGetApp()->m_pMainWnd;
+//	CFXGraphic* pGraphic = pMainFrame->m_wndGraphView.Remove();
+//	if (pGraphic) {
+//		RemoveGraphic(pGraphic);
+//		pMainFrame->m_wndGraphView.UpdateView(this);
+//	}
+//
+//}
+
+
+void CFXGraphDoc::OpenGraphic(CFXGraphic* pGraphic)
+{
+	CFXGraphViewGraphic* pView = GetGraphicView(pGraphic);
+	if (pView) {
+		pView->GetParentFrame()->ActivateFrame(SW_RESTORE);
+		return;
+	}
+	CMainFrame* pMainFrame = (CMainFrame*)AfxGetApp()->m_pMainWnd;
+	CChildFrame* pChildFrame;// = (CChildFrame*)pMainFrame->GetActiveFrame();
+	CDocTemplate* pDocTemplate;
+	pDocTemplate = new CMultiDocTemplate(IDR_FXGraphTYPE,
+		RUNTIME_CLASS(CFXGraphDoc),
+		RUNTIME_CLASS(CChildFrame),
+		RUNTIME_CLASS(CFXGraphViewGraphic));
+	CDocTemplate* pDT = pDocTemplate;
+	pChildFrame = (CChildFrame*)pDT->CreateNewFrame(this, NULL);
+
+	pDT->InitialUpdateFrame(pChildFrame, this);
+	pView = (CFXGraphViewGraphic*)pChildFrame->GetActiveView();
+	pView->m_pGraphic = pGraphic;
+	pView->GetParentFrame()->ActivateFrame(SW_RESTORE);
+//	delete pDocTemplate;
+}
+
+
+void CFXGraphDoc::RemoveGraphic(CFXGraphic* pGraphic)
+{
+	POSITION pos = m_Graphs.Find(pGraphic);
+	if (pos) {
+		CFXGraphViewGraphic* pView = GetGraphicView(pGraphic);
+		if (pView)
+			pView->GetParentFrame()->DestroyWindow();
+		m_Graphs.RemoveAt(pos);
+		delete pGraphic;
+	}
+	
+}
+
+
+CFXGraphViewGraphic* CFXGraphDoc::GetGraphicView(CFXGraphic* pGraphic)
+{
+	POSITION pos = GetFirstViewPosition();
+	while (pos) {
+		CFXGraphViewGraphic* pView = dynamic_cast<CFXGraphViewGraphic*>(GetNextView(pos));
+		if (pView && pView->m_pGraphic == pGraphic)
+			return pView;
+	}
+	return NULL;
+}
+
+
+//void CFXGraphDoc::OnGraphOpen()
+//{
+//	// TODO: добавьте свой код обработчика команд
+//}
+
+
+//void CFXGraphDoc::OnGraphRename()
+//{
+//}
+
+
+CFXGraphic* CFXGraphDoc::AddGraphic(CString title)
+{
+	CFXGraphic* pGraphic = new CFXGraphic();
+	pGraphic->SetTitle(title);
+	m_Graphs.AddTail(pGraphic);
+	return pGraphic;
 }

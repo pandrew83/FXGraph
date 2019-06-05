@@ -8,7 +8,8 @@ CFXBlockMathAcos::CFXBlockMathAcos(void)
 }
 
 CFXBlockMathAcos::CFXBlockMathAcos(CFXBlock* pBlock):CFXBlock(pBlock){
-	m_Name = "Acos";
+	m_Name = "Acos(X)";
+	m_MinHeight = m_Height = 50;
 	m_PinInMaxCount = 1;
 	m_PinInMinCount = 1;
 	m_PinOutMinCount = 1;

@@ -8,9 +8,9 @@ CFXBlockMathPow::CFXBlockMathPow(void)
 }
 
 CFXBlockMathPow::CFXBlockMathPow(CFXBlock* pBlock):CFXBlock(pBlock){
-	m_Name = "Floor";
-	m_PinInMaxCount = 1;
-	m_PinInMinCount = 1;
+	m_Name = "Pow(X,Y)";
+	m_PinInMaxCount = 2;
+	m_PinInMinCount = 2;
 	m_PinOutMinCount = 1;
 	m_PinOutMaxCount = 1;
 	m_InputPinTypes.AddTail(Float);

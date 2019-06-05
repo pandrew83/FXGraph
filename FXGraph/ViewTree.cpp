@@ -81,3 +81,14 @@ void CViewTree::OnTvnBegindrag(NMHDR *pNMHDR, LRESULT *pResult)
 	*pResult = 0;
 }
 
+
+
+int CViewTree::GetItemLevel(HTREEITEM hItem)
+{
+	int cur_level = 0;
+	while (hItem) {
+		hItem = GetParentItem(hItem);
+		cur_level++;
+	}
+	return cur_level;
+}

@@ -7,7 +7,8 @@ CFXBlockMathIntAbs::CFXBlockMathIntAbs(void)
 }
 
 CFXBlockMathIntAbs::CFXBlockMathIntAbs(CFXBlock* pBlock):CFXBlock(pBlock){
-	m_Name = "Abs";
+	m_Name = "Abs(X)";
+	m_MinHeight = m_Height = 50;
 	m_PinInMinCount = 1;
 	m_PinInMaxCount = 1;
 	m_PinOutMinCount = 1;

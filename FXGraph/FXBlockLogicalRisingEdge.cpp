@@ -9,6 +9,7 @@ CFXBlockLogicalRisingEdge::CFXBlockLogicalRisingEdge(void)
 
 CFXBlockLogicalRisingEdge::CFXBlockLogicalRisingEdge(CFXBlock* pBlock):CFXBlock(pBlock){
 	m_Prev = false;
+	m_MinHeight = m_Height = 50;
 	m_Name = "Raise Edge";
 	m_InputPinTypes.AddTail(Logical);
 	m_OutputPinTypes.AddTail(Logical);

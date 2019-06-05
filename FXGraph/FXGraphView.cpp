@@ -11,6 +11,8 @@
 
 #include "FXGraphDoc.h"
 #include "FXGraphView.h"
+#include "CFXGraphViewGraphic.h"
+
 #include "FXGraph.h"
 #include "MainFrm.h"
 #include <typeinfo>
@@ -52,6 +54,7 @@
 #include "FXBlockComparatorDown.h"
 #include "FXBlockLogicalFallingEdge.h"
 #include "FXBlockLogicalRisingEdge.h"
+#include "FXBlockLogicalFronts.h"
 #include "FXBlockLogicalTriggerRS.h"
 #include "FXBlockLogicalTriggerRSRisingEdge.h"
 #include "FXBlockLogicalTriggerSR.h"
@@ -80,7 +83,9 @@
 #include "CFXBlockAntiBounce.h"
 #include "CFXBlockDelayOn.h"
 #include "CFXBlockDelayOff.h"
-#include "CFXBlockSensorCurrent.h"
+#include "CFXBlockTransformCurrent.h"
+#include "CFXBlockTransformLinear.h"
+#include "CFXBlockTransformLinearLimits.h"
 #include "CFXBlockSensorTRD2WM50.h"
 #include "CFXBlockSensorTRD2WM100.h"
 #include "CFXBlockSensorTRD2WPt100.h"
@@ -157,6 +162,10 @@ BEGIN_MESSAGE_MAP(CFXGraphView, CView)
 	ON_COMMAND(ID_BLOCK_WEBHELP, &CFXGraphView::OnBlockWebhelp)
 	ON_COMMAND(ID_BLOCK_BREAKPOINT, &CFXGraphView::OnBlockBreakpoint)
 	ON_COMMAND(ID_BLOCK_PIN_REMOVE_LINKS, &CFXGraphView::OnBlockPinRemoveLinks)
+	ON_COMMAND(ID_PIN_GRAPH_NEW, &CFXGraphView::OnPinGraphNew)
+	ON_COMMAND_RANGE(WM_USER+1,WM_USER+32,&CFXGraphView::OnPinGraph)
+//	ON_WM_PAINT()
+//	ON_WM_SETFOCUS()
 END_MESSAGE_MAP()
 
 // создание/уничтожение CFXGraphView
@@ -381,6 +390,8 @@ void CFXGraphView::OnRButtonDown(UINT nFlags, CPoint point)
 	CView::OnRButtonDown(nFlags, point);
 }
 
+#define ID_GRAPH 0x2000
+
 void CFXGraphView::OnContextMenu(CWnd* /* pWnd */, CPoint point)
 {
 	TracePrint(TRACE_LEVEL_1,"CFXGraphView::OnContextMenu");
@@ -397,7 +408,23 @@ void CFXGraphView::OnContextMenu(CWnd* /* pWnd */, CPoint point)
 		if (pPin){
 			TracePrint(TRACE_LEVEL_1,"CFXGraphView::OnContextMenu pin #%X\n",pPin->m_ID);
 			ClientToScreen(&point);
-			theApp.GetContextMenuManager()->ShowPopupMenu(IDR_PIN,point.x,point.y,this,TRUE);
+//			HMENU hMenu = theApp.GetContextMenuManager()->GetMenuById(IDR_PIN);
+			CMenu menu;
+			menu.LoadMenu(IDR_PIN);
+			CMenu* pMenu = menu.GetSubMenu(0);
+			CFXGraphDoc* pDoc = GetDocument();
+			
+			POSITION pos = pDoc->m_Graphs.GetHeadPosition();
+			int idx = 1;
+			while (pos) {
+				CFXGraphic* pGraphic = pDoc->m_Graphs.GetNext(pos);
+				pMenu->GetSubMenu(0)->AppendMenu(MF_STRING,WM_USER+idx, pGraphic->GetTitle());
+				idx++;
+			}
+			pMenu->TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON, point.x, point.y, this, NULL);
+			//menu.TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON, point.x, point.y, this, NULL);
+			//theApp.GetContextMenuManager()->ShowPopupMenu(IDR_PIN,point.x,point.y,this,TRUE);
+			//theApp.GetContextMenuManager()
 			return;
 		}
 		if (pLink){
@@ -595,14 +622,16 @@ void CFXGraphView::OnLButtonDown(UINT nFlags, CPoint point)
 							pPinIn->RemoveLinks();
 						}
 						CFXLink* pLink = m_pBlock->AddLink(pPinOut,pPinIn);
-						pLink->Invalidate(this,REGION_LINK);
-						m_bLinking = true;
-						while (!m_Selected.IsEmpty()){
-							m_Selected.RemoveHead()->Invalidate(this,REGION_BLOCK|REGION_LEFT|REGION_RIGHT|REGION_PIN|REGION_LINK);
+						if (pLink) {
+							pLink->Invalidate(this, REGION_LINK);
+							m_bLinking = true;
+							while (!m_Selected.IsEmpty()) {
+								m_Selected.RemoveHead()->Invalidate(this, REGION_BLOCK | REGION_LEFT | REGION_RIGHT | REGION_PIN | REGION_LINK);
+							}
+							TracePrint(TRACE_LEVEL_1, "CFXGraphView::OnLButtonDown: Calling UpdatePropertiesWnd at point #2");
+							UpdatePropertiesWnd();
+							m_pBlock->Invalidate(this, REGION_LINK);
 						}
-						TracePrint(TRACE_LEVEL_1,"CFXGraphView::OnLButtonDown: Calling UpdatePropertiesWnd at point #2");
-						UpdatePropertiesWnd();
-						m_pBlock->Invalidate(this,REGION_LINK);
 						return;
 
 					}
@@ -945,8 +974,10 @@ BOOL CFXGraphView::OnMouseWheel(UINT nFlags, short zDelta, CPoint pt)
 	}
 	else{
 		m_Scale -= 10;
+		if (m_Scale <= 0)
+			m_Scale = 10;
 	}
-	pDoc->UpdateAllViews(NULL);
+	Invalidate(0);
 	return 0;
 }
 
@@ -1215,8 +1246,9 @@ void CFXGraphView::OnBlockPinRemove()
 			if (pPin->m_pParam && pPin->m_pParam->m_pPin){
 				pPin->m_pParam->m_pPin = NULL;
 			}
+			CFXBlock* pBlock = dynamic_cast<CFXBlock*>(pPin->m_pBlock);
 			pPin->Remove();
-			pPin->m_pBlock->Invalidate(this,REGION_LEFT|REGION_RIGHT);
+			pBlock->Invalidate(this,REGION_LEFT|REGION_RIGHT);
 //			Invalidate(0);
 			m_pCur = NULL;
 		}
@@ -1533,6 +1565,9 @@ CFXBlock* CFXGraphView::AddBlock(DWORD ID, CPoint point)
 		case BLOCK_LOGICAL_FALLING_EDGE:
 			pBlock = new CFXBlockLogicalFallingEdge(m_pBlock);
 			break;
+		case BLOCK_LOGICAL_FRONTS:
+			pBlock = new CFXBlockLogicalFronts(m_pBlock);
+			break;
 		case BLOCK_LOGICAL_TRIGGER_RS:
 			pBlock = new CFXBlockLogicalTriggerRS(m_pBlock);
 			break;
@@ -1554,8 +1589,14 @@ CFXBlock* CFXGraphView::AddBlock(DWORD ID, CPoint point)
 		case BLOCK_DELAY_OFF:
 			pBlock = new CFXBlockDelayOff(m_pBlock);
 			break;
-		case BLOCK_SENSOR_CURRENT:
-			pBlock = new CFXBlockSensorCurrent(m_pBlock);
+		case BLOCK_TRANSFORM_CURRENT:
+			pBlock = new CFXBlockTransformCurrent(m_pBlock);
+			break;
+		case BLOCK_TRANSFORM_LINEAR:
+			pBlock = new CFXBlockTransformLinear(m_pBlock);
+			break;
+		case BLOCK_TRANSFORM_LINEAR_LIMITS:
+			pBlock = new CFXBlockTransformLinearLimits(m_pBlock);
 			break;
 		case BLOCK_SENSOR_TRD_2W_M50:
 			pBlock = new CFXBlockSensorTRD2WM50(m_pBlock);
@@ -1720,17 +1761,22 @@ void CFXGraphView::OnActivateView(BOOL bActivate, CView* pActivateView, CView* p
 	CChildFrame* pChildFrame = (CChildFrame*)pMainFrame->MDIGetActive();
 	if (pChildFrame){
 		CFXGraphDoc* pDoc = (CFXGraphDoc*)pChildFrame->GetActiveDocument();
-		if (pDoc){
-			pMainFrame->m_wndFileView.UpdateFileView(pDoc);
-//			UpdatePropertiesWnd();
-		}
-		else{
-			pMainFrame->m_wndFileView.UpdateFileView(NULL);
-//			UpdatePropertiesWnd();
-		}
+		pMainFrame->OnActiveDocument(pDoc);
+//			if (pDoc){
+////			pMainFrame->m_wndGraphView.UpdateView(pDoc);
+////			UpdatePropertiesWnd();
+//		}
+//		else{
+////			pMainFrame->m_wndFileView.UpdateView(NULL);
+////			pMainFrame->m_wndGraphView.UpdateView(NULL);
+////			UpdatePropertiesWnd();
+//		}
 	}
-	else
-		pMainFrame->m_wndFileView.UpdateFileView(NULL);
+	else {
+		pMainFrame->OnActiveDocument(NULL);
+		//pMainFrame->m_wndFileView.UpdateView(NULL);
+		//pMainFrame->m_wndGraphView.UpdateView(NULL);
+	}
 	//if (bActivate)
 	//	pMainFrame->m_wndFileView.UpdateFileView((CFXGraphDoc*)pActivateView->GetDocument());
 	//else
@@ -1752,7 +1798,6 @@ void CFXGraphView::OnInitialUpdate()
 		TracePrint(TRACE_LEVEL_1,"CFXGraphView::OnInitialUpdate: Failed to AddTool");
 		return;
 	}
-	// TODO: добавьте специализированный код или вызов базового класса
 }
 
 
@@ -1892,3 +1937,49 @@ void CFXGraphViewScenario::OnEnUpdate()
 {
 	TracePrint(TRACE_LEVEL_1,"CFXGraphViewScenario::OnEnUpdate");
 }
+
+
+void CFXGraphView::OnPinGraphNew()
+{
+	TracePrint(TRACE_LEVEL_1, "CFXGraphView::OnPinGraphNew");
+	CFXGraphDoc* pDoc = GetDocument();
+	pDoc->NewGraph(dynamic_cast<CFXPin*>(m_pCur));
+	CMainFrame* pMainFrame = (CMainFrame*)AfxGetApp()->m_pMainWnd;
+	pMainFrame->m_wndGraphView.UpdateView(pDoc);
+}
+
+void CFXGraphView::OnPinGraph(UINT nID) {
+	TracePrint(TRACE_LEVEL_1, "CFXGraphView::OnPinGraph");
+	CFXGraphDoc* pDoc = GetDocument();
+	POSITION pos = pDoc->m_Graphs.GetHeadPosition();
+	CFXPin* pPin = dynamic_cast<CFXPin*>(m_pCur);
+	if (!pPin)
+		return;
+	int i = 0;
+	while (pos) {
+		CFXGraphic* pGraphic = pDoc->m_Graphs.GetNext(pos);
+		if (i == nID - WM_USER - 1) {
+			pGraphic->AddVariable(pPin->m_ID, pPin->GetName(), pPin->m_Type);
+			CMainFrame* pMainFrame = (CMainFrame*)AfxGetApp()->m_pMainWnd;
+			pMainFrame->m_wndGraphView.UpdateView(pDoc);
+			pDoc->OpenGraphic(pGraphic);
+			return;
+		}
+		i++;
+	}
+}
+
+//void CFXGraphView::OnPaint()
+//{
+//	CPaintDC dc(this); // device context for painting
+//					   // TODO: добавьте свой код обработчика сообщений
+//					   // Не вызывать CView::OnPaint() для сообщений рисования
+//}
+
+
+//void CFXGraphView::OnSetFocus(CWnd* pOldWnd)
+//{
+//	CView::OnSetFocus(pOldWnd);
+//
+//	// TODO: добавьте свой код обработчика сообщений
+//}

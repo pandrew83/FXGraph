@@ -5,12 +5,14 @@
 #pragma once
 #include "FXParam.h"
 #include "CFXDataCollector.h"
+#include "CFXGraphic.h"
 class CFXBlock;
 class CFXBlockFunctional;
 class CFXLink;
 class CFXParam;
 class CFXPin;
 class CFXScenarioItem;
+class CFXGraphViewGraphic;
 //class CListParam;
 
 class CFXGraphDoc : public CDocument
@@ -23,6 +25,7 @@ protected: // создать только из сериализации
 public:
 	CFXBlockFunctional* m_pBlock;
 	CFXDataCollector m_DataCollector;
+	CList<CFXGraphic*, CFXGraphic*> m_Graphs;
 //	int m_LastID;
 // Операции
 public:
@@ -102,4 +105,15 @@ public:
 	bool InitializeScenario(void);
 	CList<CFXScenarioItem*, CFXScenarioItem*> m_Scenario;
 	void RemoveScenario();
+	void NewGraph(CFXPin* pPin);
+//	void AddGraphicVariable(int idx, CFXPin* pPin);
+	afx_msg void OnProjectGraphs();
+//	afx_msg void OnGraphAdd();
+//	afx_msg void OnGraphRemove();
+	void OpenGraphic(CFXGraphic* pGraphic);
+	void RemoveGraphic(CFXGraphic* pGraphic);
+	CFXGraphViewGraphic* GetGraphicView(CFXGraphic* pGraphic);
+//	afx_msg void OnGraphOpen();
+//	afx_msg void OnGraphRename();
+	CFXGraphic* AddGraphic(CString title);
 };
