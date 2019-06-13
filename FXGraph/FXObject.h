@@ -44,6 +44,7 @@ enum CFXPinDir {Input,Output};
 #define PROP_FONT				10
 #define PROP_PARAM				11
 #define PROP_FORMAT				12
+#define PROP_NETWORK_ID			13
 
 #define PROPLIST_BLOCK			1
 #define PROPLIST_PIN			2

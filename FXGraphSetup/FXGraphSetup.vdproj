@@ -15,6 +15,12 @@
     {
         "Entry"
         {
+        "MsmKey" = "8:_1CD5A851B8F245ADBC96A3AA28B44230"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_56071D7597B14EF592AF03FFC95A64F3"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -80,6 +86,26 @@
         }
         "File"
         {
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_1CD5A851B8F245ADBC96A3AA28B44230"
+            {
+            "SourcePath" = "8:..\\FXGraph\\Excel\\libxl-3.8.5.0\\bin\\libxl.dll"
+            "TargetName" = "8:libxl.dll"
+            "Tag" = "8:"
+            "Folder" = "8:_D79F2E61DC5C46D3BDCA606C0B383113"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_56071D7597B14EF592AF03FFC95A64F3"
             {
             "SourcePath" = "8:..\\FXGraph\\asd.xls"
@@ -138,6 +164,28 @@
             "Property" = "8:ProgramMenuFolder"
                 "Folders"
                 {
+                    "{9EF0B969-E518-4E46-987F-47570745A589}:_E484D79CCCB84DAB911D2853D5941CE2"
+                    {
+                    "Name" = "8:FX Software"
+                    "AlwaysCreate" = "11:FALSE"
+                    "Condition" = "8:"
+                    "Transitive" = "11:FALSE"
+                    "Property" = "8:_A6BFAE5DD18A406594E10404C89917C4"
+                        "Folders"
+                        {
+                            "{9EF0B969-E518-4E46-987F-47570745A589}:_C48D86C576FF4805A51C0A2F455C0819"
+                            {
+                            "Name" = "8:FXGraph"
+                            "AlwaysCreate" = "11:TRUE"
+                            "Condition" = "8:"
+                            "Transitive" = "11:FALSE"
+                            "Property" = "8:_A0564C9A57344E75A1C0CD125EB52048"
+                                "Folders"
+                                {
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -155,25 +203,25 @@
         "Product"
         {
         "Name" = "8:Microsoft Visual Studio"
-        "ProductName" = "8:FXGraphSetup"
+        "ProductName" = "8:FXGraph"
         "ProductCode" = "8:{D220A4BF-596C-4F56-B927-238CB3E6C716}"
-        "PackageCode" = "8:{4BDCAEA4-E810-4DDE-85EB-6F0578934007}"
+        "PackageCode" = "8:{167A3A49-36A2-43A6-A989-95AA249846EC}"
         "UpgradeCode" = "8:{2FB48D03-D984-4F3B-A418-E6CAF567E3E8}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
-        "RemovePreviousVersions" = "11:FALSE"
+        "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
-        "InstallAllUsers" = "11:FALSE"
+        "InstallAllUsers" = "11:TRUE"
         "ProductVersion" = "8:1.0.0"
-        "Manufacturer" = "8:Microsoft"
+        "Manufacturer" = "8:SkySystems"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
-        "Title" = "8:FXGraphSetup"
+        "Title" = "8:FXGraph"
         "Subject" = "8:"
-        "ARPCONTACT" = "8:Microsoft"
+        "ARPCONTACT" = "8:SkySystems"
         "Keywords" = "8:"
-        "ARPCOMMENTS" = "8:"
-        "ARPURLINFOABOUT" = "8:"
+        "ARPCOMMENTS" = "8:Установщик FXGraph"
+        "ARPURLINFOABOUT" = "8:skysystems.ru"
         "ARPPRODUCTICON" = "8:"
         "ARPIconIndex" = "3:0"
         "SearchPath" = "8:"
@@ -277,6 +325,20 @@
         }
         "Shortcut"
         {
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_E54A4823343F4A7297344D0A9D1C29DE"
+            {
+            "Name" = "8:FXGraph"
+            "Arguments" = "8:"
+            "Description" = "8:"
+            "ShowCmd" = "3:1"
+            "IconIndex" = "3:0"
+            "Transitive" = "11:FALSE"
+            "Target" = "8:_C48D86C576FF4805A51C0A2F455C0819"
+            "Folder" = "8:_C48D86C576FF4805A51C0A2F455C0819"
+            "WorkingFolder" = "8:_E484D79CCCB84DAB911D2853D5941CE2"
+            "Icon" = "8:"
+            "Feature" = "8:"
+            }
         }
         "UserInterface"
         {

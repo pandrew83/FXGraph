@@ -34,5 +34,5 @@ CFXBlockExtensionA01::CFXBlockExtensionA01(CFXBlock* pBlock) : CFXBlockExtension
 	AddOutputPin(Float,_T("AI.08"));
 	AddOutputPin(Float,_T("AI.09"));
 	AddOutputPin(Float,_T("AI.10"));
-
+	m_NetworkID = 0;
 }

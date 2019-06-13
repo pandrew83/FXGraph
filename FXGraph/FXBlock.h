@@ -125,6 +125,7 @@ public:
 	void RemovePinLinks(CFXPin* pPin);
 	CFXLink* GetLink(CFXPin* pPin1, CFXPin* pPin2);
 	bool m_bBreakPoint;
+	int m_NetworkID;
 	virtual void Initialize(void);
 	virtual bool IsRemovable();
 };
