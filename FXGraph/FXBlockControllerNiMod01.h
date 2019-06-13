@@ -7,7 +7,6 @@ class CFXBlockControllerNiMod01 :
 {
 public:
 	DECLARE_SERIAL(CFXBlockControllerNiMod01);
-	int m_NetworkID;
 	CFXBlockControllerNiMod01(void);
 	CFXBlockControllerNiMod01(CFXBlock* pBlock);
 	~CFXBlockControllerNiMod01(void);
@@ -17,6 +16,5 @@ public:
 	virtual bool Check(){
 		return CFXBlockController::Check();
 	}
-	void FillProperties(CPropertiesWnd* pWnd);
 };
 

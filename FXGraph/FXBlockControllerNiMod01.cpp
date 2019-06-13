@@ -76,12 +76,4 @@ CFXBlockControllerNiMod01::~CFXBlockControllerNiMod01(void)
 }
 
 
-void CFXBlockControllerNiMod01::FillProperties(CPropertiesWnd* pWnd)
-{
-	TracePrint(TRACE_LEVEL_1,"Filling nimod properties");
-	CPropertyGridCtrl *pCtrl = &pWnd->m_wndPropList;
-	pCtrl->RemoveAll();
-	CFXBlock::FillProperties(pWnd);
-	CMFCPropertyGridProperty* pProp = new CMFCPropertyGridProperty(_T("Сетевой номер"),(variant_t)m_NetworkID,_T("Идентификатор устройства в сети RS485"));
-	pCtrl->AddProperty(pProp);
-}
+

@@ -12,5 +12,7 @@ public:
 protected:
 	int m_Ticks;
 	int m_TicksPerSec;
+public:
+	virtual void FillProperties(CPropertiesWnd* pWnd);
 };
 

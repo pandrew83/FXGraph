@@ -108,7 +108,8 @@ BOOL CFXGraphDoc::OnNewDocument()
 	m_CycleTicks = 200;
 	m_SysTick = 0;
 	m_DebugTimer = 1000;
-	m_DebugScenario = "// Debug scenario\r\n// {tick},{id},{expression}\r\n// {tick} - Момент времени для выполнения строки (требуется точное совпадение), либо * - для каждого момента\r\n// {id} - идентификатор объекта для которого будет выполнено выражение {expression}\r\n// {expression} = {value} - выражение исполняемое в момент времени tick для объекта с идентификатором id\r\n// {value}=value(<value>), <value> значение типа Logical, Int, Float";
+	m_DebugScenario = "// Debug scenario\r\n// {condition},{id},{expression}\r\n// {condition} - условие выполнения {expression} над объектов {id}\r\n// {id} - идентификатор объекта для которого будет выполнено выражение {expression}\r\n// {expression} - C/C++ выражение исполняемое при истинности условия {condition} для объекта с идентификатором id\r\n// Допустимые идентификаторы:\r\n// {value} - r,l-value - значение пина (Logical, Float, Int);\r\n// {tick} - r-value - момент времени\r\n// rand() - случайное число\r\n// tick>1000,5,value=value+rand()%2\r\n// rand()%10>8,5,value=value+(rand()==0?-1:1)";
+
 //	m_pBlock = pView->m_pBlock;
 //	m_LastID = 1;
 	// TODO: добавьте код повторной инициализации
@@ -795,7 +796,7 @@ bool CFXGraphDoc::InitializeScenario(void)
 	do{
 		line = m_DebugScenario.Tokenize(_T("\r\n"),curpos);
 		if (!line.IsEmpty()){
-			TRACE(line);
+//			TRACE(line);
 			if (line.Left(2) == "//")
 				continue;
 			int curpos1 = 0;

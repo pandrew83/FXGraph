@@ -1696,6 +1696,7 @@ bool CFXGraphView::OnUpdateProperty(int nProperty, variant_t& value)
 		return false;
 	CFXGraphDoc* pDoc = (CFXGraphDoc*)GetDocument();
 	CFXPin* pPin;
+	CFXBlock* pBlock;
 	switch(nProperty){
 		case PROP_COORDX:	
 			if (value.vt != VT_I4)
@@ -1760,6 +1761,18 @@ bool CFXGraphView::OnUpdateProperty(int nProperty, variant_t& value)
 			pPin->m_Format = value;
 			pPin->Invalidate(this,REGION_VALUE);
 			return true;
+		case PROP_NETWORK_ID:
+			pBlock = dynamic_cast<CFXBlock*>(m_pCur);
+			pBlock->m_NetworkID = value;
+			return true;
+		case PROP_WIDTH:
+			pBlock = dynamic_cast<CFXBlock*>(m_pCur);
+			pBlock->SetWidth(value);
+			break;
+		case PROP_HEIGHT:
+			pBlock = dynamic_cast<CFXBlock*>(m_pCur);
+			pBlock->SetHeight(value);
+			break;
 	}
 	return FALSE;
 }

@@ -462,9 +462,9 @@ void CFXBlock::FillProperties(CPropertiesWnd* pWnd){
 	CFXObject::FillProperties(pWnd);
 
 	CMFCPropertyGridProperty* pProp;
-	pProp = new CMFCPropertyGridProperty(_T("Ширина"),(variant_t)m_Width,_T("Ширина блока"));
+	pProp = new CMFCPropertyGridProperty(_T("Ширина"),(variant_t)m_Width,_T("Ширина блока"),PROP_WIDTH);
 	pCtrl->AddProperty(pProp);
-	pProp = new CMFCPropertyGridProperty(_T("Высота"),(variant_t)m_Height,_T("Высота блока"));
+	pProp = new CMFCPropertyGridProperty(_T("Высота"),(variant_t)m_Height,_T("Высота блока"),PROP_HEIGHT);
 	pCtrl->AddProperty(pProp);
 }
 
