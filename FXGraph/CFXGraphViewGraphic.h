@@ -14,7 +14,6 @@ protected:
 	virtual ~CFXGraphViewGraphic();
 
 public:
-//	CList<CFXGraphicVariable*, CFXGraphicVariable*> m_Vars;
 	CFXGraphic* m_pGraphic;
 	CPoint Local2Logic(CPoint point);
 	CPoint Logic2Local(CPoint point);

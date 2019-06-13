@@ -126,6 +126,7 @@ public:
 	CFXLink* GetLink(CFXPin* pPin1, CFXPin* pPin2);
 	bool m_bBreakPoint;
 	virtual void Initialize(void);
+	virtual bool IsRemovable();
 };
 
 

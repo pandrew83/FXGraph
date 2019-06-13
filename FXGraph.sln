@@ -7,6 +7,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FXGraph", "FXGraph\FXGraph.
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "cparser_test", "cparser_test\cparser_test.vcxproj", "{01767387-5CCD-4908-9955-13A6DF3B71A3}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "FXGraphSetup", "FXGraphSetup\FXGraphSetup.vdproj", "{4216B8CF-E85B-490B-8D95-00A0DEE84E35}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -29,6 +31,10 @@ Global
 		{01767387-5CCD-4908-9955-13A6DF3B71A3}.Release|Win32.Build.0 = Release|Win32
 		{01767387-5CCD-4908-9955-13A6DF3B71A3}.Release|x64.ActiveCfg = Release|x64
 		{01767387-5CCD-4908-9955-13A6DF3B71A3}.Release|x64.Build.0 = Release|x64
+		{4216B8CF-E85B-490B-8D95-00A0DEE84E35}.Debug|Win32.ActiveCfg = Debug
+		{4216B8CF-E85B-490B-8D95-00A0DEE84E35}.Debug|x64.ActiveCfg = Debug
+		{4216B8CF-E85B-490B-8D95-00A0DEE84E35}.Release|Win32.ActiveCfg = Release
+		{4216B8CF-E85B-490B-8D95-00A0DEE84E35}.Release|x64.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

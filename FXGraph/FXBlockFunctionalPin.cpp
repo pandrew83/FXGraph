@@ -73,3 +73,9 @@ void CFXBlockFunctionalPin::AfterSerialize(void)
 	ASSERT(m_pBlock);
 	m_pLinkedPin = dynamic_cast<CFXPin*>(m_pBlock->GetByID((int)m_pLinkedPin));
 }
+
+
+bool CFXBlockFunctionalPin::IsRemovable()
+{
+	return false;
+}
