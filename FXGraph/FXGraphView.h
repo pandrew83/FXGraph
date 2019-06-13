@@ -19,8 +19,12 @@ public:
 	~CFXGraphViewScenario(){
 	}
 
-//	virtual void OnUpdate(CView* /*pSender*/, LPARAM /*lHint*/, CObject* /*pHint*/);
+#ifdef _DEBUG
+	virtual void AssertValid() const;
+	virtual void Dump(CDumpContext& dc) const;
+#endif
 	virtual void OnUpdate(CView* /*pSender*/, LPARAM /*lHint*/, CObject* /*pHint*/);
+	CFXGraphDoc* GetDocument() const;
 	DECLARE_MESSAGE_MAP()
 	afx_msg void OnEnChange();
 	afx_msg void OnEnUpdate();

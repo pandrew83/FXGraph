@@ -680,3 +680,9 @@ void CFXBlock::Initialize(void)
 			pPin->m_pParam->m_Value = pPin->GetValue();
 	}
 }
+
+
+bool CFXBlock::IsRemovable()
+{
+	return true;
+}

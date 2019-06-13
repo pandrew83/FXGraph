@@ -17,5 +17,6 @@ public:
 	bool Calc(void);
 	void Serialize(CArchive& ar);
 	virtual void AfterSerialize(void);
+	virtual bool IsRemovable();
 };
 

@@ -111,6 +111,22 @@
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
+void CFXGraphViewScenario::AssertValid() const
+{
+	CView::AssertValid();
+}
+
+void CFXGraphViewScenario::Dump(CDumpContext& dc) const
+{
+	CView::Dump(dc);
+}
+
+CFXGraphDoc* CFXGraphViewScenario::GetDocument() const // встроена неотлаженная версия
+{
+	ASSERT(m_pDocument->IsKindOf(RUNTIME_CLASS(CFXGraphDoc)));
+	return (CFXGraphDoc*)m_pDocument;
+}
+
 #endif
 // CFXGraphViewScenario
 IMPLEMENT_DYNCREATE(CFXGraphViewScenario,CEditView)
@@ -167,6 +183,8 @@ BEGIN_MESSAGE_MAP(CFXGraphView, CView)
 //	ON_WM_PAINT()
 //	ON_WM_SETFOCUS()
 END_MESSAGE_MAP()
+
+
 
 // создание/уничтожение CFXGraphView
 
@@ -1344,7 +1362,7 @@ void CFXGraphView::OnBlockRemove()
 		return;
 	}
 	CFXBlock* pBlock = dynamic_cast<CFXBlock*>(m_pCur);
-	if (pBlock){
+	if (pBlock && pBlock->IsRemovable()){
 		pDoc->OnRemoveBlock(pBlock);
 		pBlock->RemoveBlock();
 		m_Selected.RemoveAll();
@@ -1756,13 +1774,24 @@ bool CFXGraphView::OnUpdateProperty(int nProperty, variant_t& value)
 
 void CFXGraphView::OnActivateView(BOOL bActivate, CView* pActivateView, CView* pDeactiveView)
 {
-	TracePrint(TRACE_LEVEL_2,"CFXGraphView::OnActivateView bActivate=%d pActivateView=%p pDeactiveView=%p\n",bActivate,pActivateView,pDeactiveView);
+	TracePrint(TRACE_LEVEL_1,"CFXGraphView::OnActivateView bActivate=%d pActivateView=%p pDeactiveView=%p\n",bActivate,pActivateView,pDeactiveView);
 	CMainFrame* pMainFrame = (CMainFrame*)AfxGetApp()->m_pMainWnd;
-	CChildFrame* pChildFrame = (CChildFrame*)pMainFrame->MDIGetActive();
-	if (pChildFrame){
-		CFXGraphDoc* pDoc = (CFXGraphDoc*)pChildFrame->GetActiveDocument();
+//	CChildFrame* pChildFrame = (CChildFrame*)pMainFrame->MDIGetActive();
+	CFXGraphView* pView = dynamic_cast<CFXGraphView*>(pActivateView);
+	if (!bActivate && pView == NULL) {
+		// Closing view
+	}
+	if (!bActivate && pView) {
+		// Switching to another view
+	}
+	if (bActivate && pView){
+		// Swithing to this view
+//	if (pChildFrame){
+		//CFXGraphDoc* pDoc = (CFXGraphDoc*)pChildFrame->GetActiveDocument();
+		CFXGraphDoc* pDoc = pView->GetDocument();
 		pMainFrame->OnActiveDocument(pDoc);
-//			if (pDoc){
+		UpdatePropertiesWnd();
+		//			if (pDoc){
 ////			pMainFrame->m_wndGraphView.UpdateView(pDoc);
 ////			UpdatePropertiesWnd();
 //		}
