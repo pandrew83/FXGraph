@@ -756,133 +756,129 @@ void CFXGraphView::OnMouseMove(UINT nFlags, CPoint point)
 	}
 	if (m_bResize){
 		CFXBlock* pBlock = (CFXBlock*)m_pCur;
+		POSITION pos = m_Selected.GetHeadPosition();
+		int newY;
+		if (pApp->m_GridBind)
+			newY = GetNearestPoint(CPoint(0,Local2Logic(point).y)).y;
+		else
+			newY = logic.y;
+		int newX;
+		if (pApp->m_GridBind)
+			newX = GetNearestPoint(CPoint(Local2Logic(point).x, 0)).x;
+		else
+			newX = logic.x;
+
 		if (m_ResizeObject & MASK2_BORDER_TOP){
-			int newY;
-			if (pApp->m_GridBind)
-				newY = GetNearestPoint(CPoint(0,Local2Logic(point).y)).y;
-			else
-				newY = logic.y;
 			int y = pBlock->GetY();
-			if (y+pBlock->GetHeight()-newY < pBlock->m_MinHeight){
-				return;
+			while (pos) {
+				CFXBlock* pCur = dynamic_cast<CFXBlock*>(m_Selected.GetNext(pos));
+				if (pCur->GetHeight() + y - newY >= pCur->m_MinHeight) {
+					pCur->SetY(pCur->GetY() + newY - y);
+					pCur->SetHeight(pCur->GetHeight() + y - newY);
+					pCur->Invalidate(this, REGION_COORD);
+				}
 			}
-			pBlock->SetY(newY);
-			pBlock->SetHeight(y+pBlock->GetHeight()-newY);
 		}
 		if (m_ResizeObject & MASK2_BORDER_BOTTOM){
-			int newH; 
-			if (pApp->m_GridBind)
-				newH = GetNearestPoint(CPoint(0,Local2Logic(point).y - pBlock->GetY())).y;
-			else
-				newH = Local2Logic(point).y - pBlock->GetY();
-			if (newH < pBlock->m_MinHeight){
-				return;
+			int y = pBlock->GetY() + pBlock->GetHeight();
+			while (pos) {
+				CFXBlock* pCur = dynamic_cast<CFXBlock*>(m_Selected.GetNext(pos));
+				if (pCur->GetHeight() + newY - y >= pCur->m_MinHeight) {
+					pCur->SetHeight(pCur->GetHeight() + newY - y);
+					pCur->Invalidate(this, REGION_COORD);
+				}
 			}
-			pBlock->SetHeight(newH);
 		}
 		if (m_ResizeObject & MASK2_BORDER_LEFT){
-			int newX;
-			if (pApp->m_GridBind)
-				newX = GetNearestPoint(CPoint(0,Local2Logic(point).x)).y;
-			else
-				newX = Local2Logic(point).x;
 			int x = pBlock->GetX();
-			if (x+pBlock->GetWidth()-newX < pBlock->m_MinWidth){
-				return;
-			}
-			else{
-				pBlock->SetX(newX);
-				pBlock->SetWidth(x+pBlock->GetWidth()-newX);
+			while (pos) {
+				CFXBlock* pCur = dynamic_cast<CFXBlock*>(m_Selected.GetNext(pos));
+				if (pCur->GetWidth() - newX + x >= pCur->m_MinWidth) {
+					pCur->SetX(pCur->GetX() + newX - x);
+					pCur->SetWidth(pCur->GetWidth() - newX + x);
+					pCur->Invalidate(this, REGION_COORD);
+				}
 			}
 		}
 		if (m_ResizeObject & MASK2_BORDER_RIGHT){
-			int newW;
-			if (pApp->m_GridBind)
-				newW = GetNearestPoint(CPoint(Local2Logic(point).x - pBlock->GetX(),0)).x;
-			else
-				newW = Local2Logic(point).x - pBlock->GetX();
-			if (newW < pBlock->m_MinWidth){
-				return;
+			int x = pBlock->GetX() + pBlock->GetWidth();
+			while (pos) {
+				CFXBlock* pCur = dynamic_cast<CFXBlock*>(m_Selected.GetNext(pos));
+				if (pCur->GetWidth() + newX - x >= pCur->m_MinWidth) {
+					pCur->SetWidth(pCur->GetWidth() + newX - x);
+					pCur->Invalidate(this, REGION_COORD);
+				}
 			}
-			pBlock->SetWidth(newW);
 		}
 		if (m_ResizeObject & MASK2_CORNER_TL){
-			CPoint p;
-			int newW,newH;
-			if (pApp->m_GridBind)
-				p = GetNearestPoint(Local2Logic(point));
-			else
-				p = Local2Logic(point);
-			newH = pBlock->GetY()+pBlock->GetHeight()-p.y;
-			newW = pBlock->GetX()+pBlock->GetWidth()-p.x;
-			if (newH < pBlock->m_MinHeight && newW < pBlock->m_MinWidth)
-				return;
-			if (newH >= pBlock->m_MinHeight){
-				pBlock->SetY(p.y);
-				pBlock->SetHeight(newH);
-			}
-			if (newW >= pBlock->m_MinWidth){
-				pBlock->SetX(p.x);
-				pBlock->SetWidth(newW);
+			int dx = newX-pBlock->GetX();
+			int dy = newY-pBlock->GetY();
+
+			while (pos) {
+				CFXBlock* pCur = dynamic_cast<CFXBlock*>(m_Selected.GetNext(pos));
+				if (pCur->GetWidth() - dx >= pCur->m_MinWidth && pCur->GetHeight() - dy >= pCur->m_MinHeight) {
+					int w = pCur->GetWidth();
+					int h = pCur->GetHeight();
+					pCur->SetX(pCur->GetX() + dx);
+					pCur->SetY(pCur->GetY() + dy);
+					pCur->SetWidth(w-dx);
+					pCur->SetHeight(h-dy);
+					pCur->Invalidate(this, REGION_COORD);
+				}
 			}
 		}
 		if (m_ResizeObject & MASK2_CORNER_TR){
-			CPoint p;
-			int newW,newH;
-			if (pApp->m_GridBind)
-				p = GetNearestPoint(Local2Logic(point));
-			else
-				p = Local2Logic(point);
-			newH = pBlock->GetY()+pBlock->GetHeight()-p.y;
-			newW = p.x-pBlock->GetX();
-			if (newH < pBlock->m_MinHeight && newW < pBlock->m_MinWidth)
-				return;
-			if (newH >= pBlock->m_MinHeight){
-				pBlock->SetY(p.y);
-				pBlock->SetHeight(newH);
+			int dx = newX-pBlock->GetX()-pBlock->GetWidth();
+			int dy = newY-pBlock->GetY();
+			while (pos) {
+				CFXBlock* pCur = dynamic_cast<CFXBlock*>(m_Selected.GetNext(pos));
+				if (pCur->GetWidth() + dx >= pCur->m_MinWidth && pCur->GetHeight() - dy >= pCur->m_MinHeight) {
+					int w = pCur->GetWidth();
+					int h = pCur->GetHeight();
+					pCur->SetY(pCur->GetY() + dy);
+					pCur->SetWidth(w + dx);
+					pCur->SetHeight(h - dy);
+					pCur->Invalidate(this, REGION_COORD);
+				}
 			}
-			if (newW >= pBlock->m_MinWidth)
-				pBlock->SetWidth(newW);
 		}
 		if (m_ResizeObject & MASK2_CORNER_BL){
-			CPoint p;
-			int newW,newH;
-			if (pApp->m_GridBind)
-				p = GetNearestPoint(Local2Logic(point));
-			else
-				p = Local2Logic(point);
-			newH = p.y - pBlock->GetY();
-			newW = pBlock->GetX()+pBlock->GetWidth()-p.x;
-			if (newH< pBlock->m_MinHeight && newW < pBlock->m_MinWidth)
-				return;
-			if (newH >= pBlock->m_MinHeight)
-				pBlock->SetHeight(newH);
-			if (newW >= pBlock->m_MinWidth){
-				pBlock->SetX(p.x);
-				pBlock->SetWidth(newW);
+			int dx = newX-pBlock->GetX();
+			int dy = newY-pBlock->GetY()-pBlock->GetHeight();
+			while (pos) {
+				CFXBlock* pCur = dynamic_cast<CFXBlock*>(m_Selected.GetNext(pos));
+				if (pCur->GetWidth() - dx >= pCur->m_MinWidth && pCur->GetHeight() + dy >= pCur->m_MinHeight) {
+					int w = pCur->GetWidth();
+					int h = pCur->GetHeight();
+					pCur->SetX(pCur->GetX() + dx);
+//					pCur->SetY(pCur->GetY() + newY - y);
+					pCur->SetWidth(w - dx);
+					pCur->SetHeight(h + dy);
+					pCur->Invalidate(this, REGION_COORD);
+				}
 			}
 		}
 		if (m_ResizeObject & MASK2_CORNER_BR){
-			CPoint p;
-			int newW,newH;
-			if (pApp->m_GridBind)
-				p = GetNearestPoint(Local2Logic(point));
-			else
-				p = Local2Logic(point);
-			newH = p.y-pBlock->GetY();
-			newW = p.x-pBlock->GetX();
-			if (newH< pBlock->m_MinHeight && newW < pBlock->m_MinWidth)
-				return;
-			if (newH >= pBlock->m_MinHeight)
-				pBlock->SetHeight(newH);
-			if (newW >= pBlock->m_MinWidth)
-				pBlock->SetWidth(newW);
+			int dx = newX-pBlock->GetX()-pBlock->GetWidth();
+			int dy = newY - pBlock->GetY() - pBlock->GetHeight();
+			while (pos) {
+				CFXBlock* pCur = dynamic_cast<CFXBlock*>(m_Selected.GetNext(pos));
+				if (pCur->GetWidth() + dx >= pCur->m_MinWidth && pCur->GetHeight() + dy >= pCur->m_MinHeight) {
+					int w = pCur->GetWidth();
+					int h = pCur->GetHeight();
+	//				pCur->SetX(pCur->GetX() + newX - x);
+	//				pCur->SetY(pCur->GetY() + newY - y);
+					pCur->SetWidth(w + dx);
+					pCur->SetHeight(h + dy);
+					pCur->Invalidate(this, REGION_COORD);
+				}
+			}
 		}
 		UpdateProperty(PROP_WIDTH,pBlock->GetWidth());
 		UpdateProperty(PROP_HEIGHT,pBlock->GetHeight());
 		UpdateProperty(PROP_COORDX,pBlock->GetX());
 		UpdateProperty(PROP_COORDY,pBlock->GetY());
-		pBlock->Invalidate(this,REGION_COORD);
+//		pBlock->Invalidate(this,REGION_COORD);
 //		Invalidate(0);
 		return;
 	}
