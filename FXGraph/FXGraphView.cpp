@@ -2004,24 +2004,28 @@ void CFXGraphView::OnPinGraph(UINT nID) {
 	}
 }
 
-//void CFXGraphView::OnPaint()
-//{
-//	CPaintDC dc(this); // device context for painting
-//					   // TODO: добавьте свой код обработчика сообщений
-//					   // Не вызывать CView::OnPaint() для сообщений рисования
-//}
-
-
-//void CFXGraphView::OnSetFocus(CWnd* pOldWnd)
-//{
-//	CView::OnSetFocus(pOldWnd);
-//
-//	// TODO: добавьте свой код обработчика сообщений
-//}
-
-
 void CFXGraphView::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
-	TracePrint(TRACE_LEVEL_1, "Pressed %d", nChar);
+	TracePrint(TRACE_LEVEL_1, "CFXGraphView::OnKeyDown: Pressed %d", nChar);
+	if (nChar == 46) {
+		if (m_Selected.IsEmpty())
+			return;
+		CFXGraphDoc* pDoc = (CFXGraphDoc*)GetDocument();
+		if (pDoc->m_bDebug) {
+			AfxMessageBox(_T("Нельзя удалить блок во время отладки проекта"));
+			return;
+		}
+		POSITION pos = m_Selected.GetHeadPosition();
+		while (pos) {
+			CFXBlock* pBlock = dynamic_cast<CFXBlock*>(m_Selected.GetNext(pos));
+			if (pBlock && pBlock->IsRemovable()) {
+				pDoc->OnRemoveBlock(pBlock);
+				pBlock->RemoveBlock();
+			}
+		}
+		m_pCur = NULL;
+		m_Selected.RemoveAll();
+		Invalidate(0);
+	}
 	CView::OnKeyDown(nChar, nRepCnt, nFlags);
 }
