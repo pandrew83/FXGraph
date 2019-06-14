@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+﻿#include "StdAfx.h"
 #include "FXParam.h"
 IMPLEMENT_SERIAL(CFXParam,CObject,1);
 

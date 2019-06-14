@@ -1,4 +1,4 @@
-// GridDlg.cpp: файл реализации
+﻿// GridDlg.cpp: файл реализации
 //
 
 #include "stdafx.h"

@@ -1,4 +1,4 @@
-#include "stdafx.h"
+﻿#include "stdafx.h"
 #include "CFXGraphicVariable.h"
 #include "FXPin.h"
 IMPLEMENT_SERIAL(CFXGraphicVariable, CObject, 1);

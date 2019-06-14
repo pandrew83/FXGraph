@@ -1,4 +1,4 @@
-// XMLArchive.h: interface for the CXMLArchive class.
+﻿// XMLArchive.h: interface for the CXMLArchive class.
 //
 //////////////////////////////////////////////////////////////////////
 

@@ -1,4 +1,4 @@
-
+﻿
 // FXGraphDoc.cpp : реализация класса CFXGraphDoc
 //
 

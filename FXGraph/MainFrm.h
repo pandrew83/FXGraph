@@ -1,4 +1,4 @@
-
+﻿
 // MainFrm.h : интерфейс класса CMainFrame
 //
 

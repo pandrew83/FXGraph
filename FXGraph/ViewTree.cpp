@@ -1,4 +1,4 @@
-
+﻿
 #include "stdafx.h"
 #include "ViewTree.h"
 #include "FXGraphView.h"
@@ -18,7 +18,7 @@ CViewTree::CViewTree()
 	m_pDragDropImage = NULL;
 	m_bDragging = false;
 	m_bAllowDragDrop = false;
-	
+
 }
 
 CViewTree::~CViewTree()

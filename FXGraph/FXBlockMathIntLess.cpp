@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+﻿#include "StdAfx.h"
 #include "FXBlockMathIntLess.h"
 IMPLEMENT_SERIAL(CFXBlockMathIntLess,CFXBlock,1);
 

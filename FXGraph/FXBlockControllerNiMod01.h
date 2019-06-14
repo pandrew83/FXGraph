@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include "fxblockcontroller.h"
 //#include <stdint.h>
 

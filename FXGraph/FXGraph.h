@@ -1,4 +1,4 @@
-
+﻿
 // FXGraph.h : главный файл заголовка для приложения FXGraph
 //
 #pragma once

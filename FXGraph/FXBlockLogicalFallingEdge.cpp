@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+﻿#include "StdAfx.h"
 #include "FXBlockLogicalFallingEdge.h"
 
 IMPLEMENT_SERIAL(CFXBlockLogicalFallingEdge,CFXBlock,1);

@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include "FXPin.h"
 
 class CFXParam : public CObject {

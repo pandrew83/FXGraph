@@ -1,4 +1,4 @@
-// CGraphicDlg.cpp: файл реализации
+﻿// CGraphicDlg.cpp: файл реализации
 //
 
 #include "stdafx.h"

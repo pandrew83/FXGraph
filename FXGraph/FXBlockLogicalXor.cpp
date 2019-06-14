@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+﻿#include "StdAfx.h"
 #include "FXBlockLogicalXor.h"
 IMPLEMENT_SERIAL(CFXBlockLogicalXor,CFXBlock,1);
 

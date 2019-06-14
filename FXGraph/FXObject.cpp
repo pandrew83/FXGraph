@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+﻿#include "StdAfx.h"
 #include "FXObject.h"
 #include "PropertiesWnd.h"
 #include "MainFrm.h"

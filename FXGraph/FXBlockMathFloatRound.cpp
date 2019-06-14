@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+﻿#include "StdAfx.h"
 #include "FXBlockMathFloatRound.h"
 #include <cmath>
 #include <math.h>

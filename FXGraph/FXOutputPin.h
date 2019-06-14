@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include "fxpin.h"
 class CFXOutputPin :
 	public CFXPin

@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+﻿#include "StdAfx.h"
 #include "FXBlockComparatorDown.h"
 
 IMPLEMENT_SERIAL(CFXBlockComparatorDown,CFXBlock,1);

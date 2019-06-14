@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include "fxobject.h"
 class CFXPin;
 

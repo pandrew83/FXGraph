@@ -1,4 +1,4 @@
-
+﻿
 // MainFrm.cpp : реализация класса CMainFrame
 //
 

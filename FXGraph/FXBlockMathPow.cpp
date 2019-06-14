@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+﻿#include "StdAfx.h"
 #include "FXBlockMathPow.h"
 #include <math.h>
 IMPLEMENT_SERIAL(CFXBlockMathPow,CFXBlock,1);

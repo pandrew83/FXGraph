@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 class CFXBlockFunctional;
 class CFXPin;
 #include "FXPin.h"

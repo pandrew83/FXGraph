@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+﻿#include "StdAfx.h"
 #include "FXBlockMathFloatEqual.h"
 IMPLEMENT_SERIAL(CFXBlockMathFloatEqual,CFXBlock,1);
 

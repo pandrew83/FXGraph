@@ -1,4 +1,4 @@
-// DragTreeView.cpp: файл реализации
+﻿// DragTreeView.cpp: файл реализации
 //
 
 #include "stdafx.h"

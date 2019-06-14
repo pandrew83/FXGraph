@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include "FXObject.h"
 #include "FXLink.h"
 #include "comutil.h"

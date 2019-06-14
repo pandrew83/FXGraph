@@ -1,4 +1,4 @@
-#include "stdafx.h"
+﻿#include "stdafx.h"
 #include "CFXBlockTransformLinear.h"
 IMPLEMENT_SERIAL(CFXBlockTransformLinear, CFXBlock, 1);
 

@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #define COLOR_SELECTED	RGB(255,0,0)
 #define COLOR_NORMAL	RGB(0,0,0)

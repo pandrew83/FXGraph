@@ -1,4 +1,4 @@
-
+﻿
 // ChildFrm.h : интерфейс класса CChildFrame
 //
 

@@ -1,4 +1,4 @@
-// CommentDlg.cpp: файл реализации
+﻿// CommentDlg.cpp: файл реализации
 //
 
 #include "stdafx.h"

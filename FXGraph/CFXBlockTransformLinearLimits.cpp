@@ -1,4 +1,4 @@
-#include "stdafx.h"
+﻿#include "stdafx.h"
 #include "CFXBlockTransformLinearLimits.h"
 IMPLEMENT_SERIAL(CFXBlockTransformLinearLimits, CFXBlock, 1);
 

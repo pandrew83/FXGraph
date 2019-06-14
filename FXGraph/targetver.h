@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 // Включение SDKDDKVer.h обеспечивает определение самой последней доступной платформы Windows.
 
