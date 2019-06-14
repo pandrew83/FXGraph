@@ -9,5 +9,11 @@ public:
 	CFXBlockMathIntGreat(CFXBlock* pBlock);
 	bool Calc();
 	~CFXBlockMathIntGreat(void);
+	int GetClassID() {
+		return BLOCK_MATH_INT_GREAT;
+	}
+	CString GetClassDescriptor() {
+		return _T("CFXBlockMathIntGreat");
+	}
 };
 

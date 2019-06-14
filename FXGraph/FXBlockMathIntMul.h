@@ -6,21 +6,13 @@ class CFXBlockMathIntMul :
 public:
 	CFXBlockMathIntMul(void);
 	DECLARE_SERIAL(CFXBlockMathIntMul);
-	CFXBlockMathIntMul(CFXBlock* pBlock):CFXBlock(pBlock){
-		m_Name = "X * Y";
-		m_PinInMinCount = 2;
-		m_PinInMaxCount = 32;
-		m_PinOutMinCount = 1;
-		m_PinOutMaxCount = 1;
-		m_InputPinTypes.AddTail(Int);
-		m_OutputPinTypes.AddTail(Int);
-		AddInputPin(Int,_T("x"));
-		AddInputPin(Int,_T("y"));
-		AddOutputPin(Int,_T("z"));
-	}
+	CFXBlockMathIntMul(CFXBlock* pBlock);
 	~CFXBlockMathIntMul(void);
 	int GetClassID(){
 		return BLOCK_MATH_INT_MUL;
+	}
+	CString GetClassDescriptor() {
+		return _T("CFXBlockMathIntMul");
 	}
 	virtual bool Check(){
 		return CFXBlock::Check();

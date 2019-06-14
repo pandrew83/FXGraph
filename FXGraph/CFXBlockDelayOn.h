@@ -13,5 +13,11 @@ class CFXBlockDelayOn :
 	}
 	bool Calc();
 	int m_Ticks;
+	int GetClassID() {
+		return BLOCK_DELAY_ON;
+	}
+	CString GetClassDescriptor() {
+		return _T("CFXBlockDelayOn");
+	}
 };
 

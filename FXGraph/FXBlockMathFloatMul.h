@@ -11,6 +11,9 @@ public:
 	int GetClassID(){
 		return BLOCK_MATH_FLOAT_MUL;
 	}
+	CString GetClassDescriptor() {
+		return _T("CFXBlockMathFloatMul");
+	}
 	virtual bool Check(){
 		return CFXBlock::Check();
 	}

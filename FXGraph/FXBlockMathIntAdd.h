@@ -11,6 +11,9 @@ public:
 	int GetClassID(){
 		return BLOCK_MATH_INT_ADD;
 	}
+	CString GetClassDescriptor() {
+		return _T("CFXBlockMathIntAdd");
+	}
 	virtual bool Check(){
 		return CFXBlock::Check();
 	}

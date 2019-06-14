@@ -9,5 +9,11 @@ public:
 	CFXBlockMathAsin(CFXBlock* pBlock);
 	bool Calc();
 	~CFXBlockMathAsin(void);
+	int GetClassID() {
+		return BLOCK_MATH_ASIN;
+	}
+	CString GetClassDescriptor() {
+		return _T("CFXBlockMathAsin");
+	}
 };
 

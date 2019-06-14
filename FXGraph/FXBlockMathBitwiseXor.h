@@ -11,6 +11,9 @@ public:
 	int GetClassID(){
 		return BLOCK_MATH_BITWISE_XOR;
 	}
+	CString GetClassDescriptor() {
+		return _T("CFXBlockMathBitwiseXor");
+	}
 	virtual bool Check(){
 		return CFXBlock::Check();
 	}

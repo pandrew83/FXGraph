@@ -9,5 +9,11 @@ public:
 	CFXBlockMathPow(CFXBlock* pBlock);
 	bool Calc();
 	~CFXBlockMathPow(void);
+	int GetClassID() {
+		return BLOCK_MATH_POW;
+	}
+	CString GetClassDescriptor() {
+		return _T("CFXBlockMathPow");
+	}
 };
 

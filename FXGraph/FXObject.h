@@ -185,17 +185,7 @@ public:
 	CFXObject(void);
 	DECLARE_SERIAL(CFXObject);
 	virtual void AfterSerialize(){}
-	static CString GetClassDescriptor(int id){
-		CString desc;
-		switch(id){
-		case BLOCK_FUNCTIONAL:
-			desc = "CFXBlockFunctional";
-			break;
-		default:
-			desc = "CFXObject";
-		}
-		return desc;
-	}
+//	virtual CString GetClassDescriptor() = 0;
 protected:
 	int m_X;
 	int m_Y;
@@ -238,8 +228,11 @@ public:
 		m_Y = 0;
 	}
 	~CFXObject(void);
-	virtual int GetClassID(){
-		return 0;
+	virtual int GetClassID() {
+		throw new CFXException(_T("GetClassID: Not implemented method called"));
+	}
+	virtual CString GetClassDescriptor() {
+		throw new CFXException(_T("GetClassDescriptor: Not implemented method called"));
 	}
 	virtual const char* GetClassName(){
 		const char *s = typeid(*this).name();
@@ -287,5 +280,6 @@ public:
 	}
 	CFXGraphDoc* GetActiveDocument(void);
 	virtual void Invalidate(CFXGraphView* pView, int regions);
+	static CString GetClassDescriptorByID(int id);
 };
 

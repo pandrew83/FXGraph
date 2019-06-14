@@ -11,6 +11,9 @@ public:
 	int GetClassID(){
 		return BLOCK_MATH_BITWISE_UNPACK;
 	}
+	CString GetClassDescriptor() {
+		return _T("CFXBlockMathBitwiseUnpack");
+	}
 	virtual bool Check(){
 		return CFXBlock::Check();
 	}

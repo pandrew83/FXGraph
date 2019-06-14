@@ -10,7 +10,9 @@ public:
 	int GetClassID(){
 		return BLOCK_MATH_BITWISE_AND;
 	}
-
+	CString GetClassDescriptor() {
+		return _T("CFXBlockMathBitwiseAnd");
+	}
 	virtual bool Check(){
 		return CFXBlock::Check();
 	}

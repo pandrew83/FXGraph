@@ -21,6 +21,9 @@ public:
 	int GetClassID(){
 		return BLOCK_COMMENT;
 	}
+	CString GetClassDescriptor() {
+		return _T("CFXBlockComment");
+	}
 	CString GetComment(){
 		return m_Comment;
 	}

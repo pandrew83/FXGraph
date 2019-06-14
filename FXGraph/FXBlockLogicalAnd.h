@@ -10,6 +10,9 @@ public:
 	int GetClassID(){
 		return BLOCK_LOGICAL_AND;
 	}
+	CString GetClassDescriptor() {
+		return _T("CFXBlockLogicalAnd");
+	}
 	~CFXBlockLogicalAnd(void);
 	void Serialize(CArchive& ar){
 		CFXBlock::Serialize(ar);

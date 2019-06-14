@@ -9,5 +9,11 @@ public:
 	CFXBlockMathLog(CFXBlock* pBlock);
 	bool Calc();
 	~CFXBlockMathLog(void);
+	int GetClassID() {
+		return BLOCK_MATH_LOG;
+	}
+	CString GetClassDescriptor() {
+		return _T("CFXBlockMathLog");
+	}
 };
 

@@ -49,6 +49,22 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.6.1"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.6.1 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.6.1"
+                    }
+                }
+            }
         }
         "Release"
         {
@@ -65,6 +81,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
     }
     "Deployable"
@@ -205,7 +229,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:FXGraph"
         "ProductCode" = "8:{D220A4BF-596C-4F56-B927-238CB3E6C716}"
-        "PackageCode" = "8:{167A3A49-36A2-43A6-A989-95AA249846EC}"
+        "PackageCode" = "8:{F8603D30-4A7B-4B6F-B4A9-2ACD61B5412C}"
         "UpgradeCode" = "8:{2FB48D03-D984-4F3B-A418-E6CAF567E3E8}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -325,7 +349,7 @@
         }
         "Shortcut"
         {
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_E54A4823343F4A7297344D0A9D1C29DE"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_30E697D532164BA8A9CBADB9C1E8D8F9"
             {
             "Name" = "8:FXGraph"
             "Arguments" = "8:"
@@ -333,9 +357,9 @@
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
-            "Target" = "8:_C48D86C576FF4805A51C0A2F455C0819"
+            "Target" = "8:_E5B3B9CE966B4E4386C32CD17E3169F0"
             "Folder" = "8:_C48D86C576FF4805A51C0A2F455C0819"
-            "WorkingFolder" = "8:_E484D79CCCB84DAB911D2853D5941CE2"
+            "WorkingFolder" = "8:_D79F2E61DC5C46D3BDCA606C0B383113"
             "Icon" = "8:"
             "Feature" = "8:"
             }
@@ -796,7 +820,7 @@
             }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_E5B3B9CE966B4E4386C32CD17E3169F0"
             {
-            "SourcePath" = "8:..\\Release\\FXGraph.exe"
+            "SourcePath" = "8:..\\Debug\\FXGraph.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_D79F2E61DC5C46D3BDCA606C0B383113"

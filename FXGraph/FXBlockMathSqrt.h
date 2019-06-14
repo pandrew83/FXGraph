@@ -9,5 +9,11 @@ public:
 	CFXBlockMathSqrt(CFXBlock* pBlock);
 	bool Calc();
 	~CFXBlockMathSqrt(void);
+	int GetClassID() {
+		return BLOCK_MATH_SQRT;
+	}
+	CString GetClassDescriptor() {
+		return _T("CFXBlockMathSqrt");
+	}
 };
 

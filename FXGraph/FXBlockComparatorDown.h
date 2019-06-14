@@ -11,5 +11,11 @@ public:
 	bool Calc();
 	bool m_Prev;
 	void Initialize(void);
+	int GetClassID() {
+		return BLOCK_COMPARATOR_DOWN;
+	}
+	CString GetClassDescriptor() {
+		return _T("CFXBlockComparatorDown");
+	}
 };
 

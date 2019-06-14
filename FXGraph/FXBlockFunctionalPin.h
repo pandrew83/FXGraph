@@ -9,6 +9,9 @@ public:
 	int GetClassID(){
 		return BLOCK_FUNCTIONAL_PIN;
 	}
+	CString GetClassDescriptor() {
+		return _T("CFXBlockFunctionalPin");
+	}
 	~CFXBlockFunctionalPin(void);
 	virtual bool Check(){
 		return CFXBlock::Check();

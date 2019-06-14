@@ -11,6 +11,9 @@ public:
 	int GetClassID(){
 		return BLOCK_LOGICAL_NOT;
 	}
+	CString GetClassDescriptor() {
+		return _T("CFXBlockLogicalNot");
+	}
 	virtual bool Check(){
 		return CFXBlock::Check();
 	}

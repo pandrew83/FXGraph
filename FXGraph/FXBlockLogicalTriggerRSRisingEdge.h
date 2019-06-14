@@ -13,5 +13,11 @@ public:
 	bool m_PrevZ;
 	~CFXBlockLogicalTriggerRSRisingEdge(void);
 	void Initialize(void);
+	int GetClassID() {
+		return BLOCK_LOGICAL_TRIGGER_RS_RE;
+	}
+	CString GetClassDescriptor() {
+		return _T("CFXBlockLogicalTriggerRSRisingEdge");
+	}
 };
 

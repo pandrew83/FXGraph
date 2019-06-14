@@ -9,5 +9,11 @@ public:
 	CFXBlockMathFloatGreatEqual(CFXBlock* pBlock);
 	~CFXBlockMathFloatGreatEqual(void);
 	bool Calc(void);
+	int GetClassID() {
+		return BLOCK_MATH_FLOAT_GREATEQUAL;
+	}
+	CString GetClassDescriptor() {
+		return _T("CFXBlockMathFloatGreatEqual");
+	}
 };
 
