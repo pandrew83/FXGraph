@@ -1,7 +1,7 @@
-#include "stdafx.h"
+﻿#include "stdafx.h"
 #include "CFXBlockAntiBounce.h"
 
-//#define BLOCK_ANTIBOUNCE_TIMEOUT 10
+// Это русский комментарий
 
 IMPLEMENT_SERIAL(CFXBlockAntiBounce, CFXBlock, 1);
 CFXBlockAntiBounce::CFXBlockAntiBounce()
