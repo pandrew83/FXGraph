@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+﻿#include "StdAfx.h"
 #include "FXBlockMathIntGreat.h"
 IMPLEMENT_SERIAL(CFXBlockMathIntGreat,CFXBlock,1);
 

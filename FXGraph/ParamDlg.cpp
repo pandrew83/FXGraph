@@ -1,4 +1,4 @@
-// ParamDlg.cpp: файл реализации
+﻿// ParamDlg.cpp: файл реализации
 //
 
 #include "stdafx.h"

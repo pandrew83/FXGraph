@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include "FXPin.h"
 #define NCOLORS		123
 

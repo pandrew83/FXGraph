@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include "FXBlock.h"
 class CFXBlockSensorTRD2WM100 :
 	public CFXBlock

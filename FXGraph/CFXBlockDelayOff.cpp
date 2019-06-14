@@ -1,4 +1,4 @@
-#include "stdafx.h"
+﻿#include "stdafx.h"
 #include "CFXBlockDelayOff.h"
 IMPLEMENT_SERIAL(CFXBlockDelayOff, CFXBlock, 1);
 // Это русский комментарий

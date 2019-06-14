@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include "fxblock.h"
 class CFXBlockMathCastIntFloat :
 	public CFXBlock

@@ -1,4 +1,4 @@
-
+﻿
 // FXGraphDoc.h : интерфейс класса CFXGraphDoc
 //
 

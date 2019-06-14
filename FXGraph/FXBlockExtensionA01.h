@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include "fxblockextension.h"
 class CFXBlockExtensionA01 :
 	public CFXBlockExtension

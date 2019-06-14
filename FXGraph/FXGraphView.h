@@ -1,4 +1,4 @@
-
+﻿
 // FXGraphView.h : интерфейс класса CFXGraphView
 //
 
@@ -147,6 +147,7 @@ public:
 	afx_msg void OnPinGraph(UINT nID);
 //	afx_msg void OnPaint();
 //	afx_msg void OnSetFocus(CWnd* pOldWnd);
+	afx_msg void OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags);
 };
 
 #ifndef _DEBUG  // отладочна¤ верси¤ в FXGraphView.cpp

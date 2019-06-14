@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+﻿#include "StdAfx.h"
 #include "FXBlockLogicalNot.h"
 IMPLEMENT_SERIAL(CFXBlockLogicalNot,CFXBlock,1);
 

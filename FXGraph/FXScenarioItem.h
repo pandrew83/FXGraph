@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 class CFXObject;
 class CFXPin;
 #include "./cparse/shunting-yard.h"

@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+﻿#include "StdAfx.h"
 #include "FXBlockMathBitwiseNot.h"
 
 IMPLEMENT_SERIAL(CFXBlockMathBitwiseNot,CFXBlock,1);

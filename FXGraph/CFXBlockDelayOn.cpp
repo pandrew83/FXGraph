@@ -1,4 +1,4 @@
-#include "stdafx.h"
+﻿#include "stdafx.h"
 #include "CFXBlockDelayOn.h"
 IMPLEMENT_SERIAL(CFXBlockDelayOn, CFXBlock, 1);
 

@@ -1,4 +1,4 @@
-// ProjectDlg.cpp: файл реализации
+﻿// ProjectDlg.cpp: файл реализации
 //
 
 #include "stdafx.h"

@@ -1,4 +1,4 @@
-#include "stdafx.h"
+﻿#include "stdafx.h"
 #include "CFXBlockTransformCurrent.h"
 IMPLEMENT_SERIAL(CFXBlockTransformCurrent, CFXBlock, 1);
 

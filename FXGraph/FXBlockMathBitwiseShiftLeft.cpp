@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+﻿#include "StdAfx.h"
 #include "FXBlockMathBitwiseShiftLeft.h"
 
 IMPLEMENT_SERIAL(CFXBlockMathBitwiseShiftLeft,CFXBlock,1);

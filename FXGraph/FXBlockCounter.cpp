@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+﻿#include "StdAfx.h"
 #include "FXBlockCounter.h"
 IMPLEMENT_SERIAL(CFXBlockCounter,CFXBlock,1);
 

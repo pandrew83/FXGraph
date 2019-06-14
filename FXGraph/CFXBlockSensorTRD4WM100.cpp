@@ -1,4 +1,4 @@
-#include "stdafx.h"
+﻿#include "stdafx.h"
 #include "CFXBlockSensorTRD4WM100.h"
 IMPLEMENT_SERIAL(CFXBlockSensorTRD4WM100, CFXBlock, 1);
 

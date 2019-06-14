@@ -1,4 +1,4 @@
-
+﻿
 // ChildFrm.cpp : реализация класса CChildFrame
 //
 

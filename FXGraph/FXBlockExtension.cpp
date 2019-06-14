@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+﻿#include "StdAfx.h"
 #include "FXBlockExtension.h"
 #include "PropertiesWnd.h"
 

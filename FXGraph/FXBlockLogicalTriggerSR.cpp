@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+﻿#include "StdAfx.h"
 #include "FXBlockLogicalTriggerSR.h"
 IMPLEMENT_SERIAL(CFXBlockLogicalTriggerSR,CFXBlock,1);
 

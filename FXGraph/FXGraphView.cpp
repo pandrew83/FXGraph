@@ -1,4 +1,4 @@
-
+﻿
 // FXGraphView.cpp : реализация класса CFXGraphView
 //
 
@@ -182,6 +182,7 @@ BEGIN_MESSAGE_MAP(CFXGraphView, CView)
 	ON_COMMAND_RANGE(WM_USER+1,WM_USER+32,&CFXGraphView::OnPinGraph)
 //	ON_WM_PAINT()
 //	ON_WM_SETFOCUS()
+ON_WM_KEYDOWN()
 END_MESSAGE_MAP()
 
 
@@ -2017,3 +2018,10 @@ void CFXGraphView::OnPinGraph(UINT nID) {
 //
 //	// TODO: добавьте свой код обработчика сообщений
 //}
+
+
+void CFXGraphView::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
+{
+	TracePrint(TRACE_LEVEL_1, "Pressed %d", nChar);
+	CView::OnKeyDown(nChar, nRepCnt, nFlags);
+}

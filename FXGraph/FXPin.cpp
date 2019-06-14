@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+﻿#include "StdAfx.h"
 #include "FXBlock.h"
 #include "FXPin.h"
 #include "FXGraphView.h"

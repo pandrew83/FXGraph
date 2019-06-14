@@ -1,4 +1,4 @@
-// PropertyGridCtrl.cpp: файл реализации
+﻿// PropertyGridCtrl.cpp: файл реализации
 //
 
 #include "stdafx.h"

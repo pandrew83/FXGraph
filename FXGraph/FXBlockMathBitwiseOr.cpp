@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+﻿#include "StdAfx.h"
 #include "FXBlockMathBitwiseOr.h"
 
 IMPLEMENT_SERIAL(CFXBlockMathBitwiseOr,CFXBlock,1);

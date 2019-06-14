@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include "FXBlock.h"
 class CFXBlockDelayOn :
 	public CFXBlock

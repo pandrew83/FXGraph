@@ -1,4 +1,4 @@
-#include "stdafx.h"
+﻿#include "stdafx.h"
 #include "CFXGraphic.h"
 #include "CFXGraphicVariable.h"
 #include "FXPin.h"

@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include "fxblock.h"
 class CFXBlockMathIntNotEqual :
 	public CFXBlock

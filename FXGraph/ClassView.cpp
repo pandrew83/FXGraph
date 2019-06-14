@@ -1,4 +1,4 @@
-
+﻿
 #include "stdafx.h"
 #include "MainFrm.h"
 #include "ClassView.h"
@@ -142,10 +142,10 @@ void CClassView::FillClassView()
 	TracePrint(TRACE_LEVEL_1,__FUNCTION__);
 	HTREEITEM hClass;
 	HTREEITEM hClass1;
-	HTREEITEM hRoot = m_wndClassView.InsertItem(_T("Блоки"),0,0);
+	HTREEITEM hRoot = m_wndClassView.InsertItem(L"Блоки",0,0);
 	m_wndClassView.SetItemState(hRoot,TVIS_BOLD,TVIS_BOLD);
 	hClass = m_wndClassView.InsertItem(_T("Разное"),hRoot,0);
-		InsertBlock(hClass,_T("Комментарий"),BLOCK_COMMENT);
+		InsertBlock(hClass,L"Комментарий",BLOCK_COMMENT);
 		m_wndClassView.Expand(hClass,TVE_EXPAND);
 	hClass = m_wndClassView.InsertItem(_T("Функциональные блоки"),hRoot,0);
 		InsertBlock(hClass,_T("Функциональный блок"),BLOCK_FUNCTIONAL);

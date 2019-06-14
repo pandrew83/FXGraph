@@ -1,4 +1,4 @@
-// XMLArchive.cpp: implementation of the CXMLArchive class.
+﻿// XMLArchive.cpp: implementation of the CXMLArchive class.
 //
 //////////////////////////////////////////////////////////////////////
 

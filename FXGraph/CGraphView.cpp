@@ -1,4 +1,4 @@
-// CGraphView.cpp: файл реализации
+﻿// CGraphView.cpp: файл реализации
 //
 
 

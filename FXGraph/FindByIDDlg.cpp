@@ -1,4 +1,4 @@
-// FingByIDDlg.cpp: файл реализации
+﻿// FingByIDDlg.cpp: файл реализации
 //
 
 #include "stdafx.h"
