@@ -2,21 +2,21 @@
 #include "afxwin.h"
 #include "FXObject.h"
 
-// диалоговое окно CParamDlg
+// РґРёР°Р»РѕРіРѕРІРѕРµ РѕРєРЅРѕ CParamDlg
 
 class CParamDlg : public CDialog
 {
 	DECLARE_DYNAMIC(CParamDlg)
 
 public:
-	CParamDlg(CWnd* pParent = NULL);   // стандартный конструктор
+	CParamDlg(CWnd* pParent = NULL);   // СЃС‚Р°РЅРґР°СЂС‚РЅС‹Р№ РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ
 	virtual ~CParamDlg();
 
-// Данные диалогового окна
+// Р”Р°РЅРЅС‹Рµ РґРёР°Р»РѕРіРѕРІРѕРіРѕ РѕРєРЅР°
 	enum { IDD = IDD_PARAM };
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // поддержка DDX/DDV
+	virtual void DoDataExchange(CDataExchange* pDX);    // РїРѕРґРґРµСЂР¶РєР° DDX/DDV
 
 	DECLARE_MESSAGE_MAP()
 public:

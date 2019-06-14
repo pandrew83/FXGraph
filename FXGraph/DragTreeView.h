@@ -1,14 +1,14 @@
 #pragma once
 
 
-// представление CDragTreeView
+// РїСЂРµРґСЃС‚Р°РІР»РµРЅРёРµ CDragTreeView
 
 class CDragTreeView : public CTreeView
 {
 	DECLARE_DYNCREATE(CDragTreeView)
 
 protected:
-	CDragTreeView();           // защищенный конструктор, используемый при динамическом создании
+	CDragTreeView();           // Р·Р°С‰РёС‰РµРЅРЅС‹Р№ РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ, РёСЃРїРѕР»СЊР·СѓРµРјС‹Р№ РїСЂРё РґРёРЅР°РјРёС‡РµСЃРєРѕРј СЃРѕР·РґР°РЅРёРё
 	virtual ~CDragTreeView();
 
 public:

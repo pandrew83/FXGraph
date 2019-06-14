@@ -55,7 +55,7 @@ void CFXBlockFunctional::AddBlock(CFXBlock* pBlock)
 	CFXBlockController* pController = dynamic_cast<CFXBlockController*>(pBlock);
 	CFXBlockExtension* pExtension = dynamic_cast<CFXBlockExtension*>(pBlock);
 	if (pController && !IsRootBlock()){
-		AfxMessageBox(_T("Нельзя добавить блок-контроллер в текущий функциональный блок"));
+		AfxMessageBox(_T("РќРµР»СЊР·СЏ РґРѕР±Р°РІРёС‚СЊ Р±Р»РѕРє-РєРѕРЅС‚СЂРѕР»Р»РµСЂ РІ С‚РµРєСѓС‰РёР№ С„СѓРЅРєС†РёРѕРЅР°Р»СЊРЅС‹Р№ Р±Р»РѕРє"));
 		delete pBlock;
 		return;
 	}
@@ -65,19 +65,19 @@ void CFXBlockFunctional::AddBlock(CFXBlock* pBlock)
 			CFXBlock* pCur = m_Blocks.GetNext(pos);
 			CFXBlockController* pController = dynamic_cast<CFXBlockController*>(pCur);
 			if (pController){
-				AfxMessageBox(_T("Только один контроллер может быть в одном проекте"));
+				AfxMessageBox(_T("РўРѕР»СЊРєРѕ РѕРґРёРЅ РєРѕРЅС‚СЂРѕР»Р»РµСЂ РјРѕР¶РµС‚ Р±С‹С‚СЊ РІ РѕРґРЅРѕРј РїСЂРѕРµРєС‚Рµ"));
 				delete pBlock;
 				return;
 			}
 		}
 	}
 	if (pExtension && IsRootBlock()){
-		AfxMessageBox(_T("Нельзя добавить блок расширения в текущий функциональный блок"));
+		AfxMessageBox(_T("РќРµР»СЊР·СЏ РґРѕР±Р°РІРёС‚СЊ Р±Р»РѕРє СЂР°СЃС€РёСЂРµРЅРёСЏ РІ С‚РµРєСѓС‰РёР№ С„СѓРЅРєС†РёРѕРЅР°Р»СЊРЅС‹Р№ Р±Р»РѕРє"));
 		delete pBlock;
 		return;
 	}
 	if (!pExtension && !pController && IsRootBlock()){
-		AfxMessageBox(_T("В корневой функцильный блок можно добавить только контроллеры и модули расширения"));
+		AfxMessageBox(_T("Р’ РєРѕСЂРЅРµРІРѕР№ С„СѓРЅРєС†РёР»СЊРЅС‹Р№ Р±Р»РѕРє РјРѕР¶РЅРѕ РґРѕР±Р°РІРёС‚СЊ С‚РѕР»СЊРєРѕ РєРѕРЅС‚СЂРѕР»Р»РµСЂС‹ Рё РјРѕРґСѓР»Рё СЂР°СЃС€РёСЂРµРЅРёСЏ"));
 		delete pBlock;
 		return;
 	}
@@ -90,9 +90,9 @@ void CFXBlockFunctional::Draw(CFXGraphView*pView){
 		CFXBlock::Draw(pView);
 		return;
 	}
-	// определить порядок отрисовки
+	// РѕРїСЂРµРґРµР»РёС‚СЊ РїРѕСЂСЏРґРѕРє РѕС‚СЂРёСЃРѕРІРєРё
 
-	// Сначала рисуем линии связи, если они включены
+	// РЎРЅР°С‡Р°Р»Р° СЂРёСЃСѓРµРј Р»РёРЅРёРё СЃРІСЏР·Рё, РµСЃР»Рё РѕРЅРё РІРєР»СЋС‡РµРЅС‹
 	if (pView->m_bShowLinks){
 		POSITION pos = m_Links.GetHeadPosition();
 		while (pos){
@@ -184,7 +184,7 @@ CFXLink* CFXBlockFunctional::AddLink(CFXPin* pPinOut, CFXPin* pPinIn)
 		return NULL;
 	}
 	if (pPinIn->IsConnectedPin(pPinOut)){
-		// Уже есть связь у этого пина
+		// РЈР¶Рµ РµСЃС‚СЊ СЃРІСЏР·СЊ Сѓ СЌС‚РѕРіРѕ РїРёРЅР°
 		return NULL;
 	}
 
@@ -252,7 +252,7 @@ void CFXBlockFunctional::GetPinLinks(CListLink& lst, CFXPin* pPin)
 }
 
 void CFXBlockFunctional::CalcOrder(void){
-	// Формируем список блоков
+	// Р¤РѕСЂРјРёСЂСѓРµРј СЃРїРёСЃРѕРє Р±Р»РѕРєРѕРІ
 	CArray<CFXBlock*,CFXBlock*> lst;
 	POSITION pos = m_Blocks.GetHeadPosition();
 	while (pos){
@@ -264,7 +264,7 @@ void CFXBlockFunctional::CalcOrder(void){
 		//	pBlockFunc->CalcOrder();
 		//}
 	}
-	// Сортируем список блоков
+	// РЎРѕСЂС‚РёСЂСѓРµРј СЃРїРёСЃРѕРє Р±Р»РѕРєРѕРІ
 	int c = lst.GetCount();
 	for (int i=0; i<c-1; i++){
 		for (int j=i+1; j<c; j++){
@@ -283,9 +283,9 @@ void CFXBlockFunctional::CalcOrder(void){
 				}
 		}
 	}
-	// Устанавливаем порядок выполнения
-	// Устанавливаем указатели следующего блока в цепочке выполнения
-	// Устанавливает текущий блок на первый в цепочке выполнения
+	// РЈСЃС‚Р°РЅР°РІР»РёРІР°РµРј РїРѕСЂСЏРґРѕРє РІС‹РїРѕР»РЅРµРЅРёСЏ
+	// РЈСЃС‚Р°РЅР°РІР»РёРІР°РµРј СѓРєР°Р·Р°С‚РµР»Рё СЃР»РµРґСѓСЋС‰РµРіРѕ Р±Р»РѕРєР° РІ С†РµРїРѕС‡РєРµ РІС‹РїРѕР»РЅРµРЅРёСЏ
+	// РЈСЃС‚Р°РЅР°РІР»РёРІР°РµС‚ С‚РµРєСѓС‰РёР№ Р±Р»РѕРє РЅР° РїРµСЂРІС‹Р№ РІ С†РµРїРѕС‡РєРµ РІС‹РїРѕР»РЅРµРЅРёСЏ
 	int nOrder = 1;
 	CFXBlock* pCur=NULL;
 	CFXBlock* pPrev = NULL;

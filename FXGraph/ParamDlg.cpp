@@ -1,4 +1,4 @@
-// ParamDlg.cpp: файл реализации
+// ParamDlg.cpp: С„Р°Р№Р» СЂРµР°Р»РёР·Р°С†РёРё
 //
 
 #include "stdafx.h"
@@ -7,7 +7,7 @@
 #include "afxdialogex.h"
 #include "FXPin.h"
 
-// диалоговое окно CParamDlg
+// РґРёР°Р»РѕРіРѕРІРѕРµ РѕРєРЅРѕ CParamDlg
 
 IMPLEMENT_DYNAMIC(CParamDlg, CDialog)
 
@@ -48,7 +48,7 @@ BEGIN_MESSAGE_MAP(CParamDlg, CDialog)
 END_MESSAGE_MAP()
 
 
-// обработчики сообщений CParamDlg
+// РѕР±СЂР°Р±РѕС‚С‡РёРєРё СЃРѕРѕР±С‰РµРЅРёР№ CParamDlg
 
 
 
@@ -100,10 +100,10 @@ BOOL CParamDlg::OnInitDialog()
 		m_ctrlInt.ShowWindow(SW_HIDE);
 	}
 	return TRUE;  // return TRUE unless you set the focus to a control
-	// Исключение: страница свойств OCX должна возвращать значение FALSE
+	// В»СЃРєР»СЋС‡РµРЅРёРµ: СЃС‚СЂР°РЅРёС†Р° СЃРІРѕР№СЃС‚РІ OCX РґРѕР»Р¶РЅР° РІРѕР·РІСЂР°С‰Р°С‚СЊ Р·РЅР°С‡РµРЅРёРµ FALSE
 }
 
 void CParamDlg::OnBnClickedRadio1()
 {
-	// TODO: добавьте свой код обработчика уведомлений
+	// TODO: РґРѕР±Р°РІСЊС‚Рµ СЃРІРѕР№ РєРѕРґ РѕР±СЂР°Р±РѕС‚С‡РёРєР° СѓРІРµРґРѕРјР»РµРЅРёР№
 }

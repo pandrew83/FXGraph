@@ -1,4 +1,4 @@
-// FingByIDDlg.cpp: файл реализации
+// FingByIDDlg.cpp: С„Р°Р№Р» СЂРµР°Р»РёР·Р°С†РёРё
 //
 
 #include "stdafx.h"
@@ -7,7 +7,7 @@
 #include "afxdialogex.h"
 
 
-// диалоговое окно CFingByIDDlg
+// РґРёР°Р»РѕРіРѕРІРѕРµ РѕРєРЅРѕ CFingByIDDlg
 
 IMPLEMENT_DYNAMIC(CFindByIDDlg, CDialogEx)
 
@@ -34,4 +34,4 @@ BEGIN_MESSAGE_MAP(CFindByIDDlg, CDialogEx)
 END_MESSAGE_MAP()
 
 
-// обработчики сообщений CFingByIDDlg
+// РѕР±СЂР°Р±РѕС‚С‡РёРєРё СЃРѕРѕР±С‰РµРЅРёР№ CFingByIDDlg

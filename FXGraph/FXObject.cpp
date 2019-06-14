@@ -76,16 +76,16 @@ void CFXObject::FillProperties(CPropertiesWnd* pWnd){
 	CPropertyGridCtrl* pCtrl =  &pWnd->m_wndPropList;
 	pCtrl->RemoveAll();
 	CMFCPropertyGridProperty* pProp;
-	pProp = new CMFCPropertyGridProperty(_T("ID"),(variant_t)m_ID,_T("Èäåíòèôèêàòîð îáúåêòà"));
+	pProp = new CMFCPropertyGridProperty(_T("ID"),(variant_t)m_ID,_T("Ð˜Ð´ÐµÐ½Ñ‚Ð¸Ñ„Ð¸ÐºÐ°Ñ‚Ð¾Ñ€ Ð¾Ð±ÑŠÐµÐºÑ‚Ð°"));
 	pCtrl->AddProperty(pProp);
 
-	pProp = new CMFCPropertyGridProperty(_T("Íàèìåíîâàíèå"),m_Name,_T("Íàèìåíîâàíèå áëîêà"),PROP_NAME);
+	pProp = new CMFCPropertyGridProperty(_T("ÐÐ°Ð¸Ð¼ÐµÐ½Ð¾Ð²Ð°Ð½Ð¸Ðµ"),m_Name,_T("ÐÐ°Ð¸Ð¼ÐµÐ½Ð¾Ð²Ð°Ð½Ð¸Ðµ Ð±Ð»Ð¾ÐºÐ°"),PROP_NAME);
 	pCtrl->AddProperty(pProp);
 
-	pProp = new CMFCPropertyGridProperty( _T("X"), (_variant_t) m_X, _T("Óêàçûâàåò ïîëîæåíèå áëîêà"),PROP_COORDX);
+	pProp = new CMFCPropertyGridProperty( _T("X"), (_variant_t) m_X, _T("Ð£ÐºÐ°Ð·Ñ‹Ð²Ð°ÐµÑ‚ Ð¿Ð¾Ð»Ð¾Ð¶ÐµÐ½Ð¸Ðµ Ð±Ð»Ð¾ÐºÐ°"),PROP_COORDX);
 	pCtrl->AddProperty(pProp);
 
-	pProp = new CMFCPropertyGridProperty( _T("Y"), (_variant_t) m_Y, _T("Óêàçûâàåò ïîëîæåíèå áëîêà"),PROP_COORDY);
+	pProp = new CMFCPropertyGridProperty( _T("Y"), (_variant_t) m_Y, _T("Ð£ÐºÐ°Ð·Ñ‹Ð²Ð°ÐµÑ‚ Ð¿Ð¾Ð»Ð¾Ð¶ÐµÐ½Ð¸Ðµ Ð±Ð»Ð¾ÐºÐ°"),PROP_COORDY);
 	pCtrl->AddProperty(pProp);
 //	pWnd->m_Properties[PROP_COORDX]->SetValue((_variant_t)m_X);
 //	pWnd->m_Properties[PROP_COORDY]->SetValue((_variant_t)m_Y);
@@ -106,7 +106,7 @@ CFXGraphDoc* CFXObject::GetActiveDocument(void)
       if ( !pDoc )
          return NULL;
 
-      // Îøèáêà, åñëè äîêóìåíò íåïðàâèëüíîãî òèïà
+      // ÐžÑˆÐ¸Ð±ÐºÐ°, ÐµÑÐ»Ð¸ Ð´Ð¾ÐºÑƒÐ¼ÐµÐ½Ñ‚ Ð½ÐµÐ¿Ñ€Ð°Ð²Ð¸Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ñ‚Ð¸Ð¿Ð°
       if ( ! pDoc->IsKindOf( RUNTIME_CLASS(CFXGraphDoc) ) )
          return NULL;
 

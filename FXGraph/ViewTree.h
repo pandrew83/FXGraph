@@ -1,21 +1,21 @@
 
 #pragma once
 /////////////////////////////////////////////////////////////////////////////
-// Окно CViewTree
+// РћРєРЅРѕ CViewTree
 
 class CViewTree : public CTreeCtrl
 {
-// Создание
+// РЎРѕР·РґР°РЅРёРµ
 public:
 	CViewTree();
 	CImageList* m_pDragDropImage;
 	bool m_bDragging;
 	HTREEITEM m_hItem;
-// Переопределение
+// РџРµСЂРµРѕРїСЂРµРґРµР»РµРЅРёРµ
 protected:
 	virtual BOOL OnNotify(WPARAM wParam, LPARAM lParam, LRESULT* pResult);
 
-// Реализация
+// Р РµР°Р»РёР·Р°С†РёСЏ
 public:
 	virtual ~CViewTree();
 

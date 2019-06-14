@@ -1,4 +1,4 @@
-﻿
+
 // FXGraphView.cpp : реализация класса CFXGraphView
 //
 

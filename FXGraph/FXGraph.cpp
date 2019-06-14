@@ -1,5 +1,5 @@
 
-// FXGraph.cpp : Определяет поведение классов для приложения.
+// FXGraph.cpp : РћРїСЂРµРґРµР»СЏРµС‚ РїРѕРІРµРґРµРЅРёРµ РєР»Р°СЃСЃРѕРІ РґР»СЏ РїСЂРёР»РѕР¶РµРЅРёСЏ.
 //
 
 #include "stdafx.h"
@@ -41,17 +41,17 @@ void TracePrint(int level, const char* format,...){
 
 BEGIN_MESSAGE_MAP(CFXGraphApp, CWinAppEx)
 	ON_COMMAND(ID_APP_ABOUT, &CFXGraphApp::OnAppAbout)
-	// Стандартные команды по работе с файлами документов
+	// РЎС‚Р°РЅРґР°СЂС‚РЅС‹Рµ РєРѕРјР°РЅРґС‹ РїРѕ СЂР°Р±РѕС‚Рµ СЃ С„Р°Р№Р»Р°РјРё РґРѕРєСѓРјРµРЅС‚РѕРІ
 	ON_COMMAND(ID_FILE_NEW, &CWinAppEx::OnFileNew)
 	ON_COMMAND(ID_FILE_OPEN, &CWinAppEx::OnFileOpen)
-	// Стандартная команда настройки печати
+	// РЎС‚Р°РЅРґР°СЂС‚РЅР°СЏ РєРѕРјР°РЅРґР° РЅР°СЃС‚СЂРѕР№РєРё РїРµС‡Р°С‚Рё
 	ON_COMMAND(ID_FILE_PRINT_SETUP, &CWinAppEx::OnFilePrintSetup)
 	ON_COMMAND(ID_GRID, &CFXGraphApp::OnGrid)
 //	ON_COMMAND(ID_CLASSVIEWMENU_WEBHELP, &CFXGraphApp::OnClassviewmenuWebhelp)
 END_MESSAGE_MAP()
 
 
-// создание CFXGraphApp
+// СЃРѕР·РґР°РЅРёРµ CFXGraphApp
 
 CFXGraphApp::CFXGraphApp()
 	: m_GridStep(0)
@@ -60,44 +60,44 @@ CFXGraphApp::CFXGraphApp()
 {
 	m_bHiColorIcons = TRUE;
 
-	// поддержка диспетчера перезагрузки
+	// РїРѕРґРґРµСЂР¶РєР° РґРёСЃРїРµС‚С‡РµСЂР° РїРµСЂРµР·Р°РіСЂСѓР·РєРё
 	m_dwRestartManagerSupportFlags = AFX_RESTART_MANAGER_SUPPORT_ALL_ASPECTS;
 #ifdef _MANAGED
-	// Если приложение построено с поддержкой среды Common Language Runtime (/clr):
-	//     1) Этот дополнительный параметр требуется для правильной поддержки работы диспетчера перезагрузки.
-	//     2) В своем проекте для построения необходимо добавить ссылку на System.Windows.Forms.
+	// Р•СЃР»Рё РїСЂРёР»РѕР¶РµРЅРёРµ РїРѕСЃС‚СЂРѕРµРЅРѕ СЃ РїРѕРґРґРµСЂР¶РєРѕР№ СЃСЂРµРґС‹ Common Language Runtime (/clr):
+	//     1) Р­С‚РѕС‚ РґРѕРїРѕР»РЅРёС‚РµР»СЊРЅС‹Р№ РїР°СЂР°РјРµС‚СЂ С‚СЂРµР±СѓРµС‚СЃСЏ РґР»СЏ РїСЂР°РІРёР»СЊРЅРѕР№ РїРѕРґРґРµСЂР¶РєРё СЂР°Р±РѕС‚С‹ РґРёСЃРїРµС‚С‡РµСЂР° РїРµСЂРµР·Р°РіСЂСѓР·РєРё.
+	//     2) Р’ СЃРІРѕРµРј РїСЂРѕРµРєС‚Рµ РґР»СЏ РїРѕСЃС‚СЂРѕРµРЅРёСЏ РЅРµРѕР±С…РѕРґРёРјРѕ РґРѕР±Р°РІРёС‚СЊ СЃСЃС‹Р»РєСѓ РЅР° System.Windows.Forms.
 	System::Windows::Forms::Application::SetUnhandledExceptionMode(System::Windows::Forms::UnhandledExceptionMode::ThrowException);
 #endif
 
-	// TODO: замените ниже строку идентификатора приложения строкой уникального идентификатора; рекомендуемый
-	// формат для строки: ИмяКомпании.ИмяПродукта.СубПродукт.СведенияОВерсии
+	// TODO: Р·Р°РјРµРЅРёС‚Рµ РЅРёР¶Рµ СЃС‚СЂРѕРєСѓ РёРґРµРЅС‚РёС„РёРєР°С‚РѕСЂР° РїСЂРёР»РѕР¶РµРЅРёСЏ СЃС‚СЂРѕРєРѕР№ СѓРЅРёРєР°Р»СЊРЅРѕРіРѕ РёРґРµРЅС‚РёС„РёРєР°С‚РѕСЂР°; СЂРµРєРѕРјРµРЅРґСѓРµРјС‹Р№
+	// С„РѕСЂРјР°С‚ РґР»СЏ СЃС‚СЂРѕРєРё: РРјСЏРљРѕРјРїР°РЅРёРё.РРјСЏРџСЂРѕРґСѓРєС‚Р°.РЎСѓР±РџСЂРѕРґСѓРєС‚.РЎРІРµРґРµРЅРёСЏРћР’РµСЂСЃРёРё
 	SetAppID(_T("FXGraph.AppID"));
 
 }
 
-// Единственный объект CFXGraphApp
+// Р•РґРёРЅСЃС‚РІРµРЅРЅС‹Р№ РѕР±СЉРµРєС‚ CFXGraphApp
 
 CFXGraphApp theApp;
 
 
-// инициализация CFXGraphApp
+// РёРЅРёС†РёР°Р»РёР·Р°С†РёСЏ CFXGraphApp
 
 BOOL CFXGraphApp::InitInstance()
 {
-	// InitCommonControlsEx() требуются для Windows XP, если манифест
-	// приложения использует ComCtl32.dll версии 6 или более поздней версии для включения
-	// стилей отображения. В противном случае будет возникать сбой при создании любого окна.
+	// InitCommonControlsEx() С‚СЂРµР±СѓСЋС‚СЃСЏ РґР»СЏ Windows XP, РµСЃР»Рё РјР°РЅРёС„РµСЃС‚
+	// РїСЂРёР»РѕР¶РµРЅРёСЏ РёСЃРїРѕР»СЊР·СѓРµС‚ ComCtl32.dll РІРµСЂСЃРёРё 6 РёР»Рё Р±РѕР»РµРµ РїРѕР·РґРЅРµР№ РІРµСЂСЃРёРё РґР»СЏ РІРєР»СЋС‡РµРЅРёСЏ
+	// СЃС‚РёР»РµР№ РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ. Р’ РїСЂРѕС‚РёРІРЅРѕРј СЃР»СѓС‡Р°Рµ Р±СѓРґРµС‚ РІРѕР·РЅРёРєР°С‚СЊ СЃР±РѕР№ РїСЂРё СЃРѕР·РґР°РЅРёРё Р»СЋР±РѕРіРѕ РѕРєРЅР°.
 	INITCOMMONCONTROLSEX InitCtrls;
 	InitCtrls.dwSize = sizeof(InitCtrls);
-	// Выберите этот параметр для включения всех общих классов управления, которые необходимо использовать
-	// в вашем приложении.
+	// Р’С‹Р±РµСЂРёС‚Рµ СЌС‚РѕС‚ РїР°СЂР°РјРµС‚СЂ РґР»СЏ РІРєР»СЋС‡РµРЅРёСЏ РІСЃРµС… РѕР±С‰РёС… РєР»Р°СЃСЃРѕРІ СѓРїСЂР°РІР»РµРЅРёСЏ, РєРѕС‚РѕСЂС‹Рµ РЅРµРѕР±С…РѕРґРёРјРѕ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ
+	// РІ РІР°С€РµРј РїСЂРёР»РѕР¶РµРЅРёРё.
 	InitCtrls.dwICC = ICC_WIN95_CLASSES;
 	InitCommonControlsEx(&InitCtrls);
 
 	CWinAppEx::InitInstance();
 
 
-	// Инициализация библиотек OLE
+	// РРЅРёС†РёР°Р»РёР·Р°С†РёСЏ Р±РёР±Р»РёРѕС‚РµРє OLE
 	if (!AfxOleInit())
 	{
 		AfxMessageBox(IDP_OLE_INIT_FAILED);
@@ -108,16 +108,16 @@ BOOL CFXGraphApp::InitInstance()
 
 	EnableTaskbarInteraction();
 
-	// Для использования элемента управления RichEdit требуется метод AfxInitRichEdit2()	
+	// Р”Р»СЏ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЏ СЌР»РµРјРµРЅС‚Р° СѓРїСЂР°РІР»РµРЅРёСЏ RichEdit С‚СЂРµР±СѓРµС‚СЃСЏ РјРµС‚РѕРґ AfxInitRichEdit2()	
 	// AfxInitRichEdit2();
 
-	// Стандартная инициализация
-	// Если эти возможности не используются и необходимо уменьшить размер
-	// конечного исполняемого файла, необходимо удалить из следующего
-	// конкретные процедуры инициализации, которые не требуются
-	// Измените раздел реестра, в котором хранятся параметры
-	// TODO: следует изменить эту строку на что-нибудь подходящее,
-	// например на название организации
+	// РЎС‚Р°РЅРґР°СЂС‚РЅР°СЏ РёРЅРёС†РёР°Р»РёР·Р°С†РёСЏ
+	// Р•СЃР»Рё СЌС‚Рё РІРѕР·РјРѕР¶РЅРѕСЃС‚Рё РЅРµ РёСЃРїРѕР»СЊР·СѓСЋС‚СЃСЏ Рё РЅРµРѕР±С…РѕРґРёРјРѕ СѓРјРµРЅСЊС€РёС‚СЊ СЂР°Р·РјРµСЂ
+	// РєРѕРЅРµС‡РЅРѕРіРѕ РёСЃРїРѕР»РЅСЏРµРјРѕРіРѕ С„Р°Р№Р»Р°, РЅРµРѕР±С…РѕРґРёРјРѕ СѓРґР°Р»РёС‚СЊ РёР· СЃР»РµРґСѓСЋС‰РµРіРѕ
+	// РєРѕРЅРєСЂРµС‚РЅС‹Рµ РїСЂРѕС†РµРґСѓСЂС‹ РёРЅРёС†РёР°Р»РёР·Р°С†РёРё, РєРѕС‚РѕСЂС‹Рµ РЅРµ С‚СЂРµР±СѓСЋС‚СЃСЏ
+	// РР·РјРµРЅРёС‚Рµ СЂР°Р·РґРµР» СЂРµРµСЃС‚СЂР°, РІ РєРѕС‚РѕСЂРѕРј С…СЂР°РЅСЏС‚СЃСЏ РїР°СЂР°РјРµС‚СЂС‹
+	// TODO: СЃР»РµРґСѓРµС‚ РёР·РјРµРЅРёС‚СЊ СЌС‚Сѓ СЃС‚СЂРѕРєСѓ РЅР° С‡С‚Рѕ-РЅРёР±СѓРґСЊ РїРѕРґС…РѕРґСЏС‰РµРµ,
+	// РЅР°РїСЂРёРјРµСЂ РЅР° РЅР°Р·РІР°РЅРёРµ РѕСЂРіР°РЅРёР·Р°С†РёРё
 	SetRegistryKey(_T("FXGraph"));
 	m_GridState = (bool)GetProfileInt(_T("Settings"),_T("GridState"),0);
 	m_GridStep = GetProfileInt(_T("Settings"),_T("GridStep"),5);
@@ -127,7 +127,7 @@ BOOL CFXGraphApp::InitInstance()
 	int g = GetProfileInt(_T("Settings"),_T("GridColorG"),0);
 	int b = GetProfileInt(_T("Settings"),_T("GridColorB"),0);
 	m_GridColor = RGB(r,g,b);
-	LoadStdProfileSettings(4);  // Загрузите стандартные параметры INI-файла (включая MRU)
+	LoadStdProfileSettings(4);  // Р—Р°РіСЂСѓР·РёС‚Рµ СЃС‚Р°РЅРґР°СЂС‚РЅС‹Рµ РїР°СЂР°РјРµС‚СЂС‹ INI-С„Р°Р№Р»Р° (РІРєР»СЋС‡Р°СЏ MRU)
 
 
 	InitContextMenuManager();
@@ -140,12 +140,12 @@ BOOL CFXGraphApp::InitInstance()
 	theApp.GetTooltipManager()->SetTooltipParams(AFX_TOOLTIP_TYPE_ALL,
 		RUNTIME_CLASS(CMFCToolTipCtrl), &ttParams);
 
-	// Зарегистрируйте шаблоны документов приложения. Шаблоны документов
-	//  выступают в роли посредника между документами, окнами рамок и представлениями
+	// Р—Р°СЂРµРіРёСЃС‚СЂРёСЂСѓР№С‚Рµ С€Р°Р±Р»РѕРЅС‹ РґРѕРєСѓРјРµРЅС‚РѕРІ РїСЂРёР»РѕР¶РµРЅРёСЏ. РЁР°Р±Р»РѕРЅС‹ РґРѕРєСѓРјРµРЅС‚РѕРІ
+	//  РІС‹СЃС‚СѓРїР°СЋС‚ РІ СЂРѕР»Рё РїРѕСЃСЂРµРґРЅРёРєР° РјРµР¶РґСѓ РґРѕРєСѓРјРµРЅС‚Р°РјРё, РѕРєРЅР°РјРё СЂР°РјРѕРє Рё РїСЂРµРґСЃС‚Р°РІР»РµРЅРёСЏРјРё
 	CMultiDocTemplate* pDocTemplate;
 	pDocTemplate = new CMultiDocTemplate(IDR_FXGraphTYPE,
 		RUNTIME_CLASS(CFXGraphDoc),
-		RUNTIME_CLASS(CChildFrame), // настраиваемая дочерняя рамка MDI
+		RUNTIME_CLASS(CChildFrame), // РЅР°СЃС‚СЂР°РёРІР°РµРјР°СЏ РґРѕС‡РµСЂРЅСЏСЏ СЂР°РјРєР° MDI
 		RUNTIME_CLASS(CFXGraphView));
 	if (!pDocTemplate)
 		return FALSE;
@@ -155,7 +155,7 @@ BOOL CFXGraphApp::InitInstance()
 	//	RUNTIME_CLASS(CChildFrame),
 	//	RUNTIME_CLASS(CFXGraphViewScenario));
 	//AddDocTemplate(pDocTemplate);
-	// создайте главное окно рамки MDI
+	// СЃРѕР·РґР°Р№С‚Рµ РіР»Р°РІРЅРѕРµ РѕРєРЅРѕ СЂР°РјРєРё MDI
 	CMainFrame* pMainFrame = new CMainFrame;
 	if (!pMainFrame || !pMainFrame->LoadFrame(IDR_MAINFRAME))
 	{
@@ -163,25 +163,25 @@ BOOL CFXGraphApp::InitInstance()
 		return FALSE;
 	}
 	m_pMainWnd = pMainFrame;
-	// вызов DragAcceptFiles только при наличии суффикса
-	//  В приложении MDI это должно произойти сразу после задания m_pMainWnd
-	// Включить открытие перетаскивания
+	// РІС‹Р·РѕРІ DragAcceptFiles С‚РѕР»СЊРєРѕ РїСЂРё РЅР°Р»РёС‡РёРё СЃСѓС„С„РёРєСЃР°
+	//  Р’ РїСЂРёР»РѕР¶РµРЅРёРё MDI СЌС‚Рѕ РґРѕР»Р¶РЅРѕ РїСЂРѕРёР·РѕР№С‚Рё СЃСЂР°Р·Сѓ РїРѕСЃР»Рµ Р·Р°РґР°РЅРёСЏ m_pMainWnd
+	// Р’РєР»СЋС‡РёС‚СЊ РѕС‚РєСЂС‹С‚РёРµ РїРµСЂРµС‚Р°СЃРєРёРІР°РЅРёСЏ
 	m_pMainWnd->DragAcceptFiles();
 
-	// Синтаксический разбор командной строки на стандартные команды оболочки, DDE, открытие файлов
+	// РЎРёРЅС‚Р°РєСЃРёС‡РµСЃРєРёР№ СЂР°Р·Р±РѕСЂ РєРѕРјР°РЅРґРЅРѕР№ СЃС‚СЂРѕРєРё РЅР° СЃС‚Р°РЅРґР°СЂС‚РЅС‹Рµ РєРѕРјР°РЅРґС‹ РѕР±РѕР»РѕС‡РєРё, DDE, РѕС‚РєСЂС‹С‚РёРµ С„Р°Р№Р»РѕРІ
 	CCommandLineInfo cmdInfo;
 	ParseCommandLine(cmdInfo);
 
-	// Включить открытие выполнения DDE
+	// Р’РєР»СЋС‡РёС‚СЊ РѕС‚РєСЂС‹С‚РёРµ РІС‹РїРѕР»РЅРµРЅРёСЏ DDE
 	EnableShellOpen();
 	RegisterShellFileTypes(TRUE);
 
 
-	// Команды диспетчеризации, указанные в командной строке. Значение FALSE будет возвращено, если
-	// приложение было запущено с параметром /RegServer, /Register, /Unregserver или /Unregister.
+	// РљРѕРјР°РЅРґС‹ РґРёСЃРїРµС‚С‡РµСЂРёР·Р°С†РёРё, СѓРєР°Р·Р°РЅРЅС‹Рµ РІ РєРѕРјР°РЅРґРЅРѕР№ СЃС‚СЂРѕРєРµ. Р—РЅР°С‡РµРЅРёРµ FALSE Р±СѓРґРµС‚ РІРѕР·РІСЂР°С‰РµРЅРѕ, РµСЃР»Рё
+	// РїСЂРёР»РѕР¶РµРЅРёРµ Р±С‹Р»Рѕ Р·Р°РїСѓС‰РµРЅРѕ СЃ РїР°СЂР°РјРµС‚СЂРѕРј /RegServer, /Register, /Unregserver РёР»Рё /Unregister.
 	if (!ProcessShellCommand(cmdInfo))
 		return FALSE;
-	// Главное окно было инициализировано, поэтому отобразите и обновите его
+	// Р“Р»Р°РІРЅРѕРµ РѕРєРЅРѕ Р±С‹Р»Рѕ РёРЅРёС†РёР°Р»РёР·РёСЂРѕРІР°РЅРѕ, РїРѕСЌС‚РѕРјСѓ РѕС‚РѕР±СЂР°Р·РёС‚Рµ Рё РѕР±РЅРѕРІРёС‚Рµ РµРіРѕ
 	pMainFrame->ShowWindow(m_nCmdShow);
 	pMainFrame->UpdateWindow();
 
@@ -195,23 +195,23 @@ int CFXGraphApp::ExitInstance()
 	return CWinAppEx::ExitInstance();
 }
 
-// обработчики сообщений CFXGraphApp
+// РѕР±СЂР°Р±РѕС‚С‡РёРєРё СЃРѕРѕР±С‰РµРЅРёР№ CFXGraphApp
 
 
-// Диалоговое окно CAboutDlg используется для описания сведений о приложении
+// Р”РёР°Р»РѕРіРѕРІРѕРµ РѕРєРЅРѕ CAboutDlg РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ РґР»СЏ РѕРїРёСЃР°РЅРёСЏ СЃРІРµРґРµРЅРёР№ Рѕ РїСЂРёР»РѕР¶РµРЅРёРё
 
 class CAboutDlg : public CDialogEx
 {
 public:
 	CAboutDlg();
 
-// Данные диалогового окна
+// Р”Р°РЅРЅС‹Рµ РґРёР°Р»РѕРіРѕРІРѕРіРѕ РѕРєРЅР°
 	enum { IDD = IDD_ABOUTBOX };
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // поддержка DDX/DDV
+	virtual void DoDataExchange(CDataExchange* pDX);    // РїРѕРґРґРµСЂР¶РєР° DDX/DDV
 
-// Реализация
+// Р РµР°Р»РёР·Р°С†РёСЏ
 protected:
 	DECLARE_MESSAGE_MAP()
 };
@@ -228,14 +228,14 @@ void CAboutDlg::DoDataExchange(CDataExchange* pDX)
 BEGIN_MESSAGE_MAP(CAboutDlg, CDialogEx)
 END_MESSAGE_MAP()
 
-// Команда приложения для запуска диалога
+// РљРѕРјР°РЅРґР° РїСЂРёР»РѕР¶РµРЅРёСЏ РґР»СЏ Р·Р°РїСѓСЃРєР° РґРёР°Р»РѕРіР°
 void CFXGraphApp::OnAppAbout()
 {
 	CAboutDlg aboutDlg;
 	aboutDlg.DoModal();
 }
 
-// CFXGraphApp настройка методов загрузки и сохранения
+// CFXGraphApp РЅР°СЃС‚СЂРѕР№РєР° РјРµС‚РѕРґРѕРІ Р·Р°РіСЂСѓР·РєРё Рё СЃРѕС…СЂР°РЅРµРЅРёСЏ
 
 void CFXGraphApp::PreLoadState()
 {
@@ -265,7 +265,7 @@ void CFXGraphApp::SaveCustomState()
 {
 }
 
-// обработчики сообщений CFXGraphApp
+// РѕР±СЂР°Р±РѕС‚С‡РёРєРё СЃРѕРѕР±С‰РµРЅРёР№ CFXGraphApp
 
 
 

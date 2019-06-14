@@ -31,7 +31,7 @@ void CFXBlockExtension::FillProperties(CPropertiesWnd* pWnd)
 	CFXBlock::FillProperties(pWnd);
 	CPropertyGridCtrl* pCtrl = &pWnd->m_wndPropList;
 	CMFCPropertyGridProperty* pProp;
-	pProp = new CMFCPropertyGridProperty(_T("Ñåòåâîé íîìåð"), (variant_t)m_NetworkID, _T("Èäåíòèôèêàòîð óñòðîéñòâà â ñåòè RS485"),PROP_NETWORK_ID);
+	pProp = new CMFCPropertyGridProperty(_T("Ð¡ÐµÑ‚ÐµÐ²Ð¾Ð¹ Ð½Ð¾Ð¼ÐµÑ€"), (variant_t)m_NetworkID, _T("Ð˜Ð´ÐµÐ½Ñ‚Ð¸Ñ„Ð¸ÐºÐ°Ñ‚Ð¾Ñ€ ÑƒÑÑ‚Ñ€Ð¾Ð¹ÑÑ‚Ð²Ð° Ð² ÑÐµÑ‚Ð¸ RS485"),PROP_NETWORK_ID);
 	pCtrl->AddProperty(pProp);
 }
 

@@ -34,7 +34,7 @@ public:
 IMPLEMENT_SERIAL(CClassViewMenuButton, CMFCToolBarMenuButton, 1)
 
 //////////////////////////////////////////////////////////////////////
-// Создание и удаление
+// РЎРѕР·РґР°РЅРёРµ Рё СѓРґР°Р»РµРЅРёРµ
 //////////////////////////////////////////////////////////////////////
 
 CClassView::CClassView()
@@ -69,7 +69,7 @@ ON_COMMAND(ID_CLASSVIEWMENU_WEBHELP, &CClassView::OnClassviewmenuWebhelp)
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
-// обработчики сообщений CClassView
+// РѕР±СЂР°Р±РѕС‚С‡РёРєРё СЃРѕРѕР±С‰РµРЅРёР№ CClassView
 
 int CClassView::OnCreate(LPCREATESTRUCT lpCreateStruct)
 {
@@ -80,18 +80,18 @@ int CClassView::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	CRect rectDummy;
 	rectDummy.SetRectEmpty();
 
-	// Создание представлений:
+	// РЎРѕР·РґР°РЅРёРµ РїСЂРµРґСЃС‚Р°РІР»РµРЅРёР№:
 	const DWORD dwViewStyle = WS_CHILD | WS_VISIBLE | TVS_HASLINES | TVS_LINESATROOT | TVS_HASBUTTONS | WS_CLIPSIBLINGS | WS_CLIPCHILDREN;
 
 	if (!m_wndClassView.Create(dwViewStyle, rectDummy, this,2))
 	{
-		TRACE0("Не удалось создать представление классов\n");
-		return -1;      // не удалось создать
+		TRACE0("РќРµ СѓРґР°Р»РѕСЃСЊ СЃРѕР·РґР°С‚СЊ РїСЂРµРґСЃС‚Р°РІР»РµРЅРёРµ РєР»Р°СЃСЃРѕРІ\n");
+		return -1;      // РЅРµ СѓРґР°Р»РѕСЃСЊ СЃРѕР·РґР°С‚СЊ
 	}
 	m_wndClassView.m_bAllowDragDrop = true;
-	// Загрузка изображений:
+	// Р—Р°РіСЂСѓР·РєР° РёР·РѕР±СЂР°Р¶РµРЅРёР№:
 	m_wndToolBar.Create(this, AFX_DEFAULT_TOOLBAR_STYLE, IDR_SORT);
-	m_wndToolBar.LoadToolBar(IDR_SORT, 0, 0, TRUE /* Заблокирован */);
+	m_wndToolBar.LoadToolBar(IDR_SORT, 0, 0, TRUE /* Р—Р°Р±Р»РѕРєРёСЂРѕРІР°РЅ */);
 
 	OnChangeVisualStyle();
 
@@ -100,7 +100,7 @@ int CClassView::OnCreate(LPCREATESTRUCT lpCreateStruct)
 
 	m_wndToolBar.SetOwner(this);
 
-	// Все команды будут перенаправлены через этот элемент управления, а не через родительскую рамку:
+	// Р’СЃРµ РєРѕРјР°РЅРґС‹ Р±СѓРґСѓС‚ РїРµСЂРµРЅР°РїСЂР°РІР»РµРЅС‹ С‡РµСЂРµР· СЌС‚РѕС‚ СЌР»РµРјРµРЅС‚ СѓРїСЂР°РІР»РµРЅРёСЏ, Р° РЅРµ С‡РµСЂРµР· СЂРѕРґРёС‚РµР»СЊСЃРєСѓСЋ СЂР°РјРєСѓ:
 	m_wndToolBar.SetRouteCommandsViaFrame(FALSE);
 
 	CMenu menuSort;
@@ -118,7 +118,7 @@ int CClassView::OnCreate(LPCREATESTRUCT lpCreateStruct)
 		pButton->SetMessageWnd(this);
 	}
 	
-	// Введите некоторые данные статического представления в виде дерева (пустой код, ничего более)
+	// Р’РІРµРґРёС‚Рµ РЅРµРєРѕС‚РѕСЂС‹Рµ РґР°РЅРЅС‹Рµ СЃС‚Р°С‚РёС‡РµСЃРєРѕРіРѕ РїСЂРµРґСЃС‚Р°РІР»РµРЅРёСЏ РІ РІРёРґРµ РґРµСЂРµРІР° (РїСѓСЃС‚РѕР№ РєРѕРґ, РЅРёС‡РµРіРѕ Р±РѕР»РµРµ)
 	FillClassView();
 	SetCapture();
 	return 0;
@@ -142,41 +142,41 @@ void CClassView::FillClassView()
 	TracePrint(TRACE_LEVEL_1,__FUNCTION__);
 	HTREEITEM hClass;
 	HTREEITEM hClass1;
-	HTREEITEM hRoot = m_wndClassView.InsertItem(_T("Блоки"),0,0);
+	HTREEITEM hRoot = m_wndClassView.InsertItem(_T("Р‘Р»РѕРєРё"),0,0);
 	m_wndClassView.SetItemState(hRoot,TVIS_BOLD,TVIS_BOLD);
-	hClass = m_wndClassView.InsertItem(_T("Разное"),hRoot,0);
-		InsertBlock(hClass,_T("Комментарий"),BLOCK_COMMENT);
+	hClass = m_wndClassView.InsertItem(_T("Р Р°Р·РЅРѕРµ"),hRoot,0);
+		InsertBlock(hClass,_T("РљРѕРјРјРµРЅС‚Р°СЂРёР№"),BLOCK_COMMENT);
 		m_wndClassView.Expand(hClass,TVE_EXPAND);
-	hClass = m_wndClassView.InsertItem(_T("Функциональные блоки"),hRoot,0);
-		InsertBlock(hClass,_T("Функциональный блок"),BLOCK_FUNCTIONAL);
+	hClass = m_wndClassView.InsertItem(_T("Р¤СѓРЅРєС†РёРѕРЅР°Р»СЊРЅС‹Рµ Р±Р»РѕРєРё"),hRoot,0);
+		InsertBlock(hClass,_T("Р¤СѓРЅРєС†РёРѕРЅР°Р»СЊРЅС‹Р№ Р±Р»РѕРє"),BLOCK_FUNCTIONAL);
 		m_wndClassView.Expand(hClass,TVE_EXPAND);
-	hClass = m_wndClassView.InsertItem(_T("Математика"),hRoot,0);
-		hClass1 = m_wndClassView.InsertItem(_T("Целочисленная"),hClass,0);
-			InsertBlock(hClass1,_T("Сложение"),BLOCK_MATH_INT_ADD);
-			InsertBlock(hClass1,_T("Вычитание"),BLOCK_MATH_INT_SUB);
-			InsertBlock(hClass1,_T("Умножение"),BLOCK_MATH_INT_MUL);
-			InsertBlock(hClass1,_T("Деление"),BLOCK_MATH_INT_DIV);
-			InsertBlock(hClass1,_T("Остаток от деления"),BLOCK_MATH_INT_MOD);
-			InsertBlock(hClass1,_T("Равно"),BLOCK_MATH_INT_EQUAL);
-			InsertBlock(hClass1,_T("Больше"),BLOCK_MATH_INT_GREAT);
-			InsertBlock(hClass1,_T("Больше равно"),BLOCK_MATH_INT_GREATEQUAL);
-			InsertBlock(hClass1,_T("Меньше"),BLOCK_MATH_INT_LESS);
-			InsertBlock(hClass1,_T("Меньше равно"),BLOCK_MATH_INT_LESSEQUAL);
-			InsertBlock(hClass1,_T("Не равно"),BLOCK_MATH_INT_NOTEQUAL);
-			InsertBlock(hClass1,_T("Модуль числа"),BLOCK_MATH_INT_ABS);
+	hClass = m_wndClassView.InsertItem(_T("РњР°С‚РµРјР°С‚РёРєР°"),hRoot,0);
+		hClass1 = m_wndClassView.InsertItem(_T("Р¦РµР»РѕС‡РёСЃР»РµРЅРЅР°СЏ"),hClass,0);
+			InsertBlock(hClass1,_T("РЎР»РѕР¶РµРЅРёРµ"),BLOCK_MATH_INT_ADD);
+			InsertBlock(hClass1,_T("Р’С‹С‡РёС‚Р°РЅРёРµ"),BLOCK_MATH_INT_SUB);
+			InsertBlock(hClass1,_T("РЈРјРЅРѕР¶РµРЅРёРµ"),BLOCK_MATH_INT_MUL);
+			InsertBlock(hClass1,_T("Р”РµР»РµРЅРёРµ"),BLOCK_MATH_INT_DIV);
+			InsertBlock(hClass1,_T("РћСЃС‚Р°С‚РѕРє РѕС‚ РґРµР»РµРЅРёСЏ"),BLOCK_MATH_INT_MOD);
+			InsertBlock(hClass1,_T("Р Р°РІРЅРѕ"),BLOCK_MATH_INT_EQUAL);
+			InsertBlock(hClass1,_T("Р‘РѕР»СЊС€Рµ"),BLOCK_MATH_INT_GREAT);
+			InsertBlock(hClass1,_T("Р‘РѕР»СЊС€Рµ СЂР°РІРЅРѕ"),BLOCK_MATH_INT_GREATEQUAL);
+			InsertBlock(hClass1,_T("РњРµРЅСЊС€Рµ"),BLOCK_MATH_INT_LESS);
+			InsertBlock(hClass1,_T("РњРµРЅСЊС€Рµ СЂР°РІРЅРѕ"),BLOCK_MATH_INT_LESSEQUAL);
+			InsertBlock(hClass1,_T("РќРµ СЂР°РІРЅРѕ"),BLOCK_MATH_INT_NOTEQUAL);
+			InsertBlock(hClass1,_T("РњРѕРґСѓР»СЊ С‡РёСЃР»Р°"),BLOCK_MATH_INT_ABS);
 			m_wndClassView.Expand(hClass1,TVE_EXPAND);
-		hClass1 = m_wndClassView.InsertItem(_T("Вещественная"),hClass,0);
-			InsertBlock(hClass1,_T("Сложение"),BLOCK_MATH_FLOAT_ADD);
-			InsertBlock(hClass1,_T("Вычитание"),BLOCK_MATH_FLOAT_SUB);
-			InsertBlock(hClass1,_T("Умножение"),BLOCK_MATH_FLOAT_MUL);
-			InsertBlock(hClass1,_T("Деление"),BLOCK_MATH_FLOAT_DIV);
-			InsertBlock(hClass1,_T("Больше"),BLOCK_MATH_FLOAT_GREAT);
-			InsertBlock(hClass1,_T("Больше равно"),BLOCK_MATH_FLOAT_GREATEQUAL);
-			InsertBlock(hClass1,_T("Меньше"),BLOCK_MATH_FLOAT_LESS);
-			InsertBlock(hClass1,_T("Меньше равно"),BLOCK_MATH_FLOAT_LESSEQUAL);
-			InsertBlock(hClass1,_T("Равно"),BLOCK_MATH_FLOAT_EQUAL);
-			InsertBlock(hClass1,_T("Не равно"),BLOCK_MATH_FLOAT_NOTEQUAL);
-			InsertBlock(hClass1,_T("Модуль числа"),BLOCK_MATH_FLOAT_ABS);
+		hClass1 = m_wndClassView.InsertItem(_T("Р’РµС‰РµСЃС‚РІРµРЅРЅР°СЏ"),hClass,0);
+			InsertBlock(hClass1,_T("РЎР»РѕР¶РµРЅРёРµ"),BLOCK_MATH_FLOAT_ADD);
+			InsertBlock(hClass1,_T("Р’С‹С‡РёС‚Р°РЅРёРµ"),BLOCK_MATH_FLOAT_SUB);
+			InsertBlock(hClass1,_T("РЈРјРЅРѕР¶РµРЅРёРµ"),BLOCK_MATH_FLOAT_MUL);
+			InsertBlock(hClass1,_T("Р”РµР»РµРЅРёРµ"),BLOCK_MATH_FLOAT_DIV);
+			InsertBlock(hClass1,_T("Р‘РѕР»СЊС€Рµ"),BLOCK_MATH_FLOAT_GREAT);
+			InsertBlock(hClass1,_T("Р‘РѕР»СЊС€Рµ СЂР°РІРЅРѕ"),BLOCK_MATH_FLOAT_GREATEQUAL);
+			InsertBlock(hClass1,_T("РњРµРЅСЊС€Рµ"),BLOCK_MATH_FLOAT_LESS);
+			InsertBlock(hClass1,_T("РњРµРЅСЊС€Рµ СЂР°РІРЅРѕ"),BLOCK_MATH_FLOAT_LESSEQUAL);
+			InsertBlock(hClass1,_T("Р Р°РІРЅРѕ"),BLOCK_MATH_FLOAT_EQUAL);
+			InsertBlock(hClass1,_T("РќРµ СЂР°РІРЅРѕ"),BLOCK_MATH_FLOAT_NOTEQUAL);
+			InsertBlock(hClass1,_T("РњРѕРґСѓР»СЊ С‡РёСЃР»Р°"),BLOCK_MATH_FLOAT_ABS);
 			InsertBlock(hClass1,_T("Floor"),BLOCK_MATH_FLOAT_FLOOR);
 			InsertBlock(hClass1,_T("Round"),BLOCK_MATH_FLOAT_ROUND);
 			InsertBlock(hClass1,_T("Cos"),BLOCK_MATH_COS);
@@ -191,96 +191,96 @@ void CClassView::FillClassView()
 			InsertBlock(hClass1,_T("Atan"),BLOCK_MATH_ATAN);
 			InsertBlock(hClass1,_T("Exp"),BLOCK_MATH_EXP);
 			m_wndClassView.Expand(hClass1,TVE_EXPAND);
-		hClass1 = m_wndClassView.InsertItem(_T("Битовая"),hClass,0);
-			InsertBlock(hClass1,_T("Битовое И"),BLOCK_MATH_BITWISE_AND);
-			InsertBlock(hClass1,_T("Битовое ИЛИ"),BLOCK_MATH_BITWISE_OR);
-			InsertBlock(hClass1,_T("Битовое XOR"),BLOCK_MATH_BITWISE_XOR);
-			InsertBlock(hClass1,_T("Битовое НЕ"),BLOCK_MATH_BITWISE_NOT);
-			InsertBlock(hClass1,_T("Сдвиг влево"),BLOCK_MATH_BITWISE_SHIFT_LEFT);
-			InsertBlock(hClass1,_T("Сдвиг вправо"),BLOCK_MATH_BITWISE_SHIFT_RIGHT);
-			InsertBlock(hClass1,_T("Кодирование"),BLOCK_MATH_BITWISE_PACK);
-			InsertBlock(hClass1,_T("Декодирование"),BLOCK_MATH_BITWISE_UNPACK);
+		hClass1 = m_wndClassView.InsertItem(_T("Р‘РёС‚РѕРІР°СЏ"),hClass,0);
+			InsertBlock(hClass1,_T("Р‘РёС‚РѕРІРѕРµ Р"),BLOCK_MATH_BITWISE_AND);
+			InsertBlock(hClass1,_T("Р‘РёС‚РѕРІРѕРµ РР›Р"),BLOCK_MATH_BITWISE_OR);
+			InsertBlock(hClass1,_T("Р‘РёС‚РѕРІРѕРµ XOR"),BLOCK_MATH_BITWISE_XOR);
+			InsertBlock(hClass1,_T("Р‘РёС‚РѕРІРѕРµ РќР•"),BLOCK_MATH_BITWISE_NOT);
+			InsertBlock(hClass1,_T("РЎРґРІРёРі РІР»РµРІРѕ"),BLOCK_MATH_BITWISE_SHIFT_LEFT);
+			InsertBlock(hClass1,_T("РЎРґРІРёРі РІРїСЂР°РІРѕ"),BLOCK_MATH_BITWISE_SHIFT_RIGHT);
+			InsertBlock(hClass1,_T("РљРѕРґРёСЂРѕРІР°РЅРёРµ"),BLOCK_MATH_BITWISE_PACK);
+			InsertBlock(hClass1,_T("Р”РµРєРѕРґРёСЂРѕРІР°РЅРёРµ"),BLOCK_MATH_BITWISE_UNPACK);
 			m_wndClassView.Expand(hClass1,TVE_EXPAND);
-		hClass1 = m_wndClassView.InsertItem(_T("Преобразование типов"),hClass,0);
-			InsertBlock(hClass1,_T("Вещественное к целому"),BLOCK_MATH_CAST_FLOAT_INT);
-			InsertBlock(hClass1,_T("Целое к вещественному"),BLOCK_MATH_CAST_INT_FLOAT);
+		hClass1 = m_wndClassView.InsertItem(_T("РџСЂРµРѕР±СЂР°Р·РѕРІР°РЅРёРµ С‚РёРїРѕРІ"),hClass,0);
+			InsertBlock(hClass1,_T("Р’РµС‰РµСЃС‚РІРµРЅРЅРѕРµ Рє С†РµР»РѕРјСѓ"),BLOCK_MATH_CAST_FLOAT_INT);
+			InsertBlock(hClass1,_T("Р¦РµР»РѕРµ Рє РІРµС‰РµСЃС‚РІРµРЅРЅРѕРјСѓ"),BLOCK_MATH_CAST_INT_FLOAT);
 			m_wndClassView.Expand(hClass1,TVE_EXPAND);
 	m_wndClassView.Expand(hClass,TVE_EXPAND);
 	
-	hClass = m_wndClassView.InsertItem(_T("Компараторы"),hRoot,0);
-		InsertBlock(hClass,_T("Компаратор нижнего уровня"),BLOCK_COMPARATOR_DOWN);
-		InsertBlock(hClass,_T("Компаратор верхнего уровня"),BLOCK_COMPARATOR_UP);
+	hClass = m_wndClassView.InsertItem(_T("РљРѕРјРїР°СЂР°С‚РѕСЂС‹"),hRoot,0);
+		InsertBlock(hClass,_T("РљРѕРјРїР°СЂР°С‚РѕСЂ РЅРёР¶РЅРµРіРѕ СѓСЂРѕРІРЅСЏ"),BLOCK_COMPARATOR_DOWN);
+		InsertBlock(hClass,_T("РљРѕРјРїР°СЂР°С‚РѕСЂ РІРµСЂС…РЅРµРіРѕ СѓСЂРѕРІРЅСЏ"),BLOCK_COMPARATOR_UP);
 		m_wndClassView.Expand(hClass,TVE_EXPAND);
 
-	hClass = m_wndClassView.InsertItem(_T("Логика"),hRoot,0);
-		InsertBlock(hClass,_T("Логическое И"),BLOCK_LOGICAL_AND);
-		InsertBlock(hClass,_T("Логическое ИЛИ"),BLOCK_LOGICAL_OR);
-		InsertBlock(hClass,_T("Логическое НЕ"),BLOCK_LOGICAL_NOT);
-		InsertBlock(hClass,_T("Логическое XOR"),BLOCK_LOGICAL_XOR);
-		InsertBlock(hClass,_T("Восходящий фронт"),BLOCK_LOGICAL_RISING_EDGE);
-		InsertBlock(hClass,_T("Нисходящий фронт"),BLOCK_LOGICAL_FALLING_EDGE);
-		InsertBlock(hClass,_T("Фронты"),BLOCK_LOGICAL_FRONTS);
+	hClass = m_wndClassView.InsertItem(_T("Р›РѕРіРёРєР°"),hRoot,0);
+		InsertBlock(hClass,_T("Р›РѕРіРёС‡РµСЃРєРѕРµ Р"),BLOCK_LOGICAL_AND);
+		InsertBlock(hClass,_T("Р›РѕРіРёС‡РµСЃРєРѕРµ РР›Р"),BLOCK_LOGICAL_OR);
+		InsertBlock(hClass,_T("Р›РѕРіРёС‡РµСЃРєРѕРµ РќР•"),BLOCK_LOGICAL_NOT);
+		InsertBlock(hClass,_T("Р›РѕРіРёС‡РµСЃРєРѕРµ XOR"),BLOCK_LOGICAL_XOR);
+		InsertBlock(hClass,_T("Р’РѕСЃС…РѕРґСЏС‰РёР№ С„СЂРѕРЅС‚"),BLOCK_LOGICAL_RISING_EDGE);
+		InsertBlock(hClass,_T("РќРёСЃС…РѕРґСЏС‰РёР№ С„СЂРѕРЅС‚"),BLOCK_LOGICAL_FALLING_EDGE);
+		InsertBlock(hClass,_T("Р¤СЂРѕРЅС‚С‹"),BLOCK_LOGICAL_FRONTS);
 		m_wndClassView.Expand(hClass1, TVE_EXPAND);
 		m_wndClassView.Expand(hClass,TVE_EXPAND);
 
-	hClass = m_wndClassView.InsertItem(_T("Задержки"), hRoot, 0);
-		InsertBlock(hClass, _T("Дребезг"), BLOCK_ANTIBOUNCE);
-		InsertBlock(hClass, _T("Задержка включения"), BLOCK_DELAY_ON);
-		InsertBlock(hClass, _T("Задержка выключения"), BLOCK_DELAY_OFF);
+	hClass = m_wndClassView.InsertItem(_T("Р—Р°РґРµСЂР¶РєРё"), hRoot, 0);
+		InsertBlock(hClass, _T("Р”СЂРµР±РµР·Рі"), BLOCK_ANTIBOUNCE);
+		InsertBlock(hClass, _T("Р—Р°РґРµСЂР¶РєР° РІРєР»СЋС‡РµРЅРёСЏ"), BLOCK_DELAY_ON);
+		InsertBlock(hClass, _T("Р—Р°РґРµСЂР¶РєР° РІС‹РєР»СЋС‡РµРЅРёСЏ"), BLOCK_DELAY_OFF);
 		m_wndClassView.Expand(hClass1, TVE_EXPAND);
 		m_wndClassView.Expand(hClass, TVE_EXPAND);
 
-	hClass = m_wndClassView.InsertItem(_T("Счетчики, триггеры"),hRoot,0);
-		InsertBlock(hClass,_T("Счетчик"),BLOCK_COUNTER);
-		hClass1 = m_wndClassView.InsertItem(_T("Триггеры"),hClass,0);
-		InsertBlock(hClass1,_T("RS-триггер"),BLOCK_LOGICAL_TRIGGER_RS);
-		InsertBlock(hClass1,_T("SR-триггер"),BLOCK_LOGICAL_TRIGGER_SR);
-		InsertBlock(hClass1,_T("RS-триггер по передним фронтам"),BLOCK_LOGICAL_TRIGGER_RS_RE);
+	hClass = m_wndClassView.InsertItem(_T("РЎС‡РµС‚С‡РёРєРё, С‚СЂРёРіРіРµСЂС‹"),hRoot,0);
+		InsertBlock(hClass,_T("РЎС‡РµС‚С‡РёРє"),BLOCK_COUNTER);
+		hClass1 = m_wndClassView.InsertItem(_T("РўСЂРёРіРіРµСЂС‹"),hClass,0);
+		InsertBlock(hClass1,_T("RS-С‚СЂРёРіРіРµСЂ"),BLOCK_LOGICAL_TRIGGER_RS);
+		InsertBlock(hClass1,_T("SR-С‚СЂРёРіРіРµСЂ"),BLOCK_LOGICAL_TRIGGER_SR);
+		InsertBlock(hClass1,_T("RS-С‚СЂРёРіРіРµСЂ РїРѕ РїРµСЂРµРґРЅРёРј С„СЂРѕРЅС‚Р°Рј"),BLOCK_LOGICAL_TRIGGER_RS_RE);
 		m_wndClassView.Expand(hClass1,TVE_EXPAND);
 		m_wndClassView.Expand(hClass,TVE_EXPAND);
 
-	hClass = m_wndClassView.InsertItem(_T("Контроллеры"),hRoot,0);
-		InsertBlock(hClass,_T("Контроллер NiMod-01"),BLOCK_CONTROLLER_NIMOD01);
-		InsertBlock(hClass,_T("Модуль расширения NiMod-A01"),BLOCK_EXTENSION_NIMODA01);
+	hClass = m_wndClassView.InsertItem(_T("РљРѕРЅС‚СЂРѕР»Р»РµСЂС‹"),hRoot,0);
+		InsertBlock(hClass,_T("РљРѕРЅС‚СЂРѕР»Р»РµСЂ NiMod-01"),BLOCK_CONTROLLER_NIMOD01);
+		InsertBlock(hClass,_T("РњРѕРґСѓР»СЊ СЂР°СЃС€РёСЂРµРЅРёСЏ NiMod-A01"),BLOCK_EXTENSION_NIMODA01);
 		m_wndClassView.Expand(hClass,TVE_EXPAND);
-	hClass = m_wndClassView.InsertItem(_T("Датчики"), hRoot, 0);
-		hClass1 = m_wndClassView.InsertItem(_T("Термосопротивления 2-проводные"), hClass, 0);
-			InsertBlock(hClass1, _T("М50"), BLOCK_SENSOR_TRD_2W_M50);
-			InsertBlock(hClass1, _T("М100"), BLOCK_SENSOR_TRD_2W_M100);
+	hClass = m_wndClassView.InsertItem(_T("Р”Р°С‚С‡РёРєРё"), hRoot, 0);
+		hClass1 = m_wndClassView.InsertItem(_T("РўРµСЂРјРѕСЃРѕРїСЂРѕС‚РёРІР»РµРЅРёСЏ 2-РїСЂРѕРІРѕРґРЅС‹Рµ"), hClass, 0);
+			InsertBlock(hClass1, _T("Рњ50"), BLOCK_SENSOR_TRD_2W_M50);
+			InsertBlock(hClass1, _T("Рњ100"), BLOCK_SENSOR_TRD_2W_M100);
 			InsertBlock(hClass1, _T("P50"), BLOCK_SENSOR_TRD_2W_P50);
 			InsertBlock(hClass1, _T("P100"), BLOCK_SENSOR_TRD_2W_P100);
 			InsertBlock(hClass1, _T("Pt100"), BLOCK_SENSOR_TRD_2W_PT100);
 			InsertBlock(hClass1, _T("Pt500"), BLOCK_SENSOR_TRD_2W_PT500);
 			InsertBlock(hClass1, _T("Pt1000"), BLOCK_SENSOR_TRD_2W_PT1000);
 			m_wndClassView.Expand(hClass1, TVE_EXPAND);
-		hClass1 = m_wndClassView.InsertItem(_T("Термосопротивления 3-проводные"), hClass, 0);
-			InsertBlock(hClass1, _T("М50"), BLOCK_SENSOR_TRD_3W_M50);
-			InsertBlock(hClass1, _T("М100"), BLOCK_SENSOR_TRD_3W_M100);
+		hClass1 = m_wndClassView.InsertItem(_T("РўРµСЂРјРѕСЃРѕРїСЂРѕС‚РёРІР»РµРЅРёСЏ 3-РїСЂРѕРІРѕРґРЅС‹Рµ"), hClass, 0);
+			InsertBlock(hClass1, _T("Рњ50"), BLOCK_SENSOR_TRD_3W_M50);
+			InsertBlock(hClass1, _T("Рњ100"), BLOCK_SENSOR_TRD_3W_M100);
 			InsertBlock(hClass1, _T("P50"), BLOCK_SENSOR_TRD_3W_P50);
 			InsertBlock(hClass1, _T("P100"), BLOCK_SENSOR_TRD_3W_P100);
 			InsertBlock(hClass1, _T("Pt100"), BLOCK_SENSOR_TRD_3W_PT100);
 			InsertBlock(hClass1, _T("Pt500"), BLOCK_SENSOR_TRD_3W_PT500);
 			InsertBlock(hClass1, _T("Pt1000"), BLOCK_SENSOR_TRD_3W_PT1000);
 			m_wndClassView.Expand(hClass1, TVE_EXPAND);
-		hClass1 = m_wndClassView.InsertItem(_T("Термосопротивления 4-проводные"), hClass, 0);
-			InsertBlock(hClass1, _T("М50"), BLOCK_SENSOR_TRD_4W_M50);
-			InsertBlock(hClass1, _T("М100"), BLOCK_SENSOR_TRD_4W_M100);
+		hClass1 = m_wndClassView.InsertItem(_T("РўРµСЂРјРѕСЃРѕРїСЂРѕС‚РёРІР»РµРЅРёСЏ 4-РїСЂРѕРІРѕРґРЅС‹Рµ"), hClass, 0);
+			InsertBlock(hClass1, _T("Рњ50"), BLOCK_SENSOR_TRD_4W_M50);
+			InsertBlock(hClass1, _T("Рњ100"), BLOCK_SENSOR_TRD_4W_M100);
 			InsertBlock(hClass1, _T("P50"), BLOCK_SENSOR_TRD_4W_P50);
 			InsertBlock(hClass1, _T("P100"), BLOCK_SENSOR_TRD_4W_P100);
 			InsertBlock(hClass1, _T("Pt100"), BLOCK_SENSOR_TRD_4W_PT100);
 			InsertBlock(hClass1, _T("Pt500"), BLOCK_SENSOR_TRD_4W_PT500);
 			InsertBlock(hClass1, _T("Pt1000"), BLOCK_SENSOR_TRD_4W_PT1000);
 			m_wndClassView.Expand(hClass1, TVE_EXPAND);
-		hClass1 = m_wndClassView.InsertItem(_T("Прочие"), hRoot, 0);
-			InsertBlock(hClass1, _T("Токовый 0-20мА, 4-20 мА"), BLOCK_TRANSFORM_CURRENT);
-			InsertBlock(hClass1, _T("Линейное преобразование"), BLOCK_TRANSFORM_LINEAR);
-			InsertBlock(hClass1, _T("Линейное преобразование с ограничением"), BLOCK_TRANSFORM_LINEAR_LIMITS);
+		hClass1 = m_wndClassView.InsertItem(_T("РџСЂРѕС‡РёРµ"), hRoot, 0);
+			InsertBlock(hClass1, _T("РўРѕРєРѕРІС‹Р№ 0-20РјРђ, 4-20 РјРђ"), BLOCK_TRANSFORM_CURRENT);
+			InsertBlock(hClass1, _T("Р›РёРЅРµР№РЅРѕРµ РїСЂРµРѕР±СЂР°Р·РѕРІР°РЅРёРµ"), BLOCK_TRANSFORM_LINEAR);
+			InsertBlock(hClass1, _T("Р›РёРЅРµР№РЅРѕРµ РїСЂРµРѕР±СЂР°Р·РѕРІР°РЅРёРµ СЃ РѕРіСЂР°РЅРёС‡РµРЅРёРµРј"), BLOCK_TRANSFORM_LINEAR_LIMITS);
 			m_wndClassView.Expand(hClass1, TVE_EXPAND);
 		m_wndClassView.Expand(hClass, TVE_EXPAND);
 	m_wndClassView.Expand(hRoot, TVE_EXPAND);
 	
 
-	//HTREEITEM hRoot = m_wndClassView.InsertItem(_T("Классы FakeApp"), 0, 0);
+	//HTREEITEM hRoot = m_wndClassView.InsertItem(_T("РљР»Р°СЃСЃС‹ FakeApp"), 0, 0);
 	//m_wndClassView.SetItemState(hRoot, TVIS_BOLD, TVIS_BOLD);
 
 	//HTREEITEM hClass = m_wndClassView.InsertItem(_T("CFakeAboutDlg"), 1, 1, hRoot);
@@ -330,7 +330,7 @@ void CClassView::OnContextMenu(CWnd* pWnd, CPoint point)
 
 	if (point != CPoint(-1, -1))
 	{
-		// Выберите нажатый элемент:
+		// Р’С‹Р±РµСЂРёС‚Рµ РЅР°Р¶Р°С‚С‹Р№ СЌР»РµРјРµРЅС‚:
 		CPoint ptTree = point;
 		pWndTree->ScreenToClient(&ptTree);
 
@@ -412,7 +412,7 @@ void CClassView::OnUpdateSort(CCmdUI* pCmdUI)
 void CClassView::OnClassAddMemberFunction()
 {
 	TracePrint(TRACE_LEVEL_1,__FUNCTION__);
-	AfxMessageBox(_T("Добавить функцию-член..."));
+	AfxMessageBox(_T("Р”РѕР±Р°РІРёС‚СЊ С„СѓРЅРєС†РёСЋ-С‡Р»РµРЅ..."));
 }
 
 void CClassView::OnClassAddMemberVariable()
@@ -433,13 +433,13 @@ void CClassView::OnClassProperties()
 void CClassView::OnNewFolder()
 {
 	TracePrint(TRACE_LEVEL_1,__FUNCTION__);
-	AfxMessageBox(_T("Создать папку..."));
+	AfxMessageBox(_T("РЎРѕР·РґР°С‚СЊ РїР°РїРєСѓ..."));
 }
 
 void CClassView::OnPaint()
 {
 	TracePrint(TRACE_LEVEL_2,__FUNCTION__);
-	CPaintDC dc(this); // контекст устройства для рисования
+	CPaintDC dc(this); // РєРѕРЅС‚РµРєСЃС‚ СѓСЃС‚СЂРѕР№СЃС‚РІР° РґР»СЏ СЂРёСЃРѕРІР°РЅРёСЏ
 
 	CRect rectTree;
 	m_wndClassView.GetWindowRect(rectTree);
@@ -467,7 +467,7 @@ void CClassView::OnChangeVisualStyle()
 	CBitmap bmp;
 	if (!bmp.LoadBitmap(uiBmpId))
 	{
-		TracePrint(TRACE_LEVEL_1,"Не удается загрузить точечный рисунок: %x\n", uiBmpId);
+		TracePrint(TRACE_LEVEL_1,"РќРµ СѓРґР°РµС‚СЃСЏ Р·Р°РіСЂСѓР·РёС‚СЊ С‚РѕС‡РµС‡РЅС‹Р№ СЂРёСЃСѓРЅРѕРє: %x\n", uiBmpId);
 		
 		ASSERT(FALSE);
 		return;
@@ -486,7 +486,7 @@ void CClassView::OnChangeVisualStyle()
 	m_wndClassView.SetImageList(&m_ClassViewImages, TVSIL_NORMAL);
 
 	m_wndToolBar.CleanUpLockedImages();
-	m_wndToolBar.LoadBitmap(theApp.m_bHiColorIcons ? IDB_SORT_24 : IDR_SORT, 0, 0, TRUE /* Заблокирован */);
+	m_wndToolBar.LoadBitmap(theApp.m_bHiColorIcons ? IDB_SORT_24 : IDR_SORT, 0, 0, TRUE /* Р—Р°Р±Р»РѕРєРёСЂРѕРІР°РЅ */);
 }
 
 

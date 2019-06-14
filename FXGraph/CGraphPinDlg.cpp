@@ -1,4 +1,4 @@
-﻿// CGraphPinDlg.cpp: файл реализации
+// CGraphPinDlg.cpp: файл реализации
 //
 
 #include "stdafx.h"

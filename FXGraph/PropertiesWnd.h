@@ -17,13 +17,13 @@ public:
 
 class CPropertiesWnd : public CDockablePane
 {
-// Создание
+// РЎРѕР·РґР°РЅРёРµ
 public:
 	CPropertiesWnd();
 
 	void AdjustLayout();
 
-// Атрибуты
+// РђС‚СЂРёР±СѓС‚С‹
 public:
 	void SetVSDotNetLook(BOOL bSet)
 	{
@@ -37,7 +37,7 @@ public:
 	CPropertiesToolBar m_wndToolBar;
 	CPropertyGridCtrl m_wndPropList;
 
-// Реализация
+// Р РµР°Р»РёР·Р°С†РёСЏ
 public:
 	virtual ~CPropertiesWnd();
 

@@ -1,5 +1,5 @@
 
-// MainFrm.cpp : реализация класса CMainFrame
+// MainFrm.cpp : СЂРµР°Р»РёР·Р°С†РёСЏ РєР»Р°СЃСЃР° CMainFrame
 //
 
 #include "stdafx.h"
@@ -58,7 +58,7 @@ static UINT indicators[] =
 	ID_INDICATOR_SCRL,
 };
 
-// создание/уничтожение CMainFrame
+// СЃРѕР·РґР°РЅРёРµ/СѓРЅРёС‡С‚РѕР¶РµРЅРёРµ CMainFrame
 //void CMainFrame::OnUpdateCoord(CCmdUI *pCmdUI)
 //{
 //    CString strStatus;
@@ -89,60 +89,60 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 		return -1;
 
 	BOOL bNameValid;
-	// установите наглядный диспетчер и стиль на основе постоянного значения
+	// СѓСЃС‚Р°РЅРѕРІРёС‚Рµ РЅР°РіР»СЏРґРЅС‹Р№ РґРёСЃРїРµС‚С‡РµСЂ Рё СЃС‚РёР»СЊ РЅР° РѕСЃРЅРѕРІРµ РїРѕСЃС‚РѕСЏРЅРЅРѕРіРѕ Р·РЅР°С‡РµРЅРёСЏ
 	OnApplicationLook(theApp.m_nAppLook);
 
 	CMDITabInfo mdiTabParams;
-	mdiTabParams.m_style = CMFCTabCtrl::STYLE_3D_ONENOTE; // другие доступные стили...
-	mdiTabParams.m_bActiveTabCloseButton = TRUE;      // установите значение FALSE, чтобы расположить кнопку \"Закрыть\" в правой части области вкладки
-	mdiTabParams.m_bTabIcons = FALSE;    // установите значение TRUE, чтобы включить значки документов на вкладках MDI
-	mdiTabParams.m_bAutoColor = TRUE;    // установите значение FALSE, чтобы отключить автоматическое выделение цветом вкладок MDI
-	mdiTabParams.m_bDocumentMenu = TRUE; // включить меню документа на правой границе области вкладки
+	mdiTabParams.m_style = CMFCTabCtrl::STYLE_3D_ONENOTE; // РґСЂСѓРіРёРµ РґРѕСЃС‚СѓРїРЅС‹Рµ СЃС‚РёР»Рё...
+	mdiTabParams.m_bActiveTabCloseButton = TRUE;      // СѓСЃС‚Р°РЅРѕРІРёС‚Рµ Р·РЅР°С‡РµРЅРёРµ FALSE, С‡С‚РѕР±С‹ СЂР°СЃРїРѕР»РѕР¶РёС‚СЊ РєРЅРѕРїРєСѓ \"Р—Р°РєСЂС‹С‚СЊ\" РІ РїСЂР°РІРѕР№ С‡Р°СЃС‚Рё РѕР±Р»Р°СЃС‚Рё РІРєР»Р°РґРєРё
+	mdiTabParams.m_bTabIcons = FALSE;    // СѓСЃС‚Р°РЅРѕРІРёС‚Рµ Р·РЅР°С‡РµРЅРёРµ TRUE, С‡С‚РѕР±С‹ РІРєР»СЋС‡РёС‚СЊ Р·РЅР°С‡РєРё РґРѕРєСѓРјРµРЅС‚РѕРІ РЅР° РІРєР»Р°РґРєР°С… MDI
+	mdiTabParams.m_bAutoColor = TRUE;    // СѓСЃС‚Р°РЅРѕРІРёС‚Рµ Р·РЅР°С‡РµРЅРёРµ FALSE, С‡С‚РѕР±С‹ РѕС‚РєР»СЋС‡РёС‚СЊ Р°РІС‚РѕРјР°С‚РёС‡РµСЃРєРѕРµ РІС‹РґРµР»РµРЅРёРµ С†РІРµС‚РѕРј РІРєР»Р°РґРѕРє MDI
+	mdiTabParams.m_bDocumentMenu = TRUE; // РІРєР»СЋС‡РёС‚СЊ РјРµРЅСЋ РґРѕРєСѓРјРµРЅС‚Р° РЅР° РїСЂР°РІРѕР№ РіСЂР°РЅРёС†Рµ РѕР±Р»Р°СЃС‚Рё РІРєР»Р°РґРєРё
 	EnableMDITabbedGroups(TRUE, mdiTabParams);
 
 	if (!m_wndMenuBar.Create(this))
 	{
-		TRACE0("Не удалось создать строку меню\n");
-		return -1;      // не удалось создать
+		TRACE0("РќРµ СѓРґР°Р»РѕСЃСЊ СЃРѕР·РґР°С‚СЊ СЃС‚СЂРѕРєСѓ РјРµРЅСЋ\n");
+		return -1;      // РЅРµ СѓРґР°Р»РѕСЃСЊ СЃРѕР·РґР°С‚СЊ
 	}
 
 	m_wndMenuBar.SetPaneStyle(m_wndMenuBar.GetPaneStyle() | CBRS_SIZE_DYNAMIC | CBRS_TOOLTIPS | CBRS_FLYBY);
 
-	// предотвращение фокусировки строки меню на активации 
+	// РїСЂРµРґРѕС‚РІСЂР°С‰РµРЅРёРµ С„РѕРєСѓСЃРёСЂРѕРІРєРё СЃС‚СЂРѕРєРё РјРµРЅСЋ РЅР° Р°РєС‚РёРІР°С†РёРё 
 	CMFCPopupMenu::SetForceMenuFocus(FALSE);
 
 	if (!m_wndToolBar.CreateEx(this, TBSTYLE_FLAT, WS_CHILD | WS_VISIBLE | CBRS_TOP | CBRS_GRIPPER | CBRS_TOOLTIPS | CBRS_FLYBY | CBRS_SIZE_DYNAMIC) ||
 		!m_wndToolBar.LoadToolBar(theApp.m_bHiColorIcons ? IDR_MAINFRAME_256 : IDR_MAINFRAME))
 	{
-		TRACE0("Не удалось создать панель инструментов\n");
-		return -1;      // не удалось создать
+		TRACE0("РќРµ СѓРґР°Р»РѕСЃСЊ СЃРѕР·РґР°С‚СЊ РїР°РЅРµР»СЊ РёРЅСЃС‚СЂСѓРјРµРЅС‚РѕРІ\n");
+		return -1;      // РЅРµ СѓРґР°Р»РѕСЃСЊ СЃРѕР·РґР°С‚СЊ
 	}
 	if (!m_wndToolBarDebug.CreateEx(this, TBSTYLE_FLAT, WS_CHILD | WS_VISIBLE | CBRS_TOP | CBRS_GRIPPER | CBRS_TOOLTIPS | CBRS_FLYBY | CBRS_SIZE_DYNAMIC) ||
 		!m_wndToolBarDebug.LoadToolBar(theApp.m_bHiColorIcons ? IDR_TOOLBAR_DEBUG : IDR_MAINFRAME))
 	{
-		TRACE0("Не удалось создать панель инструментов\n");
-		return -1;      // не удалось создать
+		TRACE0("РќРµ СѓРґР°Р»РѕСЃСЊ СЃРѕР·РґР°С‚СЊ РїР°РЅРµР»СЊ РёРЅСЃС‚СЂСѓРјРµРЅС‚РѕРІ\n");
+		return -1;      // РЅРµ СѓРґР°Р»РѕСЃСЊ СЃРѕР·РґР°С‚СЊ
 	}
 
 	if (!m_wndToolBarAlign.CreateEx(this, TBSTYLE_FLAT, WS_CHILD | WS_VISIBLE | CBRS_TOP | CBRS_GRIPPER | CBRS_TOOLTIPS | CBRS_FLYBY | CBRS_SIZE_DYNAMIC) ||
 		!m_wndToolBarAlign.LoadToolBar(theApp.m_bHiColorIcons ? IDR_TOOLBAR_ALIGN : IDR_MAINFRAME))
 	{
-		TRACE0("Не удалось создать панель инструментов\n");
-		return -1;      // не удалось создать
+		TRACE0("РќРµ СѓРґР°Р»РѕСЃСЊ СЃРѕР·РґР°С‚СЊ РїР°РЅРµР»СЊ РёРЅСЃС‚СЂСѓРјРµРЅС‚РѕРІ\n");
+		return -1;      // РЅРµ СѓРґР°Р»РѕСЃСЊ СЃРѕР·РґР°С‚СЊ
 	}
 
 	if (!m_wndToolBarGrid.CreateEx(this, TBSTYLE_FLAT, WS_CHILD | WS_VISIBLE | CBRS_TOP | CBRS_GRIPPER | CBRS_TOOLTIPS | CBRS_FLYBY | CBRS_SIZE_DYNAMIC) ||
 		!m_wndToolBarGrid.LoadToolBar(theApp.m_bHiColorIcons ? IDR_TOOLBAR_GRID : IDR_MAINFRAME))
 	{
-		TRACE0("Не удалось создать панель инструментов\n");
-		return -1;      // не удалось создать
+		TRACE0("РќРµ СѓРґР°Р»РѕСЃСЊ СЃРѕР·РґР°С‚СЊ РїР°РЅРµР»СЊ РёРЅСЃС‚СЂСѓРјРµРЅС‚РѕРІ\n");
+		return -1;      // РЅРµ СѓРґР°Р»РѕСЃСЊ СЃРѕР·РґР°С‚СЊ
 	}
 
 	if (!m_wndToolBarProject.CreateEx(this, TBSTYLE_FLAT, WS_CHILD | WS_VISIBLE | CBRS_TOP | CBRS_GRIPPER | CBRS_TOOLTIPS | CBRS_FLYBY | CBRS_SIZE_DYNAMIC) ||
 		!m_wndToolBarProject.LoadToolBar(theApp.m_bHiColorIcons ? IDR_TOOLBAR_PROJECT : IDR_MAINFRAME))
 	{
-		TRACE0("Не удалось создать панель инструментов\n");
-		return -1;      // не удалось создать
+		TRACE0("РќРµ СѓРґР°Р»РѕСЃСЊ СЃРѕР·РґР°С‚СЊ РїР°РЅРµР»СЊ РёРЅСЃС‚СЂСѓРјРµРЅС‚РѕРІ\n");
+		return -1;      // РЅРµ СѓРґР°Р»РѕСЃСЊ СЃРѕР·РґР°С‚СЊ
 	}
 
 	CString strToolBarName;
@@ -155,13 +155,13 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	ASSERT(bNameValid);
 	m_wndToolBar.EnableCustomizeButton(TRUE, ID_VIEW_CUSTOMIZE, strCustomize);
 
-	// Разрешить операции с пользовательскими панелями инструментов:
+	// Р Р°Р·СЂРµС€РёС‚СЊ РѕРїРµСЂР°С†РёРё СЃ РїРѕР»СЊР·РѕРІР°С‚РµР»СЊСЃРєРёРјРё РїР°РЅРµР»СЏРјРё РёРЅСЃС‚СЂСѓРјРµРЅС‚РѕРІ:
 	InitUserToolbars(NULL, uiFirstUserToolBarId, uiLastUserToolBarId);
 
 	if (!m_wndStatusBar.Create(this))
 	{
-		TRACE0("Не удалось создать строку состояния\n");
-		return -1;      // не удалось создать
+		TRACE0("РќРµ СѓРґР°Р»РѕСЃСЊ СЃРѕР·РґР°С‚СЊ СЃС‚СЂРѕРєСѓ СЃРѕСЃС‚РѕСЏРЅРёСЏ\n");
+		return -1;      // РЅРµ СѓРґР°Р»РѕСЃСЊ СЃРѕР·РґР°С‚СЊ
 	}
 	m_wndStatusBar.SetIndicators(indicators, sizeof(indicators)/sizeof(UINT));
 	m_wndStatusBar.SetPaneInfo(m_wndStatusBar.CommandToIndex(ID_INDICATOR_COORD),ID_INDICATOR_COORD,0,100);
@@ -180,18 +180,18 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	DockPane(&m_wndToolBarAlign);
 	DockPane(&m_wndToolBarProject);
 
-	// включить режим работы закрепляемых окон стилей Visual Studio 2005
+	// РІРєР»СЋС‡РёС‚СЊ СЂРµР¶РёРј СЂР°Р±РѕС‚С‹ Р·Р°РєСЂРµРїР»СЏРµРјС‹С… РѕРєРѕРЅ СЃС‚РёР»РµР№ Visual Studio 2005
 	CDockingManager::SetDockingMode(DT_SMART);
-	// включить режим работы автоматического скрытия закрепляемых окон стилей Visual Studio 2005
+	// РІРєР»СЋС‡РёС‚СЊ СЂРµР¶РёРј СЂР°Р±РѕС‚С‹ Р°РІС‚РѕРјР°С‚РёС‡РµСЃРєРѕРіРѕ СЃРєСЂС‹С‚РёСЏ Р·Р°РєСЂРµРїР»СЏРµРјС‹С… РѕРєРѕРЅ СЃС‚РёР»РµР№ Visual Studio 2005
 	EnableAutoHidePanes(CBRS_ALIGN_ANY);
 
-	// Загрузить изображение элемента меню (не размещенное на каких-либо стандартных панелях инструментов):
+	// Р—Р°РіСЂСѓР·РёС‚СЊ РёР·РѕР±СЂР°Р¶РµРЅРёРµ СЌР»РµРјРµРЅС‚Р° РјРµРЅСЋ (РЅРµ СЂР°Р·РјРµС‰РµРЅРЅРѕРµ РЅР° РєР°РєРёС…-Р»РёР±Рѕ СЃС‚Р°РЅРґР°СЂС‚РЅС‹С… РїР°РЅРµР»СЏС… РёРЅСЃС‚СЂСѓРјРµРЅС‚РѕРІ):
 	CMFCToolBar::AddToolBarForImageCollection(IDR_MENU_IMAGES, theApp.m_bHiColorIcons ? IDB_MENU_IMAGES_24 : 0);
 
-	// создать закрепляемые окна
+	// СЃРѕР·РґР°С‚СЊ Р·Р°РєСЂРµРїР»СЏРµРјС‹Рµ РѕРєРЅР°
 	if (!CreateDockingWindows())
 	{
-		TRACE0("Не удалось создать закрепляемые окна\n");
+		TRACE0("РќРµ СѓРґР°Р»РѕСЃСЊ СЃРѕР·РґР°С‚СЊ Р·Р°РєСЂРµРїР»СЏРµРјС‹Рµ РѕРєРЅР°\n");
 		return -1;
 	}
 
@@ -209,18 +209,18 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	DockPane(&m_wndProperties);
 
 
-	// Включить диалоговое окно расширенного управления окнами
+	// Р’РєР»СЋС‡РёС‚СЊ РґРёР°Р»РѕРіРѕРІРѕРµ РѕРєРЅРѕ СЂР°СЃС€РёСЂРµРЅРЅРѕРіРѕ СѓРїСЂР°РІР»РµРЅРёСЏ РѕРєРЅР°РјРё
 	EnableWindowsDialog(ID_WINDOW_MANAGER, ID_WINDOW_MANAGER, TRUE);
 
-	// Включить функцию замены меню панелей инструментов и закрепляемых окон 
+	// Р’РєР»СЋС‡РёС‚СЊ С„СѓРЅРєС†РёСЋ Р·Р°РјРµРЅС‹ РјРµРЅСЋ РїР°РЅРµР»РµР№ РёРЅСЃС‚СЂСѓРјРµРЅС‚РѕРІ Рё Р·Р°РєСЂРµРїР»СЏРµРјС‹С… РѕРєРѕРЅ 
 	EnablePaneMenu(TRUE, ID_VIEW_CUSTOMIZE, strCustomize, ID_VIEW_TOOLBAR);
 
-	// включить быструю (Alt+перетаскивание) настройку панелей инструментов
+	// РІРєР»СЋС‡РёС‚СЊ Р±С‹СЃС‚СЂСѓСЋ (Alt+РїРµСЂРµС‚Р°СЃРєРёРІР°РЅРёРµ) РЅР°СЃС‚СЂРѕР№РєСѓ РїР°РЅРµР»РµР№ РёРЅСЃС‚СЂСѓРјРµРЅС‚РѕРІ
 	CMFCToolBar::EnableQuickCustomization();
 
 	if (CMFCToolBar::GetUserImages() == NULL)
 	{
-		// загрузить изображения пользовательских панелей инструментов
+		// Р·Р°РіСЂСѓР·РёС‚СЊ РёР·РѕР±СЂР°Р¶РµРЅРёСЏ РїРѕР»СЊР·РѕРІР°С‚РµР»СЊСЃРєРёС… РїР°РЅРµР»РµР№ РёРЅСЃС‚СЂСѓРјРµРЅС‚РѕРІ
 		if (m_UserImages.Load(_T(".\\UserImages.bmp")))
 		{
 			CMFCToolBar::SetUserImages(&m_UserImages);
@@ -254,8 +254,8 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 
 	CMFCToolBar::SetBasicCommands(lstBasicCommands);
 
-	// Переключите порядок имени документа и имени приложения в заголовке окна. Это
-	// повышает удобство использования панели задач, так как на эскизе отображается имя документа.
+	// РџРµСЂРµРєР»СЋС‡РёС‚Рµ РїРѕСЂСЏРґРѕРє РёРјРµРЅРё РґРѕРєСѓРјРµРЅС‚Р° Рё РёРјРµРЅРё РїСЂРёР»РѕР¶РµРЅРёСЏ РІ Р·Р°РіРѕР»РѕРІРєРµ РѕРєРЅР°. Р­С‚Рѕ
+	// РїРѕРІС‹С€Р°РµС‚ СѓРґРѕР±СЃС‚РІРѕ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЏ РїР°РЅРµР»Рё Р·Р°РґР°С‡, С‚Р°Рє РєР°Рє РЅР° СЌСЃРєРёР·Рµ РѕС‚РѕР±СЂР°Р¶Р°РµС‚СЃСЏ РёРјСЏ РґРѕРєСѓРјРµРЅС‚Р°.
 	ModifyStyle(0, FWS_PREFIXTITLE);
 	m_pDebugCurDoc = NULL;
 	m_bDebugRunning = false;
@@ -273,51 +273,51 @@ BOOL CMainFrame::CreateDockingWindows()
 {
 	BOOL bNameValid;
 
-	// Создать представление классов
+	// РЎРѕР·РґР°С‚СЊ РїСЂРµРґСЃС‚Р°РІР»РµРЅРёРµ РєР»Р°СЃСЃРѕРІ
 	CString strClassView;
 	bNameValid = strClassView.LoadString(IDS_CLASS_VIEW);
 	ASSERT(bNameValid);
 	if (!m_wndClassView.Create(strClassView, this, CRect(0, 0, 200, 200), TRUE, ID_VIEW_CLASSVIEW, WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS | WS_CLIPCHILDREN | CBRS_LEFT | CBRS_FLOAT_MULTI))
 	{
-		TRACE0("Не удалось создать окно \"Представление классов\"\n");
-		return FALSE; // не удалось создать
+		TRACE0("РќРµ СѓРґР°Р»РѕСЃСЊ СЃРѕР·РґР°С‚СЊ РѕРєРЅРѕ \"РџСЂРµРґСЃС‚Р°РІР»РµРЅРёРµ РєР»Р°СЃСЃРѕРІ\"\n");
+		return FALSE; // РЅРµ СѓРґР°Р»РѕСЃСЊ СЃРѕР·РґР°С‚СЊ
 	}
 
-	// Создать представление файлов
+	// РЎРѕР·РґР°С‚СЊ РїСЂРµРґСЃС‚Р°РІР»РµРЅРёРµ С„Р°Р№Р»РѕРІ
 	CString strFileView;
 	bNameValid = strFileView.LoadString(IDS_FILE_VIEW);
 	ASSERT(bNameValid);
 	if (!m_wndFileView.Create(strFileView, this, CRect(0, 0, 200, 200), TRUE, ID_VIEW_FILEVIEW, WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS | WS_CLIPCHILDREN | CBRS_LEFT| CBRS_FLOAT_MULTI))
 	{
-		TRACE0("Не удалось создать окно \"Представление Параметров\"\n");
-		return FALSE; // не удалось создать
+		TRACE0("РќРµ СѓРґР°Р»РѕСЃСЊ СЃРѕР·РґР°С‚СЊ РѕРєРЅРѕ \"РџСЂРµРґСЃС‚Р°РІР»РµРЅРёРµ РџР°СЂР°РјРµС‚СЂРѕРІ\"\n");
+		return FALSE; // РЅРµ СѓРґР°Р»РѕСЃСЊ СЃРѕР·РґР°С‚СЊ
 	}
-	// Создать представление графиков
+	// РЎРѕР·РґР°С‚СЊ РїСЂРµРґСЃС‚Р°РІР»РµРЅРёРµ РіСЂР°С„РёРєРѕРІ
 	CString strGraphView;
 	bNameValid = strGraphView.LoadStringW(IDS_GRAPH_VIEW);
 	ASSERT(bNameValid);
 	if (!m_wndGraphView.Create(strGraphView, this, CRect(0, 0, 200, 200), TRUE, ID_VIEW_GRAPHVIEW, WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS | WS_CLIPCHILDREN | CBRS_LEFT | CBRS_FLOAT_MULTI)) {
-		TRACE0("Не удалось создать окно \"Представление графиков\"\n");
+		TRACE0("РќРµ СѓРґР°Р»РѕСЃСЊ СЃРѕР·РґР°С‚СЊ РѕРєРЅРѕ \"РџСЂРµРґСЃС‚Р°РІР»РµРЅРёРµ РіСЂР°С„РёРєРѕРІ\"\n");
 		return FALSE;
 	}
-	// Создать окно вывода
+	// РЎРѕР·РґР°С‚СЊ РѕРєРЅРѕ РІС‹РІРѕРґР°
 	CString strOutputWnd;
 	bNameValid = strOutputWnd.LoadString(IDS_OUTPUT_WND);
 	ASSERT(bNameValid);
 	if (!m_wndOutput.Create(strOutputWnd, this, CRect(0, 0, 100, 100), TRUE, ID_VIEW_OUTPUTWND, WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS | WS_CLIPCHILDREN | CBRS_BOTTOM | CBRS_FLOAT_MULTI))
 	{
-		TRACE0("Не удалось создать окно \"Вывод\"\n");
-		return FALSE; // не удалось создать
+		TRACE0("РќРµ СѓРґР°Р»РѕСЃСЊ СЃРѕР·РґР°С‚СЊ РѕРєРЅРѕ \"Р’С‹РІРѕРґ\"\n");
+		return FALSE; // РЅРµ СѓРґР°Р»РѕСЃСЊ СЃРѕР·РґР°С‚СЊ
 	}
 
-	// Создать окно свойств
+	// РЎРѕР·РґР°С‚СЊ РѕРєРЅРѕ СЃРІРѕР№СЃС‚РІ
 	CString strPropertiesWnd;
 	bNameValid = strPropertiesWnd.LoadString(IDS_PROPERTIES_WND);
 	ASSERT(bNameValid);
 	if (!m_wndProperties.Create(strPropertiesWnd, this, CRect(0, 0, 200, 200), TRUE, ID_VIEW_PROPERTIESWND, WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS | WS_CLIPCHILDREN | CBRS_RIGHT | CBRS_FLOAT_MULTI))
 	{
-		TRACE0("Не удалось создать окно \"Свойства\"\n");
-		return FALSE; // не удалось создать
+		TRACE0("РќРµ СѓРґР°Р»РѕСЃСЊ СЃРѕР·РґР°С‚СЊ РѕРєРЅРѕ \"РЎРІРѕР№СЃС‚РІР°\"\n");
+		return FALSE; // РЅРµ СѓРґР°Р»РѕСЃСЊ СЃРѕР·РґР°С‚СЊ
 	}
 
 	SetDockingWindowIcons(theApp.m_bHiColorIcons);
@@ -343,7 +343,7 @@ void CMainFrame::SetDockingWindowIcons(BOOL bHiColorIcons)
 	UpdateMDITabbedBarsIcons();
 }
 
-// диагностика CMainFrame
+// РґРёР°РіРЅРѕСЃС‚РёРєР° CMainFrame
 
 #ifdef _DEBUG
 void CMainFrame::AssertValid() const
@@ -358,7 +358,7 @@ void CMainFrame::Dump(CDumpContext& dc) const
 #endif //_DEBUG
 
 
-// обработчики сообщений CMainFrame
+// РѕР±СЂР°Р±РѕС‚С‡РёРєРё СЃРѕРѕР±С‰РµРЅРёР№ CMainFrame
 
 void CMainFrame::OnWindowManager()
 {
@@ -367,7 +367,7 @@ void CMainFrame::OnWindowManager()
 
 void CMainFrame::OnViewCustomize()
 {
-	CMFCToolBarsCustomizeDialog* pDlgCust = new CMFCToolBarsCustomizeDialog(this, TRUE /* сканировать меню*/);
+	CMFCToolBarsCustomizeDialog* pDlgCust = new CMFCToolBarsCustomizeDialog(this, TRUE /* СЃРєР°РЅРёСЂРѕРІР°С‚СЊ РјРµРЅСЋ*/);
 	pDlgCust->EnableUserDefinedToolbars();
 	pDlgCust->Create();
 }
@@ -469,7 +469,7 @@ void CMainFrame::OnUpdateApplicationLook(CCmdUI* pCmdUI)
 
 BOOL CMainFrame::LoadFrame(UINT nIDResource, DWORD dwDefaultStyle, CWnd* pParentWnd, CCreateContext* pContext) 
 {
-	// базовый класс не работает
+	// Р±Р°Р·РѕРІС‹Р№ РєР»Р°СЃСЃ РЅРµ СЂР°Р±РѕС‚Р°РµС‚
 
 	if (!CMDIFrameWndEx::LoadFrame(nIDResource, dwDefaultStyle, pParentWnd, pContext))
 	{
@@ -477,7 +477,7 @@ BOOL CMainFrame::LoadFrame(UINT nIDResource, DWORD dwDefaultStyle, CWnd* pParent
 	}
 
 
-	// включить кнопку настройки для всех пользовательских панелей инструментов
+	// РІРєР»СЋС‡РёС‚СЊ РєРЅРѕРїРєСѓ РЅР°СЃС‚СЂРѕР№РєРё РґР»СЏ РІСЃРµС… РїРѕР»СЊР·РѕРІР°С‚РµР»СЊСЃРєРёС… РїР°РЅРµР»РµР№ РёРЅСЃС‚СЂСѓРјРµРЅС‚РѕРІ
 	BOOL bNameValid;
 	CString strCustomize;
 	bNameValid = strCustomize.LoadString(IDS_TOOLBAR_CUSTOMIZE);

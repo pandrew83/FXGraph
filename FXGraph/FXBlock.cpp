@@ -102,7 +102,7 @@ CFXObject* CFXBlock::GetByID(int id){
 	return NULL;
 }
 bool CFXBlock::Calc(){
-	// Îáíîâëåíèå çíà÷åíèÿ âõîäíûõ ïèíîâ
+	// ÐžÐ±Ð½Ð¾Ð²Ð»ÐµÐ½Ð¸Ðµ Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ñ Ð²Ñ…Ð¾Ð´Ð½Ñ‹Ñ… Ð¿Ð¸Ð½Ð¾Ð²
 	POSITION pos = m_InputPins.GetHeadPosition();
 	CFXGraphDoc* pDoc = m_pBlock->GetActiveDocument();
 	while (pos){
@@ -153,14 +153,14 @@ void InvalidateBox(CFXGraphView* pView, CPoint p, int size){
 void CFXBlock::InvalidateBlock(CFXGraphView* pView){
 	TracePrint(TRACE_LEVEL_2,"CFXBlock::InvalidateBlock Rect(%d,%d,%d,%d)",m_RectBlock.left,m_RectBlock.top,m_RectBlock.right,m_RectBlock.bottom);
 
-	// Invalidate ñòàðûé áëîê
+	// Invalidate ÑÑ‚Ð°Ñ€Ñ‹Ð¹ Ð±Ð»Ð¾Ðº
 	pView->InvalidateRect(m_RectBlock,false);
-	// Invalidate ñòàðûå ìàðêåðû
+	// Invalidate ÑÑ‚Ð°Ñ€Ñ‹Ðµ Ð¼Ð°Ñ€ÐºÐµÑ€Ñ‹
 	InvalidateBox(pView,CPoint(m_RectBlock.left,m_RectBlock.top),CORNER_SIZE);
 	InvalidateBox(pView,CPoint(m_RectBlock.left,m_RectBlock.bottom-1),CORNER_SIZE);
 	InvalidateBox(pView,CPoint(m_RectBlock.right-1,m_RectBlock.top),CORNER_SIZE);
 	InvalidateBox(pView,CPoint(m_RectBlock.right-1,m_RectBlock.bottom-1),CORNER_SIZE);
-	// Invalidate íîâûé áëîê
+	// Invalidate Ð½Ð¾Ð²Ñ‹Ð¹ Ð±Ð»Ð¾Ðº
 
 	CPoint p1 = pView->Logic2Local(CPoint(m_X,m_Y));
 	CPoint p2 = pView->Logic2Local(CPoint(m_X+m_Width,m_Y));
@@ -313,7 +313,7 @@ void CFXBlock::Draw(CFXGraphView*pView){
 	CBrush brush1;
 //	CPoint p = pView->Logic2Local(CPoint(m_X,m_Y));
 	CPen dcPen(PS_SOLID,1,blockColor);
-	// Íà ýêðàí
+	// ÐÐ° ÑÐºÑ€Ð°Ð½
 	CBrush brush(RGB(255,255,255));
 
 	LOGFONT lf;
@@ -357,11 +357,11 @@ void CFXBlock::Draw(CFXGraphView*pView){
 	dcPen.DeleteObject();
 	brush.DeleteObject();
 	font.DeleteObject();
-		// Íà ñëîå 1
+		// ÐÐ° ÑÐ»Ð¾Ðµ 1
 		pView->m_Mem1.FillSolidRect(&m_RectBlock,m_ID|(isSelected?MASK1_SELECTED:0));
 		
 		if (isSelected){
-			// Ðèñóåì ìàðêåðû
+			// Ð Ð¸ÑÑƒÐµÐ¼ Ð¼Ð°Ñ€ÐºÐµÑ€Ñ‹
 			box(pView->m_pDC,p1,CORNER_SIZE,COLOR_SELECTED);
 			box(pView->m_pDC,p2,CORNER_SIZE,COLOR_SELECTED);
 			box(pView->m_pDC,p3,CORNER_SIZE,COLOR_SELECTED);
@@ -372,7 +372,7 @@ void CFXBlock::Draw(CFXGraphView*pView){
 			pView->m_Mem1.SelectObject(memPen1);
 			pView->m_Mem2.SelectObject(memPen2);
 			
-			// Ðèñóåò âåðõíþþ ëèíèþ áëîêà â ïàìÿòè
+			// Ð Ð¸ÑÑƒÐµÑ‚ Ð²ÐµÑ€Ñ…Ð½ÑŽÑŽ Ð»Ð¸Ð½Ð¸ÑŽ Ð±Ð»Ð¾ÐºÐ° Ð² Ð¿Ð°Ð¼ÑÑ‚Ð¸
 			pView->m_Mem1.MoveTo(p1);
 			pView->m_Mem1.LineTo(p2);
 			pView->m_Mem2.MoveTo(p1);
@@ -462,9 +462,9 @@ void CFXBlock::FillProperties(CPropertiesWnd* pWnd){
 	CFXObject::FillProperties(pWnd);
 
 	CMFCPropertyGridProperty* pProp;
-	pProp = new CMFCPropertyGridProperty(_T("Øèðèíà"),(variant_t)m_Width,_T("Øèðèíà áëîêà"),PROP_WIDTH);
+	pProp = new CMFCPropertyGridProperty(_T("Ð¨Ð¸Ñ€Ð¸Ð½Ð°"),(variant_t)m_Width,_T("Ð¨Ð¸Ñ€Ð¸Ð½Ð° Ð±Ð»Ð¾ÐºÐ°"),PROP_WIDTH);
 	pCtrl->AddProperty(pProp);
-	pProp = new CMFCPropertyGridProperty(_T("Âûñîòà"),(variant_t)m_Height,_T("Âûñîòà áëîêà"),PROP_HEIGHT);
+	pProp = new CMFCPropertyGridProperty(_T("Ð’Ñ‹ÑÐ¾Ñ‚Ð°"),(variant_t)m_Height,_T("Ð’Ñ‹ÑÐ¾Ñ‚Ð° Ð±Ð»Ð¾ÐºÐ°"),PROP_HEIGHT);
 	pCtrl->AddProperty(pProp);
 }
 
@@ -478,7 +478,7 @@ void CFXBlock::RemovePin(CFXPin* pPin)
 				return;
 			m_InputPins.RemoveAt(pos);
 			delete pPin;
-			// TODO: Óäàëèòü âñå ëèíêè ñâÿçàííûå ñ ýòèì ïèíîì
+			// TODO: Ð£Ð´Ð°Ð»Ð¸Ñ‚ÑŒ Ð²ÑÐµ Ð»Ð¸Ð½ÐºÐ¸ ÑÐ²ÑÐ·Ð°Ð½Ð½Ñ‹Ðµ Ñ ÑÑ‚Ð¸Ð¼ Ð¿Ð¸Ð½Ð¾Ð¼
 			CalcPinCoords();
 			return;
 		}
@@ -493,7 +493,7 @@ void CFXBlock::RemovePin(CFXPin* pPin)
 			m_OutputPins.RemoveAt(pos);
 			delete pPin;
 			CalcPinCoords();
-			// TODO: Óäàëèòü âñå ëèíêè ñâÿçàííûå ñ ýòèì ïèíîì
+			// TODO: Ð£Ð´Ð°Ð»Ð¸Ñ‚ÑŒ Ð²ÑÐµ Ð»Ð¸Ð½ÐºÐ¸ ÑÐ²ÑÐ·Ð°Ð½Ð½Ñ‹Ðµ Ñ ÑÑ‚Ð¸Ð¼ Ð¿Ð¸Ð½Ð¾Ð¼
 			return;
 		}
 		m_OutputPins.GetNext(pos);
@@ -607,7 +607,7 @@ bool CFXBlock::Check(void)
 			pPin->GetPinLinks(lst);
 			if (lst.GetCount() == 0){
 				CString msg;
-				msg.Format(_T("Áëîê #%d (%s) ïèí %d (%s) èìååò íåîïðåäåëåííîå çíà÷åíèå"),m_ID,m_Name,pPin->m_ID,pPin->GetName());
+				msg.Format(_T("Ð‘Ð»Ð¾Ðº #%d (%s) Ð¿Ð¸Ð½ %d (%s) Ð¸Ð¼ÐµÐµÑ‚ Ð½ÐµÐ¾Ð¿Ñ€ÐµÐ´ÐµÐ»ÐµÐ½Ð½Ð¾Ðµ Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ"),m_ID,m_Name,pPin->m_ID,pPin->GetName());
 				Log(Debug,msg);
 				result = false;
 			}

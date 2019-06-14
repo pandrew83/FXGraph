@@ -1,21 +1,21 @@
 #pragma once
 
 
-// диалоговое окно CProjectDlg
+// РґРёР°Р»РѕРіРѕРІРѕРµ РѕРєРЅРѕ CProjectDlg
 
 class CProjectDlg : public CDialog
 {
 	DECLARE_DYNAMIC(CProjectDlg)
 
 public:
-	CProjectDlg(CWnd* pParent = NULL);   // стандартный конструктор
+	CProjectDlg(CWnd* pParent = NULL);   // СЃС‚Р°РЅРґР°СЂС‚РЅС‹Р№ РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ
 	virtual ~CProjectDlg();
 
-// Данные диалогового окна
+// Р”Р°РЅРЅС‹Рµ РґРёР°Р»РѕРіРѕРІРѕРіРѕ РѕРєРЅР°
 	enum { IDD = IDD_PROJECT };
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // поддержка DDX/DDV
+	virtual void DoDataExchange(CDataExchange* pDX);    // РїРѕРґРґРµСЂР¶РєР° DDX/DDV
 
 	DECLARE_MESSAGE_MAP()
 public:

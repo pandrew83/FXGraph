@@ -47,7 +47,7 @@ BEGIN_MESSAGE_MAP(CFileView, CDockablePane)
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
-// îáðàáîò÷èêè ñîîáùåíèé CWorkspaceBar
+// Ð¾Ð±Ñ€Ð°Ð±Ð¾Ñ‚Ñ‡Ð¸ÐºÐ¸ ÑÐ¾Ð¾Ð±Ñ‰ÐµÐ½Ð¸Ð¹ CWorkspaceBar
 
 int CFileView::OnCreate(LPCREATESTRUCT lpCreateStruct)
 {
@@ -58,21 +58,21 @@ int CFileView::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	CRect rectDummy;
 	rectDummy.SetRectEmpty();
 
-	// Ñîçäàíèå ïðåäñòàâëåíèÿ:
+	// Ð¡Ð¾Ð·Ð´Ð°Ð½Ð¸Ðµ Ð¿Ñ€ÐµÐ´ÑÑ‚Ð°Ð²Ð»ÐµÐ½Ð¸Ñ:
 	const DWORD dwViewStyle = WS_CHILD | WS_VISIBLE | TVS_HASLINES | TVS_LINESATROOT | TVS_HASBUTTONS;
 
 	if (!m_wndFileView.Create(dwViewStyle, rectDummy, this, 4))
 	{
-		TRACE0("Íå óäàëîñü ñîçäàòü ïðåäñòàâëåíèå ôàéëîâ\n");
-		return -1;      // íå óäàëîñü ñîçäàòü
+		TRACE0("ÐÐµ ÑƒÐ´Ð°Ð»Ð¾ÑÑŒ ÑÐ¾Ð·Ð´Ð°Ñ‚ÑŒ Ð¿Ñ€ÐµÐ´ÑÑ‚Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ Ñ„Ð°Ð¹Ð»Ð¾Ð²\n");
+		return -1;      // Ð½Ðµ ÑƒÐ´Ð°Ð»Ð¾ÑÑŒ ÑÐ¾Ð·Ð´Ð°Ñ‚ÑŒ
 	}
 
-	// Çàãðóçèòü èçîáðàæåíèÿ ïðåäñòàâëåíèÿ:
+	// Ð—Ð°Ð³Ñ€ÑƒÐ·Ð¸Ñ‚ÑŒ Ð¸Ð·Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ñ Ð¿Ñ€ÐµÐ´ÑÑ‚Ð°Ð²Ð»ÐµÐ½Ð¸Ñ:
 	m_FileViewImages.Create(IDB_FILE_VIEW, 16, 0, RGB(255, 0, 255));
 	m_wndFileView.SetImageList(&m_FileViewImages, TVSIL_NORMAL);
 
 	m_wndToolBar.Create(this, AFX_DEFAULT_TOOLBAR_STYLE, IDR_EXPLORER);
-	m_wndToolBar.LoadToolBar(IDR_EXPLORER, 0, 0, TRUE /* Çàáëîêèðîâàí */);
+	m_wndToolBar.LoadToolBar(IDR_EXPLORER, 0, 0, TRUE /* Ð—Ð°Ð±Ð»Ð¾ÐºÐ¸Ñ€Ð¾Ð²Ð°Ð½ */);
 
 	OnChangeVisualStyle();
 
@@ -82,10 +82,10 @@ int CFileView::OnCreate(LPCREATESTRUCT lpCreateStruct)
 
 	m_wndToolBar.SetOwner(this);
 
-	// Âñå êîìàíäû áóäóò ïåðåíàïðàâëåíû ÷åðåç ýòîò ýëåìåíò óïðàâëåíèÿ, à íå ÷åðåç ðîäèòåëüñêóþ ðàìêó:
+	// Ð’ÑÐµ ÐºÐ¾Ð¼Ð°Ð½Ð´Ñ‹ Ð±ÑƒÐ´ÑƒÑ‚ Ð¿ÐµÑ€ÐµÐ½Ð°Ð¿Ñ€Ð°Ð²Ð»ÐµÐ½Ñ‹ Ñ‡ÐµÑ€ÐµÐ· ÑÑ‚Ð¾Ñ‚ ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚ ÑƒÐ¿Ñ€Ð°Ð²Ð»ÐµÐ½Ð¸Ñ, Ð° Ð½Ðµ Ñ‡ÐµÑ€ÐµÐ· Ñ€Ð¾Ð´Ð¸Ñ‚ÐµÐ»ÑŒÑÐºÑƒÑŽ Ñ€Ð°Ð¼ÐºÑƒ:
 	m_wndToolBar.SetRouteCommandsViaFrame(FALSE);
 
-	// Ââåäèòå íåêîòîðûå äàííûå ñòàòè÷åñêîãî ïðåäñòàâëåíèÿ â âèäå äåðåâà (ïóñòîé êîä, íè÷åãî áîëåå)
+	// Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð½ÐµÐºÐ¾Ñ‚Ð¾Ñ€Ñ‹Ðµ Ð´Ð°Ð½Ð½Ñ‹Ðµ ÑÑ‚Ð°Ñ‚Ð¸Ñ‡ÐµÑÐºÐ¾Ð³Ð¾ Ð¿Ñ€ÐµÐ´ÑÑ‚Ð°Ð²Ð»ÐµÐ½Ð¸Ñ Ð² Ð²Ð¸Ð´Ðµ Ð´ÐµÑ€ÐµÐ²Ð° (Ð¿ÑƒÑÑ‚Ð¾Ð¹ ÐºÐ¾Ð´, Ð½Ð¸Ñ‡ÐµÐ³Ð¾ Ð±Ð¾Ð»ÐµÐµ)
 	AdjustLayout();
 
 	return 0;
@@ -112,7 +112,7 @@ void CFileView::OnContextMenu(CWnd* pWnd, CPoint point)
 
 	if (point != CPoint(-1, -1))
 	{
-		// Âûáðàòü íàæàòûé ýëåìåíò:
+		// Ð’Ñ‹Ð±Ñ€Ð°Ñ‚ÑŒ Ð½Ð°Ð¶Ð°Ñ‚Ñ‹Ð¹ ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚:
 		CPoint ptTree = point;
 		pWndTree->ScreenToClient(&ptTree);
 
@@ -184,13 +184,13 @@ void CFileView::OnProperties()
 		}
 		pParam->m_Name = dlg.m_Name;
 		m_wndFileView.SetItemText(hItem,pParam->m_Name);
-		// Íàäî íàéòè âñå ïèíû áëîêîâ ñâÿçàííûå ñ ýòèì ïàðàìåòðîì
-		// 1. Âîçìîæíî òèï çíà÷åíèÿ ïàðàìåòðà íå ñîîòâåòñòâóåò òèïó çíà÷åíèÿ ïèíà - ñáðîñèòü ïàðàìåòð ïèíà
-		// 2. Ïðîñòî îáíîâèòü çíà÷åíèå ïèíà
-		// Âûçâàòü ôóíêöèþ Äîêóìåíòà
-		// Òåêóùèé äîêóìåíò ó íàñ óæå åñòü
-		// Âûçðàòü ôóíêöèþ Âèäà
-		// - Âñå ðàâíî íàäî ïîëó÷èòü äîêóìåíò 
+		// ÐÐ°Ð´Ð¾ Ð½Ð°Ð¹Ñ‚Ð¸ Ð²ÑÐµ Ð¿Ð¸Ð½Ñ‹ Ð±Ð»Ð¾ÐºÐ¾Ð² ÑÐ²ÑÐ·Ð°Ð½Ð½Ñ‹Ðµ Ñ ÑÑ‚Ð¸Ð¼ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ð¾Ð¼
+		// 1. Ð’Ð¾Ð·Ð¼Ð¾Ð¶Ð½Ð¾ Ñ‚Ð¸Ð¿ Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ñ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ð° Ð½Ðµ ÑÐ¾Ð¾Ñ‚Ð²ÐµÑ‚ÑÑ‚Ð²ÑƒÐµÑ‚ Ñ‚Ð¸Ð¿Ñƒ Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ñ Ð¿Ð¸Ð½Ð° - ÑÐ±Ñ€Ð¾ÑÐ¸Ñ‚ÑŒ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€ Ð¿Ð¸Ð½Ð°
+		// 2. ÐŸÑ€Ð¾ÑÑ‚Ð¾ Ð¾Ð±Ð½Ð¾Ð²Ð¸Ñ‚ÑŒ Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ Ð¿Ð¸Ð½Ð°
+		// Ð’Ñ‹Ð·Ð²Ð°Ñ‚ÑŒ Ñ„ÑƒÐ½ÐºÑ†Ð¸ÑŽ Ð”Ð¾ÐºÑƒÐ¼ÐµÐ½Ñ‚Ð°
+		// Ð¢ÐµÐºÑƒÑ‰Ð¸Ð¹ Ð´Ð¾ÐºÑƒÐ¼ÐµÐ½Ñ‚ Ñƒ Ð½Ð°Ñ ÑƒÐ¶Ðµ ÐµÑÑ‚ÑŒ
+		// Ð’Ñ‹Ð·Ñ€Ð°Ñ‚ÑŒ Ñ„ÑƒÐ½ÐºÑ†Ð¸ÑŽ Ð’Ð¸Ð´Ð°
+		// - Ð’ÑÐµ Ñ€Ð°Ð²Ð½Ð¾ Ð½Ð°Ð´Ð¾ Ð¿Ð¾Ð»ÑƒÑ‡Ð¸Ñ‚ÑŒ Ð´Ð¾ÐºÑƒÐ¼ÐµÐ½Ñ‚ 
 		if (m_pCurDoc){
 			m_pCurDoc->OnParameterUpdated(pParam);
 			m_pCurDoc->UpdateAllViews(NULL);
@@ -232,7 +232,7 @@ void CFileView::OnEditClear()
 
 void CFileView::OnPaint()
 {
-	CPaintDC dc(this); // êîíòåêñò óñòðîéñòâà äëÿ ðèñîâàíèÿ
+	CPaintDC dc(this); // ÐºÐ¾Ð½Ñ‚ÐµÐºÑÑ‚ ÑƒÑÑ‚Ñ€Ð¾Ð¹ÑÑ‚Ð²Ð° Ð´Ð»Ñ Ñ€Ð¸ÑÐ¾Ð²Ð°Ð½Ð¸Ñ
 
 	CRect rectTree;
 	m_wndFileView.GetWindowRect(rectTree);
@@ -254,7 +254,7 @@ void CFileView::OnChangeVisualStyle()
 {
 	TracePrint(TRACE_LEVEL_1,"OnChangeVisualStyle");
 	m_wndToolBar.CleanUpLockedImages();
-	m_wndToolBar.LoadBitmap(theApp.m_bHiColorIcons ? IDB_EXPLORER_24 : IDR_EXPLORER, 0, 0, TRUE /* Çàáëîêèðîâàí */);
+	m_wndToolBar.LoadBitmap(theApp.m_bHiColorIcons ? IDB_EXPLORER_24 : IDR_EXPLORER, 0, 0, TRUE /* Ð—Ð°Ð±Ð»Ð¾ÐºÐ¸Ñ€Ð¾Ð²Ð°Ð½ */);
 
 	m_FileViewImages.DeleteImageList();
 
@@ -263,7 +263,7 @@ void CFileView::OnChangeVisualStyle()
 	CBitmap bmp;
 	if (!bmp.LoadBitmap(uiBmpId))
 	{
-		TracePrint(TRACE_LEVEL_1,"Íå óäàåòñÿ çàãðóçèòü òî÷å÷íûé ðèñóíîê: %x\n", uiBmpId);
+		TracePrint(TRACE_LEVEL_1,"ÐÐµ ÑƒÐ´Ð°ÐµÑ‚ÑÑ Ð·Ð°Ð³Ñ€ÑƒÐ·Ð¸Ñ‚ÑŒ Ñ‚Ð¾Ñ‡ÐµÑ‡Ð½Ñ‹Ð¹ Ñ€Ð¸ÑÑƒÐ½Ð¾Ðº: %x\n", uiBmpId);
 		ASSERT(FALSE);
 		return;
 	}
@@ -300,10 +300,10 @@ int CFileView::UpdateView(CFXGraphDoc*pDoc)
 	}
 	m_pCurDoc = pDoc;
 	m_wndFileView.DeleteAllItems();
-	HTREEITEM hRoot = m_wndFileView.InsertItem(_T("Ïàðàìåòðû"), 0, 0);
+	HTREEITEM hRoot = m_wndFileView.InsertItem(_T("ÐŸÐ°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ñ‹"), 0, 0);
 	m_wndFileView.SetItemState(hRoot, TVIS_BOLD, TVIS_BOLD);
 
-	HTREEITEM hInput = m_wndFileView.InsertItem(_T("Âõîäíûå"), 0, 0, hRoot);
+	HTREEITEM hInput = m_wndFileView.InsertItem(_T("Ð’Ñ…Ð¾Ð´Ð½Ñ‹Ðµ"), 0, 0, hRoot);
 	POSITION pos = pDoc->m_InputParams.GetHeadPosition();
 	while (pos){
 		CFXParam* p = pDoc->m_InputParams.GetNext(pos);
@@ -311,7 +311,7 @@ int CFileView::UpdateView(CFXGraphDoc*pDoc)
 		m_wndFileView.SetItemData(hItem,(DWORD_PTR)p);
 	}
 
-	HTREEITEM hOutput = m_wndFileView.InsertItem(_T("Âûõîäíûå"), 0, 0, hRoot);
+	HTREEITEM hOutput = m_wndFileView.InsertItem(_T("Ð’Ñ‹Ñ…Ð¾Ð´Ð½Ñ‹Ðµ"), 0, 0, hRoot);
 	pos = pDoc->m_OutputParams.GetHeadPosition();
 	while (pos){
 		CFXParam* p = pDoc->m_OutputParams.GetNext(pos);
@@ -336,7 +336,7 @@ void CFileView::OnParamOutputAdd()
 	CString name;
 	int n=1;
 	do{
-		name.Format(_T("Íîâûé âûõîäíîé ïàðàìåòð %d"),n);
+		name.Format(_T("ÐÐ¾Ð²Ñ‹Ð¹ Ð²Ñ‹Ñ…Ð¾Ð´Ð½Ð¾Ð¹ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€ %d"),n);
 		n++;
 	} while (m_pCurDoc->CheckParamName(name));
 	dlg.m_Name = name;
@@ -358,7 +358,7 @@ void CFileView::OnParamOutputAdd()
 			value = dlg.m_valdbl;
 		}
 		if (m_pCurDoc->CheckParamName(dlg.m_Name)){
-			AfxMessageBox(_T("Ïàðàìåòð ñ òàêèì èìåíåì óæå ñóùåñòâóåò. Âûáåðèòå äðóãîå èìÿ"));
+			AfxMessageBox(_T("ÐŸÐ°Ñ€Ð°Ð¼ÐµÑ‚Ñ€ Ñ Ñ‚Ð°ÐºÐ¸Ð¼ Ð¸Ð¼ÐµÐ½ÐµÐ¼ ÑƒÐ¶Ðµ ÑÑƒÑ‰ÐµÑÑ‚Ð²ÑƒÐµÑ‚. Ð’Ñ‹Ð±ÐµÑ€Ð¸Ñ‚Ðµ Ð´Ñ€ÑƒÐ³Ð¾Ðµ Ð¸Ð¼Ñ"));
 			return;
 		}
 		m_pCurDoc->m_OutputParams.AddTail(new CFXParam(dlg.m_Name,type,value));
@@ -409,7 +409,7 @@ void CFileView::OnParamInputAdd()
 	int n = 1;
 	CString name;
 	do{
-		name.Format(_T("Íîâûé âõîäíîé ïàðàìåòð %d"),n);
+		name.Format(_T("ÐÐ¾Ð²Ñ‹Ð¹ Ð²Ñ…Ð¾Ð´Ð½Ð¾Ð¹ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€ %d"),n);
 		n++;
 	}
 	while (m_pCurDoc->CheckParamName(name));
@@ -432,7 +432,7 @@ void CFileView::OnParamInputAdd()
 			value = dlg.m_valdbl;
 		}
 		if (m_pCurDoc->CheckParamName(dlg.m_Name)){
-			AfxMessageBox(_T("Ïàðàìåòð ñ òàêèì èìåíåì óæå ñóùåñòâóåò. Âûáåðèòå äðóãîå èìÿ"));
+			AfxMessageBox(_T("ÐŸÐ°Ñ€Ð°Ð¼ÐµÑ‚Ñ€ Ñ Ñ‚Ð°ÐºÐ¸Ð¼ Ð¸Ð¼ÐµÐ½ÐµÐ¼ ÑƒÐ¶Ðµ ÑÑƒÑ‰ÐµÑÑ‚Ð²ÑƒÐµÑ‚. Ð’Ñ‹Ð±ÐµÑ€Ð¸Ñ‚Ðµ Ð´Ñ€ÑƒÐ³Ð¾Ðµ Ð¸Ð¼Ñ"));
 			return;
 		}
 		m_pCurDoc->m_InputParams.AddTail(new CFXParam(dlg.m_Name,type,value));

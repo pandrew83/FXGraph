@@ -10,7 +10,7 @@ public:
 	CFXBlockComment(void);
 	CFXBlockComment(CFXBlock* pBlock):CFXBlock(pBlock){
 		m_Comment = _T("");
-		m_Name = "Комментарий";
+		m_Name = "РљРѕРјРјРµРЅС‚Р°СЂРёР№";
 		m_FontSize = 12;
 		m_bCalc = false;
 	}

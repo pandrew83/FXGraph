@@ -1,21 +1,21 @@
 #pragma once
 
 
-// диалоговое окно CFingByIDDlg
+// РґРёР°Р»РѕРіРѕРІРѕРµ РѕРєРЅРѕ CFingByIDDlg
 
 class CFindByIDDlg : public CDialogEx
 {
 	DECLARE_DYNAMIC(CFindByIDDlg)
 
 public:
-	CFindByIDDlg(CWnd* pParent = NULL);   // стандартный конструктор
+	CFindByIDDlg(CWnd* pParent = NULL);   // СЃС‚Р°РЅРґР°СЂС‚РЅС‹Р№ РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ
 	virtual ~CFindByIDDlg();
 
-// Данные диалогового окна
+// Р”Р°РЅРЅС‹Рµ РґРёР°Р»РѕРіРѕРІРѕРіРѕ РѕРєРЅР°
 	enum { IDD = IDD_FINDID };
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // поддержка DDX/DDV
+	virtual void DoDataExchange(CDataExchange* pDX);    // РїРѕРґРґРµСЂР¶РєР° DDX/DDV
 
 	DECLARE_MESSAGE_MAP()
 public:

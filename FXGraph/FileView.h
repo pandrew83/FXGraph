@@ -15,14 +15,14 @@ class CFileViewToolBar : public CMFCToolBar
 
 class CFileView : public CDockablePane
 {
-// Создание
+// РЎРѕР·РґР°РЅРёРµ
 public:
 	CFileView();
 
 	void AdjustLayout();
 	void OnChangeVisualStyle();
 
-// Атрибуты
+// РђС‚СЂРёР±СѓС‚С‹
 protected:
 
 	CViewTree m_wndFileView;
@@ -30,7 +30,7 @@ protected:
 	CFileViewToolBar m_wndToolBar;
 
 
-// Реализация
+// Р РµР°Р»РёР·Р°С†РёСЏ
 public:
 	virtual ~CFileView();
 

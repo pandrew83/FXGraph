@@ -1,21 +1,21 @@
 #pragma once
 
 
-// диалоговое окно CGridDlg
+// РґРёР°Р»РѕРіРѕРІРѕРµ РѕРєРЅРѕ CGridDlg
 
 class CGridDlg : public CDialogEx
 {
 	DECLARE_DYNAMIC(CGridDlg)
 
 public:
-	CGridDlg(CWnd* pParent = NULL);   // стандартный конструктор
+	CGridDlg(CWnd* pParent = NULL);   // СЃС‚Р°РЅРґР°СЂС‚РЅС‹Р№ РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ
 	virtual ~CGridDlg();
 
-// Данные диалогового окна
+// Р”Р°РЅРЅС‹Рµ РґРёР°Р»РѕРіРѕРІРѕРіРѕ РѕРєРЅР°
 	enum { IDD = IDD_GRID };
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // поддержка DDX/DDV
+	virtual void DoDataExchange(CDataExchange* pDX);    // РїРѕРґРґРµСЂР¶РєР° DDX/DDV
 
 	DECLARE_MESSAGE_MAP()
 public:

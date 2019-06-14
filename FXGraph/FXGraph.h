@@ -1,19 +1,19 @@
 
-// FXGraph.h : главный файл заголовка для приложения FXGraph
+// FXGraph.h : РіР»Р°РІРЅС‹Р№ С„Р°Р№Р» Р·Р°РіРѕР»РѕРІРєР° РґР»СЏ РїСЂРёР»РѕР¶РµРЅРёСЏ FXGraph
 //
 #pragma once
 
 #ifndef __AFXWIN_H__
-	#error "включить stdafx.h до включения этого файла в PCH"
+	#error "РІРєР»СЋС‡РёС‚СЊ stdafx.h РґРѕ РІРєР»СЋС‡РµРЅРёСЏ СЌС‚РѕРіРѕ С„Р°Р№Р»Р° РІ PCH"
 #endif
 
-#include "resource.h"       // основные символы
+#include "resource.h"       // РѕСЃРЅРѕРІРЅС‹Рµ СЃРёРјРІРѕР»С‹
 #define VERSION_MAJOR	1
 #define VERSION_MINOR	0
 
 #define WEBHELP_URL "http://automatic.pandrew.ru"
 // CFXGraphApp:
-// О реализации данного класса см. FXGraph.cpp
+// Рћ СЂРµР°Р»РёР·Р°С†РёРё РґР°РЅРЅРѕРіРѕ РєР»Р°СЃСЃР° СЃРј. FXGraph.cpp
 //
 //#include <stdint.h>
 
@@ -23,12 +23,12 @@ public:
 	CFXGraphApp();
 
 
-// Переопределение
+// РџРµСЂРµРѕРїСЂРµРґРµР»РµРЅРёРµ
 public:
 	virtual BOOL InitInstance();
 	virtual int ExitInstance();
 
-// Реализация
+// Р РµР°Р»РёР·Р°С†РёСЏ
 	UINT  m_nAppLook;
 	BOOL  m_bHiColorIcons;
 

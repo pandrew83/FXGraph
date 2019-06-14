@@ -77,7 +77,7 @@ CFXPin::~CFXPin(void)
 }
 
 void CFXPin::Draw(CFXGraphView*pView){
-	// Возможно будет получен не тот документ!!!!!
+	// Р’РѕР·РјРѕР¶РЅРѕ Р±СѓРґРµС‚ РїРѕР»СѓС‡РµРЅ РЅРµ С‚РѕС‚ РґРѕРєСѓРјРµРЅС‚!!!!!
 	CFXGraphDoc* pDoc = m_pBlock->GetActiveDocument();
 	bool isDebug = pDoc->m_bDebug;
 	CString value;
@@ -272,10 +272,10 @@ void CFXPin::FillProperties(CPropertiesWnd* pWnd)
 
 	pWnd->m_wndPropList.RemoveAll();
 	CFXObject::FillProperties(pWnd);
-	pProp = new CMFCPropertyGridProperty(_T("Функция"),(variant_t)m_FuncName,_T("Функциональное имя"),PROP_FUNCNAME);
+	pProp = new CMFCPropertyGridProperty(_T("Р¤СѓРЅРєС†РёСЏ"),(variant_t)m_FuncName,_T("Р¤СѓРЅРєС†РёРѕРЅР°Р»СЊРЅРѕРµ РёРјСЏ"),PROP_FUNCNAME);
 	pCtrl->AddProperty(pProp);
 	if (m_Type == Float || m_Type == Int){
-		pProp = new CProperty(_T("Формат"),(variant_t)m_Format,_T("Формат вывода значения пина"),PROP_FORMAT);
+		pProp = new CProperty(_T("Р¤РѕСЂРјР°С‚"),(variant_t)m_Format,_T("Р¤РѕСЂРјР°С‚ РІС‹РІРѕРґР° Р·РЅР°С‡РµРЅРёСЏ РїРёРЅР°"),PROP_FORMAT);
 		if (m_Type == Float){
 			for (int i=0; i<m_nFormatFloats; i++){
 				pProp->AddOption(m_FormatFloats[i]);
@@ -289,7 +289,7 @@ void CFXPin::FillProperties(CPropertiesWnd* pWnd)
 		pCtrl->AddProperty(pProp);
 	}
 	if (m_bAllowParam && !m_bConst){
-		pProp = new CProperty(_T("Переменная"),(variant_t)(m_pParam?m_pParam->m_Name:_T("")),_T("Имя переменной"),PROP_PARAM);
+		pProp = new CProperty(_T("РџРµСЂРµРјРµРЅРЅР°СЏ"),(variant_t)(m_pParam?m_pParam->m_Name:_T("")),_T("РРјСЏ РїРµСЂРµРјРµРЅРЅРѕР№"),PROP_PARAM);
 		pProp->AllowEdit(false);
 		pProp->AddOption(_T(""));
 		POSITION pos = pList->GetHeadPosition();
@@ -302,11 +302,11 @@ void CFXPin::FillProperties(CPropertiesWnd* pWnd)
 		pCtrl->AddProperty(pProp);
 	}
 	if (m_bAllowConst){
-		pProp = new CProperty(_T("Константа"),(variant_t)m_bConst,_T("Значение пина контанта"),PROP_CONST);
+		pProp = new CProperty(_T("РљРѕРЅСЃС‚Р°РЅС‚Р°"),(variant_t)m_bConst,_T("Р—РЅР°С‡РµРЅРёРµ РїРёРЅР° РєРѕРЅС‚Р°РЅС‚Р°"),PROP_CONST);
 		pCtrl->AddProperty(pProp);
 	}
 	if (m_bConst || pDoc->m_bDebug){
-		pProp = new CProperty(_T("Значение"),(variant_t)m_Value,_T("Значение пина"),PROP_VALUE);
+		pProp = new CProperty(_T("Р—РЅР°С‡РµРЅРёРµ"),(variant_t)m_Value,_T("Р—РЅР°С‡РµРЅРёРµ РїРёРЅР°"),PROP_VALUE);
 		pCtrl->AddProperty(pProp);
 	}
 
@@ -322,10 +322,10 @@ void CFXPin::SetParam(CFXParam* pParam)
 				m_pParam = pParam;
 			}
 			else{
-				// pParam уже привязан к другому пину
+				// pParam СѓР¶Рµ РїСЂРёРІСЏР·Р°РЅ Рє РґСЂСѓРіРѕРјСѓ РїРёРЅСѓ
 			}
 		}
-		else{ // Сброс
+		else{ // РЎР±СЂРѕСЃ
 			if (m_pParam)
 				m_pParam->m_pPin = NULL;
 			m_pParam = NULL;

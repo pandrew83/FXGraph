@@ -44,7 +44,7 @@ BEGIN_MESSAGE_MAP(CPropertiesWnd, CDockablePane)
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
-// обработчики сообщений CResourceViewBar
+// РѕР±СЂР°Р±РѕС‚С‡РёРєРё СЃРѕРѕР±С‰РµРЅРёР№ CResourceViewBar
 
 void CPropertiesWnd::AdjustLayout()
 {
@@ -74,37 +74,37 @@ int CPropertiesWnd::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	CRect rectDummy;
 	rectDummy.SetRectEmpty();
 
-	// Создать поле со списком:
+	// РЎРѕР·РґР°С‚СЊ РїРѕР»Рµ СЃРѕ СЃРїРёСЃРєРѕРј:
 	const DWORD dwViewStyle = WS_CHILD | WS_VISIBLE | CBS_DROPDOWNLIST | WS_BORDER | CBS_SORT | WS_CLIPSIBLINGS | WS_CLIPCHILDREN;
 
 	if (!m_wndObjectCombo.Create(dwViewStyle, rectDummy, this, 1))
 	{
-		TRACE0("Не удалось создать поле со списком \"Свойства\" \n");
-		return -1;      // не удалось создать
+		TRACE0("РќРµ СѓРґР°Р»РѕСЃСЊ СЃРѕР·РґР°С‚СЊ РїРѕР»Рµ СЃРѕ СЃРїРёСЃРєРѕРј \"РЎРІРѕР№СЃС‚РІР°\" \n");
+		return -1;      // РЅРµ СѓРґР°Р»РѕСЃСЊ СЃРѕР·РґР°С‚СЊ
 	}
 
-//	m_wndObjectCombo.AddString(_T("Приложение"));
-	m_wndObjectCombo.AddString(_T("Окно \"Свойства\""));
+//	m_wndObjectCombo.AddString(_T("РџСЂРёР»РѕР¶РµРЅРёРµ"));
+	m_wndObjectCombo.AddString(_T("РћРєРЅРѕ \"РЎРІРѕР№СЃС‚РІР°\""));
 	m_wndObjectCombo.SetCurSel(0);
 
 	if (!m_wndPropList.Create(WS_VISIBLE | WS_CHILD, rectDummy, this, 2))
 	{
-		TRACE0("Не удалось создать сетку свойств\n");
-		return -1;      // не удалось создать
+		TRACE0("РќРµ СѓРґР°Р»РѕСЃСЊ СЃРѕР·РґР°С‚СЊ СЃРµС‚РєСѓ СЃРІРѕР№СЃС‚РІ\n");
+		return -1;      // РЅРµ СѓРґР°Р»РѕСЃСЊ СЃРѕР·РґР°С‚СЊ
 	}
 
 //	InitPropList(0);
 
 	m_wndToolBar.Create(this, AFX_DEFAULT_TOOLBAR_STYLE, IDR_PROPERTIES);
-	m_wndToolBar.LoadToolBar(IDR_PROPERTIES, 0, 0, TRUE /* Заблокирован */);
+	m_wndToolBar.LoadToolBar(IDR_PROPERTIES, 0, 0, TRUE /* Р—Р°Р±Р»РѕРєРёСЂРѕРІР°РЅ */);
 	m_wndToolBar.CleanUpLockedImages();
-	m_wndToolBar.LoadBitmap(theApp.m_bHiColorIcons ? IDB_PROPERTIES_HC : IDR_PROPERTIES, 0, 0, TRUE /* Заблокирован */);
+	m_wndToolBar.LoadBitmap(theApp.m_bHiColorIcons ? IDB_PROPERTIES_HC : IDR_PROPERTIES, 0, 0, TRUE /* Р—Р°Р±Р»РѕРєРёСЂРѕРІР°РЅ */);
 
 	m_wndToolBar.SetPaneStyle(m_wndToolBar.GetPaneStyle() | CBRS_TOOLTIPS | CBRS_FLYBY);
 	m_wndToolBar.SetPaneStyle(m_wndToolBar.GetPaneStyle() & ~(CBRS_GRIPPER | CBRS_SIZE_DYNAMIC | CBRS_BORDER_TOP | CBRS_BORDER_BOTTOM | CBRS_BORDER_LEFT | CBRS_BORDER_RIGHT));
 	m_wndToolBar.SetOwner(this);
 
-	// Все команды будут перенаправлены через этот элемент управления, а не через родительскую рамку:
+	// Р’СЃРµ РєРѕРјР°РЅРґС‹ Р±СѓРґСѓС‚ РїРµСЂРµРЅР°РїСЂР°РІР»РµРЅС‹ С‡РµСЂРµР· СЌС‚РѕС‚ СЌР»РµРјРµРЅС‚ СѓРїСЂР°РІР»РµРЅРёСЏ, Р° РЅРµ С‡РµСЂРµР· СЂРѕРґРёС‚РµР»СЊСЃРєСѓСЋ СЂР°РјРєСѓ:
 	m_wndToolBar.SetRouteCommandsViaFrame(FALSE);
 
 	AdjustLayout();

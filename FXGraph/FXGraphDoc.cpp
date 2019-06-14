@@ -1,10 +1,10 @@
 
-// FXGraphDoc.cpp : реализация класса CFXGraphDoc
+// FXGraphDoc.cpp : СЂРµР°Р»РёР·Р°С†РёСЏ РєР»Р°СЃСЃР° CFXGraphDoc
 //
 
 #include "stdafx.h"
-// SHARED_HANDLERS можно определить в обработчиках фильтров просмотра реализации проекта ATL, эскизов
-// и поиска; позволяет совместно использовать код документа в данным проекте.
+// SHARED_HANDLERS РјРѕР¶РЅРѕ РѕРїСЂРµРґРµР»РёС‚СЊ РІ РѕР±СЂР°Р±РѕС‚С‡РёРєР°С… С„РёР»СЊС‚СЂРѕРІ РїСЂРѕСЃРјРѕС‚СЂР° СЂРµР°Р»РёР·Р°С†РёРё РїСЂРѕРµРєС‚Р° ATL, СЌСЃРєРёР·РѕРІ
+// Рё РїРѕРёСЃРєР°; РїРѕР·РІРѕР»СЏРµС‚ СЃРѕРІРјРµСЃС‚РЅРѕ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ РєРѕРґ РґРѕРєСѓРјРµРЅС‚Р° РІ РґР°РЅРЅС‹Рј РїСЂРѕРµРєС‚Рµ.
 #ifndef SHARED_HANDLERS
 #include "FXGraph.h"
 #endif
@@ -60,7 +60,7 @@ BEGIN_MESSAGE_MAP(CFXGraphDoc, CDocument)
 END_MESSAGE_MAP()
 
 
-// создание/уничтожение CFXGraphDoc
+// СЃРѕР·РґР°РЅРёРµ/СѓРЅРёС‡С‚РѕР¶РµРЅРёРµ CFXGraphDoc
 
 CFXGraphDoc::CFXGraphDoc()
 	: m_pDebugCur(NULL)
@@ -108,12 +108,12 @@ BOOL CFXGraphDoc::OnNewDocument()
 	m_CycleTicks = 200;
 	m_SysTick = 0;
 	m_DebugTimer = 1000;
-	m_DebugScenario = "// Debug scenario\r\n// {condition},{id},{expression}\r\n// {condition} - условие выполнения {expression} над объектов {id}\r\n// {id} - идентификатор объекта для которого будет выполнено выражение {expression}\r\n// {expression} - C/C++ выражение исполняемое при истинности условия {condition} для объекта с идентификатором id\r\n// Допустимые идентификаторы:\r\n// {value} - r,l-value - значение пина (Logical, Float, Int);\r\n// {tick} - r-value - момент времени\r\n// rand() - случайное число\r\n// tick>1000,5,value=value+rand()%2\r\n// rand()%10>8,5,value=value+(rand()==0?-1:1)";
+	m_DebugScenario = "// Debug scenario\r\n// {condition},{id},{expression}\r\n// {condition} - СѓСЃР»РѕРІРёРµ РІС‹РїРѕР»РЅРµРЅРёСЏ {expression} РЅР°Рґ РѕР±СЉРµРєС‚РѕРІ {id}\r\n// {id} - РёРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ РѕР±СЉРµРєС‚Р° РґР»СЏ РєРѕС‚РѕСЂРѕРіРѕ Р±СѓРґРµС‚ РІС‹РїРѕР»РЅРµРЅРѕ РІС‹СЂР°Р¶РµРЅРёРµ {expression}\r\n// {expression} - C/C++ РІС‹СЂР°Р¶РµРЅРёРµ РёСЃРїРѕР»РЅСЏРµРјРѕРµ РїСЂРё РёСЃС‚РёРЅРЅРѕСЃС‚Рё СѓСЃР»РѕРІРёСЏ {condition} РґР»СЏ РѕР±СЉРµРєС‚Р° СЃ РёРґРµРЅС‚РёС„РёРєР°С‚РѕСЂРѕРј id\r\n// Р”РѕРїСѓСЃС‚РёРјС‹Рµ РёРґРµРЅС‚РёС„РёРєР°С‚РѕСЂС‹:\r\n// {value} - r,l-value - Р·РЅР°С‡РµРЅРёРµ РїРёРЅР° (Logical, Float, Int);\r\n// {tick} - r-value - РјРѕРјРµРЅС‚ РІСЂРµРјРµРЅРё\r\n// rand() - СЃР»СѓС‡Р°Р№РЅРѕРµ С‡РёСЃР»Рѕ\r\n// tick>1000,5,value=value+rand()%2\r\n// rand()%10>8,5,value=value+(rand()==0?-1:1)";
 
 //	m_pBlock = pView->m_pBlock;
 //	m_LastID = 1;
-	// TODO: добавьте код повторной инициализации
-	// (Документы SDI будут повторно использовать этот документ)
+	// TODO: РґРѕР±Р°РІСЊС‚Рµ РєРѕРґ РїРѕРІС‚РѕСЂРЅРѕР№ РёРЅРёС†РёР°Р»РёР·Р°С†РёРё
+	// (Р”РѕРєСѓРјРµРЅС‚С‹ SDI Р±СѓРґСѓС‚ РїРѕРІС‚РѕСЂРЅРѕ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ СЌС‚РѕС‚ РґРѕРєСѓРјРµРЅС‚)
 
 	//m_InputParams.AddTail(new CFXParam(_T("Started"),Logical));
 	//m_InputParams.AddTail(new CFXParam(_T("P1Max"),Float));
@@ -126,7 +126,7 @@ BOOL CFXGraphDoc::OnNewDocument()
 
 
 
-// сериализация CFXGraphDoc
+// СЃРµСЂРёР°Р»РёР·Р°С†РёСЏ CFXGraphDoc
 
 void CFXGraphDoc::Serialize(CArchive& ar)
 {
@@ -164,7 +164,7 @@ void CFXGraphDoc::Serialize(CArchive& ar)
 		ar >> m_DebugTimer;
 		ar >> m_DebugScenario;
 		if (version_major != VERSION_MAJOR || version_minor != VERSION_MINOR){
-			AfxMessageBox(_T("Версия сохраненного файла не соответствует версии программы"));
+			AfxMessageBox(_T("Р’РµСЂСЃРёСЏ СЃРѕС…СЂР°РЅРµРЅРЅРѕРіРѕ С„Р°Р№Р»Р° РЅРµ СЃРѕРѕС‚РІРµС‚СЃС‚РІСѓРµС‚ РІРµСЂСЃРёРё РїСЂРѕРіСЂР°РјРјС‹"));
 			throw new CArchiveException();
 			return;
 		}
@@ -186,7 +186,7 @@ void CFXGraphDoc::Serialize(CArchive& ar)
 			ar >> p;
 			m_Graphs.AddTail(p);
 		}
-		// TODO: Проверить, а если загрузить проект в другой проект? Скорее всего надо закрыть все виды
+		// TODO: РџСЂРѕРІРµСЂРёС‚СЊ, Р° РµСЃР»Рё Р·Р°РіСЂСѓР·РёС‚СЊ РїСЂРѕРµРєС‚ РІ РґСЂСѓРіРѕР№ РїСЂРѕРµРєС‚? РЎРєРѕСЂРµРµ РІСЃРµРіРѕ РЅР°РґРѕ Р·Р°РєСЂС‹С‚СЊ РІСЃРµ РІРёРґС‹
 		POSITION pos = GetFirstViewPosition();
 //		CMainFrame* pMainFrame = (CMainFrame*)AfxGetMainWnd();
 		CFXGraphView* pView = (CFXGraphView*)GetNextView(pos);
@@ -201,10 +201,10 @@ void CFXGraphDoc::Serialize(CArchive& ar)
 
 #ifdef SHARED_HANDLERS
 
-// Поддержка для эскизов
+// РџРѕРґРґРµСЂР¶РєР° РґР»СЏ СЌСЃРєРёР·РѕРІ
 void CFXGraphDoc::OnDrawThumbnail(CDC& dc, LPRECT lprcBounds)
 {
-	// Измените этот код для отображения данных документа
+	// РР·РјРµРЅРёС‚Рµ СЌС‚РѕС‚ РєРѕРґ РґР»СЏ РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ РґР°РЅРЅС‹С… РґРѕРєСѓРјРµРЅС‚Р°
 	dc.FillSolidRect(lprcBounds, RGB(255, 255, 255));
 
 	CString strText = _T("TODO: implement thumbnail drawing here");
@@ -222,14 +222,14 @@ void CFXGraphDoc::OnDrawThumbnail(CDC& dc, LPRECT lprcBounds)
 	dc.SelectObject(pOldFont);
 }
 
-// Поддержка обработчиков поиска
+// РџРѕРґРґРµСЂР¶РєР° РѕР±СЂР°Р±РѕС‚С‡РёРєРѕРІ РїРѕРёСЃРєР°
 void CFXGraphDoc::InitializeSearchContent()
 {
 	CString strSearchContent;
-	// Задайте содержимое поиска из данных документа. 
-	// Части содержимого должны разделяться точкой с запятой ";"
+	// Р—Р°РґР°Р№С‚Рµ СЃРѕРґРµСЂР¶РёРјРѕРµ РїРѕРёСЃРєР° РёР· РґР°РЅРЅС‹С… РґРѕРєСѓРјРµРЅС‚Р°. 
+	// Р§Р°СЃС‚Рё СЃРѕРґРµСЂР¶РёРјРѕРіРѕ РґРѕР»Р¶РЅС‹ СЂР°Р·РґРµР»СЏС‚СЊСЃСЏ С‚РѕС‡РєРѕР№ СЃ Р·Р°РїСЏС‚РѕР№ ";"
 
-	// Например:  strSearchContent = _T("точка;прямоугольник;круг;объект ole;");
+	// РќР°РїСЂРёРјРµСЂ:  strSearchContent = _T("С‚РѕС‡РєР°;РїСЂСЏРјРѕСѓРіРѕР»СЊРЅРёРє;РєСЂСѓРі;РѕР±СЉРµРєС‚ ole;");
 	SetSearchContent(strSearchContent);
 }
 
@@ -253,7 +253,7 @@ void CFXGraphDoc::SetSearchContent(const CString& value)
 
 #endif // SHARED_HANDLERS
 
-// диагностика CFXGraphDoc
+// РґРёР°РіРЅРѕСЃС‚РёРєР° CFXGraphDoc
 
 #ifdef _DEBUG
 void CFXGraphDoc::AssertValid() const
@@ -268,7 +268,7 @@ void CFXGraphDoc::Dump(CDumpContext& dc) const
 #endif //_DEBUG
 
 
-// команды CFXGraphDoc
+// РєРѕРјР°РЅРґС‹ CFXGraphDoc
 
 
 
@@ -278,7 +278,7 @@ void CFXGraphDoc::Dump(CDumpContext& dc) const
 //{
 //	CFXLink* pLink = m_pBlock->GetLink(pPin1,pPin2);
 //	if (pLink){
-//		Log(Build,_T("Указанные пины уже соединены связью"));
+//		Log(Build,_T("РЈРєР°Р·Р°РЅРЅС‹Рµ РїРёРЅС‹ СѓР¶Рµ СЃРѕРµРґРёРЅРµРЅС‹ СЃРІСЏР·СЊСЋ"));
 //		return pLink;
 //	}
 //	pLink = m_pBlock->AddLink(pPin1,pPin2);
@@ -301,7 +301,7 @@ BOOL CFXGraphDoc::OnOpenDocument(LPCTSTR lpszPathName)
 	if (!CDocument::OnOpenDocument(lpszPathName))
 		return FALSE;
 
-	// TODO:  Добавьте специализированный код создания
+	// TODO:  Р”РѕР±Р°РІСЊС‚Рµ СЃРїРµС†РёР°Р»РёР·РёСЂРѕРІР°РЅРЅС‹Р№ РєРѕРґ СЃРѕР·РґР°РЅРёСЏ
 	CMainFrame* pMainFrame = (CMainFrame*)AfxGetApp()->m_pMainWnd;
 	pMainFrame->m_wndFileView.UpdateView(this);
 	pMainFrame->m_wndGraphView.UpdateView(this);
@@ -314,7 +314,7 @@ BOOL CFXGraphDoc::OnOpenDocument(LPCTSTR lpszPathName)
 //	TracePrint(TRACE_LEVEL_1,"CFXGraphDoc::OnDebugRestart");
 //	if (m_bDebug){
 //		if (!m_pBlock->Check()){
-//			AfxMessageBox(_T("Проверка проекта не пройдена!"));
+//			AfxMessageBox(_T("РџСЂРѕРІРµСЂРєР° РїСЂРѕРµРєС‚Р° РЅРµ РїСЂРѕР№РґРµРЅР°!"));
 //			return;
 //		}
 //		m_pDebugCur = m_pBlock->m_pDebugFirst;
@@ -322,7 +322,7 @@ BOOL CFXGraphDoc::OnOpenDocument(LPCTSTR lpszPathName)
 //		InitializeBlocks();
 //	}
 //	else
-//		AfxMessageBox(_T("Отладка не начата"));
+//		AfxMessageBox(_T("РћС‚Р»Р°РґРєР° РЅРµ РЅР°С‡Р°С‚Р°"));
 //}
 
 
@@ -331,7 +331,7 @@ void CFXGraphDoc::DebugStart()
 	TracePrint(TRACE_LEVEL_1,"CFXGraphDoc::OnDebugStart"); 
 	
 	if (!m_pBlock->Check()){
-		AfxMessageBox(_T("Проверка проекта не пройдена!"));
+		AfxMessageBox(_T("РџСЂРѕРІРµСЂРєР° РїСЂРѕРµРєС‚Р° РЅРµ РїСЂРѕР№РґРµРЅР°!"));
 		m_bDebug = false;
 		return;
 	}
@@ -341,7 +341,7 @@ void CFXGraphDoc::DebugStart()
 	m_DataCollector.Initialize();
 	m_pDebugCur = m_pBlock->m_pDebugFirst;
 	if (!m_pBlock->m_pDebugFirst){
-		AfxMessageBox(_T("Проект пустой"));
+		AfxMessageBox(_T("РџСЂРѕРµРєС‚ РїСѓСЃС‚РѕР№"));
 		m_bDebug = false;
 		return;
 	}
@@ -397,7 +397,7 @@ bool CFXGraphDoc::InitializeBlocks(void)
 //			OnDebugStepOver();
 //		}
 //	}
-//	// TODO: добавьте свой код обработчика команд
+//	// TODO: РґРѕР±Р°РІСЊС‚Рµ СЃРІРѕР№ РєРѕРґ РѕР±СЂР°Р±РѕС‚С‡РёРєР° РєРѕРјР°РЅРґ
 //}
 
 
@@ -408,22 +408,22 @@ bool CFXGraphDoc::InitializeBlocks(void)
 //		do {
 //			if (!m_pDebugCur->Calc()){
 //				m_bDebug = false;
-//				Log(Debug,_T("Ошибка расчета блока"));
+//				Log(Debug,_T("РћС€РёР±РєР° СЂР°СЃС‡РµС‚Р° Р±Р»РѕРєР°"));
 //				return;
 //			}
 //			m_pDebugCur->UpdateConnectedPins();
 //			m_pDebugCur = m_pDebugCur->m_pNextBlock;
 //			if (!m_pDebugCur){
-//				// Достигли конца цепочки
-//				// Переходим на начало
-//				// Вызываем событие перехода на начало цепочки
+//				// Р”РѕСЃС‚РёРіР»Рё РєРѕРЅС†Р° С†РµРїРѕС‡РєРё
+//				// РџРµСЂРµС…РѕРґРёРј РЅР° РЅР°С‡Р°Р»Рѕ
+//				// Р’С‹Р·С‹РІР°РµРј СЃРѕР±С‹С‚РёРµ РїРµСЂРµС…РѕРґР° РЅР° РЅР°С‡Р°Р»Рѕ С†РµРїРѕС‡РєРё
 //				OnDebugCycleEnd();
 //			}
 //		}
 //		while (!m_pDebugCur->m_bCalc);
 //		UpdateAllViews(NULL);
 //	}
-//	// TODO: добавьте свой код обработчика команд
+//	// TODO: РґРѕР±Р°РІСЊС‚Рµ СЃРІРѕР№ РєРѕРґ РѕР±СЂР°Р±РѕС‚С‡РёРєР° РєРѕРјР°РЅРґ
 //}
 
 //void CFXGraphDoc::OnDebugStepTo()
@@ -593,7 +593,7 @@ void CFXGraphDoc::OnProjectProperties()
 		m_CycleTicks = ar[dlg.m_CycleTicks];
 		m_DebugTimer = dlg.m_DebugTimer;
 	}
-	// TODO: добавьте свой код обработчика команд
+	// TODO: РґРѕР±Р°РІСЊС‚Рµ СЃРІРѕР№ РєРѕРґ РѕР±СЂР°Р±РѕС‚С‡РёРєР° РєРѕРјР°РЅРґ
 }
 
 
@@ -649,7 +649,7 @@ void CFXGraphDoc::DebugRun(void)
 	CMainFrame* pMainFrame = (CMainFrame*)AfxGetApp()->m_pMainWnd;
 	ASSERT(pMainFrame);
 	if (m_pDebugCur){
-		// применить сценарий
+		// РїСЂРёРјРµРЅРёС‚СЊ СЃС†РµРЅР°СЂРёР№
 		POSITION pos = m_Scenario.GetHeadPosition();
 		while (pos) {
 			CFXScenarioItem* pItem = m_Scenario.GetNext(pos);
@@ -809,7 +809,7 @@ bool CFXGraphDoc::InitializeScenario(void)
 				ar[n++] = s;
 			} while (true);
 			if (n != 3) {
-				AfxMessageBox(_T("Ошибка при разборе строки сценария"));
+				AfxMessageBox(_T("РћС€РёР±РєР° РїСЂРё СЂР°Р·Р±РѕСЂРµ СЃС‚СЂРѕРєРё СЃС†РµРЅР°СЂРёСЏ"));
 				return false;
 			}
 			CFXScenarioItem* pItem = new CFXScenarioItem;
@@ -819,7 +819,7 @@ bool CFXGraphDoc::InitializeScenario(void)
 			pItem->m_Expression = ar[2];
 			if (!pItem->m_pPin) {
 				CString msg;
-				msg.Format(_T("Ошибка в сценарии: объект с идентификатором %s не найден в текущем проекте"), ar[1]);
+				msg.Format(_T("РћС€РёР±РєР° РІ СЃС†РµРЅР°СЂРёРё: РѕР±СЉРµРєС‚ СЃ РёРґРµРЅС‚РёС„РёРєР°С‚РѕСЂРѕРј %s РЅРµ РЅР°Р№РґРµРЅ РІ С‚РµРєСѓС‰РµРј РїСЂРѕРµРєС‚Рµ"), ar[1]);
 				AfxMessageBox(msg);
 				delete pItem;
 				return false;
@@ -847,7 +847,7 @@ void CFXGraphDoc::NewGraph(CFXPin* pPin)
 	TracePrint(TRACE_LEVEL_1, "CFXGraphDoc::NewGraph");
 	ASSERT(pPin);
 	CFXGraphic* pGraphic = new CFXGraphic();
-	pGraphic->SetTitle(_T("Новый график"));
+	pGraphic->SetTitle(_T("РќРѕРІС‹Р№ РіСЂР°С„РёРє"));
 	pGraphic->AddVariable(pPin->m_ID,pPin->GetName(),pPin->m_Type);
 	m_Graphs.AddTail(pGraphic);
 	CMainFrame* pMainFrame = (CMainFrame*)AfxGetApp()->m_pMainWnd;
@@ -958,7 +958,7 @@ CFXGraphViewGraphic* CFXGraphDoc::GetGraphicView(CFXGraphic* pGraphic)
 
 //void CFXGraphDoc::OnGraphOpen()
 //{
-//	// TODO: добавьте свой код обработчика команд
+//	// TODO: РґРѕР±Р°РІСЊС‚Рµ СЃРІРѕР№ РєРѕРґ РѕР±СЂР°Р±РѕС‚С‡РёРєР° РєРѕРјР°РЅРґ
 //}
 
 
