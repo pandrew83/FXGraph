@@ -11,6 +11,9 @@ public:
 	int GetClassID(){
 		return BLOCK_LOGICAL_XOR;
 	}
+	CString GetClassDescriptor() {
+		return _T("CFXBlockLogicalXor");
+	}
 	virtual bool Check(){
 		return CFXBlock::Check();
 	}

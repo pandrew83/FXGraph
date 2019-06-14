@@ -11,6 +11,9 @@ public:
 	int GetClassID(){
 		return BLOCK_MATH_BITWISE_SHIFT_LEFT;
 	}
+	CString GetClassDescriptor() {
+		return _T("CFXBlockMathBitwiseShiftLeft");
+	}
 	virtual bool Check(){
 		return CFXBlock::Check();
 	}

@@ -9,5 +9,11 @@ public:
 	CFXBlockMathFloatLess(CFXBlock* pBlock);
 	~CFXBlockMathFloatLess(void);
 	bool Calc(void);
+	int GetClassID() {
+		return BLOCK_MATH_FLOAT_LESS;
+	}
+	CString GetClassDescriptor() {
+		return _T("CFXBlockMathFloatLess");
+	}
 };
 

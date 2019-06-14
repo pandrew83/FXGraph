@@ -27,6 +27,9 @@ public:
 	int GetClassID(){
 		return BLOCK_FUNCTIONAL;
 	}
+	CString GetClassDescriptor() {
+		return _T("CFXBlockFunctional");
+	}
 //	CList<CFXObject*,CFXObject*> m_Objects;
 	CList<CFXBlock*,CFXBlock*> m_Blocks;
 	CList<CFXLink*,CFXLink*> m_Links;

@@ -9,5 +9,11 @@ public:
 	CFXBlockMathIntLess(CFXBlock*pBlock);
 	bool Calc();
 	~CFXBlockMathIntLess(void);
+	int GetClassID() {
+		return BLOCK_MATH_INT_LESS;
+	}
+	CString GetClassDescriptor() {
+		return _T("CFXBlockMathIntLess");
+	}
 };
 

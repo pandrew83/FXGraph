@@ -11,5 +11,11 @@ public:
 	bool m_Prev;
 	~CFXBlockLogicalFallingEdge(void);
 	void Initialize(void);
+	int GetClassID() {
+		return BLOCK_LOGICAL_FALLING_EDGE;
+	}
+	CString GetClassDescriptor() {
+		return _T("CFXBlockLogicalFallingEdge");
+	}
 };
 

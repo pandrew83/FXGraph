@@ -9,5 +9,11 @@ public:
 	CFXBlockMathFloatAbs(CFXBlock* pBlock);
 	bool Calc();
 	~CFXBlockMathFloatAbs(void);
+	int GetClassID() {
+		return BLOCK_MATH_FLOAT_ABS;
+	}
+	CString GetClassDescriptor() {
+		return _T("CFXBlockMathFloatAbs");
+	}
 };
 

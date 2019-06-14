@@ -511,7 +511,7 @@ void CClassView::OnClassviewmenuWebhelp()
 	HTREEITEM hItem = GetCurSel();
 	if (hItem){
 		int id = GetBlockID(hItem);
-		CString url = CFXObject::GetClassDescriptor(id);
+		CString url = CFXObject::GetClassDescriptorByID(id);
 		CString host = _T(WEBHELP_URL);
 		host = host + "/doku.php?id=FXGraph:"+url;
 		::ShellExecute(NULL,_T("open"),host,NULL,NULL,SW_SHOWNORMAL);

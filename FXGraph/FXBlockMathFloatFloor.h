@@ -9,5 +9,11 @@ public:
 	CFXBlockMathFloatFloor(CFXBlock* pBlock);
 	bool Calc();
 	~CFXBlockMathFloatFloor(void);
+	int GetClassID() {
+		return BLOCK_MATH_FLOAT_FLOOR;
+	}
+	CString GetClassDescriptor() {
+		return _T("CFXBlockMathFloatFloor");
+	}
 };
 

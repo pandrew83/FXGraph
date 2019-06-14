@@ -9,5 +9,11 @@ public:
 	CFXBlockMathFloatLessEqual(CFXBlock* pBlock);
 	~CFXBlockMathFloatLessEqual(void);
 	bool Calc(void);
+	int GetClassID() {
+		return BLOCK_MATH_FLOAT_LESSEQUAL;
+	}
+	CString GetClassDescriptor() {
+		return _T("CFXBlockMathFloatLessEqual");
+	}
 };
 

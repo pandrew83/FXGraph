@@ -9,5 +9,11 @@ public:
 	CFXBlockMathAcos(CFXBlock* pBlock);
 	bool Calc();
 	~CFXBlockMathAcos(void);
+	int GetClassID() {
+		return BLOCK_MATH_ACOS;
+	}
+	CString GetClassDescriptor() {
+		return _T("CFXBlockMathAcos");
+	}
 };
 

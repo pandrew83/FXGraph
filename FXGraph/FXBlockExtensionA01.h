@@ -8,5 +8,11 @@ public:
 	CFXBlockExtensionA01(void);
 	~CFXBlockExtensionA01(void);
 	CFXBlockExtensionA01(CFXBlock* pBlock);
+	int GetClassID() {
+		return BLOCK_EXTENSION_NIMODA01;
+	}
+	CString GetClassDescriptor() {
+		return _T("CFXBlockExtensionA01");
+	}
 };
 

@@ -19,7 +19,6 @@ protected:
 	CFXBlock(void) : m_CalcOrder(0), m_bBreakPoint(0)
 	{}
 	DECLARE_SERIAL(CFXBlock)
-	int GetClassID(){return 0;}
 	CRect m_RectName;
 	CRect m_RectBlock;
 	CRect m_RectLeft;

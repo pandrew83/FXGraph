@@ -9,5 +9,11 @@ public:
 	CFXBlockMathFloatEqual(CFXBlock* pBlock);
 	~CFXBlockMathFloatEqual(void);
 	bool Calc(void);
+	int GetClassID() {
+		return BLOCK_MATH_FLOAT_EQUAL;
+	}
+	CString GetClassDescriptor() {
+		return _T("CFXBlockMathFloatEqual");
+	}
 };
 

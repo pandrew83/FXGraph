@@ -11,5 +11,11 @@ public:
 	~CFXBlockLogicalFronts(void);
 	bool m_Prev;
 	void Initialize(void);
+	int GetClassID() {
+		return BLOCK_LOGICAL_FRONTS;
+	}
+	CString GetClassDescriptor() {
+		return _T("CFXBlockLogicalFronts");
+	}
 };
 

@@ -9,5 +9,11 @@ public:
 	bool Calc();
 	CFXBlockMathIntNotEqual(void);
 	~CFXBlockMathIntNotEqual(void);
+	int GetClassID() {
+		return BLOCK_MATH_INT_NOTEQUAL;
+	}
+	CString GetClassDescriptor() {
+		return _T("CFXBlockMathIntNotEqual");
+	}
 };
 

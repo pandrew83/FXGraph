@@ -11,5 +11,11 @@ public:
 	bool m_Prev;
 	~CFXBlockLogicalTriggerRS(void);
 	void Initialize(void);
+	int GetClassID() {
+		return BLOCK_LOGICAL_TRIGGER_RS;
+	}
+	CString GetClassDescriptor() {
+		return _T("CFXBlockLogicalTriggerRS");
+	}
 };
 

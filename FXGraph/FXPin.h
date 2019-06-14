@@ -81,6 +81,9 @@ public:
 	int GetClassID(){
 		return FXPIN;
 	}
+	CString GetClassDescriptor() {
+		return _T("CFXPin");
+	}
 	virtual void SetFuncName(CString funcName){
 		m_FuncName = funcName;
 	}

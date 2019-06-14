@@ -1513,7 +1513,6 @@ CFXBlock* CFXGraphView::AddBlock(DWORD ID, CPoint point)
 		case BLOCK_MATH_EXP:
 			pBlock = new CFXBlockMathExp(m_pBlock);
 			break;
-
 		case BLOCK_MATH_CAST_FLOAT_INT:
 			pBlock = new CFXBlockMathCastFloatInt(m_pBlock);
 			break;
@@ -1872,7 +1871,7 @@ void CFXGraphView::OnBlockWebhelp()
 	ASSERT(m_pCur);
 	if (m_pCur){
 		int id = m_pCur->GetClassID();
-		CString url = CFXObject::GetClassDescriptor(id);
+		CString url = m_pCur->GetClassDescriptor();
 		CString host = _T(WEBHELP_URL);
 		host = host + "/doku.php?id=FXGraph:"+url;
 		::ShellExecute(NULL,_T("open"),host,NULL,NULL,SW_SHOWNORMAL);

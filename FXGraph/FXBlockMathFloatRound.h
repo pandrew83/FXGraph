@@ -9,5 +9,11 @@ public:
 	CFXBlockMathFloatRound(CFXBlock* pBlock);
 	bool Calc();
 	~CFXBlockMathFloatRound(void);
+	int GetClassID() {
+		return BLOCK_MATH_FLOAT_ROUND;
+	}
+	CString GetClassDescriptor() {
+		return _T("CFXBlockMathFloatRound");
+	}
 };
 

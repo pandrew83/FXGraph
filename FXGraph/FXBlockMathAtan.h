@@ -9,5 +9,11 @@ public:
 	CFXBlockMathAtan(CFXBlock* pBlock);
 	bool Calc();
 	~CFXBlockMathAtan(void);
+	int GetClassID() {
+		return BLOCK_MATH_ATAN;
+	}
+	CString GetClassDescriptor() {
+		return _T("CFXBlockMathAtan");
+	}
 };
 

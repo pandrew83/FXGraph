@@ -7,6 +7,11 @@ class CFXBlockTransformCurrent :
 	CFXBlockTransformCurrent();
 	CFXBlockTransformCurrent(CFXBlock* pBlock);
 	bool Calc();
-
+	int GetClassID() {
+		return BLOCK_TRANSFORM_CURRENT;
+	}
+	CString GetClassDescriptor() {
+		return _T("CFXBlockTransformCurrent");
+	}
 };
 

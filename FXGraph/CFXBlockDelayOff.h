@@ -14,5 +14,11 @@ public:
 	}
 	bool Calc();
 	int m_Ticks;
+	int GetClassID() {
+		return BLOCK_DELAY_OFF;
+	}
+	CString GetClassDescriptor() {
+		return _T("CFXBlockDelayOff");
+	}
 };
 

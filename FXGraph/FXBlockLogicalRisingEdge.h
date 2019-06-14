@@ -11,5 +11,11 @@ public:
 	bool Calc();
 	bool m_Prev;
 	void Initialize(void);
+	int GetClassID() {
+		return BLOCK_LOGICAL_RISING_EDGE;
+	}
+	CString GetClassDescriptor() {
+		return _T("CFXBlockLogicalRisingEdge");
+	}
 };
 
