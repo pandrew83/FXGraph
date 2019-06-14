@@ -1,10 +1,10 @@
-
-// FXGraphView.cpp : реализация класса CFXGraphView
+п»ї
+// FXGraphView.cpp : СЂРµР°Р»РёР·Р°С†РёСЏ РєР»Р°СЃСЃР° CFXGraphView
 //
 
 #include "stdafx.h"
-// SHARED_HANDLERS можно определить в обработчиках фильтров просмотра реализации проекта ATL, эскизов
-// и поиска; позволяет совместно использовать код документа в данным проекте.
+// SHARED_HANDLERS РјРѕР¶РЅРѕ РѕРїСЂРµРґРµР»РёС‚СЊ РІ РѕР±СЂР°Р±РѕС‚С‡РёРєР°С… С„РёР»СЊС‚СЂРѕРІ РїСЂРѕСЃРјРѕС‚СЂР° СЂРµР°Р»РёР·Р°С†РёРё РїСЂРѕРµРєС‚Р° ATL, СЌСЃРєРёР·РѕРІ
+// Рё РїРѕРёСЃРєР°; РїРѕР·РІРѕР»СЏРµС‚ СЃРѕРІРјРµСЃС‚РЅРѕ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ РєРѕРґ РґРѕРєСѓРјРµРЅС‚Р° РІ РґР°РЅРЅС‹Рј РїСЂРѕРµРєС‚Рµ.
 #ifndef SHARED_HANDLERS
 #include "FXGraph.h"
 #endif
@@ -121,7 +121,7 @@ void CFXGraphViewScenario::Dump(CDumpContext& dc) const
 	CView::Dump(dc);
 }
 
-CFXGraphDoc* CFXGraphViewScenario::GetDocument() const // встроена неотлаженная версия
+CFXGraphDoc* CFXGraphViewScenario::GetDocument() const // РІСЃС‚СЂРѕРµРЅР° РЅРµРѕС‚Р»Р°Р¶РµРЅРЅР°СЏ РІРµСЂСЃРёСЏ
 {
 	ASSERT(m_pDocument->IsKindOf(RUNTIME_CLASS(CFXGraphDoc)));
 	return (CFXGraphDoc*)m_pDocument;
@@ -142,7 +142,7 @@ CFXGraphViewScenario::CFXGraphViewScenario(){
 IMPLEMENT_DYNCREATE(CFXGraphView, CView)
 
 BEGIN_MESSAGE_MAP(CFXGraphView, CView)
-	// Стандартные команды печати
+	// РЎС‚Р°РЅРґР°СЂС‚РЅС‹Рµ РєРѕРјР°РЅРґС‹ РїРµС‡Р°С‚Рё
 	ON_COMMAND(ID_FILE_PRINT, &CView::OnFilePrint)
 	ON_COMMAND(ID_FILE_PRINT_DIRECT, &CView::OnFilePrint)
 	ON_COMMAND(ID_FILE_PRINT_PREVIEW, &CFXGraphView::OnFilePrintPreview)
@@ -186,7 +186,7 @@ END_MESSAGE_MAP()
 
 
 
-// создание/уничтожение CFXGraphView
+// СЃРѕР·РґР°РЅРёРµ/СѓРЅРёС‡С‚РѕР¶РµРЅРёРµ CFXGraphView
 
 CFXGraphView::CFXGraphView()
 	: m_pDC(NULL)
@@ -228,9 +228,9 @@ BOOL CFXGraphView::OnToolTipNeedText(UINT id, NMHDR * pNMHDR, LRESULT * pResult)
     CRect ClientRect;
     GetClientRect(ClientRect);
 
-    // Удостовериться, что курсор попадает в клиентскую область окна,
-    // потому что библиотека тоже хочет получать эти сообщения для
-    // показа подсказок на панели инструментов.
+    // РЈРґРѕСЃС‚РѕРІРµСЂРёС‚СЊСЃСЏ, С‡С‚Рѕ РєСѓСЂСЃРѕСЂ РїРѕРїР°РґР°РµС‚ РІ РєР»РёРµРЅС‚СЃРєСѓСЋ РѕР±Р»Р°СЃС‚СЊ РѕРєРЅР°,
+    // РїРѕС‚РѕРјСѓ С‡С‚Рѕ Р±РёР±Р»РёРѕС‚РµРєР° С‚РѕР¶Рµ С…РѕС‡РµС‚ РїРѕР»СѓС‡Р°С‚СЊ СЌС‚Рё СЃРѕРѕР±С‰РµРЅРёСЏ РґР»СЏ
+    // РїРѕРєР°Р·Р° РїРѕРґСЃРєР°Р·РѕРє РЅР° РїР°РЅРµР»Рё РёРЅСЃС‚СЂСѓРјРµРЅС‚РѕРІ.
     if (ClientRect.PtInRect(CursorPos))
     {
         TOOLTIPTEXT *pTTT = (TOOLTIPTEXT *)pNMHDR;
@@ -258,7 +258,7 @@ BOOL CFXGraphView::OnToolTipNeedText(UINT id, NMHDR * pNMHDR, LRESULT * pResult)
 	}
 	return bHandledNotify;
 }
-// рисование CFXGraphView
+// СЂРёСЃРѕРІР°РЅРёРµ CFXGraphView
 
 void CFXGraphView::OnDraw(CDC* pDC)
 {
@@ -288,7 +288,7 @@ void CFXGraphView::OnDraw(CDC* pDC)
 
 
 	CFXGraphApp* pApp = (CFXGraphApp*)AfxGetApp();
-	if (pApp->m_GridState == 0){ // Сетка включена
+	if (pApp->m_GridState == 0){ // РЎРµС‚РєР° РІРєР»СЋС‡РµРЅР°
 		CPoint p1 = Local2Logic(CPoint(0,0));
 		CPoint p2 = Local2Logic(CPoint(rect.Width()-1,rect.Height()-1));
 		while (p1.x % pApp->m_GridStep) p1.x++;
@@ -342,7 +342,7 @@ void CFXGraphView::OnDraw(CDC* pDC)
 }
 
 
-// печать CFXGraphView
+// РїРµС‡Р°С‚СЊ CFXGraphView
 
 
 void CFXGraphView::OnFilePrintPreview()
@@ -354,18 +354,18 @@ void CFXGraphView::OnFilePrintPreview()
 
 BOOL CFXGraphView::OnPreparePrinting(CPrintInfo* pInfo)
 {
-	// подготовка по умолчанию
+	// РїРѕРґРіРѕС‚РѕРІРєР° РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ
 	return DoPreparePrinting(pInfo);
 }
 
 void CFXGraphView::OnBeginPrinting(CDC* /*pDC*/, CPrintInfo* /*pInfo*/)
 {
-	// TODO: добавьте дополнительную инициализацию перед печатью
+	// TODO: РґРѕР±Р°РІСЊС‚Рµ РґРѕРїРѕР»РЅРёС‚РµР»СЊРЅСѓСЋ РёРЅРёС†РёР°Р»РёР·Р°С†РёСЋ РїРµСЂРµРґ РїРµС‡Р°С‚СЊСЋ
 }
 
 void CFXGraphView::OnEndPrinting(CDC* /*pDC*/, CPrintInfo* /*pInfo*/)
 {
-	// TODO: добавьте очистку после печати
+	// TODO: РґРѕР±Р°РІСЊС‚Рµ РѕС‡РёСЃС‚РєСѓ РїРѕСЃР»Рµ РїРµС‡Р°С‚Рё
 }
 
 void CFXGraphView::OnRButtonUp(UINT /* nFlags */, CPoint point){
@@ -461,7 +461,7 @@ void CFXGraphView::OnContextMenu(CWnd* /* pWnd */, CPoint point)
 }
 
 
-// диагностика CFXGraphView
+// РґРёР°РіРЅРѕСЃС‚РёРєР° CFXGraphView
 
 #ifdef _DEBUG
 void CFXGraphView::AssertValid() const
@@ -474,7 +474,7 @@ void CFXGraphView::Dump(CDumpContext& dc) const
 	CView::Dump(dc);
 }
 
-CFXGraphDoc* CFXGraphView::GetDocument() const // встроена неотлаженная версия
+CFXGraphDoc* CFXGraphView::GetDocument() const // РІСЃС‚СЂРѕРµРЅР° РЅРµРѕС‚Р»Р°Р¶РµРЅРЅР°СЏ РІРµСЂСЃРёСЏ
 {
 	ASSERT(m_pDocument->IsKindOf(RUNTIME_CLASS(CFXGraphDoc)));
 	return (CFXGraphDoc*)m_pDocument;
@@ -482,7 +482,7 @@ CFXGraphDoc* CFXGraphView::GetDocument() const // встроена неотлаженная версия
 #endif //_DEBUG
 
 
-// обработчики сообщений CFXGraphView
+// РѕР±СЂР°Р±РѕС‚С‡РёРєРё СЃРѕРѕР±С‰РµРЅРёР№ CFXGraphView
 
 
 void CFXGraphView::OnLButtonDown(UINT nFlags, CPoint point)
@@ -499,20 +499,20 @@ void CFXGraphView::OnLButtonDown(UINT nFlags, CPoint point)
 	TracePrint(TRACE_LEVEL_1,"CFXGraphView::OnLButtonDown point=(%d,%d) %X %X\n",point.x,point.y,color1,color2);
 	m_pCur = m_pBlock->GetByID(color1&MASK1_ID);
 	if (m_pCur){
-		if (color2 & (MASK2_BORDERS|MASK2_CORNERS) && !pDoc->m_bDebug){ // ткнули на границу блока
-			// Режим изменения размера
+		if (color2 & (MASK2_BORDERS|MASK2_CORNERS) && !pDoc->m_bDebug){ // С‚РєРЅСѓР»Рё РЅР° РіСЂР°РЅРёС†Сѓ Р±Р»РѕРєР°
+			// Р РµР¶РёРј РёР·РјРµРЅРµРЅРёСЏ СЂР°Р·РјРµСЂР°
 			m_bResize = true;
 			m_ResizeObject = color2;
 			return;
 		}
-		if (nFlags & MK_CONTROL){ // ткнули с CTRL
+		if (nFlags & MK_CONTROL){ // С‚РєРЅСѓР»Рё СЃ CTRL
 			if (color1&MASK1_SELECTED){
-				// уже выделенный. Снимаем выделение
+				// СѓР¶Рµ РІС‹РґРµР»РµРЅРЅС‹Р№. РЎРЅРёРјР°РµРј РІС‹РґРµР»РµРЅРёРµ
 				m_Selected.RemoveAt(m_Selected.Find(m_pCur));
 				m_pCur->Invalidate(this,REGION_BLOCK|REGION_LEFT|REGION_RIGHT|REGION_PIN);
 			}
 			else{
-				// не выделенный. Выделяем
+				// РЅРµ РІС‹РґРµР»РµРЅРЅС‹Р№. Р’С‹РґРµР»СЏРµРј
 				m_Selected.AddTail(m_pCur);
 				m_pCur->Invalidate(this,REGION_BLOCK|REGION_LEFT|REGION_RIGHT|REGION_PIN);
 			}
@@ -526,40 +526,40 @@ void CFXGraphView::OnLButtonDown(UINT nFlags, CPoint point)
 			else{
 				if (color1 & MASK1_SELECTED){
 					return;
-					// выделенный
-					// Варианты:
-					// 1. Если начали перемещать, то перемещение
-					// 2. Отпустили, то ничего не делаем
+					// РІС‹РґРµР»РµРЅРЅС‹Р№
+					// Р’Р°СЂРёР°РЅС‚С‹:
+					// 1. Р•СЃР»Рё РЅР°С‡Р°Р»Рё РїРµСЂРµРјРµС‰Р°С‚СЊ, С‚Рѕ РїРµСЂРµРјРµС‰РµРЅРёРµ
+					// 2. РћС‚РїСѓСЃС‚РёР»Рё, С‚Рѕ РЅРёС‡РµРіРѕ РЅРµ РґРµР»Р°РµРј
 				}
 				else{
-					// не выделенный. Выделяем только его
+					// РЅРµ РІС‹РґРµР»РµРЅРЅС‹Р№. Р’С‹РґРµР»СЏРµРј С‚РѕР»СЊРєРѕ РµРіРѕ
 					if (m_Selected.GetSize() == 1 && !pDoc->m_bDebug){
 						CFXPin* pPin1 = dynamic_cast<CFXPin*>(m_Selected.GetHead());
 						CFXPin* pPin2 = dynamic_cast<CFXPin*>(m_pCur);
 						CFXPin* pPinIn = NULL;
 						CFXPin* pPinOut = NULL;
 
-						// Четыре варианта соединения пинов
+						// Р§РµС‚С‹СЂРµ РІР°СЂРёР°РЅС‚Р° СЃРѕРµРґРёРЅРµРЅРёСЏ РїРёРЅРѕРІ
 						// 1. input - Output
-						// 1.1. Оба пина не имеют связей - СОЕДИНИТЬ
-						// 1.2. Один пин имеет связь - 
-						// 1.3. Оба пина имеют связи
-						// 1.3.1. Оба пина связаны одной связью - ОТКАЗ
-						// 1.3.2. Оба пина имеют разные связи
+						// 1.1. РћР±Р° РїРёРЅР° РЅРµ РёРјРµСЋС‚ СЃРІСЏР·РµР№ - РЎРћР•Р”РРќРРўР¬
+						// 1.2. РћРґРёРЅ РїРёРЅ РёРјРµРµС‚ СЃРІСЏР·СЊ - 
+						// 1.3. РћР±Р° РїРёРЅР° РёРјРµСЋС‚ СЃРІСЏР·Рё
+						// 1.3.1. РћР±Р° РїРёРЅР° СЃРІСЏР·Р°РЅС‹ РѕРґРЅРѕР№ СЃРІСЏР·СЊСЋ - РћРўРљРђР—
+						// 1.3.2. РћР±Р° РїРёРЅР° РёРјРµСЋС‚ СЂР°Р·РЅС‹Рµ СЃРІСЏР·Рё
 						
 						// 3. input - input
-						// 3.1. Оба пина не имеют связей - ОТКАЗ
-						// 3.2. Один пин имеет связь - ПОЛУЧИТЬ Output и СОЕДИНИТЬ 
-						// 3.3. Оба пина имеют связи
-						// 3.3.1 Оба пина соединены одной связью - ОТКАЗ
-						// 3.3.2 Оба пина имеют разные связи
-						// 4. output - output - ОТКАЗ
-						// Возможность соединения
-						// Если пины одного блока - отказ
+						// 3.1. РћР±Р° РїРёРЅР° РЅРµ РёРјРµСЋС‚ СЃРІСЏР·РµР№ - РћРўРљРђР—
+						// 3.2. РћРґРёРЅ РїРёРЅ РёРјРµРµС‚ СЃРІСЏР·СЊ - РџРћР›РЈР§РРўР¬ Output Рё РЎРћР•Р”РРќРРўР¬ 
+						// 3.3. РћР±Р° РїРёРЅР° РёРјРµСЋС‚ СЃРІСЏР·Рё
+						// 3.3.1 РћР±Р° РїРёРЅР° СЃРѕРµРґРёРЅРµРЅС‹ РѕРґРЅРѕР№ СЃРІСЏР·СЊСЋ - РћРўРљРђР—
+						// 3.3.2 РћР±Р° РїРёРЅР° РёРјРµСЋС‚ СЂР°Р·РЅС‹Рµ СЃРІСЏР·Рё
+						// 4. output - output - РћРўРљРђР—
+						// Р’РѕР·РјРѕР¶РЅРѕСЃС‚СЊ СЃРѕРµРґРёРЅРµРЅРёСЏ
+						// Р•СЃР»Рё РїРёРЅС‹ РѕРґРЅРѕРіРѕ Р±Р»РѕРєР° - РѕС‚РєР°Р·
 						// 
 
 						if (!pPin1 || !pPin2 || (pPin1->m_Dir == Output && pPin2->m_Dir == Output)){
-							// Один из объектов не пин. Назначаем новый текущий
+							// РћРґРёРЅ РёР· РѕР±СЉРµРєС‚РѕРІ РЅРµ РїРёРЅ. РќР°Р·РЅР°С‡Р°РµРј РЅРѕРІС‹Р№ С‚РµРєСѓС‰РёР№
 							while (!m_Selected.IsEmpty()){
 								CFXObject* pObj = m_Selected.RemoveHead();
 								pObj->Invalidate(this,REGION_BLOCK|REGION_LEFT|REGION_RIGHT|REGION_PIN);
@@ -626,15 +626,15 @@ void CFXGraphView::OnLButtonDown(UINT nFlags, CPoint point)
 
 						}
 						if (pPinOut->GetLink(pPinIn)){
-							// Уже есть связи между этими пинами
+							// РЈР¶Рµ РµСЃС‚СЊ СЃРІСЏР·Рё РјРµР¶РґСѓ СЌС‚РёРјРё РїРёРЅР°РјРё
 							return;
 						}
 						CListLink lst1,lst2;
 						pPinIn->GetPinLinks(lst1);
 						pPinOut->GetPinLinks(lst2);
 						if (lst1.GetCount() > 0){
-							// Оба со связью
-							if (AfxMessageBox(_T("Пин уже имеет связь с другим пином. Заменить связь?"),MB_YESNO) == IDNO){
+							// РћР±Р° СЃРѕ СЃРІСЏР·СЊСЋ
+							if (AfxMessageBox(_T("РџРёРЅ СѓР¶Рµ РёРјРµРµС‚ СЃРІСЏР·СЊ СЃ РґСЂСѓРіРёРј РїРёРЅРѕРј. Р—Р°РјРµРЅРёС‚СЊ СЃРІСЏР·СЊ?"),MB_YESNO) == IDNO){
 								return;
 							}
 							pPinIn->RemoveLinks();
@@ -696,7 +696,7 @@ void CFXGraphView::OnLButtonUp(UINT nFlags, CPoint point)
 		m_bLinking = false;
 		return;
 	}
-	// Режим выделения
+	// Р РµР¶РёРј РІС‹РґРµР»РµРЅРёСЏ
 	CFXGraphDoc* pDoc = GetDocument();
 	ASSERT_VALID(pDoc);
 	if (!pDoc)
@@ -704,9 +704,9 @@ void CFXGraphView::OnLButtonUp(UINT nFlags, CPoint point)
 	COLORREF color1 = m_Mem1.GetPixel(point);
 	COLORREF color2 = m_Mem2.GetPixel(point);
 	CFXObject* pObject = m_pBlock->GetByID(color1);
-	if (pObject){ // отпустили над объектом
-		if (nFlags & MK_CONTROL){ // с CTRL
-			if (color1 & MASK1_SELECTED){ // выделенный
+	if (pObject){ // РѕС‚РїСѓСЃС‚РёР»Рё РЅР°Рґ РѕР±СЉРµРєС‚РѕРј
+		if (nFlags & MK_CONTROL){ // СЃ CTRL
+			if (color1 & MASK1_SELECTED){ // РІС‹РґРµР»РµРЅРЅС‹Р№
 				//m_Selected.RemoveAll();
 				//m_Selected.AddTail(pObject);
 			}
@@ -744,8 +744,8 @@ void CFXGraphView::OnMouseMove(UINT nFlags, CPoint point)
 //	TracePrint("%X %X\n",color1,color2);
 	int ID = color1 & MASK1_ID;
 	if (m_bButtonL && !m_bMoving && !m_bResize && color1 & MASK1_SELECTED && !pDoc->m_bDebug){
-		// Левая нажата, не режим перемещения и перемещение начали на выделенном элементе
-		// m_Point - точка начала перемещения
+		// Р›РµРІР°СЏ РЅР°Р¶Р°С‚Р°, РЅРµ СЂРµР¶РёРј РїРµСЂРµРјРµС‰РµРЅРёСЏ Рё РїРµСЂРµРјРµС‰РµРЅРёРµ РЅР°С‡Р°Р»Рё РЅР° РІС‹РґРµР»РµРЅРЅРѕРј СЌР»РµРјРµРЅС‚Рµ
+		// m_Point - С‚РѕС‡РєР° РЅР°С‡Р°Р»Р° РїРµСЂРµРјРµС‰РµРЅРёСЏ
 		m_bMoving = true;
 		m_pCur = m_pBlock->GetByID(ID);
 		POSITION pos = m_Selected.GetHeadPosition();
@@ -851,7 +851,6 @@ void CFXGraphView::OnMouseMove(UINT nFlags, CPoint point)
 					int w = pCur->GetWidth();
 					int h = pCur->GetHeight();
 					pCur->SetX(pCur->GetX() + dx);
-//					pCur->SetY(pCur->GetY() + newY - y);
 					pCur->SetWidth(w - dx);
 					pCur->SetHeight(h + dy);
 					pCur->Invalidate(this, REGION_COORD);
@@ -866,8 +865,6 @@ void CFXGraphView::OnMouseMove(UINT nFlags, CPoint point)
 				if (pCur->GetWidth() + dx >= pCur->m_MinWidth && pCur->GetHeight() + dy >= pCur->m_MinHeight) {
 					int w = pCur->GetWidth();
 					int h = pCur->GetHeight();
-	//				pCur->SetX(pCur->GetX() + newX - x);
-	//				pCur->SetY(pCur->GetY() + newY - y);
 					pCur->SetWidth(w + dx);
 					pCur->SetHeight(h + dy);
 					pCur->Invalidate(this, REGION_COORD);
@@ -883,23 +880,23 @@ void CFXGraphView::OnMouseMove(UINT nFlags, CPoint point)
 		return;
 	}
 	if (m_bMoving){
-		// Смещение в логических единицах от исходной точки к текущей точке
+		// РЎРјРµС‰РµРЅРёРµ РІ Р»РѕРіРёС‡РµСЃРєРёС… РµРґРёРЅРёС†Р°С… РѕС‚ РёСЃС…РѕРґРЅРѕР№ С‚РѕС‡РєРё Рє С‚РµРєСѓС‰РµР№ С‚РѕС‡РєРµ
 		CPoint p1 = Local2Logic(point);
 		CPoint p11 = Local2Logic(m_Point);
 		int dx = p1.x-p11.x;
 		int dy = p1.y-p11.y;
-		// Новые координаты текущего блока в логических единицах
+		// РќРѕРІС‹Рµ РєРѕРѕСЂРґРёРЅР°С‚С‹ С‚РµРєСѓС‰РµРіРѕ Р±Р»РѕРєР° РІ Р»РѕРіРёС‡РµСЃРєРёС… РµРґРёРЅРёС†Р°С…
 		CPoint p2 = CPoint(m_pCur->m_SaveX+dx,m_pCur->m_SaveY+dy);
 		CPoint p3;
 		CPoint p4;
-		if (pApp->m_GridBind){ // включена привязка к сетке
+		if (pApp->m_GridBind){ // РІРєР»СЋС‡РµРЅР° РїСЂРёРІСЏР·РєР° Рє СЃРµС‚РєРµ
 			p3 = GetNearestPoint(p2);
 		}
-		else{ // произвольное перемещение без привязки
+		else{ // РїСЂРѕРёР·РІРѕР»СЊРЅРѕРµ РїРµСЂРµРјРµС‰РµРЅРёРµ Р±РµР· РїСЂРёРІСЏР·РєРё
 			p3 = p2;
 		}
 //		TracePrint("m_Point=(%d,%d) point=(%d,%d) p1=(%d,%d) p2=(%d,%d) p3=(%d,%d) p4=(%d,%d)\n",m_Point.x,m_Point.y,point.x,point.y,p1.x,p1.y,p2.x,p2.y,p3.x,p3.y,p4.x,p4.y);
-		// Смещение от исходной точки блока до текущей точки
+		// РЎРјРµС‰РµРЅРёРµ РѕС‚ РёСЃС…РѕРґРЅРѕР№ С‚РѕС‡РєРё Р±Р»РѕРєР° РґРѕ С‚РµРєСѓС‰РµР№ С‚РѕС‡РєРё
 		p4 = CPoint(p3.x-m_pCur->m_SaveX,p3.y-m_pCur->m_SaveY);
 		if (p4.x || p4.y){
 			TracePrint(TRACE_LEVEL_1,"OffSet=(%d,%d)",p4.x,p4.y);
@@ -929,7 +926,7 @@ void CFXGraphView::OnMouseMove(UINT nFlags, CPoint point)
 	}
 	else
 		m_ToolTip.Activate(false);
-	// Управление курсором мыши
+	// РЈРїСЂР°РІР»РµРЅРёРµ РєСѓСЂСЃРѕСЂРѕРј РјС‹С€Рё
 	if (!pDoc->m_bDebug && !m_bButtonL && !m_bButtonR && (color2 & (MASK2_BORDERS|MASK2_CORNERS))){
 		if (color2 & MASK2_BORDER_TOP || color2 & MASK2_BORDER_BOTTOM)
 			SetCursor(AfxGetApp()->LoadStandardCursor(IDC_SIZENS));
@@ -947,7 +944,7 @@ void CFXGraphView::OnMouseMove(UINT nFlags, CPoint point)
 			SetCursor(AfxGetApp()->LoadStandardCursor(IDC_ARROW));
 		}
 
-	// Перемещение поля
+	// РџРµСЂРµРјРµС‰РµРЅРёРµ РїРѕР»СЏ
 	if (m_bButtonM && nFlags & MK_MBUTTON){
 		CPoint p1 = Local2Logic(m_Point);
 		CPoint p2 = Local2Logic(point);
@@ -1251,7 +1248,7 @@ void CFXGraphView::OnBlockPinRemove()
 	TracePrint(TRACE_LEVEL_1,"CFXGraphView::OnBlockPinRemove");
 	CFXGraphDoc* pDoc = (CFXGraphDoc*)GetDocument();
 	if (pDoc->m_bDebug){
-		AfxMessageBox(_T("Нельзя удалить пин во время отладки проекта"));
+		AfxMessageBox(_T("РќРµР»СЊР·СЏ СѓРґР°Р»РёС‚СЊ РїРёРЅ РІРѕ РІСЂРµРјСЏ РѕС‚Р»Р°РґРєРё РїСЂРѕРµРєС‚Р°"));
 		return;
 	}
 	if (m_pCur){
@@ -1354,7 +1351,7 @@ void CFXGraphView::OnBlockRemove()
 	TracePrint(TRACE_LEVEL_1,"CFXGraphView::OnBlockRemove");
 	CFXGraphDoc* pDoc = (CFXGraphDoc*)GetDocument();
 	if (pDoc->m_bDebug){
-		AfxMessageBox(_T("Нельзя удалить блок во время отладки проекта"));
+		AfxMessageBox(_T("РќРµР»СЊР·СЏ СѓРґР°Р»РёС‚СЊ Р±Р»РѕРє РІРѕ РІСЂРµРјСЏ РѕС‚Р»Р°РґРєРё РїСЂРѕРµРєС‚Р°"));
 		return;
 	}
 	CFXBlock* pBlock = dynamic_cast<CFXBlock*>(m_pCur);
@@ -1393,7 +1390,7 @@ void CFXGraphView::OnLButtonDblClk(UINT nFlags, CPoint point)
 		}
 	}
 	
-	// TODO: добавьте свой код обработчика сообщений или вызов стандартного
+	// TODO: РґРѕР±Р°РІСЊС‚Рµ СЃРІРѕР№ РєРѕРґ РѕР±СЂР°Р±РѕС‚С‡РёРєР° СЃРѕРѕР±С‰РµРЅРёР№ РёР»Рё РІС‹Р·РѕРІ СЃС‚Р°РЅРґР°СЂС‚РЅРѕРіРѕ
 
 	CView::OnLButtonDblClk(nFlags, point);
 }
@@ -1948,7 +1945,7 @@ void CFXGraphView::SetViewAt(CFXObject* pObject)
 
 //void CFXGraphViewScenario::OnUpdate(CView* /*pSender*/, LPARAM /*lHint*/, CObject* /*pHint*/)
 //{
-//	// TODO: добавьте специализированный код или вызов базового класса
+//	// TODO: РґРѕР±Р°РІСЊС‚Рµ СЃРїРµС†РёР°Р»РёР·РёСЂРѕРІР°РЅРЅС‹Р№ РєРѕРґ РёР»Рё РІС‹Р·РѕРІ Р±Р°Р·РѕРІРѕРіРѕ РєР»Р°СЃСЃР°
 //}
 
 
@@ -2009,8 +2006,8 @@ void CFXGraphView::OnPinGraph(UINT nID) {
 //void CFXGraphView::OnPaint()
 //{
 //	CPaintDC dc(this); // device context for painting
-//					   // TODO: добавьте свой код обработчика сообщений
-//					   // Не вызывать CView::OnPaint() для сообщений рисования
+//					   // TODO: РґРѕР±Р°РІСЊС‚Рµ СЃРІРѕР№ РєРѕРґ РѕР±СЂР°Р±РѕС‚С‡РёРєР° СЃРѕРѕР±С‰РµРЅРёР№
+//					   // РќРµ РІС‹Р·С‹РІР°С‚СЊ CView::OnPaint() РґР»СЏ СЃРѕРѕР±С‰РµРЅРёР№ СЂРёСЃРѕРІР°РЅРёСЏ
 //}
 
 
@@ -2018,5 +2015,5 @@ void CFXGraphView::OnPinGraph(UINT nID) {
 //{
 //	CView::OnSetFocus(pOldWnd);
 //
-//	// TODO: добавьте свой код обработчика сообщений
+//	// TODO: РґРѕР±Р°РІСЊС‚Рµ СЃРІРѕР№ РєРѕРґ РѕР±СЂР°Р±РѕС‚С‡РёРєР° СЃРѕРѕР±С‰РµРЅРёР№
 //}
