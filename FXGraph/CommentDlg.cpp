@@ -1,4 +1,4 @@
-// CommentDlg.cpp: файл реализации
+// CommentDlg.cpp: С„Р°Р№Р» СЂРµР°Р»РёР·Р°С†РёРё
 //
 
 #include "stdafx.h"
@@ -7,7 +7,7 @@
 #include "afxdialogex.h"
 
 
-// диалоговое окно CCommentDlg
+// РґРёР°Р»РѕРіРѕРІРѕРµ РѕРєРЅРѕ CCommentDlg
 
 IMPLEMENT_DYNAMIC(CCommentDlg, CDialog)
 
@@ -33,4 +33,4 @@ BEGIN_MESSAGE_MAP(CCommentDlg, CDialog)
 END_MESSAGE_MAP()
 
 
-// обработчики сообщений CCommentDlg
+// РѕР±СЂР°Р±РѕС‚С‡РёРєРё СЃРѕРѕР±С‰РµРЅРёР№ CCommentDlg

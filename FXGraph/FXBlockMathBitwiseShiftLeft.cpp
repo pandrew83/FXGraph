@@ -27,7 +27,7 @@ CFXBlockMathBitwiseShiftLeft::~CFXBlockMathBitwiseShiftLeft(void)
 
 bool CFXBlockMathBitwiseShiftLeft::Calc(void)
 {
-	// Должно быть только два пина
+	// Р”РѕР»Р¶РЅРѕ Р±С‹С‚СЊ С‚РѕР»СЊРєРѕ РґРІР° РїРёРЅР°
 	ASSERT(m_InputPins.GetCount() == 2);
 	if (!CFXBlock::Calc())
 		return false;

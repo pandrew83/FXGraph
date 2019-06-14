@@ -35,22 +35,22 @@ int COutputWnd::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	CRect rectDummy;
 	rectDummy.SetRectEmpty();
 
-	// Создание окна вкладок:
+	// РЎРѕР·РґР°РЅРёРµ РѕРєРЅР° РІРєР»Р°РґРѕРє:
 	if (!m_wndTabs.Create(CMFCTabCtrl::STYLE_FLAT, rectDummy, this, 1))
 	{
-		TRACE0("Не удалось создать окно вкладки вывода\n");
-		return -1;      // не удалось создать
+		TRACE0("РќРµ СѓРґР°Р»РѕСЃСЊ СЃРѕР·РґР°С‚СЊ РѕРєРЅРѕ РІРєР»Р°РґРєРё РІС‹РІРѕРґР°\n");
+		return -1;      // РЅРµ СѓРґР°Р»РѕСЃСЊ СЃРѕР·РґР°С‚СЊ
 	}
 
-	// Создать панели вывода:
+	// РЎРѕР·РґР°С‚СЊ РїР°РЅРµР»Рё РІС‹РІРѕРґР°:
 	const DWORD dwStyle = LBS_NOINTEGRALHEIGHT | WS_CHILD | WS_VISIBLE | WS_HSCROLL | WS_VSCROLL;
 
 	if (!m_wndOutputBuild.Create(dwStyle, rectDummy, &m_wndTabs, 2) ||
 		!m_wndOutputDebug.Create(dwStyle, rectDummy, &m_wndTabs, 3) ||
 		!m_wndOutputFind.Create(dwStyle, rectDummy, &m_wndTabs, 4))
 	{
-		TRACE0("Не удалось создать окна вывода\n");
-		return -1;      // не удалось создать
+		TRACE0("РќРµ СѓРґР°Р»РѕСЃСЊ СЃРѕР·РґР°С‚СЊ РѕРєРЅР° РІС‹РІРѕРґР°\n");
+		return -1;      // РЅРµ СѓРґР°Р»РѕСЃСЊ СЃРѕР·РґР°С‚СЊ
 	}
 
 	UpdateFonts();
@@ -58,7 +58,7 @@ int COutputWnd::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	CString strTabName;
 	BOOL bNameValid;
 
-	// Присоединить окна списков к вкладке:
+	// РџСЂРёСЃРѕРµРґРёРЅРёС‚СЊ РѕРєРЅР° СЃРїРёСЃРєРѕРІ Рє РІРєР»Р°РґРєРµ:
 	bNameValid = strTabName.LoadString(IDS_BUILD_TAB);
 	ASSERT(bNameValid);
 	m_wndTabs.AddTab(&m_wndOutputBuild, strTabName, (UINT)0);
@@ -69,7 +69,7 @@ int COutputWnd::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	ASSERT(bNameValid);
 	m_wndTabs.AddTab(&m_wndOutputFind, strTabName, (UINT)2);
 
-	// Заполнить вкладки вывода пустым текстом (ничего другого)
+	// Р—Р°РїРѕР»РЅРёС‚СЊ РІРєР»Р°РґРєРё РІС‹РІРѕРґР° РїСѓСЃС‚С‹Рј С‚РµРєСЃС‚РѕРј (РЅРёС‡РµРіРѕ РґСЂСѓРіРѕРіРѕ)
 	FillBuildWindow();
 	FillDebugWindow();
 	FillFindWindow();
@@ -81,7 +81,7 @@ void COutputWnd::OnSize(UINT nType, int cx, int cy)
 {
 	CDockablePane::OnSize(nType, cx, cy);
 
-	// Элемент управления вкладки должен покрывать всю клиентскую область:
+	// Р­Р»РµРјРµРЅС‚ СѓРїСЂР°РІР»РµРЅРёСЏ РІРєР»Р°РґРєРё РґРѕР»Р¶РµРЅ РїРѕРєСЂС‹РІР°С‚СЊ РІСЃСЋ РєР»РёРµРЅС‚СЃРєСѓСЋ РѕР±Р»Р°СЃС‚СЊ:
 	m_wndTabs.SetWindowPos (NULL, -1, -1, cx, cy, SWP_NOMOVE | SWP_NOACTIVATE | SWP_NOZORDER);
 }
 
@@ -106,23 +106,23 @@ void COutputWnd::AdjustHorzScroll(CListBox& wndListBox)
 
 void COutputWnd::FillBuildWindow()
 {
-	//m_wndOutputBuild.AddString(_T("Здесь отображается вывод построения."));
-	//m_wndOutputBuild.AddString(_T("Вывод отображается в виде строк представления списка,"));
-	//m_wndOutputBuild.AddString(_T("однако можно изменить способ отображения..."));
+	//m_wndOutputBuild.AddString(_T("Р—РґРµСЃСЊ РѕС‚РѕР±СЂР°Р¶Р°РµС‚СЃСЏ РІС‹РІРѕРґ РїРѕСЃС‚СЂРѕРµРЅРёСЏ."));
+	//m_wndOutputBuild.AddString(_T("Р’С‹РІРѕРґ РѕС‚РѕР±СЂР°Р¶Р°РµС‚СЃСЏ РІ РІРёРґРµ СЃС‚СЂРѕРє РїСЂРµРґСЃС‚Р°РІР»РµРЅРёСЏ СЃРїРёСЃРєР°,"));
+	//m_wndOutputBuild.AddString(_T("РѕРґРЅР°РєРѕ РјРѕР¶РЅРѕ РёР·РјРµРЅРёС‚СЊ СЃРїРѕСЃРѕР± РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ..."));
 }
 
 void COutputWnd::FillDebugWindow()
 {
-	//m_wndOutputDebug.AddString(_T("Здесь отображается вывод отладки."));
-	//m_wndOutputDebug.AddString(_T("Вывод отображается в виде строк представления списка,"));
-	//m_wndOutputDebug.AddString(_T("однако можно изменить способ отображения..."));
+	//m_wndOutputDebug.AddString(_T("Р—РґРµСЃСЊ РѕС‚РѕР±СЂР°Р¶Р°РµС‚СЃСЏ РІС‹РІРѕРґ РѕС‚Р»Р°РґРєРё."));
+	//m_wndOutputDebug.AddString(_T("Р’С‹РІРѕРґ РѕС‚РѕР±СЂР°Р¶Р°РµС‚СЃСЏ РІ РІРёРґРµ СЃС‚СЂРѕРє РїСЂРµРґСЃС‚Р°РІР»РµРЅРёСЏ СЃРїРёСЃРєР°,"));
+	//m_wndOutputDebug.AddString(_T("РѕРґРЅР°РєРѕ РјРѕР¶РЅРѕ РёР·РјРµРЅРёС‚СЊ СЃРїРѕСЃРѕР± РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ..."));
 }
 
 void COutputWnd::FillFindWindow()
 {
-	//m_wndOutputFind.AddString(_T("Здесь отображается вывод поиска."));
-	//m_wndOutputFind.AddString(_T("Вывод отображается в виде строк представления списка,"));
-	//m_wndOutputFind.AddString(_T("однако можно изменить способ отображения..."));
+	//m_wndOutputFind.AddString(_T("Р—РґРµСЃСЊ РѕС‚РѕР±СЂР°Р¶Р°РµС‚СЃСЏ РІС‹РІРѕРґ РїРѕРёСЃРєР°."));
+	//m_wndOutputFind.AddString(_T("Р’С‹РІРѕРґ РѕС‚РѕР±СЂР°Р¶Р°РµС‚СЃСЏ РІ РІРёРґРµ СЃС‚СЂРѕРє РїСЂРµРґСЃС‚Р°РІР»РµРЅРёСЏ СЃРїРёСЃРєР°,"));
+	//m_wndOutputFind.AddString(_T("РѕРґРЅР°РєРѕ РјРѕР¶РЅРѕ РёР·РјРµРЅРёС‚СЊ СЃРїРѕСЃРѕР± РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ..."));
 }
 
 void COutputWnd::UpdateFonts()
@@ -151,7 +151,7 @@ BEGIN_MESSAGE_MAP(COutputList, CListBox)
 	ON_WM_WINDOWPOSCHANGING()
 END_MESSAGE_MAP()
 /////////////////////////////////////////////////////////////////////////////
-// обработчики сообщений COutputList
+// РѕР±СЂР°Р±РѕС‚С‡РёРєРё СЃРѕРѕР±С‰РµРЅРёР№ COutputList
 
 void COutputList::OnContextMenu(CWnd* /*pWnd*/, CPoint point)
 {
@@ -176,12 +176,12 @@ void COutputList::OnContextMenu(CWnd* /*pWnd*/, CPoint point)
 
 void COutputList::OnEditCopy()
 {
-	MessageBox(_T("Копировать выходные данные"));
+	MessageBox(_T("РљРѕРїРёСЂРѕРІР°С‚СЊ РІС‹С…РѕРґРЅС‹Рµ РґР°РЅРЅС‹Рµ"));
 }
 
 void COutputList::OnEditClear()
 {
-	MessageBox(_T("Очистить выходные данные"));
+	MessageBox(_T("РћС‡РёСЃС‚РёС‚СЊ РІС‹С…РѕРґРЅС‹Рµ РґР°РЅРЅС‹Рµ"));
 }
 
 void COutputList::OnViewOutput()

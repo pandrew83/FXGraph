@@ -93,7 +93,7 @@ bool CFXBlockCounter::Check(void)
 
 	if (inc == dec){
 		CString msg;
-		msg.Format(_T("Блок #%d (%s): блок должен быть в одном из режимов inc или dec"),m_ID,m_Name);
+		msg.Format(_T("Р…Р»РѕРє #%d (%s): Р±Р»РѕРє РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ РІ РѕРґРЅРѕРј РёР· СЂРµР¶РёРјРѕРІ inc РёР»Рё dec"),m_ID,m_Name);
 		Log(Debug,msg);
 		return false;
 	}

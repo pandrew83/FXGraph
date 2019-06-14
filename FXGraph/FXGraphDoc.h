@@ -1,5 +1,5 @@
 
-// FXGraphDoc.h : интерфейс класса CFXGraphDoc
+// FXGraphDoc.h : РёРЅС‚РµСЂС„РµР№СЃ РєР»Р°СЃСЃР° CFXGraphDoc
 //
 
 #pragma once
@@ -17,20 +17,20 @@ class CFXGraphViewGraphic;
 
 class CFXGraphDoc : public CDocument
 {
-protected: // создать только из сериализации
+protected: // СЃРѕР·РґР°С‚СЊ С‚РѕР»СЊРєРѕ РёР· СЃРµСЂРёР°Р»РёР·Р°С†РёРё
 	CFXGraphDoc();
 	DECLARE_DYNCREATE(CFXGraphDoc)
 	
-// Атрибуты
+// РђС‚СЂРёР±СѓС‚С‹
 public:
 	CFXBlockFunctional* m_pBlock;
 	CFXDataCollector m_DataCollector;
 	CList<CFXGraphic*, CFXGraphic*> m_Graphs;
 //	int m_LastID;
-// Операции
+// РћРїРµСЂР°С†РёРё
 public:
 
-// Переопределение
+// РџРµСЂРµРѕРїСЂРµРґРµР»РµРЅРёРµ
 public:
 	virtual BOOL OnNewDocument();
 	virtual void Serialize(CArchive& ar);
@@ -39,7 +39,7 @@ public:
 	virtual void OnDrawThumbnail(CDC& dc, LPRECT lprcBounds);
 #endif // SHARED_HANDLERS
 
-// Реализация
+// Р РµР°Р»РёР·Р°С†РёСЏ
 public:
 	virtual ~CFXGraphDoc();
 #ifdef _DEBUG
@@ -49,12 +49,12 @@ public:
 
 protected:
 
-// Созданные функции схемы сообщений
+// РЎРѕР·РґР°РЅРЅС‹Рµ С„СѓРЅРєС†РёРё СЃС…РµРјС‹ СЃРѕРѕР±С‰РµРЅРёР№
 protected:
 	DECLARE_MESSAGE_MAP()
 
 #ifdef SHARED_HANDLERS
-	// Вспомогательная функция, задающая содержимое поиска для обработчика поиска
+	// Р’СЃРїРѕРјРѕРіР°С‚РµР»СЊРЅР°СЏ С„СѓРЅРєС†РёСЏ, Р·Р°РґР°СЋС‰Р°СЏ СЃРѕРґРµСЂР¶РёРјРѕРµ РїРѕРёСЃРєР° РґР»СЏ РѕР±СЂР°Р±РѕС‚С‡РёРєР° РїРѕРёСЃРєР°
 	void SetSearchContent(const CString& value);
 #endif // SHARED_HANDLERS
 public:

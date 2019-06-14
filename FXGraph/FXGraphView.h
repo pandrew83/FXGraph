@@ -1,5 +1,5 @@
 
-// FXGraphView.h : интерфейс класса CFXGraphView
+// FXGraphView.h : РёРЅС‚РµСЂС„РµР№СЃ РєР»Р°СЃСЃР° CFXGraphView
 //
 
 #pragma once
@@ -32,11 +32,11 @@ public:
 
 class CFXGraphView : public CView
 {
-protected: // создать только из сериализации
+protected: // СЃРѕР·РґР°С‚СЊ С‚РѕР»СЊРєРѕ РёР· СЃРµСЂРёР°Р»РёР·Р°С†РёРё
 	CFXGraphView();
 	DECLARE_DYNCREATE(CFXGraphView)
 
-// Атрибуты
+// СС‚СЂРёР±СѓС‚С‹
 public:
 	CFXGraphDoc* GetDocument() const;
 	CDC m_Mem1;
@@ -54,19 +54,19 @@ public:
 	CFXObject* m_pObject;
 	CList<CFXObject*,CFXObject*> m_Selected;
 
-// Операции
+// СњРїРµСЂР°С†РёРё
 public:
 
-// Переопределение
+// С•РµСЂРµРѕРїСЂРµРґРµР»РµРЅРёРµ
 public:
-	virtual void OnDraw(CDC* pDC);  // переопределено для отрисовки этого представления
+	virtual void OnDraw(CDC* pDC);  // РїРµСЂРµРѕРїСЂРµРґРµР»РµРЅРѕ РґР»В¤ РѕС‚СЂРёСЃРѕРІРєРё СЌС‚РѕРіРѕ РїСЂРµРґСЃС‚Р°РІР»РµРЅРёВ¤
 	virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
 protected:
 	virtual BOOL OnPreparePrinting(CPrintInfo* pInfo);
 	virtual void OnBeginPrinting(CDC* pDC, CPrintInfo* pInfo);
 	virtual void OnEndPrinting(CDC* pDC, CPrintInfo* pInfo);
 
-// Реализация
+// вЂ“РµР°Р»РёР·Р°С†РёВ¤
 public:
 	virtual ~CFXGraphView();
 #ifdef _DEBUG
@@ -76,7 +76,7 @@ public:
 
 protected:
 
-// Созданные функции схемы сообщений
+// вЂ”РѕР·РґР°РЅРЅС‹Рµ С„СѓРЅРєС†РёРё СЃС…РµРјС‹ СЃРѕРѕР±С‰РµРЅРёР№
 protected:
 	BOOL OnToolTipNeedText(UINT id, NMHDR * pNMHDR, LRESULT * pResult);
 	afx_msg void OnFilePrintPreview();
@@ -149,7 +149,7 @@ public:
 //	afx_msg void OnSetFocus(CWnd* pOldWnd);
 };
 
-#ifndef _DEBUG  // отладочная версия в FXGraphView.cpp
+#ifndef _DEBUG  // РѕС‚Р»Р°РґРѕС‡РЅР°В¤ РІРµСЂСЃРёВ¤ РІ FXGraphView.cpp
 inline CFXGraphDoc* CFXGraphView::GetDocument() const
    { return reinterpret_cast<CFXGraphDoc*>(m_pDocument); }
 inline CFXGraphDoc* CFXGraphViewScenario::GetDocument() const

@@ -1,4 +1,4 @@
-// PropertyGridCtrl.cpp: файл реализации
+// PropertyGridCtrl.cpp: С„Р°Р№Р» СЂРµР°Р»РёР·Р°С†РёРё
 //
 
 #include "stdafx.h"
@@ -25,7 +25,7 @@ END_MESSAGE_MAP()
 
 
 
-// обработчики сообщений CPropertyGridCtrl
+// РѕР±СЂР°Р±РѕС‚С‡РёРєРё СЃРѕРѕР±С‰РµРЅРёР№ CPropertyGridCtrl
 
 
 
@@ -44,7 +44,7 @@ void CPropertyGridCtrl::OnPropertyChanged(CMFCPropertyGridProperty* pProp) const
 
 BOOL CPropertyGridCtrl::ValidateItemData(CMFCPropertyGridProperty* pProp)
 {
-	// TODO: добавьте специализированный код или вызов базового класса
+	// TODO: РґРѕР±Р°РІСЊС‚Рµ СЃРїРµС†РёР°Р»РёР·РёСЂРѕРІР°РЅРЅС‹Р№ РєРѕРґ РёР»Рё РІС‹Р·РѕРІ Р±Р°Р·РѕРІРѕРіРѕ РєР»Р°СЃСЃР°
 	TracePrint(TRACE_LEVEL_1,"CPropertyGridCtrl::ValidateItemData");
 	return CMFCPropertyGridCtrl::ValidateItemData(pProp);
 }

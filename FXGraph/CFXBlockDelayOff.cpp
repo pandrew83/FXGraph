@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "CFXBlockDelayOff.h"
 IMPLEMENT_SERIAL(CFXBlockDelayOff, CFXBlock, 1);
-// Это русский комментарий
+// Р­С‚Рѕ СЂСѓСЃСЃРєРёР№ РєРѕРјРјРµРЅС‚Р°СЂРёР№
 
 CFXBlockDelayOff::CFXBlockDelayOff()
 {

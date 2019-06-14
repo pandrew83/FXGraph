@@ -2,15 +2,15 @@
 #pragma once
 
 /////////////////////////////////////////////////////////////////////////////
-// окно COutputList
+// РѕРєРЅРѕ COutputList
 
 class COutputList : public CListBox
 {
-// Создание
+// РЎРѕР·РґР°РЅРёРµ
 public:
 	COutputList();
 
-// Реализация
+// Р РµР°Р»РёР·Р°С†РёСЏ
 public:
 	virtual ~COutputList();
 
@@ -25,13 +25,13 @@ protected:
 
 class COutputWnd : public CDockablePane
 {
-// Создание
+// РЎРѕР·РґР°РЅРёРµ
 public:
 	COutputWnd();
 
 	void UpdateFonts();
 
-// Атрибуты
+// РђС‚СЂРёР±СѓС‚С‹
 protected:
 	CMFCTabCtrl	m_wndTabs;
 
@@ -46,7 +46,7 @@ protected:
 
 	void AdjustHorzScroll(CListBox& wndListBox);
 
-// Реализация
+// Р РµР°Р»РёР·Р°С†РёСЏ
 public:
 	virtual ~COutputWnd();
 

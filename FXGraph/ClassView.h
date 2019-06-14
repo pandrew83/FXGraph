@@ -33,7 +33,7 @@ protected:
 
 	void FillClassView();
 
-// Οεπεξοπεδελενθε
+// ΠΠµΡ€ΠµΠΎΠΏΡ€ΠµΠ΄ΠµΠ»ΠµΠ½ΠΈΠµ
 public:
 	virtual BOOL PreTranslateMessage(MSG* pMsg);
 

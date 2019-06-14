@@ -1,5 +1,5 @@
 
-// ChildFrm.cpp : реализация класса CChildFrame
+// ChildFrm.cpp : СЂРµР°Р»РёР·Р°С†РёСЏ РєР»Р°СЃСЃР° CChildFrame
 //
 
 #include "stdafx.h"
@@ -21,7 +21,7 @@ BEGIN_MESSAGE_MAP(CChildFrame, CMDIChildWndEx)
 //	ON_COMMAND(IDCLOSE, &CChildFrame::OnIdclose)
 END_MESSAGE_MAP()
 
-// создание/уничтожение CChildFrame
+// СЃРѕР·РґР°РЅРёРµ/СѓРЅРёС‡С‚РѕР¶РµРЅРёРµ CChildFrame
 
 CChildFrame::CChildFrame()
 {
@@ -42,7 +42,7 @@ BOOL CChildFrame::PreCreateWindow(CREATESTRUCT& cs)
 	return TRUE;
 }
 
-// диагностика CChildFrame
+// РґРёР°РіРЅРѕСЃС‚РёРєР° CChildFrame
 
 #ifdef _DEBUG
 void CChildFrame::AssertValid() const
@@ -56,7 +56,7 @@ void CChildFrame::Dump(CDumpContext& dc) const
 }
 #endif //_DEBUG
 
-// обработчики сообщений CChildFrame
+// РѕР±СЂР°Р±РѕС‚С‡РёРєРё СЃРѕРѕР±С‰РµРЅРёР№ CChildFrame
 
 
 void CChildFrame::OnClose()

@@ -28,7 +28,7 @@ bool CFXBlockSensorTRD2WPt500::Calc()
 		return false;
 	POSITION pos = m_InputPins.GetHeadPosition();
 	double x = m_InputPins.GetNext(pos)->GetValue();
-	// TODO: Ğåàëèçîâàòü ğàñ÷åò òåìïåğàòóğû
+	// TODO: â€“ĞµĞ°Ğ»Ğ¸Ğ·Ğ¾Ğ²Ğ°Ñ‚ÑŒ Ñ€Ğ°ÑÑ‡ĞµÑ‚ Ñ‚ĞµĞ¼Ğ¿ĞµÑ€Ğ°Ñ‚ÑƒÑ€Ñ‹
 	double y = x;
 	m_OutputPins.GetHead()->SetValue(y);
 	return true;

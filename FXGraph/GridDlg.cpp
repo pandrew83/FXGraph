@@ -1,4 +1,4 @@
-// GridDlg.cpp: файл реализации
+// GridDlg.cpp: С„Р°Р№Р» СЂРµР°Р»РёР·Р°С†РёРё
 //
 
 #include "stdafx.h"
@@ -7,7 +7,7 @@
 #include "afxdialogex.h"
 
 
-// диалоговое окно CGridDlg
+// РґРёР°Р»РѕРіРѕРІРѕРµ РѕРєРЅРѕ CGridDlg
 
 IMPLEMENT_DYNAMIC(CGridDlg, CDialogEx)
 
@@ -40,4 +40,4 @@ BEGIN_MESSAGE_MAP(CGridDlg, CDialogEx)
 END_MESSAGE_MAP()
 
 
-// обработчики сообщений CGridDlg
+// РѕР±СЂР°Р±РѕС‚С‡РёРєРё СЃРѕРѕР±С‰РµРЅРёР№ CGridDlg

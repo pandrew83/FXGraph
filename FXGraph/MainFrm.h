@@ -1,5 +1,5 @@
 
-// MainFrm.h : интерфейс класса CMainFrame
+// MainFrm.h : РёРЅС‚РµСЂС„РµР№СЃ РєР»Р°СЃСЃР° CMainFrame
 //
 
 #pragma once
@@ -16,18 +16,18 @@ class CMainFrame : public CMDIFrameWndEx
 public:
 	CMainFrame();
 //	CFXDataCollector m_DataCollector;
-// Атрибуты
+// СС‚СЂРёР±СѓС‚С‹
 public:
 
-// Операции
+// СњРїРµСЂР°С†РёРё
 public:
 
-// Переопределение
+// С•РµСЂРµРѕРїСЂРµРґРµР»РµРЅРёРµ
 public:
 	virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
 	virtual BOOL LoadFrame(UINT nIDResource, DWORD dwDefaultStyle = WS_OVERLAPPEDWINDOW | FWS_ADDTOTITLE, CWnd* pParentWnd = NULL, CCreateContext* pContext = NULL);
 
-// Реализация
+// вЂ“РµР°Р»РёР·Р°С†РёВ¤
 public:
 	virtual ~CMainFrame();
 #ifdef _DEBUG
@@ -35,7 +35,7 @@ public:
 	virtual void Dump(CDumpContext& dc) const;
 #endif
 
-public:  // встроенные члены панели элементов управления
+public:  // РІСЃС‚СЂРѕРµРЅРЅС‹Рµ С‡Р»РµРЅС‹ РїР°РЅРµР»Рё СЌР»РµРјРµРЅС‚РѕРІ СѓРїСЂР°РІР»РµРЅРёВ¤
 	bool m_bDebugRunning;
 	CMFCMenuBar       m_wndMenuBar;
 	CMFCToolBar       m_wndToolBar;
@@ -51,7 +51,7 @@ public:  // встроенные члены панели элементов управления
 	CGraphView		  m_wndGraphView;
 	COutputWnd        m_wndOutput;
 	CPropertiesWnd    m_wndProperties;
-// Созданные функции схемы сообщений
+// вЂ”РѕР·РґР°РЅРЅС‹Рµ С„СѓРЅРєС†РёРё СЃС…РµРјС‹ СЃРѕРѕР±С‰РµРЅРёР№
 protected:
 	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
 	afx_msg void OnWindowManager();

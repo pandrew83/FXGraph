@@ -1,4 +1,4 @@
-﻿// CFXGraphViewGraphic.cpp: файл реализации
+// CFXGraphViewGraphic.cpp: файл реализации
 //
 
 #include "stdafx.h"

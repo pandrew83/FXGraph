@@ -1,4 +1,4 @@
-// ProjectDlg.cpp: файл реализации
+// ProjectDlg.cpp: С„Р°Р№Р» СЂРµР°Р»РёР·Р°С†РёРё
 //
 
 #include "stdafx.h"
@@ -7,7 +7,7 @@
 #include "afxdialogex.h"
 
 
-// диалоговое окно CProjectDlg
+// РґРёР°Р»РѕРіРѕРІРѕРµ РѕРєРЅРѕ CProjectDlg
 
 IMPLEMENT_DYNAMIC(CProjectDlg, CDialog)
 
@@ -39,4 +39,4 @@ BEGIN_MESSAGE_MAP(CProjectDlg, CDialog)
 END_MESSAGE_MAP()
 
 
-// обработчики сообщений CProjectDlg
+// РѕР±СЂР°Р±РѕС‚С‡РёРєРё СЃРѕРѕР±С‰РµРЅРёР№ CProjectDlg
