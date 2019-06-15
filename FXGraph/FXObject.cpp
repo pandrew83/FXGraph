@@ -77,6 +77,7 @@ void CFXObject::FillProperties(CPropertiesWnd* pWnd){
 	pCtrl->RemoveAll();
 	CMFCPropertyGridProperty* pProp;
 	pProp = new CMFCPropertyGridProperty(_T("ID"),(variant_t)m_ID,_T("Идентификатор объекта"));
+	pProp->AllowEdit(false);
 	pCtrl->AddProperty(pProp);
 
 	pProp = new CMFCPropertyGridProperty(_T("Наименование"),m_Name,_T("Наименование блока"),PROP_NAME);

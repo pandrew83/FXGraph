@@ -1761,11 +1761,13 @@ bool CFXGraphView::OnUpdateProperty(int nProperty, variant_t& value)
 		case PROP_WIDTH:
 			pBlock = dynamic_cast<CFXBlock*>(m_pCur);
 			pBlock->SetWidth(value);
-			break;
+			pBlock->Invalidate(this, REGION_COORD);
+			return true;
 		case PROP_HEIGHT:
 			pBlock = dynamic_cast<CFXBlock*>(m_pCur);
 			pBlock->SetHeight(value);
-			break;
+			pBlock->Invalidate(this, REGION_COORD);
+			return true;
 	}
 	return FALSE;
 }
