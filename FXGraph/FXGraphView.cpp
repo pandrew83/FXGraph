@@ -626,6 +626,18 @@ void CFXGraphView::OnLButtonDown(UINT nFlags, CPoint point)
 							}
 
 						}
+						if (pPinOut->m_Type != pPinIn->m_Type) {
+							// Не совпадают типы пинов
+							while (!m_Selected.IsEmpty()) {
+								CFXObject* pObj = m_Selected.RemoveHead();
+								pObj->Invalidate(this, REGION_BLOCK | REGION_LEFT | REGION_RIGHT | REGION_PIN);
+							}
+							m_Selected.AddTail(m_pCur);
+							TracePrint(TRACE_LEVEL_1, "CFXGraphView::OnLButtonDown: Calling UpdatePropertiesWnd at point #6");
+							UpdatePropertiesWnd();
+							m_pCur->Invalidate(this, REGION_BLOCK | REGION_LEFT | REGION_RIGHT | REGION_PIN);
+							return;
+						}
 						if (pPinOut->GetLink(pPinIn)){
 							// Уже есть связи между этими пинами
 							return;
@@ -637,6 +649,13 @@ void CFXGraphView::OnLButtonDown(UINT nFlags, CPoint point)
 							// Оба со связью
 							if (AfxMessageBox(_T("Пин уже имеет связь с другим пином. Заменить связь?"),MB_YESNO) == IDNO){
 								return;
+							}
+							CListLink lst;
+							pPinIn->GetPinLinks(lst);
+							POSITION pos = lst.GetHeadPosition();
+							while (pos) {
+								CFXLink* pLink = lst.GetNext(pos);
+								pLink->Invalidate(this, REGION_LINK);
 							}
 							pPinIn->RemoveLinks();
 						}
