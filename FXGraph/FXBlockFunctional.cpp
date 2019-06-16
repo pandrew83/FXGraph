@@ -12,6 +12,8 @@ IMPLEMENT_SERIAL(CFXBlockFunctional,CFXBlock,1)
 
 CFXBlockFunctional::CFXBlockFunctional(void)
 {
+	m_pDebugFirst = NULL;
+	m_LastID = 0;
 }
 
 

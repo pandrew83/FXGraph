@@ -204,6 +204,12 @@ CFXGraphView::CFXGraphView()
 	m_pObject = NULL;
 	m_x = 0;
 	m_y = 0;
+	m_oldx = 0;
+	m_oldy = 0;
+	m_bResize = false;
+	m_bMoving = false;
+	m_bLinking = false;
+
 }
 
 CFXGraphView::~CFXGraphView()
