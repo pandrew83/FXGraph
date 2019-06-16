@@ -57,6 +57,7 @@ BEGIN_MESSAGE_MAP(CFXGraphDoc, CDocument)
 //	ON_COMMAND(ID_GRAPH_REMOVE, &CFXGraphDoc::OnGraphRemove)
 //	ON_COMMAND(ID_GRAPH_OPEN, &CFXGraphDoc::OnGraphOpen)
 //	ON_COMMAND(ID_GRAPH_RENAME, &CFXGraphDoc::OnGraphRename)
+ON_COMMAND(ID_PROJECT_TOP, &CFXGraphDoc::OnProjectTop)
 END_MESSAGE_MAP()
 
 
@@ -973,4 +974,10 @@ CFXGraphic* CFXGraphDoc::AddGraphic(CString title)
 	pGraphic->SetTitle(title);
 	m_Graphs.AddTail(pGraphic);
 	return pGraphic;
+}
+
+
+void CFXGraphDoc::OnProjectTop()
+{
+	OpenBlock(m_pBlock);
 }

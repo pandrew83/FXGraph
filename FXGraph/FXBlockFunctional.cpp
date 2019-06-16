@@ -6,6 +6,7 @@
 #include "FXException.h"
 #include "FXBlockController.h"
 #include "FXBlockExtension.h"
+#include "FXBlockComment.h"
 
 IMPLEMENT_SERIAL(CFXBlockFunctional,CFXBlock,1)
 
@@ -54,12 +55,13 @@ void CFXBlockFunctional::AddBlock(CFXBlock* pBlock)
 {
 	CFXBlockController* pController = dynamic_cast<CFXBlockController*>(pBlock);
 	CFXBlockExtension* pExtension = dynamic_cast<CFXBlockExtension*>(pBlock);
+	CFXBlockComment* pComment = dynamic_cast<CFXBlockComment*>(pBlock);
 	if (pController && !IsRootBlock()){
 		AfxMessageBox(_T("Нельзя добавить блок-контроллер в текущий функциональный блок"));
 		delete pBlock;
 		return;
 	}
-	if (pController){
+	if (pController ){
 		POSITION pos = m_Blocks.GetHeadPosition();
 		while (pos){
 			CFXBlock* pCur = m_Blocks.GetNext(pos);
@@ -76,8 +78,8 @@ void CFXBlockFunctional::AddBlock(CFXBlock* pBlock)
 		delete pBlock;
 		return;
 	}
-	if (!pExtension && !pController && IsRootBlock()){
-		AfxMessageBox(_T("В корневой функцильный блок можно добавить только контроллеры и модули расширения"));
+	if (!pComment && !pController && IsRootBlock()){
+		AfxMessageBox(_T("В корневой функцильный блок можно добавить только контроллеры и комментарии"));
 		delete pBlock;
 		return;
 	}
