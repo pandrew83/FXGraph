@@ -73,6 +73,8 @@ CFXGraphDoc::CFXGraphDoc()
 	TracePrint(TRACE_LEVEL_1,"CFXGraphDoc::CFXGraphDoc");
 	m_pBlock = NULL;	
 	m_pDebugCur = NULL;
+	m_SysTick = 0;
+	m_CycleTicks = 0;
 }
 
 CFXGraphDoc::~CFXGraphDoc()
