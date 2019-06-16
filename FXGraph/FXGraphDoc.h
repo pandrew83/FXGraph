@@ -116,4 +116,5 @@ public:
 //	afx_msg void OnGraphOpen();
 //	afx_msg void OnGraphRename();
 	CFXGraphic* AddGraphic(CString title);
+	afx_msg void OnProjectTop();
 };
