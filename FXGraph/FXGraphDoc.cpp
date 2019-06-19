@@ -670,24 +670,64 @@ void CFXGraphDoc::DebugRun(void)
 				vars["value"] = (bool)pItem->m_pPin->GetValue();
 				break;
 			}
-			if (pItem->EvalCondition(vars)) {
-				pItem->EvalExpression(vars);
-				switch (pItem->m_pPin->m_Type) {
-				case Int:
-					pItem->m_pPin->SetValue(vars["value"].asInt());
-					break;
-				case Float:
-					pItem->m_pPin->SetValue(vars["value"].asDouble());
-					break;
-				case Logical:
-					pItem->m_pPin->SetValue(vars["value"].asBool());
-					break;
-				}
-				UpdateBlock((CFXBlock*)pItem->m_pPin->m_pBlock, false);
-				// execute scenario
+			try {
+				if (pItem->EvalCondition(vars)) {
+					pItem->EvalExpression(vars);
+					switch (pItem->m_pPin->m_Type) {
+					case Int:
+						pItem->m_pPin->SetValue(vars["value"].asInt());
+						break;
+					case Float:
+						pItem->m_pPin->SetValue(vars["value"].asDouble());
+						break;
+					case Logical:
+						pItem->m_pPin->SetValue(vars["value"].asBool());
+						break;
+					}
+					UpdateBlock((CFXBlock*)pItem->m_pPin->m_pBlock, false);
+					// execute scenario
 
+				}
 			}
-		
+			catch (bad_cast e) {
+				pMainFrame->OnDebugStop();
+				AfxMessageBox(_T("Ошибка приведении типа при вычислении выражения сценария симуляции"));
+				pMainFrame->AddStringDebug(_T("Ошибка приведении типа при вычислении выражения сценария симуляции"));
+				pMainFrame->AddStringDebug(_T("%s, %d, %s"), pItem->m_Condition, pItem->m_pPin->m_ID, pItem->m_Expression);
+				CString s = CString(e.what());
+
+				pMainFrame->AddStringDebug(s);
+//				m_bDebug = false;
+				//	KillTimer(1);
+				//m_pDebugCurDoc->DebugStop();
+				//m_pDebugCurDoc = NULL;
+				//m_bDebugRunning = false;
+				//UpdateAllViews(NULL);
+			}
+			catch (syntax_error e) {
+				pMainFrame->OnDebugStop();
+				AfxMessageBox(_T("Синтаксическая ошибка при вычислении выражения сценария симуляции"));
+				pMainFrame->AddStringDebug(_T("Синтаксическая ошибка при вычислении выражения сценария симуляции"));
+				pMainFrame->AddStringDebug(_T("%s, %d, %s"), pItem->m_Condition, pItem->m_pPin->m_ID, pItem->m_Expression);
+				CString s = CString(e.what());
+				pMainFrame->AddStringDebug(s);
+			}
+			catch (type_error e) {
+				pMainFrame->OnDebugStop();
+				AfxMessageBox(_T("Ошибка использования типов при вычислении выражения сценария симуляции"));
+				pMainFrame->AddStringDebug(_T("Ошибка использования типов при вычислении выражения сценария симуляции"));
+				pMainFrame->AddStringDebug(_T("%s, %d, %s"), pItem->m_Condition, pItem->m_pPin->m_ID, pItem->m_Expression);
+				CString s = CString(e.what());
+				pMainFrame->AddStringDebug(s);
+			}
+			catch (undefined_operation e) {
+				pMainFrame->OnDebugStop();
+				AfxMessageBox(_T("Неизвестный оператор при вычислении выражения сценария симуляции"));
+				pMainFrame->AddStringDebug(_T("Неизвестный оператор при вычислении выражения сценария симуляции"));
+				pMainFrame->AddStringDebug(_T("%s, %d, %s"), pItem->m_Condition, pItem->m_pPin->m_ID, pItem->m_Expression);
+				CString s = CString(e.what());
+				pMainFrame->AddStringDebug(s);
+			}
 		}
 		do{
 //			DebugStep();
@@ -764,22 +804,7 @@ void CFXGraphDoc::DebugPause(void)
 
 void CFXGraphDoc::OnProjectScenario()
 {
-	TracePrint(TRACE_LEVEL_1,"CFXGraphDoc::OnProjectScenario");
-	CFXGraphViewScenario* pView = NULL;//GetBlockView(pBlockFunc);
-	CMainFrame* pMainFrame = (CMainFrame*)AfxGetApp()->m_pMainWnd;
-	CChildFrame* pChildFrame;// = (CChildFrame*)pMainFrame->GetActiveFrame();
-	CDocTemplate* pDocTemplate;
-	pDocTemplate = new CMultiDocTemplate(IDR_FXGraphTYPE,
-		RUNTIME_CLASS(CFXGraphDoc),
-		RUNTIME_CLASS(CChildFrame),
-		RUNTIME_CLASS(CFXGraphViewScenario));
-		CDocTemplate* pDT = pDocTemplate;
-		 pChildFrame = (CChildFrame*)pDT->CreateNewFrame(this,NULL);
-			
-		pDT->InitialUpdateFrame(pChildFrame,this);
-		pView = (CFXGraphViewScenario*)pChildFrame->GetActiveView();
-		
-		pView->GetEditCtrl().SetWindowText(m_DebugScenario);
+	OpenScenario();
 //		pView->m_pBlock = pBlockFunc;
 	//}
 	//else{
@@ -922,6 +947,7 @@ void CFXGraphDoc::OpenGraphic(CFXGraphic* pGraphic)
 		RUNTIME_CLASS(CFXGraphDoc),
 		RUNTIME_CLASS(CChildFrame),
 		RUNTIME_CLASS(CFXGraphViewGraphic));
+	
 	CDocTemplate* pDT = pDocTemplate;
 	pChildFrame = (CChildFrame*)pDT->CreateNewFrame(this, NULL);
 
@@ -982,4 +1008,41 @@ CFXGraphic* CFXGraphDoc::AddGraphic(CString title)
 void CFXGraphDoc::OnProjectTop()
 {
 	OpenBlock(m_pBlock);
+}
+
+
+void CFXGraphDoc::OpenScenario()
+{
+	TracePrint(TRACE_LEVEL_1, "CFXGraphDoc::OpenScenario");
+	CFXGraphViewScenario* pView = GetScenarioView();
+	if (pView) {
+		pView->GetParentFrame()->ActivateFrame(SW_RESTORE);
+		return;
+	}
+	CMainFrame* pMainFrame = (CMainFrame*)AfxGetApp()->m_pMainWnd;
+	CChildFrame* pChildFrame;// = (CChildFrame*)pMainFrame->GetActiveFrame();
+	CDocTemplate* pDocTemplate;
+	pDocTemplate = new CMultiDocTemplate(IDR_FXGraphTYPE,
+		RUNTIME_CLASS(CFXGraphDoc),
+		RUNTIME_CLASS(CChildFrame),
+		RUNTIME_CLASS(CFXGraphViewScenario));
+	CDocTemplate* pDT = pDocTemplate;
+	pChildFrame = (CChildFrame*)pDT->CreateNewFrame(this, NULL);
+
+	pDT->InitialUpdateFrame(pChildFrame, this);
+	pView = (CFXGraphViewScenario*)pChildFrame->GetActiveView();
+
+	pView->GetEditCtrl().SetWindowText(m_DebugScenario);
+}
+
+
+CFXGraphViewScenario* CFXGraphDoc::GetScenarioView()
+{
+	POSITION pos = GetFirstViewPosition();
+	while (pos) {
+		CFXGraphViewScenario* pView = dynamic_cast<CFXGraphViewScenario*>(GetNextView(pos));
+		if (pView)
+			return pView;
+	}
+	return NULL;
 }

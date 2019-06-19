@@ -179,9 +179,17 @@ void WriteStr(CArchive&ar, LPCSTR fmt,...);
 #define REGION_PIN				128
 #define REGION_LINK				256
 
+struct CFXObjectDescription {
+	int m_ID;
+	CString m_Name;
+	int m_Version;
+};
+typedef CArray<CFXObjectDescription, CFXObjectDescription&> desctype;
+
 class CFXObject : public CObject
 {
 public:
+	static desctype m_Descriptions;
 	CFXObject(void);
 	DECLARE_SERIAL(CFXObject);
 	virtual void AfterSerialize(){}

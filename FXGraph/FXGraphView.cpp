@@ -2056,3 +2056,27 @@ void CFXGraphView::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	}
 	CView::OnKeyDown(nChar, nRepCnt, nFlags);
 }
+
+
+void CFXGraphViewScenario::OnActivateView(BOOL bActivate, CView* pActivateView, CView* pDeactiveView)
+{
+	TracePrint(TRACE_LEVEL_1, "CFXGraphView::OnActivateView bActivate=%d pActivateView=%p pDeactiveView=%p\n", bActivate, pActivateView, pDeactiveView);
+	CMainFrame* pMainFrame = (CMainFrame*)AfxGetApp()->m_pMainWnd;
+	CFXGraphViewScenario* pView = dynamic_cast<CFXGraphViewScenario*>(pActivateView);
+	if (!bActivate && pView == NULL) {
+		// Closing view
+	}
+	if (!bActivate && pView) {
+		// Switching to another view
+	}
+	if (bActivate && pView) {
+		// Swithing to this view
+		CFXGraphDoc* pDoc = pView->GetDocument();
+		pMainFrame->OnActiveDocument(pDoc);
+		pMainFrame->m_wndProperties.UpdateProperties(NULL);
+	}
+	else {
+		pMainFrame->OnActiveDocument(NULL);
+	}
+	CView::OnActivateView(bActivate, pActivateView, pDeactiveView);
+}

@@ -28,6 +28,7 @@ public:
 	DECLARE_MESSAGE_MAP()
 	afx_msg void OnEnChange();
 	afx_msg void OnEnUpdate();
+	virtual void OnActivateView(BOOL bActivate, CView* pActivateView, CView* pDeactiveView);
 };
 
 class CFXGraphView : public CView
