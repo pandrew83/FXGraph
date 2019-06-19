@@ -13,6 +13,7 @@ class CFXParam;
 class CFXPin;
 class CFXScenarioItem;
 class CFXGraphViewGraphic;
+class CFXGraphViewScenario;
 //class CListParam;
 
 class CFXGraphDoc : public CDocument
@@ -117,4 +118,6 @@ public:
 //	afx_msg void OnGraphRename();
 	CFXGraphic* AddGraphic(CString title);
 	afx_msg void OnProjectTop();
+	void OpenScenario();
+	CFXGraphViewScenario* GetScenarioView();
 };

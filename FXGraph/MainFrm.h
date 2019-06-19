@@ -15,6 +15,30 @@ class CMainFrame : public CMDIFrameWndEx
 	DECLARE_DYNAMIC(CMainFrame)
 public:
 	CMainFrame();
+	void AddStringDebug(CString format,...) {
+		va_list args;
+		va_start(args, format);
+		CString msg;
+		msg.FormatV(format, args);
+		m_wndOutput.AddString(Debug, msg);
+		va_end(args);
+	}
+	void AddStringBuild(CString format) {
+		va_list args;
+		va_start(args, format);
+		CString msg;
+		msg.FormatV(format, args);
+		m_wndOutput.AddString(Build, msg);
+		va_end(args);
+	}
+	void AddStringFind(CString format) {
+		va_list args;
+		va_start(args, format);
+		CString msg;
+		msg.FormatV(format, args);
+		m_wndOutput.AddString(Find, msg);
+		va_end(args);
+	}
 //	CFXDataCollector m_DataCollector;
 // јтрибуты
 public:
