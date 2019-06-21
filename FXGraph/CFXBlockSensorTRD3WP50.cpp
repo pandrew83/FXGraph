@@ -11,7 +11,7 @@ CFXBlockSensorTRD3WP50::CFXBlockSensorTRD3WP50()
 
 CFXBlockSensorTRD3WP50::CFXBlockSensorTRD3WP50(CFXBlock* pBlock) : CFXBlock(pBlock)
 {
-	m_Name = "TRD 32W P50";
+	m_Name = "TRD 3W P50";
 	m_PinInMaxCount = 1;
 	m_PinInMinCount = 1;
 	m_PinOutMinCount = 1;
