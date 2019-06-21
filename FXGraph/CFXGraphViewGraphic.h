@@ -12,6 +12,7 @@ class CFXGraphViewGraphic : public CView
 protected:
 	CFXGraphViewGraphic();           // защищенный конструктор, используемый при динамическом создании
 	virtual ~CFXGraphViewGraphic();
+	CFXGraphDoc* GetDocument() const;
 
 public:
 	CFXGraphic* m_pGraphic;
@@ -48,6 +49,7 @@ public:
 	afx_msg void OnMouseMove(UINT nFlags, CPoint point);
 	CPoint m_Point;
 	afx_msg BOOL OnMouseWheel(UINT nFlags, short zDelta, CPoint pt);
+	virtual void OnActivateView(BOOL bActivate, CView* pActivateView, CView* pDeactiveView);
 };
 
 
