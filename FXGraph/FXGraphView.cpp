@@ -2005,9 +2005,10 @@ void CFXGraphView::OnPinGraphNew()
 {
 	TracePrint(TRACE_LEVEL_1, "CFXGraphView::OnPinGraphNew");
 	CFXGraphDoc* pDoc = GetDocument();
-	pDoc->NewGraph(dynamic_cast<CFXPin*>(m_pCur));
+	CFXGraphic* pNewGraphic = pDoc->NewGraph(dynamic_cast<CFXPin*>(m_pCur));
 	CMainFrame* pMainFrame = (CMainFrame*)AfxGetApp()->m_pMainWnd;
 	pMainFrame->m_wndGraphView.UpdateView(pDoc);
+	pDoc->OpenGraphic(pNewGraphic);
 }
 
 void CFXGraphView::OnPinGraph(UINT nID) {
