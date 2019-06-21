@@ -870,7 +870,7 @@ void CFXGraphDoc::RemoveScenario()
 
 extern COLORREF colors[];
 
-void CFXGraphDoc::NewGraph(CFXPin* pPin)
+CFXGraphic* CFXGraphDoc::NewGraph(CFXPin* pPin)
 {
 	TracePrint(TRACE_LEVEL_1, "CFXGraphDoc::NewGraph");
 	ASSERT(pPin);
@@ -880,7 +880,7 @@ void CFXGraphDoc::NewGraph(CFXPin* pPin)
 	m_Graphs.AddTail(pGraphic);
 	CMainFrame* pMainFrame = (CMainFrame*)AfxGetApp()->m_pMainWnd;
 	pMainFrame->m_wndGraphView.UpdateView(this);
-
+	return pGraphic;
 //	pView->GetEditCtrl().SetWindowText(m_DebugScenario);
 }
 

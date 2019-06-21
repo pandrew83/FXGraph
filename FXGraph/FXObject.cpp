@@ -10,7 +10,6 @@ IMPLEMENT_SERIAL(CFXObject, CObject, 1)
 
 void Log(CFXMsgType type,CString str){
 	((CMainFrame*)(((CFXGraphApp*)AfxGetApp())->m_pMainWnd))->Log(type,str);
-
 }
 
 void WriteStr(CArchive& ar, LPCSTR fmt,...){

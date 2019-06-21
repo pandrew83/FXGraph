@@ -106,7 +106,7 @@ public:
 	bool InitializeScenario(void);
 	CList<CFXScenarioItem*, CFXScenarioItem*> m_Scenario;
 	void RemoveScenario();
-	void NewGraph(CFXPin* pPin);
+	CFXGraphic* NewGraph(CFXPin* pPin);
 //	void AddGraphicVariable(int idx, CFXPin* pPin);
 	afx_msg void OnProjectGraphs();
 //	afx_msg void OnGraphAdd();
