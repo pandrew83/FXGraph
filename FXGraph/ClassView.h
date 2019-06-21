@@ -30,6 +30,7 @@ protected:
 	CImageList* m_pDragDropImages;
 	int m_bDragging;
 	UINT m_nCurrSort;
+	CEdit* m_blockFilter;
 
 	void FillClassView();
 

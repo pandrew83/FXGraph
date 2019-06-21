@@ -113,7 +113,8 @@
 #define IDR_GRAPHPINMENU                346
 #define IDD_GRAPHPIN                    347
 #define IDI_ICON1                       352
-#define IDI_GRAPH_VIEW_HC               352
+#define IDI_GRAPH_VIEW_HC               353
+#define IDI_BLOCK_FILTER_EDIT           354
 #define IDC_GRID_ONOFF                  1000
 #define IDC_RADIO2                      1001
 #define IDC_GRID_STYLE_POINTS           1002

@@ -6,6 +6,7 @@
 
 #include <typeinfo>
 #include "FXException.h"
+#include "FXObjectDescriptor.h"
 //#include "FXGraphDoc.h"
 //#include "FXBlockFunctional.h"
 
@@ -157,7 +158,27 @@ enum CFXPinDir {Input,Output};
 
 #define FXLINK								1001
 #define FXPIN								2001
-											
+
+//Block groups
+#define GROUP_MISC						    10001
+#define GROUP_FUNCBLOCKS					10002
+#define GROUP_MATH							10003
+#define GROUP_MATH_INT						10004
+#define GROUP_MATH_FLOAT					10005
+#define GROUP_MATH_BITWISE					10006
+#define GROUP_MATH_CAST 					10007
+#define GROUP_COMPARATOR					10008
+#define GROUP_LOGICAL						10009
+#define GROUP_DELAY							10010
+#define GROUP_COUNTERS_TRIGGERS				10011
+#define GROUP_TRIGGERS						10012
+#define GROUP_CONTROLLERS					10013
+#define GROUP_SENSORS						10014
+#define GROUP_SENSORS_TRD_2W				10015
+#define GROUP_SENSORS_TRD_3W				10016
+#define GROUP_SENSORS_TRD_4W				10017
+#define GROUP_OTHER							10018
+
 //#include "FXGraphView.h"		
 
 class CFXGraphView;
@@ -178,6 +199,8 @@ void WriteStr(CArchive&ar, LPCSTR fmt,...);
 #define REGION_VALUE			64
 #define REGION_PIN				128
 #define REGION_LINK				256
+
+
 
 class CFXObject : public CObject
 {
@@ -214,6 +237,7 @@ public:
 		m_X = 0;
 		m_Y = 0;
 	}
+	
 	CFXObject(CFXBlock* pBlock,CString name){
 		m_pBlock = (CFXObject*)pBlock;
 		m_Name = name;
@@ -281,5 +305,7 @@ public:
 	CFXGraphDoc* GetActiveDocument(void);
 	virtual void Invalidate(CFXGraphView* pView, int regions);
 	static CString GetClassDescriptorByID(int id);
+
+	static CArray<CFXObjectDescriptor, CFXObjectDescriptor> m_ObjectDescriptors;
 };
 
