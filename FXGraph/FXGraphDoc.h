@@ -13,6 +13,7 @@ class CFXParam;
 class CFXPin;
 class CFXScenarioItem;
 class CFXGraphViewGraphic;
+class CFXGraphViewScenario;
 //class CListParam;
 
 class CFXGraphDoc : public CDocument
@@ -105,7 +106,7 @@ public:
 	bool InitializeScenario(void);
 	CList<CFXScenarioItem*, CFXScenarioItem*> m_Scenario;
 	void RemoveScenario();
-	void NewGraph(CFXPin* pPin);
+	CFXGraphic* NewGraph(CFXPin* pPin);
 //	void AddGraphicVariable(int idx, CFXPin* pPin);
 	afx_msg void OnProjectGraphs();
 //	afx_msg void OnGraphAdd();
@@ -117,4 +118,6 @@ public:
 //	afx_msg void OnGraphRename();
 	CFXGraphic* AddGraphic(CString title);
 	afx_msg void OnProjectTop();
+	void OpenScenario();
+	CFXGraphViewScenario* GetScenarioView();
 };

@@ -17,7 +17,19 @@ protected:
 	int m_Height;
 //	int m_SysTicks;
 	CFXBlock(void) : m_CalcOrder(0), m_bBreakPoint(0)
-	{}
+	{
+		m_Width = 0;
+		m_Height = 0;
+		m_MinWidth = 0;
+		m_MinHeight = 0;
+		m_pNextBlock = NULL;
+		m_PinOutMaxCount = 0;
+		m_PinOutMinCount = 0;
+		m_PinInMaxCount = 0;
+		m_PinInMinCount = 0;
+		m_NetworkID = 0;
+		m_bCalc = false;
+	}
 	DECLARE_SERIAL(CFXBlock)
 	CRect m_RectName;
 	CRect m_RectBlock;

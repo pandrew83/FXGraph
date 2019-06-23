@@ -7,6 +7,7 @@
 #include "FXGraphDoc.h"
 #include "CFXGraphicVariable.h"
 #include "CFXGraphic.h"
+#include "MainFrm.h"
 
 // CFXGraphViewGraphic
 
@@ -227,6 +228,11 @@ void CFXGraphViewGraphic::Dump(CDumpContext& dc) const
 	CView::Dump(dc);
 }
 #endif
+CFXGraphDoc* CFXGraphViewGraphic::GetDocument() const // встроена неотлаженная версия
+{
+	ASSERT(m_pDocument->IsKindOf(RUNTIME_CLASS(CFXGraphDoc)));
+	return (CFXGraphDoc*)m_pDocument;
+}
 #endif //_DEBUG
 
 
@@ -370,4 +376,27 @@ BOOL CFXGraphViewGraphic::OnToolTipNeedText(UINT id, NMHDR* pNMHDR, LRESULT* pRe
 		//}
 	}
 	return bHandledNotify;
+}
+
+void CFXGraphViewGraphic::OnActivateView(BOOL bActivate, CView* pActivateView, CView* pDeactiveView)
+{
+	TracePrint(TRACE_LEVEL_1, "CFXGraphViewGraphic::OnActivateView bActivate=%d pActivateView=%p pDeactiveView=%p\n", bActivate, pActivateView, pDeactiveView);
+	CMainFrame* pMainFrame = (CMainFrame*)AfxGetApp()->m_pMainWnd;
+	CFXGraphViewGraphic* pView = dynamic_cast<CFXGraphViewGraphic*>(pActivateView);
+	if (!bActivate && pView == NULL) {
+		// Closing view
+	}
+	if (!bActivate && pView) {
+		// Switching to another view
+	}
+	if (bActivate && pView) {
+		// Swithing to this view
+		CFXGraphDoc* pDoc = pView->GetDocument();
+		pMainFrame->OnActiveDocument(pDoc);
+		pMainFrame->m_wndProperties.UpdateProperties(NULL);
+	}
+	else {
+		pMainFrame->OnActiveDocument(NULL);
+	}
+	CView::OnActivateView(bActivate, pActivateView, pDeactiveView);
 }

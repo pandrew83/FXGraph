@@ -204,6 +204,12 @@ CFXGraphView::CFXGraphView()
 	m_pObject = NULL;
 	m_x = 0;
 	m_y = 0;
+	m_oldx = 0;
+	m_oldy = 0;
+	m_bResize = false;
+	m_bMoving = false;
+	m_bLinking = false;
+
 }
 
 CFXGraphView::~CFXGraphView()
@@ -1999,9 +2005,10 @@ void CFXGraphView::OnPinGraphNew()
 {
 	TracePrint(TRACE_LEVEL_1, "CFXGraphView::OnPinGraphNew");
 	CFXGraphDoc* pDoc = GetDocument();
-	pDoc->NewGraph(dynamic_cast<CFXPin*>(m_pCur));
+	CFXGraphic* pNewGraphic = pDoc->NewGraph(dynamic_cast<CFXPin*>(m_pCur));
 	CMainFrame* pMainFrame = (CMainFrame*)AfxGetApp()->m_pMainWnd;
 	pMainFrame->m_wndGraphView.UpdateView(pDoc);
+	pDoc->OpenGraphic(pNewGraphic);
 }
 
 void CFXGraphView::OnPinGraph(UINT nID) {
@@ -2049,4 +2056,28 @@ void CFXGraphView::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 		Invalidate(0);
 	}
 	CView::OnKeyDown(nChar, nRepCnt, nFlags);
+}
+
+
+void CFXGraphViewScenario::OnActivateView(BOOL bActivate, CView* pActivateView, CView* pDeactiveView)
+{
+	TracePrint(TRACE_LEVEL_1, "CFXGraphView::OnActivateView bActivate=%d pActivateView=%p pDeactiveView=%p\n", bActivate, pActivateView, pDeactiveView);
+	CMainFrame* pMainFrame = (CMainFrame*)AfxGetApp()->m_pMainWnd;
+	CFXGraphViewScenario* pView = dynamic_cast<CFXGraphViewScenario*>(pActivateView);
+	if (!bActivate && pView == NULL) {
+		// Closing view
+	}
+	if (!bActivate && pView) {
+		// Switching to another view
+	}
+	if (bActivate && pView) {
+		// Swithing to this view
+		CFXGraphDoc* pDoc = pView->GetDocument();
+		pMainFrame->OnActiveDocument(pDoc);
+		pMainFrame->m_wndProperties.UpdateProperties(NULL);
+	}
+	else {
+		pMainFrame->OnActiveDocument(NULL);
+	}
+	CView::OnActivateView(bActivate, pActivateView, pDeactiveView);
 }
