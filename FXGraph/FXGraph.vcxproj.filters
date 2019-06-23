@@ -13,9 +13,6 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="NewFilter1">
-      <UniqueIdentifier>{bd43c416-08a1-47ae-9598-d1a3ebe9b642}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="ReadMe.txt" />
@@ -126,18 +123,6 @@
     </None>
     <None Include="res\breakpoint.bmp">
       <Filter>Файлы ресурсов</Filter>
-    </None>
-    <None Include="cparse\builtin-features\functions.inc">
-      <Filter>NewFilter1</Filter>
-    </None>
-    <None Include="cparse\builtin-features\operations.inc">
-      <Filter>NewFilter1</Filter>
-    </None>
-    <None Include="cparse\builtin-features\reservedWords.inc">
-      <Filter>NewFilter1</Filter>
-    </None>
-    <None Include="cparse\builtin-features\typeSpecificFunctions.inc">
-      <Filter>NewFilter1</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -521,12 +506,6 @@
     </ClInclude>
     <ClInclude Include="CGraphPinDlg.h">
       <Filter>Заголовочные файлы</Filter>
-    </ClInclude>
-    <ClInclude Include="cparse\catch.hpp">
-      <Filter>NewFilter1</Filter>
-    </ClInclude>
-    <ClInclude Include="cparse\shunting-yard-exceptions.h">
-      <Filter>NewFilter1</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

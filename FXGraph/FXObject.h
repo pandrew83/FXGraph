@@ -205,7 +205,6 @@ void WriteStr(CArchive&ar, LPCSTR fmt,...);
 class CFXObject : public CObject
 {
 public:
-	static desctype m_Descriptions;
 	CFXObject(void);
 	DECLARE_SERIAL(CFXObject);
 	virtual void AfterSerialize(){}
