@@ -116,10 +116,6 @@
   <ItemGroup>
     <None Include="ClassDiagram1.cd" />
     <None Include="ClassDiagram2.cd" />
-    <None Include="cparse\builtin-features\functions.inc" />
-    <None Include="cparse\builtin-features\operations.inc" />
-    <None Include="cparse\builtin-features\reservedWords.inc" />
-    <None Include="cparse\builtin-features\typeSpecificFunctions.inc" />
     <None Include="FXGraph.reg" />
     <None Include="ReadMe.txt" />
     <None Include="res\Align.bmp" />
@@ -196,8 +192,6 @@
     <ClInclude Include="ChildFrm.h" />
     <ClInclude Include="ClassView.h" />
     <ClInclude Include="CommentDlg.h" />
-    <ClInclude Include="cparse\catch.hpp" />
-    <ClInclude Include="cparse\shunting-yard-exceptions.h" />
     <ClInclude Include="DragTreeView.h" />
     <ClInclude Include="FileView.h" />
     <ClInclude Include="FindByIDDlg.h" />
