@@ -13,6 +13,7 @@
 #include "FXGraphView.h"
 #include "FXObject.h"
 #include "GridDlg.h"
+#include <locale.h>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -95,7 +96,7 @@ BOOL CFXGraphApp::InitInstance()
 	InitCommonControlsEx(&InitCtrls);
 
 	CWinAppEx::InitInstance();
-
+	setlocale(LC_ALL, "rus"); // Для того, чтобы функции для работы со строками понимали русские буквы
 
 	// Инициализация библиотек OLE
 	if (!AfxOleInit())
@@ -156,6 +157,8 @@ BOOL CFXGraphApp::InitInstance()
 	//	RUNTIME_CLASS(CFXGraphViewScenario));
 	//AddDocTemplate(pDocTemplate);
 	// создайте главное окно рамки MDI
+
+	FillObjectDescriptors();
 	CMainFrame* pMainFrame = new CMainFrame;
 	if (!pMainFrame || !pMainFrame->LoadFrame(IDR_MAINFRAME))
 	{
@@ -185,7 +188,7 @@ BOOL CFXGraphApp::InitInstance()
 	pMainFrame->ShowWindow(m_nCmdShow);
 	pMainFrame->UpdateWindow();
 
-	return TRUE;
+		return TRUE;
 }
 
 int CFXGraphApp::ExitInstance()
@@ -268,9 +271,6 @@ void CFXGraphApp::SaveCustomState()
 // обработчики сообщений CFXGraphApp
 
 
-
-
-
 void CFXGraphApp::OnGrid()
 {
 	CGridDlg dlg;
@@ -320,4 +320,157 @@ int CFXGraphApp::Run()
 		TracePrint(TRACE_LEVEL_1,"Unknown exception");
 	}
 	return CWinApp::Run();
+}
+
+void CFXGraphApp::FillObjectDescriptors()
+{
+	auto ods = &CFXObject::m_ObjectDescriptors;
+	//CFXObjectDescriptor(int Id = 0, CString ClassName = L"", CString Name = L"", int ParentId = 0, bool IsGroup = false, int Version = 0)
+	// Разное
+	ods->Add({ GROUP_MISC, _T(""), _T("Разное"), 0, true });
+	ods->Add({ BLOCK_COMMENT,  _T("CFXBlockComment"), _T("Комментарий"), GROUP_MISC });
+
+	// Функциональные блоки
+	ods->Add({ GROUP_FUNCBLOCKS, _T(""), _T("Функциональные блоки"), 0, true });
+	ods->Add({ BLOCK_FUNCTIONAL,  _T("CFXBlockFunctional"), _T("Функциональный блок"), GROUP_FUNCBLOCKS });
+
+	// Математика
+	ods->Add({ GROUP_MATH, _T(""), _T("Математика"), 0, true });
+	// Математика-целочисленная
+	ods->Add({ GROUP_MATH_INT, _T(""), _T("Целочисленная"), GROUP_MATH, true });
+	ods->Add({ BLOCK_MATH_INT_ADD,  _T("CFXBlockMathIntAdd"), _T("Сложение"), GROUP_MATH_INT });
+	ods->Add({ BLOCK_MATH_INT_SUB,  _T("CFXBlockMathIntSub"), _T("Вычитание"), GROUP_MATH_INT });
+	ods->Add({ BLOCK_MATH_INT_MUL,  _T("CFXBlockMathIntMul"), _T("Умножение"), GROUP_MATH_INT });
+	ods->Add({ BLOCK_MATH_INT_DIV,  _T("CFXBlockMathIntDiv"), _T("Деление"), GROUP_MATH_INT });
+	ods->Add({ BLOCK_MATH_INT_MOD,  _T("CFXBlockMathIntMod"), _T("Остаток от деления"), GROUP_MATH_INT });
+	ods->Add({ BLOCK_MATH_INT_EQUAL,  _T("CFXBlockMathIntEqual"), _T("Равно"), GROUP_MATH_INT });
+	ods->Add({ BLOCK_MATH_INT_GREAT,  _T("CFXBlockMathIntGreat"), _T("Больше"), GROUP_MATH_INT });
+	ods->Add({ BLOCK_MATH_INT_GREATEQUAL,  _T("CFXBlockMathIntGreatEqual"), _T("Больше равно"), GROUP_MATH_INT });
+	ods->Add({ BLOCK_MATH_INT_LESS,  _T("CFXBlockMathIntLess"), _T("Меньше"), GROUP_MATH_INT });
+	ods->Add({ BLOCK_MATH_INT_LESSEQUAL,  _T("CFXBlockMathIntLessEqual"), _T("Меньше равно"), GROUP_MATH_INT });
+	ods->Add({ BLOCK_MATH_INT_NOTEQUAL,  _T("CFXBlockMathIntNotEqual"), _T("Не равно"), GROUP_MATH_INT });
+	ods->Add({ BLOCK_MATH_INT_ABS,  _T("CFXBlockMathIntAbs"), _T("Модуль числа"), GROUP_MATH_INT });
+
+	// Математика-вещественная
+	ods->Add({ GROUP_MATH_FLOAT, _T(""), _T("Вещественная"), GROUP_MATH, true });
+	ods->Add({ BLOCK_MATH_FLOAT_ADD,  _T("CFXBlockMathFloatAdd"), _T("Сложение"), GROUP_MATH_FLOAT });
+	ods->Add({ BLOCK_MATH_FLOAT_SUB,  _T("CFXBlockMathFloatSub"), _T("Вычитание"), GROUP_MATH_FLOAT });
+	ods->Add({ BLOCK_MATH_FLOAT_MUL,  _T("CFXBlockMathFloatMul"), _T("Умножение"), GROUP_MATH_FLOAT });
+	ods->Add({ BLOCK_MATH_FLOAT_DIV,  _T("CFXBlockMathFloatDiv"), _T("Деление"), GROUP_MATH_FLOAT });
+	ods->Add({ BLOCK_MATH_FLOAT_GREAT,  _T("CFXBlockMathFloatGreat"), _T("Больше"), GROUP_MATH_FLOAT });
+	ods->Add({ BLOCK_MATH_FLOAT_GREATEQUAL,  _T("CFXBlockMathFloatGreatEqual"), _T("Больше равно"), GROUP_MATH_FLOAT });
+	ods->Add({ BLOCK_MATH_FLOAT_LESS,  _T("CFXBlockMathFloatLess"), _T("Меньше"), GROUP_MATH_FLOAT });
+	ods->Add({ BLOCK_MATH_FLOAT_LESSEQUAL,  _T("CFXBlockMathFloatLessEqual"), _T("Меньше равно"), GROUP_MATH_FLOAT });
+	ods->Add({ BLOCK_MATH_FLOAT_EQUAL,  _T("CFXBlockMathFloatEqual"), _T("Равно"), GROUP_MATH_FLOAT });
+	ods->Add({ BLOCK_MATH_FLOAT_NOTEQUAL,  _T("CFXBlockMathFloatNotEqual"), _T("Не равно"), GROUP_MATH_FLOAT });
+	ods->Add({ BLOCK_MATH_FLOAT_ABS,  _T("CFXBlockMathFloatAbs"), _T("Модуль числа"), GROUP_MATH_FLOAT });
+	ods->Add({ BLOCK_MATH_FLOAT_FLOOR,  _T("CFXBlockMathFloatFloor"), _T("Floor"), GROUP_MATH_FLOAT });
+	ods->Add({ BLOCK_MATH_FLOAT_ROUND,  _T("CFXBlockMathFloatRound"), _T("Round"), GROUP_MATH_FLOAT });
+	ods->Add({ BLOCK_MATH_COS,  _T("CFXBlockMathCos"), _T("Cos"), GROUP_MATH_FLOAT });
+	ods->Add({ BLOCK_MATH_SIN,  _T("CFXBlockMathSin"), _T("Sin"), GROUP_MATH_FLOAT });
+	ods->Add({ BLOCK_MATH_TAN,  _T("CFXBlockMathTan"), _T("Tan"), GROUP_MATH_FLOAT });
+	ods->Add({ BLOCK_MATH_SQRT,  _T("CFXBlockMathSqrt"), _T("Sqrt"), GROUP_MATH_FLOAT });
+	ods->Add({ BLOCK_MATH_POW,  _T("CFXBlockMathPow"), _T("Pow"), GROUP_MATH_FLOAT });
+	ods->Add({ BLOCK_MATH_LOG,  _T("CFXBlockMathLog"), _T("Log"), GROUP_MATH_FLOAT });
+	ods->Add({ BLOCK_MATH_LOG10,  _T("CFXBlockMathLog10"), _T("Log10"), GROUP_MATH_FLOAT });
+	ods->Add({ BLOCK_MATH_ACOS,  _T("CFXBlockMathAcos"), _T("Acos"), GROUP_MATH_FLOAT });
+	ods->Add({ BLOCK_MATH_ASIN,  _T("CFXBlockMathAsin"), _T("Asin"), GROUP_MATH_FLOAT });
+	ods->Add({ BLOCK_MATH_ATAN,  _T("CFXBlockMathAtan"), _T("Atan"), GROUP_MATH_FLOAT });
+	ods->Add({ BLOCK_MATH_EXP,  _T("CFXBlockMathExp"), _T("Exp"), GROUP_MATH_FLOAT });
+
+	// Математика-битовая
+	ods->Add({ GROUP_MATH_BITWISE, _T(""), _T("Битовая"), GROUP_MATH, true });
+	ods->Add({ BLOCK_MATH_BITWISE_AND,  _T("CFXBlockMathBitwiseAnd"), _T("Битовое И"), GROUP_MATH_BITWISE });
+	ods->Add({ BLOCK_MATH_BITWISE_OR,  _T("CFXBlockMathBitwiseOr"), _T("Битовое ИЛИ"), GROUP_MATH_BITWISE });
+	ods->Add({ BLOCK_MATH_BITWISE_XOR,  _T("CFXBlockMathBitwiseXor"), _T("Битовое XOR"), GROUP_MATH_BITWISE });
+	ods->Add({ BLOCK_MATH_BITWISE_NOT,  _T("CFXBlockMathBitwiseNot"), _T("Битовое НЕ"), GROUP_MATH_BITWISE });
+	ods->Add({ BLOCK_MATH_BITWISE_SHIFT_LEFT,  _T("CFXBlockMathBitwiseShiftLeft"), _T("Сдвиг влево"), GROUP_MATH_BITWISE });
+	ods->Add({ BLOCK_MATH_BITWISE_SHIFT_RIGHT,  _T("CFXBlockMathBitwiseShiftRight"), _T("Сдвиг впрао"), GROUP_MATH_BITWISE });
+	ods->Add({ BLOCK_MATH_BITWISE_PACK,  _T("CFXBlockMathBitwisePack"), _T("Кодирование"), GROUP_MATH_BITWISE });
+	ods->Add({ BLOCK_MATH_BITWISE_UNPACK,  _T("CFXBlockMathBitwiseUnpack"), _T("Декодирование"), GROUP_MATH_BITWISE });
+
+	// Математика-преобразование типов
+	ods->Add({ GROUP_MATH_CAST, _T(""), _T("Преобразование типов"), GROUP_MATH, true });
+	ods->Add({ BLOCK_MATH_CAST_FLOAT_INT,  _T("CFXBlockMathCastFloatInt"), _T("Вещественное к целому"), GROUP_MATH_CAST });
+	ods->Add({ BLOCK_MATH_CAST_INT_FLOAT,  _T("CFXBlockMathCastIntFloat"), _T("Целое к вещественному"), GROUP_MATH_CAST });
+
+	// Компараторы
+	ods->Add({ GROUP_COMPARATOR, _T(""), _T("Компараторы"), 0, true });
+	ods->Add({ BLOCK_COMPARATOR_DOWN,  _T("CFXBlockComparatorDown"), _T("Компаратор нижнего уровня"), GROUP_COMPARATOR });
+	ods->Add({ BLOCK_COMPARATOR_UP,  _T("CFXBlockComparatorUp"), _T("Компаратор верхнего уровня"), GROUP_COMPARATOR });
+
+	// Логика
+	ods->Add({ GROUP_LOGICAL, _T(""), _T("Логика"), 0, true });
+	ods->Add({ BLOCK_LOGICAL_AND,  _T("CFXBlockLogicalAnd"), _T("Логическое И"), GROUP_LOGICAL });
+	ods->Add({ BLOCK_LOGICAL_OR,  _T("CFXBlockLogicalOr"), _T("Логическое ИЛИ"), GROUP_LOGICAL });
+	ods->Add({ BLOCK_LOGICAL_NOT,  _T("CFXBlockLogicalNot"), _T("Логическое НЕ"), GROUP_LOGICAL });
+	ods->Add({ BLOCK_LOGICAL_XOR,  _T("CFXBlockLogicalXor"), _T("Логическое XOR"), GROUP_LOGICAL });
+	ods->Add({ BLOCK_LOGICAL_RISING_EDGE,  _T("CFXBlockLogicalRisingEdge"), _T("Восходящий фронт"), GROUP_LOGICAL });
+	ods->Add({ BLOCK_LOGICAL_FALLING_EDGE,  _T("CFXBlockLogicalFallingEdge"), _T("Нисходящий фронт"), GROUP_LOGICAL });
+	ods->Add({ BLOCK_LOGICAL_FRONTS,  _T("CFXBlockLogicalFronts"), _T("Фронты"), GROUP_LOGICAL });
+
+	// Задержки
+	ods->Add({ GROUP_DELAY, _T(""), _T("Задержки"), 0, true });
+	ods->Add({ BLOCK_ANTIBOUNCE,  _T("CFXBlockAntiBounce"), _T("Дребезг"), GROUP_DELAY });
+	ods->Add({ BLOCK_DELAY_ON,  _T("CFXBlockDelayOn"), _T("Задержка включения"), GROUP_DELAY });
+	ods->Add({ BLOCK_DELAY_OFF,  _T("CFXBlockDelayOff"), _T("Задержка выключения"), GROUP_DELAY });
+	
+	// Счетчики, триггеры
+	ods->Add({ GROUP_COUNTERS_TRIGGERS, _T(""), _T("Счетчики, триггеры"), 0, true });
+	ods->Add({ BLOCK_COUNTER,  _T("CFXBlockCounter"), _T("Счетчик"), GROUP_COUNTERS_TRIGGERS });
+
+	// Триггеры
+	ods->Add({ GROUP_TRIGGERS, _T(""), _T("Триггеры"), GROUP_COUNTERS_TRIGGERS, true });
+	ods->Add({ BLOCK_LOGICAL_TRIGGER_RS,  _T("CFXBlockLogicalTriggerRS"), _T("RS-триггер"), GROUP_TRIGGERS });
+	ods->Add({ BLOCK_LOGICAL_TRIGGER_SR,  _T("CFXBlockLogicalTriggerSR"), _T("SR-триггер"), GROUP_TRIGGERS });
+	ods->Add({ BLOCK_LOGICAL_TRIGGER_RS_RE,  _T("CFXBlockLogicalTriggerRSRisingEdge"), _T("RS-триггер по передним фронтам"), GROUP_TRIGGERS });
+	
+	// Контроллеры
+	ods->Add({ GROUP_CONTROLLERS, _T(""), _T("Триггеры"), 0, true });
+	ods->Add({ BLOCK_CONTROLLER_NIMOD01,  _T("CFXBlockControllerNiMod01"), _T("Контроллер NiMod-A01"), GROUP_CONTROLLERS });
+	ods->Add({ BLOCK_EXTENSION_NIMODA01,  _T("CFXBlockExtensionA01"), _T("Модуль расширения NiMod-A01"), GROUP_CONTROLLERS });
+		
+	// Контроллеры
+	ods->Add({ GROUP_SENSORS, _T(""), _T("Датчики"), 0, true });
+
+	// Контроллеры-термосопротивления 2-проводные
+	ods->Add({ GROUP_SENSORS_TRD_2W, _T(""), _T("Термосопротивления 2-проводные"), GROUP_SENSORS, true });
+	ods->Add({ BLOCK_SENSOR_TRD_2W_M50,  _T("CFXBlockSensorTRD2WM50"), _T("M50"), GROUP_SENSORS_TRD_2W });
+	ods->Add({ BLOCK_SENSOR_TRD_2W_M100,  _T("CFXBlockSensorTRD2WM100"), _T("M100"), GROUP_SENSORS_TRD_2W });
+	ods->Add({ BLOCK_SENSOR_TRD_2W_P50,  _T("CFXBlockSensorTRD2WP50"), _T("P50"), GROUP_SENSORS_TRD_2W });
+	ods->Add({ BLOCK_SENSOR_TRD_2W_P100,  _T("CFXBlockSensorTRD2WP100"), _T("P100"), GROUP_SENSORS_TRD_2W });
+	ods->Add({ BLOCK_SENSOR_TRD_2W_PT100,  _T("CFXBlockSensorTRD2WPt100"), _T("Pt100"), GROUP_SENSORS_TRD_2W });
+	ods->Add({ BLOCK_SENSOR_TRD_2W_PT500,  _T("CFXBlockSensorTRD2WPt500"), _T("Pt500"), GROUP_SENSORS_TRD_2W });
+	ods->Add({ BLOCK_SENSOR_TRD_2W_PT1000,  _T("CFXBlockSensorTRD2WPt1000"), _T("Pt1000"), GROUP_SENSORS_TRD_2W });
+	
+	// Контроллеры-термосопротивления 3-проводные
+	ods->Add({ GROUP_SENSORS_TRD_3W, _T(""), _T("Термосопротивления 3-проводные"), GROUP_SENSORS, true });
+	ods->Add({ BLOCK_SENSOR_TRD_3W_M50,  _T("CFXBlockSensorTRD3WM50"), _T("M50"), GROUP_SENSORS_TRD_3W });
+	ods->Add({ BLOCK_SENSOR_TRD_3W_M100,  _T("CFXBlockSensorTRD3WM100"), _T("M100"), GROUP_SENSORS_TRD_3W });
+	ods->Add({ BLOCK_SENSOR_TRD_3W_P50,  _T("CFXBlockSensorTRD3WP50"), _T("P50"), GROUP_SENSORS_TRD_3W });
+	ods->Add({ BLOCK_SENSOR_TRD_3W_P100,  _T("CFXBlockSensorTRD3WP100"), _T("P100"), GROUP_SENSORS_TRD_3W });
+	ods->Add({ BLOCK_SENSOR_TRD_3W_PT100,  _T("CFXBlockSensorTRD3WPt100"), _T("Pt100"), GROUP_SENSORS_TRD_3W });
+	ods->Add({ BLOCK_SENSOR_TRD_3W_PT500,  _T("CFXBlockSensorTRD3WPt500"), _T("Pt500"), GROUP_SENSORS_TRD_3W });
+	ods->Add({ BLOCK_SENSOR_TRD_3W_PT1000,  _T("CFXBlockSensorTRD3WPt1000"), _T("Pt1000"), GROUP_SENSORS_TRD_3W });
+
+	// Контроллеры-термосопротивления 4-проводные
+	ods->Add({ GROUP_SENSORS_TRD_4W, _T(""), _T("Термосопротивления 4-проводные"), GROUP_SENSORS, true });
+	ods->Add({ BLOCK_SENSOR_TRD_4W_M50,  _T("CFXBlockSensorTRD4WM50"), _T("M50"), GROUP_SENSORS_TRD_4W });
+	ods->Add({ BLOCK_SENSOR_TRD_4W_M100,  _T("CFXBlockSensorTRD4WM100"), _T("M100"), GROUP_SENSORS_TRD_4W });
+	ods->Add({ BLOCK_SENSOR_TRD_4W_P50,  _T("CFXBlockSensorTRD4WP50"), _T("P50"), GROUP_SENSORS_TRD_4W });
+	ods->Add({ BLOCK_SENSOR_TRD_4W_P100,  _T("CFXBlockSensorTRD4WP100"), _T("P100"), GROUP_SENSORS_TRD_4W });
+	ods->Add({ BLOCK_SENSOR_TRD_4W_PT100,  _T("CFXBlockSensorTRD4WPt100"), _T("Pt100"), GROUP_SENSORS_TRD_4W });
+	ods->Add({ BLOCK_SENSOR_TRD_4W_PT500,  _T("CFXBlockSensorTRD4WPt500"), _T("Pt500"), GROUP_SENSORS_TRD_4W });
+	ods->Add({ BLOCK_SENSOR_TRD_4W_PT1000,  _T("CFXBlockSensorTRD4WPt1000"), _T("Pt1000"), GROUP_SENSORS_TRD_4W });
+	
+	// Прочие
+	ods->Add({ GROUP_OTHER, _T(""), _T("Прочие"), 0, true });
+	ods->Add({ BLOCK_TRANSFORM_CURRENT,  _T("CFXBlockTransformCurrent"), _T("Токовый 0-20мА, 4-20мА"), GROUP_OTHER });
+	ods->Add({ BLOCK_TRANSFORM_LINEAR,  _T("CFXBlockTransformLinear"), _T("Линейное преобразование"), GROUP_OTHER });
+	ods->Add({ BLOCK_TRANSFORM_LINEAR_LIMITS,  _T("CFXBlockTransformLinearLimits"), _T("Линейное преобразование с ограничением"), GROUP_OTHER });
+	
+	
+	//ods->Add({ FXLINK,  _T("CFXLink"),
+	//ods->Add({ FXPIN,  _T("CFXPin"),
+	//ods->Add({ BLOCK_FUNCTIONAL_PIN,  _T("CFXBlockFunctionalPin"),
 }

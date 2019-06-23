@@ -8,6 +8,7 @@
 #endif
 
 #include "resource.h"       // основные символы
+#include <afxtempl.h>
 #define VERSION_MAJOR	1
 #define VERSION_MINOR	0
 
@@ -48,6 +49,7 @@ public:
 
 //	afx_msg void OnClassviewmenuWebhelp();
 	virtual int Run();
+	void FillObjectDescriptors();
 };
 
 extern CFXGraphApp theApp;
