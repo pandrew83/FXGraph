@@ -7,7 +7,7 @@ public:
 	DECLARE_SERIAL(CFXBlockMathFloatAbs);
 	CFXBlockMathFloatAbs(void);
 	void Create(CFXObject* pObject);
-	bool Calc();
+	bool Calc(void);
 	~CFXBlockMathFloatAbs(void);
 };
 

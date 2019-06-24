@@ -10,6 +10,14 @@ CFXBlockComment::CFXBlockComment(void)
 	m_Comment = _T("");
 }
 
+void CFXBlockComment::Create(CFXObject* pObject)
+{
+	CFXBlock::Create(pObject);
+	m_Comment = _T("");
+	m_Name = "Комментарий";
+	m_FontSize = 12;
+	m_bCalc = false;
+}
 
 CFXBlockComment::~CFXBlockComment(void)
 {

@@ -12,11 +12,5 @@ public:
 	bool Check(void);
 	int m_do;
 	void Initialize(void);
-	int GetClassID() {
-		return BLOCK_COUNTER;
-	}
-	CString GetClassDescriptor() {
-		return _T("CFXBlockCounter");
-	}
 };
 

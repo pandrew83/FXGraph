@@ -7,12 +7,6 @@ class CFXBlockAntiBounce :
 	CFXBlockAntiBounce();
 	void Create(CFXObject* pObject);
 	~CFXBlockAntiBounce();
-	int GetClassID() {
-		return BLOCK_ANTIBOUNCE;
-	}
-	CString GetClassDescriptor() {
-		return _T("CFXBlockAntiBounce");
-	}
 	bool Calc();
 	void Initialize() {
 		CFXBlock::Initialize();
