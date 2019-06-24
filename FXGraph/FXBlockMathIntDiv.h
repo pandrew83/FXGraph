@@ -6,14 +6,8 @@ class CFXBlockMathIntDiv :
 public:
 	CFXBlockMathIntDiv(void);
 	DECLARE_SERIAL(CFXBlockMathIntDiv);
-	CFXBlockMathIntDiv(CFXBlock* pBlock);
+	void Create(CFXObject* pObject);
 	~CFXBlockMathIntDiv(void);
-	int GetClassID(){
-		return BLOCK_MATH_INT_DIV;
-	}
-	CString GetClassDescriptor() {
-		return _T("CFXBlockMathIntDiv");
-	}
 	virtual bool Check(){
 		return CFXBlock::Check();
 	}

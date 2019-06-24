@@ -8,7 +8,9 @@ CFXBlockMathBitwisePack::CFXBlockMathBitwisePack(void)
 {
 }
 
-CFXBlockMathBitwisePack::CFXBlockMathBitwisePack(CFXBlock* pBlock) : CFXBlock(pBlock){
+void CFXBlockMathBitwisePack::Create(CFXObject* pObject)
+{
+	CFXBlock::Create(pObject);
 	m_Name = "Bit Pack";
 	m_InputPinTypes.AddTail(Logical);
 	m_OutputPinTypes.AddTail(Int);

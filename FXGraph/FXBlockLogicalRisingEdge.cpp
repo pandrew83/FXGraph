@@ -7,7 +7,9 @@ CFXBlockLogicalRisingEdge::CFXBlockLogicalRisingEdge(void)
 {
 }
 
-CFXBlockLogicalRisingEdge::CFXBlockLogicalRisingEdge(CFXBlock* pBlock):CFXBlock(pBlock){
+void CFXBlockLogicalRisingEdge::Create(CFXObject* pObject)
+{
+	CFXBlock::Create(pObject);
 	m_Prev = false;
 	m_MinHeight = m_Height = 50;
 	m_Name = "Raise Edge";

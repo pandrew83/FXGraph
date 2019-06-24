@@ -6,14 +6,8 @@ class CFXBlockMathFloatGreat :
 public:
 	DECLARE_SERIAL(CFXBlockMathFloatGreat);
 	CFXBlockMathFloatGreat(void);
+	void Create(CFXObject* pObject);
 	~CFXBlockMathFloatGreat(void);
-	CFXBlockMathFloatGreat(CFXBlock* pBlock);
 	bool Calc(void);
-	int GetClassID() {
-		return BLOCK_MATH_FLOAT_GREAT;
-	}
-	CString GetClassDescriptor() {
-		return _T("CFXBlockMathFloatGreat");
-	}
 };
 

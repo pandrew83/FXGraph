@@ -6,16 +6,10 @@ class CFXBlockMathFloatAdd :
 public:
 	CFXBlockMathFloatAdd(void);
 	DECLARE_SERIAL(CFXBlockMathFloatAdd);
-	CFXBlockMathFloatAdd(CFXBlock* pBlock);
+	void Create(CFXObject* pObject);
 	~CFXBlockMathFloatAdd(void);
 	int GetClassID(){
 		return BLOCK_MATH_FLOAT_ADD;
-	}
-	CString GetClassDescriptor() {
-		return _T("CFXBlockMathFloatAdd");
-	}
-	virtual bool Check(){
-		return CFXBlock::Check();
 	}
 	bool Calc(void);
 };

@@ -2,7 +2,9 @@
 #include "FXBlockLogicalNot.h"
 IMPLEMENT_SERIAL(CFXBlockLogicalNot,CFXBlock,1);
 
-CFXBlockLogicalNot::CFXBlockLogicalNot(CFXBlock* pBlock):CFXBlock(pBlock){
+void CFXBlockLogicalNot::Create(CFXObject* pObject)
+{
+	CFXBlock::Create(pObject);
 	m_Name = "Not";
 	m_MinHeight = m_Height = 50; 
 	m_PinInMinCount = 1;

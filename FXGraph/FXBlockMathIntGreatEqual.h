@@ -6,14 +6,8 @@ class CFXBlockMathIntGreatEqual :
 public:
 	DECLARE_SERIAL(CFXBlockMathIntGreatEqual);
 	CFXBlockMathIntGreatEqual(void);
-	CFXBlockMathIntGreatEqual(CFXBlock* pBlock);
+	void Create(CFXObject* pObject);
 	bool Calc();
 	~CFXBlockMathIntGreatEqual(void);
-	int GetClassID() {
-		return BLOCK_MATH_INT_GREATEQUAL;
-	}
-	CString GetClassDescriptor() {
-		return _T("CFXBlockMathIntGreatEqual");
-	}
 };
 

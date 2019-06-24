@@ -6,14 +6,8 @@ class CFXBlockMathIntSub :
 public:
 	CFXBlockMathIntSub(void);
 	DECLARE_SERIAL(CFXBlockMathIntSub);
-	CFXBlockMathIntSub(CFXBlock* pBlock);
+	void Create(CFXObject* pObject);
 	~CFXBlockMathIntSub(void);
-	int GetClassID(){
-		return BLOCK_MATH_INT_SUB;
-	}
-	CString GetClassDescriptor() {
-		return _T("CFXBlockMathIntSub");
-	}
 	virtual bool Check(){
 		return CFXBlock::Check();
 	}

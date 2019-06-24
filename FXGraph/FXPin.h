@@ -78,12 +78,6 @@ public:
 	CFXPinType m_Type;
 	CFXPinDir m_Dir;
 //	CList<CFXLink*,CFXLink*> m_Links;
-	int GetClassID(){
-		return FXPIN;
-	}
-	CString GetClassDescriptor() {
-		return _T("CFXPin");
-	}
 	virtual void SetFuncName(CString funcName){
 		m_FuncName = funcName;
 	}
@@ -92,7 +86,7 @@ public:
 	}
 	CFXPin(void);
 	DECLARE_SERIAL(CFXPin)
-	CFXPin(CFXPinDir dir, CFXPinType type, CString funcName, CFXBlock*pBlock, bool bAllowConst=true, bool bAllowParam=true, bool bConst=false,int nFormat=0, bool bLinkable=true):CFXObject(pBlock,_T("")){
+	CFXPin(CFXPinDir dir, CFXPinType type, CString funcName, CFXBlock*pBlock, bool bAllowConst=true, bool bAllowParam=true, bool bConst=false,int nFormat=0, bool bLinkable=true):CFXObject(pBlock){
 		m_Type = type;
 		m_Dir = dir;
 		m_FuncName = funcName;

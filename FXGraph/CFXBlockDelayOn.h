@@ -5,7 +5,7 @@ class CFXBlockDelayOn :
 {
 	DECLARE_SERIAL(CFXBlockDelayOn);
 	CFXBlockDelayOn();
-	CFXBlockDelayOn(CFXBlock* pBlock);
+	void Create(CFXObject* pObject);
 	~CFXBlockDelayOn();
 	void Initialize() {
 		CFXBlock::Initialize();

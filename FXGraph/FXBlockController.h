@@ -7,8 +7,8 @@ class CFXBlockController :
 public:
 	DECLARE_SERIAL(CFXBlockController);
 	CFXBlockController(void);
-	CFXBlockController(CFXBlock* pBlock);
 	~CFXBlockController(void);
+	void Create(CFXObject* pObject);
 protected:
 	int m_Ticks;
 	int m_TicksPerSec;

@@ -7,7 +7,9 @@ CFXBlockMathPow::CFXBlockMathPow(void)
 {
 }
 
-CFXBlockMathPow::CFXBlockMathPow(CFXBlock* pBlock):CFXBlock(pBlock){
+void CFXBlockMathPow::Create(CFXObject* pObject)
+{
+	CFXBlock::Create(pObject);
 	m_Name = "Pow(X,Y)";
 	m_PinInMaxCount = 2;
 	m_PinInMinCount = 2;

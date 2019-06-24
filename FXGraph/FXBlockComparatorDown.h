@@ -6,7 +6,7 @@ class CFXBlockComparatorDown :
 public:
 	DECLARE_SERIAL(CFXBlockComparatorDown);
 	CFXBlockComparatorDown(void);
-	CFXBlockComparatorDown(CFXBlock*pBlock);
+	void Create(CFXObject* pObject);
 	~CFXBlockComparatorDown(void);
 	bool Calc();
 	bool m_Prev;

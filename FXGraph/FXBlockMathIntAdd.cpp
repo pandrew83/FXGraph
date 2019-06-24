@@ -12,7 +12,9 @@ CFXBlockMathIntAdd::~CFXBlockMathIntAdd(void)
 {
 }
 
-CFXBlockMathIntAdd::CFXBlockMathIntAdd(CFXBlock* pBlock):CFXBlock(pBlock){
+void CFXBlockMathIntAdd::Create(CFXObject* pObject)
+{
+	CFXBlock::Create(pObject);
 	m_Name = "X + Y";
 	m_PinInMinCount = 2;
 	m_PinInMaxCount = 32;

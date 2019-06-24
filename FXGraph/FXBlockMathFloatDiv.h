@@ -6,14 +6,8 @@ class CFXBlockMathFloatDiv :
 public:
 	CFXBlockMathFloatDiv(void);
 	DECLARE_SERIAL(CFXBlockMathFloatDiv);
-	CFXBlockMathFloatDiv(CFXBlock* pBlock);
+	void Create(CFXObject* pObject);
 	~CFXBlockMathFloatDiv(void);
-	int GetClassID(){
-		return BLOCK_MATH_FLOAT_DIV;
-	}
-	CString GetClassDescriptor() {
-		return _T("CFXBlockMathFloatDiv");
-	}
 	bool Calc(void);
 };
 

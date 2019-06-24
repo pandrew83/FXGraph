@@ -6,14 +6,8 @@ class CFXBlockMathFloatLessEqual :
 public:
 	DECLARE_SERIAL(CFXBlockMathFloatLessEqual);
 	CFXBlockMathFloatLessEqual(void);
-	CFXBlockMathFloatLessEqual(CFXBlock* pBlock);
+	void Create(CFXObject* pObject);
 	~CFXBlockMathFloatLessEqual(void);
 	bool Calc(void);
-	int GetClassID() {
-		return BLOCK_MATH_FLOAT_LESSEQUAL;
-	}
-	CString GetClassDescriptor() {
-		return _T("CFXBlockMathFloatLessEqual");
-	}
 };
 

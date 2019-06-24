@@ -6,14 +6,8 @@ class CFXBlockMathBitwiseUnpack :
 public:
 	DECLARE_SERIAL(CFXBlockMathBitwiseUnpack);
 	CFXBlockMathBitwiseUnpack(void);
-	CFXBlockMathBitwiseUnpack(CFXBlock* pBlock);
+	void Create(CFXObject* pObject);
 	~CFXBlockMathBitwiseUnpack(void);
-	int GetClassID(){
-		return BLOCK_MATH_BITWISE_UNPACK;
-	}
-	CString GetClassDescriptor() {
-		return _T("CFXBlockMathBitwiseUnpack");
-	}
 	virtual bool Check(){
 		return CFXBlock::Check();
 	}

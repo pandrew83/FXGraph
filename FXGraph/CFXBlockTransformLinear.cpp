@@ -6,8 +6,9 @@ CFXBlockTransformLinear::CFXBlockTransformLinear()
 {
 }
 
-CFXBlockTransformLinear::CFXBlockTransformLinear(CFXBlock* pBlock) : CFXBlock(pBlock)
+void CFXBlockTransformLinear::Create(CFXObject* pObject)
 {
+	CFXBlock::Create(pObject);
 	m_Name = "Transform Linear";
 	m_MinHeight = m_Height = 175;
 	m_PinInMaxCount = 5;

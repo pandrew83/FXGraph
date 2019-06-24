@@ -9,7 +9,8 @@ CFXBlockControllerNiMod01::CFXBlockControllerNiMod01(void)
 {
 }
 
-CFXBlockControllerNiMod01::CFXBlockControllerNiMod01(CFXBlock* pBlock):CFXBlockController(pBlock){
+void CFXBlockControllerNiMod01::Create(CFXObject* pBlock){
+	CFXBlockController::Create(pBlock);
 	m_Name = "NiMod-01";
 	m_bCalc = true;
 	m_TicksPerSec = 1000;

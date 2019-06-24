@@ -9,7 +9,8 @@ CFXBlockController::CFXBlockController(void)
 {
 }
 
-CFXBlockController::CFXBlockController(CFXBlock* pBlock):CFXBlockFunctional(pBlock){
+void CFXBlockController::Create(CFXObject* pBlock){
+	CFXBlockFunctional::Create(pBlock);
 	m_Ticks = 0;
 }
 

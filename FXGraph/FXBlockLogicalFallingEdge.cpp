@@ -7,7 +7,9 @@ CFXBlockLogicalFallingEdge::CFXBlockLogicalFallingEdge(void)
 {
 }
 
-CFXBlockLogicalFallingEdge::CFXBlockLogicalFallingEdge(CFXBlock* pBlock):CFXBlock(pBlock){
+void CFXBlockLogicalFallingEdge::Create(CFXObject* pBlock)
+{
+	CFXBlock::Create(pBlock);
 	m_Prev = false;
 	m_MinHeight = m_Height = 50;
 	m_Name = "Fall Edge";

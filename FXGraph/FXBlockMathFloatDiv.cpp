@@ -12,7 +12,9 @@ CFXBlockMathFloatDiv::~CFXBlockMathFloatDiv(void)
 {
 }
 
-CFXBlockMathFloatDiv::CFXBlockMathFloatDiv(CFXBlock* pBlock) :CFXBlock(pBlock) {
+void CFXBlockMathFloatDiv::Create(CFXObject* pBlock)
+{
+	CFXBlock::Create(pBlock);
 	m_Name = "X / Y";
 	m_PinInMinCount = 2;
 	m_PinInMaxCount = 2;

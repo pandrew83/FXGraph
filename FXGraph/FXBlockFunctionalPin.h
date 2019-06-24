@@ -6,12 +6,6 @@ public:
 	CFXBlockFunctionalPin(void);
 	DECLARE_SERIAL(CFXBlockFunctionalPin)
 	CFXBlockFunctionalPin(CFXBlock* pBlock,CFXPin* pLinkedPin);
-	int GetClassID(){
-		return BLOCK_FUNCTIONAL_PIN;
-	}
-	CString GetClassDescriptor() {
-		return _T("CFXBlockFunctionalPin");
-	}
 	~CFXBlockFunctionalPin(void);
 	virtual bool Check(){
 		return CFXBlock::Check();

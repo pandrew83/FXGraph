@@ -8,7 +8,9 @@ CFXBlockMathFloatAbs::CFXBlockMathFloatAbs(void)
 {
 }
 
-CFXBlockMathFloatAbs::CFXBlockMathFloatAbs(CFXBlock* pBlock) : CFXBlock(pBlock){
+void CFXBlockMathFloatAbs::Create(CFXObject* pObject)
+{
+	CFXBlock::Create(pObject);
 	m_Name = "Abs(X)";
 	m_MinHeight = m_Height = 50;
 	m_PinInMaxCount = 1;

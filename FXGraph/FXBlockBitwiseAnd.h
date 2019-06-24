@@ -5,14 +5,8 @@ class CFXBlockMathBitwiseAnd :
 {
 public:
 	CFXBlockMathBitwiseAnd(void);
-	CFXBlockMathBitwiseAnd(CFXBlock* pBlock);
+	void Create(CFXObject* pObject);
 	~CFXBlockMathBitwiseAnd(void);
-	int GetClassID(){
-		return BLOCK_MATH_BITWISE_AND;
-	}
-	CString GetClassDescriptor() {
-		return _T("CFXBlockMathBitwiseAnd");
-	}
 	virtual bool Check(){
 		return CFXBlock::Check();
 	}

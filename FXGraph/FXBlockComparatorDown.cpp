@@ -8,7 +8,9 @@ CFXBlockComparatorDown::CFXBlockComparatorDown(void)
 {
 }
 
-CFXBlockComparatorDown::CFXBlockComparatorDown(CFXBlock*pBlock):CFXBlock(pBlock){
+void CFXBlockComparatorDown::Create(CFXObject* pBlock)
+{
+	CFXBlock::Create(pBlock);
 	m_Prev = false;
 	m_Name = "Comp Down";
 	m_InputPinTypes.AddTail(Float);

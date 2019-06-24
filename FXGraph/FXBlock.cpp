@@ -18,8 +18,9 @@ void box(CDC*pDC, CPoint p, int d, COLORREF color){
 	box(pDC,p.x,p.y,d,color);
 }
 
-CFXBlock::CFXBlock(CFXBlock*pBlock) : CFXObject(pBlock,_T(""))
+void CFXBlock::Create(CFXObject*pObject) 
 {
+	CFXObject::Create(pObject);
 	m_bCalc = true;
 	m_bBreakPoint = false;
 	m_PinInMinCount = 0;

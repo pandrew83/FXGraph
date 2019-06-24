@@ -14,7 +14,8 @@ CFXBlockFunctionalPin::~CFXBlockFunctionalPin(void)
 {
 }
 
-CFXBlockFunctionalPin::CFXBlockFunctionalPin(CFXBlock* pBlock,CFXPin* pLinkedPin) : CFXBlock(pBlock){
+CFXBlockFunctionalPin::CFXBlockFunctionalPin(CFXBlock* pBlock,CFXPin* pLinkedPin) : CFXBlock(){
+	CFXBlock::Create(pBlock);
 	m_Height = 50;
 	m_bCalc = false;
 	m_pLinkedPin = pLinkedPin;

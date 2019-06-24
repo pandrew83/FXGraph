@@ -6,13 +6,7 @@ class CFXBlockSensorTRD2WM50 :
 {
 	DECLARE_SERIAL(CFXBlockSensorTRD2WM50);
 	CFXBlockSensorTRD2WM50();
-	CFXBlockSensorTRD2WM50(CFXBlock* pBlock);
+	void Create(CFXObject* pObject);
 	bool Calc();
-	int GetClassID() {
-		return BLOCK_SENSOR_TRD_2W_M50;
-	}
-	CString GetClassDescriptor() {
-		return _T("CFXBlockSensorTRD2WM50");
-	}
 };
 

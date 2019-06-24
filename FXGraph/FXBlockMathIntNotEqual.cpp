@@ -6,7 +6,9 @@ CFXBlockMathIntNotEqual::CFXBlockMathIntNotEqual(void)
 {
 }
 
-CFXBlockMathIntNotEqual::CFXBlockMathIntNotEqual(CFXBlock*pBlock):CFXBlock(pBlock){
+void CFXBlockMathIntNotEqual::Create(CFXObject* pObject)
+{
+	CFXBlock::Create(pObject);
 	m_Name = "X != Y";
 	m_PinInMinCount = 2;
 	m_PinInMaxCount = 2;

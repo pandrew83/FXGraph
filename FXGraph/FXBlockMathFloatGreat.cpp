@@ -12,8 +12,9 @@ CFXBlockMathFloatGreat::~CFXBlockMathFloatGreat(void)
 }
 
 
-CFXBlockMathFloatGreat::CFXBlockMathFloatGreat(CFXBlock* pBlock) : CFXBlock(pBlock)
+void CFXBlockMathFloatGreat::Create(CFXObject* pBlock)
 {
+	CFXBlock::Create(pBlock);
 	m_Name = "X > Y";
 	m_PinInMinCount = 2;
 	m_PinInMaxCount = 2;

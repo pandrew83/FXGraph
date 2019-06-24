@@ -7,8 +7,7 @@ class CFXBlockExtension :
 public:
 	DECLARE_SERIAL(CFXBlockExtension);
 	CFXBlockExtension(void);
-	CFXBlockExtension(CFXBlock* pBlock) : CFXBlock(pBlock){
-	}
+//	void Create(CFXObject* pObject);
 	~CFXBlockExtension(void);
 	CFXPin* AddInputPin(CFXPinType type, CString funcName);
 	CFXPin* AddOutputPin(CFXPinType type, CString funcName);

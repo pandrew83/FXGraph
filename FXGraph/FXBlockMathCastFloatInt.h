@@ -6,14 +6,8 @@ class CFXBlockMathCastFloatInt :
 public:
 	CFXBlockMathCastFloatInt(void);
 	DECLARE_SERIAL(CFXBlockMathCastFloatInt);
-	CFXBlockMathCastFloatInt(CFXBlock* pBlock);
+	void Create(CFXObject* pObject);
 	~CFXBlockMathCastFloatInt(void);
-	int GetClassID(){
-		return BLOCK_MATH_CAST_FLOAT_INT;
-	}
-	CString GetClassDescriptor() {
-		return _T("CFXBlockMathCastFloatInt");
-	}
 	virtual bool Check(){
 		return CFXBlock::Check();
 	}

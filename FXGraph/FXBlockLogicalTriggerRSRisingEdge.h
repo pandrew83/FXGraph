@@ -6,18 +6,12 @@ class CFXBlockLogicalTriggerRSRisingEdge :
 public:
 	DECLARE_SERIAL(CFXBlockLogicalTriggerRSRisingEdge);
 	CFXBlockLogicalTriggerRSRisingEdge(void);
-	CFXBlockLogicalTriggerRSRisingEdge(CFXBlock* pBlock);
+	void Create(CFXObject* pObject);
 	bool Calc();
 	bool m_PrevR;
 	bool m_PrevS;
 	bool m_PrevZ;
 	~CFXBlockLogicalTriggerRSRisingEdge(void);
 	void Initialize(void);
-	int GetClassID() {
-		return BLOCK_LOGICAL_TRIGGER_RS_RE;
-	}
-	CString GetClassDescriptor() {
-		return _T("CFXBlockLogicalTriggerRSRisingEdge");
-	}
 };
 

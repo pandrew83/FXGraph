@@ -9,7 +9,7 @@ CFXLink::CFXLink(void)
 {
 }
 
-CFXLink::CFXLink(CFXBlock* pBlock,CFXPin* pPinOut, CFXPin* pPinIn):CFXObject(pBlock,_T("")){
+CFXLink::CFXLink(CFXBlock* pBlock,CFXPin* pPinOut, CFXPin* pPinIn):CFXObject(pBlock){
 	m_pOut = pPinOut;
 	m_pIn = pPinIn;
 	m_pIn->AddConnectedPin(pPinOut);

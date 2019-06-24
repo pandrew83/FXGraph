@@ -6,14 +6,8 @@ class CFXBlockMathFloatAbs :
 public:
 	DECLARE_SERIAL(CFXBlockMathFloatAbs);
 	CFXBlockMathFloatAbs(void);
-	CFXBlockMathFloatAbs(CFXBlock* pBlock);
+	void Create(CFXObject* pObject);
 	bool Calc();
 	~CFXBlockMathFloatAbs(void);
-	int GetClassID() {
-		return BLOCK_MATH_FLOAT_ABS;
-	}
-	CString GetClassDescriptor() {
-		return _T("CFXBlockMathFloatAbs");
-	}
 };
 

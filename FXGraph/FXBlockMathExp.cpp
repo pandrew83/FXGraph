@@ -7,7 +7,9 @@ CFXBlockMathExp::CFXBlockMathExp(void)
 {
 }
 
-CFXBlockMathExp::CFXBlockMathExp(CFXBlock* pBlock):CFXBlock(pBlock){
+void CFXBlockMathExp::Create(CFXObject* pObject)
+{
+	CFXBlock::Create(pObject);
 	m_Name = "Exp(X)";
 	m_MinHeight = m_Height = 50;
 	m_PinInMaxCount = 1;

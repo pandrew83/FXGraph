@@ -6,7 +6,9 @@ CFXBlockLogicalTriggerSR::CFXBlockLogicalTriggerSR(void)
 {
 }
 
-CFXBlockLogicalTriggerSR::CFXBlockLogicalTriggerSR(CFXBlock* pBlock):CFXBlock(pBlock){
+void CFXBlockLogicalTriggerSR::Create(CFXObject* pObject)
+{
+	CFXBlock::Create(pObject);
 	m_Prev = false;
 	m_Name = "Trig SR";
 	m_InputPinTypes.AddTail(Logical);

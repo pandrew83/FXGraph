@@ -7,7 +7,9 @@ CFXBlockLogicalXor::CFXBlockLogicalXor(void)
 {
 }
 
-CFXBlockLogicalXor::CFXBlockLogicalXor(CFXBlock* pBlock):CFXBlock(pBlock){
+void CFXBlockLogicalXor::Create(CFXObject* pObject)
+{
+	CFXBlock::Create(pObject);
 	m_Name = "Xor";
 	m_PinInMinCount = 2;
 	m_PinInMaxCount = 32;

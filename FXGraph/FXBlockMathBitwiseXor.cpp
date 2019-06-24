@@ -7,7 +7,9 @@ CFXBlockMathBitwiseXor::CFXBlockMathBitwiseXor(void)
 {
 }
 
-CFXBlockMathBitwiseXor::CFXBlockMathBitwiseXor(CFXBlock* pBlock):CFXBlock(pBlock){
+void CFXBlockMathBitwiseXor::Create(CFXObject* pObject)
+{
+	CFXBlock::Create(pObject);
 	m_Name = "Bit Xor";
 	m_InputPinTypes.AddTail(Int);
 	m_OutputPinTypes.AddTail(Int);

@@ -12,7 +12,9 @@ CFXBlockMathFloatSub::~CFXBlockMathFloatSub(void)
 {
 }
 
-CFXBlockMathFloatSub::CFXBlockMathFloatSub(CFXBlock* pBlock) :CFXBlock(pBlock) {
+void CFXBlockMathFloatSub::Create(CFXObject* pObject)
+{
+	CFXBlock::Create(pObject);
 	m_Name = "X - Y";
 	m_PinInMinCount = 2;
 	m_PinInMaxCount = 2;

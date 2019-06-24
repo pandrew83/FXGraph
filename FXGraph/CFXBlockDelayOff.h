@@ -6,7 +6,7 @@ class CFXBlockDelayOff :
 public:
 	DECLARE_SERIAL(CFXBlockDelayOff);
 	CFXBlockDelayOff();
-	CFXBlockDelayOff(CFXBlock* pBlock);
+	void Create(CFXObject* pObject);
 	~CFXBlockDelayOff();
 	void Initialize() {
 		CFXBlock::Initialize();

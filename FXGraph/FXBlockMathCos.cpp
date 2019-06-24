@@ -7,7 +7,9 @@ CFXBlockMathCos::CFXBlockMathCos(void)
 {
 }
 
-CFXBlockMathCos::CFXBlockMathCos(CFXBlock* pBlock):CFXBlock(pBlock){
+void CFXBlockMathCos::Create(CFXObject* pObject)
+{
+	CFXBlock::Create(pObject);
 	m_Name = "Cos(X)";
 	m_MinHeight = m_Height = 50;
 	m_PinInMaxCount = 1;

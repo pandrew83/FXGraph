@@ -6,7 +6,9 @@ CFXBlockMathFloatGreatEqual::CFXBlockMathFloatGreatEqual(void)
 {
 }
 
-CFXBlockMathFloatGreatEqual::CFXBlockMathFloatGreatEqual(CFXBlock* pBlock):CFXBlock(pBlock){
+void CFXBlockMathFloatGreatEqual::Create(CFXObject* pObject)
+{
+	CFXBlock::Create(pObject);
 	m_Name = "X >= Y";
 	m_PinInMinCount = 2;
 	m_PinInMaxCount = 2;

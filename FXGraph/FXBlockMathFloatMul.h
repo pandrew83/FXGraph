@@ -6,14 +6,8 @@ class CFXBlockMathFloatMul :
 public:
 	CFXBlockMathFloatMul(void);
 	DECLARE_SERIAL(CFXBlockMathFloatMul);
-	CFXBlockMathFloatMul(CFXBlock* pBlock);
+	void Create(CFXObject* pObject);
 	~CFXBlockMathFloatMul(void);
-	int GetClassID(){
-		return BLOCK_MATH_FLOAT_MUL;
-	}
-	CString GetClassDescriptor() {
-		return _T("CFXBlockMathFloatMul");
-	}
 	virtual bool Check(){
 		return CFXBlock::Check();
 	}

@@ -5,13 +5,7 @@ class CFXBlockTransformCurrent :
 {
 	DECLARE_SERIAL(CFXBlockTransformCurrent);
 	CFXBlockTransformCurrent();
-	CFXBlockTransformCurrent(CFXBlock* pBlock);
+	void Create(CFXObject* pObject);
 	bool Calc();
-	int GetClassID() {
-		return BLOCK_TRANSFORM_CURRENT;
-	}
-	CString GetClassDescriptor() {
-		return _T("CFXBlockTransformCurrent");
-	}
 };
 

@@ -6,14 +6,8 @@ class CFXBlockMathBitwiseOr :
 public:
 	DECLARE_SERIAL(CFXBlockMathBitwiseOr);
 	CFXBlockMathBitwiseOr(void);
-	CFXBlockMathBitwiseOr(CFXBlock* pBlock);
+	void Create(CFXObject* pObject);
 	~CFXBlockMathBitwiseOr(void);
-	int GetClassID(){
-		return BLOCK_MATH_BITWISE_OR;
-	}
-	CString GetClassDescriptor() {
-		return _T("CFXBlockMathBitwiseOr");
-	}
 	virtual bool Check(){
 		return CFXBlock::Check();
 	}

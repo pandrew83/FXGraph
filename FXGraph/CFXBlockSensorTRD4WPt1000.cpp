@@ -9,8 +9,9 @@ CFXBlockSensorTRD4WPt1000::CFXBlockSensorTRD4WPt1000()
 {
 }
 
-CFXBlockSensorTRD4WPt1000::CFXBlockSensorTRD4WPt1000(CFXBlock* pBlock) : CFXBlock(pBlock)
+void CFXBlockSensorTRD4WPt1000::Create(CFXObject* pBlock)
 {
+	CFXBlock::Create(pBlock);
 	m_Name = "TRD 4W Pt1000";
 	m_PinInMaxCount = 1;
 	m_PinInMinCount = 1;

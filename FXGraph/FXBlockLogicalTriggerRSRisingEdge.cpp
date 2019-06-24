@@ -6,7 +6,9 @@ CFXBlockLogicalTriggerRSRisingEdge::CFXBlockLogicalTriggerRSRisingEdge(void)
 {
 }
 
-CFXBlockLogicalTriggerRSRisingEdge::CFXBlockLogicalTriggerRSRisingEdge(CFXBlock* pBlock):CFXBlock(pBlock){
+void CFXBlockLogicalTriggerRSRisingEdge::Create(CFXObject* pObject)
+{
+	CFXBlock::Create(pObject);
 	m_PrevR = false;
 	m_PrevS = false;
 	m_PrevZ = false;
