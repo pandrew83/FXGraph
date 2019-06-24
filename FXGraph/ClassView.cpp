@@ -121,10 +121,9 @@ if (pButton != NULL)
 	pButton->SetMessageWnd(this);
 }
 
-m_blockFilter = new CEdit;
 
-m_blockFilter->Create(WS_CHILD | WS_VISIBLE | WS_TABSTOP | WS_BORDER, CRect(0, 0, 0, 0), this, IDI_BLOCK_FILTER_EDIT);
-m_blockFilter->SetCueBanner(_T("Поиск блоков..."));
+m_blockFilter.Create(WS_CHILD | WS_VISIBLE | WS_TABSTOP | WS_BORDER, CRect(0, 0, 0, 0), this, IDI_BLOCK_FILTER_EDIT);
+m_blockFilter.SetCueBanner(_T("Поиск блоков..."));
 // Введите некоторые данные статического представления в виде дерева (пустой код, ничего более)
 FillClassView();
 SetCapture();
@@ -149,7 +148,7 @@ void CClassView::FillClassView()
 	TracePrint(TRACE_LEVEL_1, __FUNCTION__);
 	
 	CString filterTxt;
-	m_blockFilter->GetWindowText(filterTxt);
+	m_blockFilter.GetWindowText(filterTxt);
 	filterTxt.Trim().MakeLower();
 	   	m_wndClassView.DeleteAllItems(); // Очищаем дерево блоков
 
@@ -272,7 +271,7 @@ void CClassView::AdjustLayout()
 
 	m_wndToolBar.SetWindowPos(NULL, rectClient.left, rectClient.top, rectClient.Width(), cyTlb, SWP_NOACTIVATE | SWP_NOZORDER);
 	m_wndClassView.SetWindowPos(NULL, rectClient.left + 1, rectClient.top + cyTlb + 1, rectClient.Width() - 2, rectClient.Height() - cyTlb - 2, SWP_NOACTIVATE | SWP_NOZORDER);
-	m_blockFilter->SetWindowPos(NULL, rectClient.left + 60, rectClient.top + 2, rectClient.Width()-60, 20, 0);
+	m_blockFilter.SetWindowPos(NULL, rectClient.left + 60, rectClient.top + 2, rectClient.Width()-60, 20, 0);
 }
 
 BOOL CClassView::PreTranslateMessage(MSG* pMsg)
