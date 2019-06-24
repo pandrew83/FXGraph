@@ -7,7 +7,9 @@ CFXBlockMathLog::CFXBlockMathLog(void)
 {
 }
 
-CFXBlockMathLog::CFXBlockMathLog(CFXBlock* pBlock):CFXBlock(pBlock){
+void CFXBlockMathLog::Create(CFXObject* pObject)
+{
+	CFXBlock::Create(pObject);
 	m_Name = "Log(X)";
 	m_MinHeight = m_Height = 50;
 	m_PinInMaxCount = 1;

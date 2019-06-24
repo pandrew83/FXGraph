@@ -8,7 +8,9 @@ CFXBlockMathSin::CFXBlockMathSin(void)
 {
 }
 
-CFXBlockMathSin::CFXBlockMathSin(CFXBlock* pBlock):CFXBlock(pBlock){
+void CFXBlockMathSin::Create(CFXObject* pObject)
+{
+	CFXBlock::Create(pObject);
 	m_Name = "Sin(X)";
 	m_MinHeight = m_Height = 50;
 	m_PinInMaxCount = 1;

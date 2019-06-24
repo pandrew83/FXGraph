@@ -7,7 +7,9 @@ CFXBlockMathSqrt::CFXBlockMathSqrt(void)
 {
 }
 
-CFXBlockMathSqrt::CFXBlockMathSqrt(CFXBlock* pBlock):CFXBlock(pBlock){
+void CFXBlockMathSqrt::Create(CFXObject* pObject)
+{
+	CFXBlock::Create(pObject);
 	m_Name = "Sqrt(X)";
 	m_MinHeight = m_Height = 50;
 	m_PinInMaxCount = 1;

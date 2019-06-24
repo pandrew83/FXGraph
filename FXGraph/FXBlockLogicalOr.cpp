@@ -12,7 +12,9 @@ CFXBlockLogicalOr::~CFXBlockLogicalOr(void)
 {
 }
 
-CFXBlockLogicalOr::CFXBlockLogicalOr(CFXBlock* pBlock):CFXBlock(pBlock){
+void CFXBlockLogicalOr::Create(CFXObject* pObject)
+{
+	CFXBlock::Create(pObject);
 	m_Name = "Or";
 	m_PinInMinCount = 2;
 	m_PinInMaxCount = 32;

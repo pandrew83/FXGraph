@@ -103,7 +103,8 @@ BOOL CFXGraphDoc::OnNewDocument()
 	if (!CDocument::OnNewDocument())
 		return FALSE;
 	POSITION pos = GetFirstViewPosition();
-	m_pBlock = new CFXBlockFunctional(NULL);
+	m_pBlock = new CFXBlockFunctional();
+	m_pBlock->Create(NULL);
 
 	CMainFrame* pMainFrame = (CMainFrame*)AfxGetMainWnd();
 	CFXGraphView* pView = (CFXGraphView*)GetNextView(pos);
@@ -194,7 +195,8 @@ void CFXGraphDoc::Serialize(CArchive& ar)
 //		CMainFrame* pMainFrame = (CMainFrame*)AfxGetMainWnd();
 		CFXGraphView* pView = (CFXGraphView*)GetNextView(pos);
 
-		pView->m_pBlock = new CFXBlockFunctional(NULL);
+		pView->m_pBlock = new CFXBlockFunctional();
+		pView->m_pBlock->Create(NULL);
 		m_pBlock = pView->m_pBlock;
 		m_pBlock->Serialize(ar);
 		//////

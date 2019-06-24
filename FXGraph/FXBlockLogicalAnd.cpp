@@ -9,7 +9,8 @@ CFXBlockLogicalAnd::CFXBlockLogicalAnd(void) : CFXBlock()
 {
 }
 
-CFXBlockLogicalAnd::CFXBlockLogicalAnd(CFXBlock* pBlock):CFXBlock(pBlock){
+void CFXBlockLogicalAnd::Create(CFXObject* pBlock){
+	CFXBlock::Create(pBlock);
 	m_bCalc = true;
 	m_Name = "And";
 	m_PinInMinCount = 2;

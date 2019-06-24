@@ -6,7 +6,7 @@ class CFXBlockCounter :
 public:
 	DECLARE_SERIAL(CFXBlockCounter);
 	CFXBlockCounter(void);
-	CFXBlockCounter(CFXBlock* pBlock);
+	void Create(CFXObject* pObject);
 	bool Calc();
 	~CFXBlockCounter(void);
 	bool Check(void);

@@ -6,16 +6,10 @@ class CFXBlockLogicalFallingEdge :
 public:
 	DECLARE_SERIAL(CFXBlockLogicalFallingEdge);
 	CFXBlockLogicalFallingEdge(void);
-	CFXBlockLogicalFallingEdge(CFXBlock* pBlock);
+	void Create(CFXObject* pObject);
 	bool Calc();
 	bool m_Prev;
 	~CFXBlockLogicalFallingEdge(void);
 	void Initialize(void);
-	int GetClassID() {
-		return BLOCK_LOGICAL_FALLING_EDGE;
-	}
-	CString GetClassDescriptor() {
-		return _T("CFXBlockLogicalFallingEdge");
-	}
 };
 

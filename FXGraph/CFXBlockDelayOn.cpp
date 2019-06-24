@@ -7,8 +7,9 @@ CFXBlockDelayOn::CFXBlockDelayOn()
 	m_Ticks = 0;
 }
 
-CFXBlockDelayOn::CFXBlockDelayOn(CFXBlock* pBlock) : CFXBlock(pBlock)
+void CFXBlockDelayOn::Create(CFXObject* pObject)
 {
+	CFXBlock::Create(pObject);
 	m_Name = "Delay On";
 	m_PinInMaxCount = 2;
 	m_PinInMinCount = 2;

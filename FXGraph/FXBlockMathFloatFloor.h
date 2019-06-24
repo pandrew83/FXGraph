@@ -6,14 +6,8 @@ class CFXBlockMathFloatFloor :
 public:
 	DECLARE_SERIAL(CFXBlockMathFloatFloor);
 	CFXBlockMathFloatFloor(void);
-	CFXBlockMathFloatFloor(CFXBlock* pBlock);
+	void Create(CFXObject* pObject);
 	bool Calc();
 	~CFXBlockMathFloatFloor(void);
-	int GetClassID() {
-		return BLOCK_MATH_FLOAT_FLOOR;
-	}
-	CString GetClassDescriptor() {
-		return _T("CFXBlockMathFloatFloor");
-	}
 };
 

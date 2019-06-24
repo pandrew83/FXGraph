@@ -5,15 +5,9 @@ class CFXBlockMathBitwisePack :
 {
 public:
 	DECLARE_SERIAL(CFXBlockMathBitwisePack);
-	CFXBlockMathBitwisePack(CFXBlock* pBlock);
+	void Create(CFXObject* pObject);
 	CFXBlockMathBitwisePack(void);
 	~CFXBlockMathBitwisePack(void);
-	int GetClassID(){
-		return BLOCK_MATH_BITWISE_PACK;
-	}
-	CString GetClassDescriptor() {
-		return _T("CFXBlockMathBitwisePack");
-	}
 	virtual bool Check(){
 		return CFXBlock::Check();
 	}

@@ -8,7 +8,7 @@ class CFXBlockControllerNiMod01 :
 public:
 	DECLARE_SERIAL(CFXBlockControllerNiMod01);
 	CFXBlockControllerNiMod01(void);
-	CFXBlockControllerNiMod01(CFXBlock* pBlock);
+	void Create(CFXObject* pObject);
 	~CFXBlockControllerNiMod01(void);
 	int GetClassID(){
 		return BLOCK_CONTROLLER_NIMOD01;

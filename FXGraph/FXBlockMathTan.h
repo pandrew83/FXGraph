@@ -6,14 +6,8 @@ class CFXBlockMathTan :
 public:
 	DECLARE_SERIAL(CFXBlockMathTan);
 	CFXBlockMathTan(void);
-	CFXBlockMathTan(CFXBlock* pBlock);
+	void Create(CFXObject* pObject);
 	bool Calc();
 	~CFXBlockMathTan(void);
-	int GetClassID() {
-		return BLOCK_MATH_TAN;
-	}
-	CString GetClassDescriptor() {
-		return _T("CFXBlockMathTan");
-	}
 };
 

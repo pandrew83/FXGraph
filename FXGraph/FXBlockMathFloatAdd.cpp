@@ -12,7 +12,9 @@ CFXBlockMathFloatAdd::~CFXBlockMathFloatAdd(void)
 {
 }
 
-CFXBlockMathFloatAdd::CFXBlockMathFloatAdd(CFXBlock* pBlock) :CFXBlock(pBlock) {
+void CFXBlockMathFloatAdd::Create(CFXObject* pObject)
+{
+	CFXBlock::Create(pObject);
 	m_Name = "X + Y";
 	m_PinInMaxCount = 32;
 	m_PinInMinCount = 2;

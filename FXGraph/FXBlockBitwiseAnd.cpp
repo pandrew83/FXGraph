@@ -5,7 +5,9 @@
 CFXBlockMathBitwiseAnd::CFXBlockMathBitwiseAnd(void){
 }
 
-CFXBlockMathBitwiseAnd::CFXBlockMathBitwiseAnd(CFXBlock* pBlock) : CFXBlock(pBlock){
+void CFXBlockMathBitwiseAnd::Create(CFXObject* pBlock)
+{
+	CFXBlock::Create(pBlock);
 	m_Name = "Bit And";
 	m_InputPinTypes.AddTail(Int);
 	m_OutputPinTypes.AddTail(Int);

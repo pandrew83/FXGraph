@@ -7,7 +7,9 @@ CFXBlockMathAcos::CFXBlockMathAcos(void)
 {
 }
 
-CFXBlockMathAcos::CFXBlockMathAcos(CFXBlock* pBlock):CFXBlock(pBlock){
+void CFXBlockMathAcos::Create(CFXObject* pObject)
+{
+	CFXBlock::Create(pObject);
 	m_Name = "Acos(X)";
 	m_MinHeight = m_Height = 50;
 	m_PinInMaxCount = 1;

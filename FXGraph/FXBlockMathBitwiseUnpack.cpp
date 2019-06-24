@@ -6,7 +6,9 @@ CFXBlockMathBitwiseUnpack::CFXBlockMathBitwiseUnpack(void)
 {
 }
 
-CFXBlockMathBitwiseUnpack::CFXBlockMathBitwiseUnpack(CFXBlock* pBlock) : CFXBlock(pBlock){
+void CFXBlockMathBitwiseUnpack::Create(CFXObject* pObject)
+{
+	CFXBlock::Create(pObject);
 	m_Name = "Bit Unpack";
 	m_InputPinTypes.AddTail(Int);
 	m_OutputPinTypes.AddTail(Logical);

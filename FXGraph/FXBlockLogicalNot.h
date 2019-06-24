@@ -6,14 +6,8 @@ class CFXBlockLogicalNot :
 public:
 	CFXBlockLogicalNot(void);
 	DECLARE_SERIAL(CFXBlockLogicalNot);
-	CFXBlockLogicalNot(CFXBlock* pBlock);
+	void Create(CFXObject* pObject);
 	~CFXBlockLogicalNot(void);
-	int GetClassID(){
-		return BLOCK_LOGICAL_NOT;
-	}
-	CString GetClassDescriptor() {
-		return _T("CFXBlockLogicalNot");
-	}
 	virtual bool Check(){
 		return CFXBlock::Check();
 	}

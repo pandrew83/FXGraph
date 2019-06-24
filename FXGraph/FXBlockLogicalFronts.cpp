@@ -6,7 +6,9 @@ CFXBlockLogicalFronts::CFXBlockLogicalFronts(void)
 {
 }
 
-CFXBlockLogicalFronts::CFXBlockLogicalFronts(CFXBlock* pBlock):CFXBlock(pBlock){
+void CFXBlockLogicalFronts::Create(CFXObject* pObject)
+{
+	CFXBlock::Create(pObject);
 	m_Prev = false;
 	m_Name = "Fronts";
 	m_InputPinTypes.AddTail(Logical);

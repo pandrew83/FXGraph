@@ -5,7 +5,7 @@ class CFXBlockAntiBounce :
 {
 	DECLARE_SERIAL(CFXBlockAntiBounce);
 	CFXBlockAntiBounce();
-	CFXBlockAntiBounce(CFXBlock* pBlock);
+	void Create(CFXObject* pObject);
 	~CFXBlockAntiBounce();
 	int GetClassID() {
 		return BLOCK_ANTIBOUNCE;

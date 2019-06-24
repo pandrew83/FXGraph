@@ -9,8 +9,9 @@ CFXBlockSensorTRD2WM50::CFXBlockSensorTRD2WM50()
 {
 }
 
-CFXBlockSensorTRD2WM50::CFXBlockSensorTRD2WM50(CFXBlock* pBlock) : CFXBlock(pBlock)
+void CFXBlockSensorTRD2WM50::Create(CFXObject* pBlock)
 {
+	CFXBlock::Create(pBlock);
 	m_Name = "TRD 2W M50";
 	m_PinInMaxCount = 1;
 	m_PinInMinCount = 1;

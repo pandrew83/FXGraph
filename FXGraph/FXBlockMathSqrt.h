@@ -6,14 +6,8 @@ class CFXBlockMathSqrt :
 public:
 	DECLARE_SERIAL(CFXBlockMathSqrt);
 	CFXBlockMathSqrt(void);
-	CFXBlockMathSqrt(CFXBlock* pBlock);
+	void Create(CFXObject* pObject);
 	bool Calc();
 	~CFXBlockMathSqrt(void);
-	int GetClassID() {
-		return BLOCK_MATH_SQRT;
-	}
-	CString GetClassDescriptor() {
-		return _T("CFXBlockMathSqrt");
-	}
 };
 

@@ -24,14 +24,14 @@ void WriteStr(CArchive& ar, LPCSTR fmt,...){
 
 CFXObject::CFXObject(void)
 {
-	m_ID = 0;
-	m_Name = "";
-	m_SaveX = 0;
-	m_SaveY = 0;
-	m_Style = 0;
-	m_X = 0;
-	m_Y = 0;
-	m_pBlock = NULL;
+	//m_ID = 0;
+	//m_Name = "";
+	//m_SaveX = 0;
+	//m_SaveY = 0;
+	//m_Style = 0;
+	//m_X = 0;
+	//m_Y = 0;
+	//m_pBlock = NULL;
 }
 
 

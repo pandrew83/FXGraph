@@ -6,12 +6,9 @@ CFXBlockTransformCurrent::CFXBlockTransformCurrent()
 {
 }
 
-CFXBlockTransformCurrent::CFXBlockTransformCurrent(CFXBlock* pBlock) : CFXBlock(pBlock)
+void CFXBlockTransformCurrent::Create(CFXObject* pObject) 
 {
-	m_Name = "Transform Current";
-	m_MinHeight = 50;
-	m_Height = 50;
-	m_PinInMaxCount = 1;
+	CFXBlock::Create(pObject);
 	m_PinInMinCount = 1;
 	m_PinOutMinCount = 1;
 	m_PinOutMaxCount = 1;

@@ -7,7 +7,9 @@ CFXBlockMathCastFloatInt::CFXBlockMathCastFloatInt(void)
 {
 }
 
-CFXBlockMathCastFloatInt::CFXBlockMathCastFloatInt(CFXBlock* pBlock) :CFXBlock(pBlock) {
+void CFXBlockMathCastFloatInt::Create(CFXObject* pObject)
+{
+	CFXBlock::Create(pObject);
 	m_Name = "Float2Int";
 	m_MinHeight = m_Height = 50;
 	m_PinInMinCount = 1;

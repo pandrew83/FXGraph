@@ -7,7 +7,9 @@ CFXBlockMathBitwiseNot::CFXBlockMathBitwiseNot(void)
 {
 }
 
-CFXBlockMathBitwiseNot::CFXBlockMathBitwiseNot(CFXBlock* pBlock) : CFXBlock(pBlock){
+void CFXBlockMathBitwiseNot::Create(CFXObject* pObject)
+{
+	CFXBlock::Create(pObject);
 	m_Name = "Bit Not";
 	m_MinHeight = m_Height = 50;
 	m_InputPinTypes.AddTail(Int);

@@ -10,7 +10,8 @@ class CFXBlockFunctional : public CFXBlock
 public:
 	DECLARE_SERIAL(CFXBlockFunctional)
 	CFXBlockFunctional(void);
-	CFXBlockFunctional(CFXBlock* pBlock):CFXBlock(pBlock){
+	void Create(CFXObject* pObject){
+		CFXBlock::Create(pObject);
 		m_bCalc = true;
 		m_pDebugFirst = NULL;
 		m_LastID = m_ID+1;
@@ -24,20 +25,9 @@ public:
 		m_OutputPinTypes.AddTail(Int);
 		m_OutputPinTypes.AddTail(Logical);
 	}
-	int GetClassID(){
-		return BLOCK_FUNCTIONAL;
-	}
-	CString GetClassDescriptor() {
-		return _T("CFXBlockFunctional");
-	}
-//	CList<CFXObject*,CFXObject*> m_Objects;
 	CList<CFXBlock*,CFXBlock*> m_Blocks;
 	CList<CFXLink*,CFXLink*> m_Links;
-//	CArray<CFXBlock*,CFXBlock*> m_Blocks;
-//	int m_DebugIndex;
-//	CFXBlock* m_pDebugCur;
 	CFXBlock* m_pDebugFirst;
-//	CList<CFXLink*,CFXLink*> m_Links;
 	~CFXBlockFunctional(void);
 	void Draw(CFXGraphView*pView);
 	void AddBlock(CFXBlock* pBlock);

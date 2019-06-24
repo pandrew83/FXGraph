@@ -6,7 +6,9 @@ CFXBlockMathIntMod::CFXBlockMathIntMod(void)
 {
 }
 
-CFXBlockMathIntMod::CFXBlockMathIntMod(CFXBlock *pBlock):CFXBlock(pBlock){
+void CFXBlockMathIntMod::Create(CFXObject* pObject)
+{
+	CFXBlock::Create(pObject);
 	m_Name = "X % Y";
 	m_PinInMinCount = 2;
 	m_PinInMaxCount = 32;

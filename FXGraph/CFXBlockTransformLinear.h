@@ -6,13 +6,7 @@ class CFXBlockTransformLinear :
 public:
 	DECLARE_SERIAL(CFXBlockTransformLinear);
 	CFXBlockTransformLinear();
-	CFXBlockTransformLinear(CFXBlock* pBlock);
+	void Create(CFXObject* pObject);
 	bool Calc();
-	int GetClassID() {
-		return BLOCK_TRANSFORM_LINEAR;
-	}
-	CString GetClassDescription() {
-		return _T("CFXBlockTransformLinear");
-	}
 };
 

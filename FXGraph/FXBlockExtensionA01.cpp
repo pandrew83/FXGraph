@@ -14,8 +14,9 @@ CFXBlockExtensionA01::~CFXBlockExtensionA01(void)
 }
 
 
-CFXBlockExtensionA01::CFXBlockExtensionA01(CFXBlock* pBlock) : CFXBlockExtension(pBlock)
+void CFXBlockExtensionA01::Create(CFXObject* pBlock)
 {
+	CFXBlock::Create(pBlock);
 	m_Name = _T("NiMod-A01");
 	m_MinHeight = 300;
 	m_Height = 300;

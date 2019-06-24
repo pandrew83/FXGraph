@@ -6,7 +6,8 @@ CFXBlockCounter::CFXBlockCounter(void)
 {
 }
 
-CFXBlockCounter::CFXBlockCounter(CFXBlock* pBlock):CFXBlock(pBlock){
+void CFXBlockCounter::Create(CFXObject* pBlock){
+	CFXBlock::Create(pBlock);
 	m_Name = "CNTR";
 	m_MinHeight = 150;
 	m_Height = 150;

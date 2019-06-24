@@ -33,12 +33,6 @@ public:
 			return this;
 		return NULL;
 	}
-	int GetClassID(){
-		return FXLINK;
-	}
-	CString GetClassDescriptor() {
-		return _T("CFXLink");
-	}
 	void Remove(void);
 	virtual void Serialize(CArchive&ar);
 };

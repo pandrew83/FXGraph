@@ -6,14 +6,8 @@ class CFXBlockMathFloatNotEqual :
 public:
 	DECLARE_SERIAL(CFXBlockMathFloatNotEqual);
 	CFXBlockMathFloatNotEqual(void);
-	CFXBlockMathFloatNotEqual(CFXBlock* pBlock);
+	void Create(CFXObject* pObject);
 	~CFXBlockMathFloatNotEqual(void);
 	bool Calc(void);
-	int GetClassID() {
-		return BLOCK_MATH_FLOAT_NOTEQUAL;
-	}
-	CString GetClassDescriptor() {
-		return _T("CFXBlockMathFloatNotEqual");
-	}
 };
 

@@ -6,14 +6,8 @@ class CFXBlockLogicalOr :
 public:
 	CFXBlockLogicalOr(void);
 	DECLARE_SERIAL(CFXBlockLogicalOr);
-	CFXBlockLogicalOr(CFXBlock* pBlock);
+	void Create(CFXObject* pObject);
 	~CFXBlockLogicalOr(void);
-	int GetClassID(){
-		return BLOCK_LOGICAL_OR;
-	}
-	CString GetClassDescriptor() {
-		return _T("CFXBlockLogicalOr");
-	}
 	virtual bool Check(){
 		return CFXBlock::Check();
 	}

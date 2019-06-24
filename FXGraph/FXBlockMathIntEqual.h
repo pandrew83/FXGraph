@@ -6,14 +6,8 @@ class CFXBlockMathIntEqual :
 public:
 	DECLARE_SERIAL(CFXBlockMathIntEqual);
 	CFXBlockMathIntEqual(void);
-	CFXBlockMathIntEqual(CFXBlock* pBlock);
+	void Create(CFXObject* pObject);
 	bool Calc();
-	int GetClassID() {
-		return BLOCK_MATH_INT_EQUAL;
-	}
-	CString GetClassDescriptor() {
-		return _T("CFXBlockMathIntEqual");
-	}
 	~CFXBlockMathIntEqual(void);
 };
 

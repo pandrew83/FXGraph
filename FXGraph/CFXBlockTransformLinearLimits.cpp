@@ -6,8 +6,9 @@ CFXBlockTransformLinearLimits::CFXBlockTransformLinearLimits()
 {
 }
 
-CFXBlockTransformLinearLimits::CFXBlockTransformLinearLimits(CFXBlock* pBlock) : CFXBlock(pBlock)
+void CFXBlockTransformLinearLimits::Create(CFXObject* pBlock)
 {
+	CFXBlock::Create(pBlock);
 	m_Name = "Transform Linear Limits";
 	m_Height = m_MinHeight = 175;
 	m_PinInMaxCount = 5;

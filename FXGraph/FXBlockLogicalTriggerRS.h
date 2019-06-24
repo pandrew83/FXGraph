@@ -6,16 +6,10 @@ class CFXBlockLogicalTriggerRS :
 public:
 	DECLARE_SERIAL(CFXBlockLogicalTriggerRS);
 	CFXBlockLogicalTriggerRS(void);
-	CFXBlockLogicalTriggerRS(CFXBlock* pBlock);
+	void Create(CFXObject* pObject);
 	bool Calc();
 	bool m_Prev;
 	~CFXBlockLogicalTriggerRS(void);
 	void Initialize(void);
-	int GetClassID() {
-		return BLOCK_LOGICAL_TRIGGER_RS;
-	}
-	CString GetClassDescriptor() {
-		return _T("CFXBlockLogicalTriggerRS");
-	}
 };
 

@@ -16,8 +16,10 @@ protected:
 	int m_Width;
 	int m_Height;
 //	int m_SysTicks;
-	CFXBlock(void) : m_CalcOrder(0), m_bBreakPoint(0)
+	CFXBlock(void)
 	{
+		m_CalcOrder = 0;
+		m_bBreakPoint = false;
 		m_Width = 0;
 		m_Height = 0;
 		m_MinWidth = 0;
@@ -36,12 +38,12 @@ protected:
 	CRect m_RectLeft;
 	CRect m_RectRight;
 public:
+	void Create(CFXObject* pObject);
 	void InvalidateName(CFXGraphView* pView);
 	void InvalidateBlock(CFXGraphView* pView);
 	void InvalidateLeft(CFXGraphView* pView);
 	void InvalidateRight(CFXGraphView* pView);
 	void InvalidateLinks(CFXGraphView* pView);
-	CFXBlock(CFXBlock*pBlock);
 	~CFXBlock(void);
 	void Invalidate(CFXGraphView* pView, int regions);
 	void GetPinLinks(CListLink& lst, CFXPin* pPin);

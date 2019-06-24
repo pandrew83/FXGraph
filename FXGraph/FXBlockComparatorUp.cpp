@@ -7,7 +7,9 @@ CFXBlockComparatorUp::CFXBlockComparatorUp(void)
 	: m_Prev(false)
 {
 }
-CFXBlockComparatorUp::CFXBlockComparatorUp(CFXBlock* pBlock): CFXBlock(pBlock){
+void CFXBlockComparatorUp::Create(CFXObject* pBlock)
+{
+	CFXBlock::Create(pBlock);
 	m_Prev = false;
 	m_Name = "Comp Up";
 	m_MinHeight = m_Height = 100;

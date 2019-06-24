@@ -208,6 +208,18 @@ public:
 	CFXObject(void);
 	DECLARE_SERIAL(CFXObject);
 	virtual void AfterSerialize(){}
+	virtual void Create(CFXObject* pObject) {
+		m_pBlock = pObject;
+		if (m_pBlock)
+			m_ID = m_pBlock->GetNewID();
+		else
+			m_ID = 0;
+		m_SaveX = 0;
+		m_SaveY = 0;
+		m_Style = 0;
+		m_X = 0;
+		m_Y = 0;
+	}
 //	virtual CString GetClassDescriptor() = 0;
 protected:
 	int m_X;
@@ -224,13 +236,12 @@ public:
 	virtual CFXObject* GetByID(int id){
 		return NULL;
 	}
-	CFXObject(CFXObject* pObject,CString name){
+	CFXObject(CFXObject* pObject){
 		m_pBlock = pObject;
 		if (m_pBlock)
 			m_ID = m_pBlock->GetNewID();
 		else
 			m_ID = 0;
-		m_Name = name;
 		m_SaveX = 0;
 		m_SaveY = 0;
 		m_Style = 0;
@@ -238,9 +249,8 @@ public:
 		m_Y = 0;
 	}
 	
-	CFXObject(CFXBlock* pBlock,CString name){
+	CFXObject(CFXBlock* pBlock){
 		m_pBlock = (CFXObject*)pBlock;
-		m_Name = name;
 		if (m_pBlock)
 			m_ID = m_pBlock->GetNewID();
 		else
@@ -253,15 +263,22 @@ public:
 	}
 	~CFXObject(void);
 	virtual int GetClassID() {
-		throw new CFXException(_T("GetClassID: Not implemented method called"));
+		CString className = GetClassDescriptor();
+		int cnt = CFXObject::m_ObjectDescriptors.GetCount();
+
+		for (int i = 0; i < cnt; i++)
+		{
+			auto desc = &CFXObject::m_ObjectDescriptors.GetAt(i);
+			if (desc->m_ClassName == className) {
+				return desc->m_Id;
+			}
+		}
+		throw new CFXException(_T("Unknown class descriptor"));
 	}
-	virtual CString GetClassDescriptor() {
-		throw new CFXException(_T("GetClassDescriptor: Not implemented method called"));
-	}
-	virtual const char* GetClassName(){
+	virtual CString GetClassDescriptor(){
 		const char *s = typeid(*this).name();
 		const char *p = s+6;
-		return p;
+		return CString(p);
 	}
 	virtual void Serialize(CArchive& ar);
 	virtual void SetX(int x){

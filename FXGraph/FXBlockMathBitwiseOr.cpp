@@ -7,8 +7,9 @@ CFXBlockMathBitwiseOr::CFXBlockMathBitwiseOr(void)
 {
 }
 
-CFXBlockMathBitwiseOr::CFXBlockMathBitwiseOr(CFXBlock* pBlock) : CFXBlock(pBlock)
+void CFXBlockMathBitwiseOr::Create(CFXObject* pObject)
 {
+	CFXBlock::Create(pObject);
 	m_Name = "Bit Or";
 	m_InputPinTypes.AddTail(Int);
 	m_OutputPinTypes.AddTail(Int);

@@ -6,14 +6,8 @@ class CFXBlockMathFloatLess :
 public:
 	DECLARE_SERIAL(CFXBlockMathFloatLess);
 	CFXBlockMathFloatLess(void);
-	CFXBlockMathFloatLess(CFXBlock* pBlock);
+	void Create(CFXObject* pObject);
 	~CFXBlockMathFloatLess(void);
 	bool Calc(void);
-	int GetClassID() {
-		return BLOCK_MATH_FLOAT_LESS;
-	}
-	CString GetClassDescriptor() {
-		return _T("CFXBlockMathFloatLess");
-	}
 };
 

@@ -7,7 +7,9 @@ CFXBlockMathBitwiseShiftLeft::CFXBlockMathBitwiseShiftLeft(void)
 {
 }
 
-CFXBlockMathBitwiseShiftLeft::CFXBlockMathBitwiseShiftLeft(CFXBlock* pBlock) : CFXBlock(pBlock){
+void CFXBlockMathBitwiseShiftLeft::Create(CFXObject* pObject)
+{
+	CFXBlock::Create(pObject);
 	m_Name = "Shift Left";
 	m_InputPinTypes.AddTail(Int);
 	m_OutputPinTypes.AddTail(Int);

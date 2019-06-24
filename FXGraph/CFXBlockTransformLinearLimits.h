@@ -6,13 +6,7 @@ class CFXBlockTransformLinearLimits :
 public:
 	DECLARE_SERIAL(CFXBlockTransformLinearLimits);
 	CFXBlockTransformLinearLimits();
-	CFXBlockTransformLinearLimits(CFXBlock* pBlock);
+	void Create(CFXObject* pObject);
 	bool Calc();
-	int GetClassID() {
-		return BLOCK_TRANSFORM_LINEAR_LIMITS;
-	}
-	CString GetClassDescription() {
-		return _T("CFXBlockTransformLinearLimits");
-	}
 };
 

@@ -7,7 +7,9 @@ CFXBlockMathTan::CFXBlockMathTan(void)
 {
 }
 
-CFXBlockMathTan::CFXBlockMathTan(CFXBlock* pBlock):CFXBlock(pBlock){
+void CFXBlockMathTan::Create(CFXObject* pObject)
+{
+	CFXBlock::Create(pObject);
 	m_Name = "Tan(X)";
 	m_MinHeight = m_Height = 50;
 	m_PinInMaxCount = 1;

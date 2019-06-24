@@ -9,8 +9,9 @@ CFXBlockAntiBounce::CFXBlockAntiBounce()
 	m_Ticks = 0;
 }
 
-CFXBlockAntiBounce::CFXBlockAntiBounce(CFXBlock* pBlock) : CFXBlock(pBlock)
+void CFXBlockAntiBounce::Create(CFXObject* pObject)
 {
+	CFXBlock::Create(pObject);
 	m_Name = "Bounce";
 	m_PinInMaxCount = 2;
 	m_PinInMinCount = 2;

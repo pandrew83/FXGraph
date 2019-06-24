@@ -6,14 +6,8 @@ class CFXBlockMathIntLess :
 public:
 	DECLARE_SERIAL(CFXBlockMathIntLess);
 	CFXBlockMathIntLess(void);
-	CFXBlockMathIntLess(CFXBlock*pBlock);
+	void Create(CFXObject* pObject);
 	bool Calc();
 	~CFXBlockMathIntLess(void);
-	int GetClassID() {
-		return BLOCK_MATH_INT_LESS;
-	}
-	CString GetClassDescriptor() {
-		return _T("CFXBlockMathIntLess");
-	}
 };
 

@@ -9,8 +9,9 @@ CFXBlockSensorTRD3WM50::CFXBlockSensorTRD3WM50()
 {
 }
 
-CFXBlockSensorTRD3WM50::CFXBlockSensorTRD3WM50(CFXBlock* pBlock) : CFXBlock(pBlock)
+void CFXBlockSensorTRD3WM50::Create(CFXObject* pBlock)
 {
+	CFXBlock::Create(pBlock);
 	m_Name = "TRD 3W M50";
 	m_PinInMaxCount = 1;
 	m_PinInMinCount = 1;

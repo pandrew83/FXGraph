@@ -7,7 +7,7 @@ public:
 	DECLARE_SERIAL(CFXBlockExtensionA01);
 	CFXBlockExtensionA01(void);
 	~CFXBlockExtensionA01(void);
-	CFXBlockExtensionA01(CFXBlock* pBlock);
+	void Create(CFXObject* pObject);
 	int GetClassID() {
 		return BLOCK_EXTENSION_NIMODA01;
 	}

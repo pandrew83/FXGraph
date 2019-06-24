@@ -6,14 +6,8 @@ class CFXBlockMathAcos :
 public:
 	DECLARE_SERIAL(CFXBlockMathAcos);
 	CFXBlockMathAcos(void);
-	CFXBlockMathAcos(CFXBlock* pBlock);
+	void Create(CFXObject* pObject);
 	bool Calc();
 	~CFXBlockMathAcos(void);
-	int GetClassID() {
-		return BLOCK_MATH_ACOS;
-	}
-	CString GetClassDescriptor() {
-		return _T("CFXBlockMathAcos");
-	}
 };
 

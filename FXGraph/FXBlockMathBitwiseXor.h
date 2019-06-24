@@ -6,14 +6,8 @@ class CFXBlockMathBitwiseXor :
 public:
 	DECLARE_SERIAL(CFXBlockMathBitwiseXor);
 	CFXBlockMathBitwiseXor(void);
-	CFXBlockMathBitwiseXor(CFXBlock* pBlock);
+	void Create(CFXObject* pObject);
 	~CFXBlockMathBitwiseXor(void);
-	int GetClassID(){
-		return BLOCK_MATH_BITWISE_XOR;
-	}
-	CString GetClassDescriptor() {
-		return _T("CFXBlockMathBitwiseXor");
-	}
 	virtual bool Check(){
 		return CFXBlock::Check();
 	}

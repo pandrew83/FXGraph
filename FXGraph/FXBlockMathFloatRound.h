@@ -6,14 +6,8 @@ class CFXBlockMathFloatRound :
 public:
 	DECLARE_SERIAL(CFXBlockMathFloatRound);
 	CFXBlockMathFloatRound(void);
-	CFXBlockMathFloatRound(CFXBlock* pBlock);
+	void Create(CFXObject* pObject);
 	bool Calc();
 	~CFXBlockMathFloatRound(void);
-	int GetClassID() {
-		return BLOCK_MATH_FLOAT_ROUND;
-	}
-	CString GetClassDescriptor() {
-		return _T("CFXBlockMathFloatRound");
-	}
 };
 
