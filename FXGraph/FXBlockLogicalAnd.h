@@ -8,12 +8,6 @@ public:
 	CFXBlockLogicalAnd(void);
 	void Create(CFXObject* pObject);
 	~CFXBlockLogicalAnd(void);
-	void Serialize(CArchive& ar){
-		CFXBlock::Serialize(ar);
-	}
-	virtual bool Check(){
-		return CFXBlock::Check();
-	}
 	bool Calc(void);
 };
 

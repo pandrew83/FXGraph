@@ -16,6 +16,21 @@ CFXBlockFunctional::CFXBlockFunctional(void)
 	m_LastID = 0;
 }
 
+void CFXBlockFunctional::Create(CFXObject* pObject){
+	CFXBlock::Create(pObject);
+	m_bCalc = true;
+	m_pDebugFirst = NULL;
+	m_LastID = m_ID + 1;
+	m_Width = 100;
+	m_Height = 100;
+	m_Name = "Functional";
+	m_InputPinTypes.AddTail(Float);
+	m_InputPinTypes.AddTail(Int);
+	m_InputPinTypes.AddTail(Logical);
+	m_OutputPinTypes.AddTail(Float);
+	m_OutputPinTypes.AddTail(Int);
+	m_OutputPinTypes.AddTail(Logical);
+}
 
 CFXBlockFunctional::~CFXBlockFunctional(void)
 {
@@ -317,6 +332,19 @@ void CFXBlockFunctional::CalcOrder(void){
 	}
 }
 
+bool CFXBlockFunctional::Check()
+{
+	bool result = CFXBlock::Check();
+	if (!result)
+		return false;
+	POSITION pos = m_Blocks.GetHeadPosition();
+	while (pos) {
+		CFXBlock* pBlock = m_Blocks.GetNext(pos);
+		if (!pBlock->Check())
+			return false;
+	}
+	return true;
+}
 
 bool CFXBlockFunctional::Calc(void)
 {

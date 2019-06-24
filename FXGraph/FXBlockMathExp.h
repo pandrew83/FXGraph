@@ -7,7 +7,7 @@ public:
 	DECLARE_SERIAL(CFXBlockMathExp);
 	CFXBlockMathExp(void);
 	void Create(CFXObject* pObject);
-	bool Calc();
+	bool Calc(void);
 	~CFXBlockMathExp(void);
 };
 

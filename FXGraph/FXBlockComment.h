@@ -8,23 +8,8 @@ protected:
 	CString m_Comment;
 public:
 	CFXBlockComment(void);
-	void Create(CFXObject* pObject){
-		CFXBlock::Create(pObject);
-		m_Comment = _T("");
-		m_Name = "Комментарий";
-		m_FontSize = 12;
-		m_bCalc = false;
-	}
-	int GetPropList(){
-		return PROPLIST_COMMENT;
-	}
+	void Create(CFXObject* pObject);
 	DECLARE_SERIAL(CFXBlockComment);
-	int GetClassID(){
-		return BLOCK_COMMENT;
-	}
-	CString GetClassDescriptor() {
-		return _T("CFXBlockComment");
-	}
 	CString GetComment(){
 		return m_Comment;
 	}

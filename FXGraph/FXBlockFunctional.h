@@ -10,21 +10,7 @@ class CFXBlockFunctional : public CFXBlock
 public:
 	DECLARE_SERIAL(CFXBlockFunctional)
 	CFXBlockFunctional(void);
-	void Create(CFXObject* pObject){
-		CFXBlock::Create(pObject);
-		m_bCalc = true;
-		m_pDebugFirst = NULL;
-		m_LastID = m_ID+1;
-		m_Width = 100;
-		m_Height = 100;
-		m_Name = "Functional";
-		m_InputPinTypes.AddTail(Float);
-		m_InputPinTypes.AddTail(Int);
-		m_InputPinTypes.AddTail(Logical);
-		m_OutputPinTypes.AddTail(Float);
-		m_OutputPinTypes.AddTail(Int);
-		m_OutputPinTypes.AddTail(Logical);
-	}
+	void Create(CFXObject* pObject);
 	CList<CFXBlock*,CFXBlock*> m_Blocks;
 	CList<CFXLink*,CFXLink*> m_Links;
 	CFXBlock* m_pDebugFirst;
@@ -50,18 +36,7 @@ public:
 	CFXLink* GetLink(CFXPin* pPin1, CFXPin* pPin2);
 	void RemoveBlock(CFXBlock* pBlock);
 	void GetPinLinks(CListLink& lst, CFXPin* pPin);
-	virtual bool Check(){
-		bool result = CFXBlock::Check();
-		if (!result)
-			return false;
-		POSITION pos = m_Blocks.GetHeadPosition();
-		while (pos){
-			CFXBlock* pBlock = m_Blocks.GetNext(pos);
-			if (!pBlock->Check())
-				return false;
-		}
-		return true;
-	}
+	virtual bool Check();
 	void CalcOrder(void);
 	bool Calc(void);
 	bool IsRootBlock(){
