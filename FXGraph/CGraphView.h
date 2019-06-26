@@ -30,7 +30,7 @@ protected:
 	void OnChangeVisualStyle();
 	CImageList m_GraphViewImages;
 	CGraphToolBar m_wndToolBar;
-	CViewTree m_wndGraphView;
+	CColorTree m_wndGraphView;
 //	CFXGraphDoc* m_pCurDoc;
 public:
 	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
