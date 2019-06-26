@@ -81,9 +81,7 @@ void CViewTree::OnTvnBegindrag(NMHDR *pNMHDR, LRESULT *pResult)
 	*pResult = 0;
 }
 
-
-
-int CViewTree::GetItemLevel(HTREEITEM hItem)
+int CColorTree::GetItemLevel(HTREEITEM hItem)
 {
 	int cur_level = 0;
 	while (hItem) {
@@ -91,4 +89,26 @@ int CViewTree::GetItemLevel(HTREEITEM hItem)
 		cur_level++;
 	}
 	return cur_level;
+}
+
+//
+//int CViewTree::GetItemLevel(HTREEITEM hItem)
+//{
+//	int cur_level = 0;
+//	while (hItem) {
+//		hItem = GetParentItem(hItem);
+//		cur_level++;
+//	}
+//	return cur_level;
+//}
+BEGIN_MESSAGE_MAP(CColorTree, CTreeCtrl)
+	ON_NOTIFY_REFLECT(NM_CUSTOMDRAW, &CColorTree::OnNMCustomdraw)
+END_MESSAGE_MAP()
+
+
+void CColorTree::OnNMCustomdraw(NMHDR* pNMHDR, LRESULT* pResult)
+{
+	LPNMCUSTOMDRAW pNMCD = reinterpret_cast<LPNMCUSTOMDRAW>(pNMHDR);
+	// TODO: добавьте свой код обработчика уведомлений
+	*pResult = 0;
 }

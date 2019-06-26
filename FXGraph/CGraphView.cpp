@@ -109,7 +109,7 @@ int CGraphView::OnCreate(LPCREATESTRUCT lpCreateStruct)
 		TRACE0("Не удалось создать представление классов\n");
 		return -1;      // не удалось создать
 	}
-	m_wndGraphView.m_bAllowDragDrop = false;
+//	m_wndGraphView.m_bAllowDragDrop = false;
 
 	// Загрузка изображений:
 	m_wndToolBar.Create(this, AFX_DEFAULT_TOOLBAR_STYLE, IDR_SORT);

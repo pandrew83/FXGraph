@@ -1816,6 +1816,7 @@ void CFXGraphView::OnActivateView(BOOL bActivate, CView* pActivateView, CView* p
 	CFXGraphView* pView = dynamic_cast<CFXGraphView*>(pActivateView);
 	if (!bActivate && pView == NULL) {
 		// Closing view
+		TracePrint(TRACE_LEVEL_1, "CFXGraphView::Closing view\n");
 	}
 	if (!bActivate && pView) {
 		// Switching to another view

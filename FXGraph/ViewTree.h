@@ -2,6 +2,18 @@
 #pragma once
 /////////////////////////////////////////////////////////////////////////////
 // Окно CViewTree
+class CColorTree : public CTreeCtrl
+{
+public:
+	CColorTree() {
+	}
+	~CColorTree() {
+	}
+	int GetItemLevel(HTREEITEM hItem);
+
+	DECLARE_MESSAGE_MAP()
+	afx_msg void OnNMCustomdraw(NMHDR* pNMHDR, LRESULT* pResult);
+};
 
 class CViewTree : public CTreeCtrl
 {
@@ -28,5 +40,5 @@ public:
 //	afx_msg void OnLButtonUp(UINT nFlags, CPoint point);
 //	afx_msg void OnTvnItemChanged(NMHDR *pNMHDR, LRESULT *pResult);
 	int m_bAllowDragDrop;
-	int GetItemLevel(HTREEITEM hItem);
+//	int GetItemLevel(HTREEITEM hItem);
 };
