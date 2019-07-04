@@ -181,7 +181,8 @@ void COutputList::OnEditCopy()
 
 void COutputList::OnEditClear()
 {
-	MessageBox(_T("Очистить выходные данные"));
+	//MessageBox(_T("Очистить выходные данные"));
+	ResetContent();
 }
 
 void COutputList::OnViewOutput()
@@ -204,12 +205,15 @@ void COutputWnd::AddString(CFXMsgType type, CString name)
 	switch(type){
 		case Build:
 			m_wndOutputBuild.AddString(name);
+			m_wndOutputBuild.SetCurSel(m_wndOutputDebug.GetCount() - 1);
 			break;
 		case Find:
 			m_wndOutputFind.AddString(name);
+			m_wndOutputFind.SetCurSel(m_wndOutputDebug.GetCount() - 1);
 			break;
 		case Debug:
 			m_wndOutputDebug.AddString(name);
+			m_wndOutputDebug.SetCurSel(m_wndOutputDebug.GetCount() - 1);
 			break;
 	}
 }

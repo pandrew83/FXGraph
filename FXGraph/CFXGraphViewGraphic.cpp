@@ -382,21 +382,19 @@ void CFXGraphViewGraphic::OnActivateView(BOOL bActivate, CView* pActivateView, C
 {
 	TracePrint(TRACE_LEVEL_1, "CFXGraphViewGraphic::OnActivateView bActivate=%d pActivateView=%p pDeactiveView=%p\n", bActivate, pActivateView, pDeactiveView);
 	CMainFrame* pMainFrame = (CMainFrame*)AfxGetApp()->m_pMainWnd;
-	CFXGraphViewGraphic* pView = dynamic_cast<CFXGraphViewGraphic*>(pActivateView);
-	if (!bActivate && pView == NULL) {
+	if (!bActivate && !pActivateView) {
 		// Closing view
+		return;
 	}
-	if (!bActivate && pView) {
+	if (!bActivate) {
 		// Switching to another view
+		pMainFrame->OnActiveDocument(NULL);
 	}
-	if (bActivate && pView) {
+	if (bActivate){
 		// Swithing to this view
-		CFXGraphDoc* pDoc = pView->GetDocument();
+		CFXGraphDoc* pDoc = (CFXGraphDoc*)pActivateView->GetDocument();
 		pMainFrame->OnActiveDocument(pDoc);
 		pMainFrame->m_wndProperties.UpdateProperties(NULL);
-	}
-	else {
-		pMainFrame->OnActiveDocument(NULL);
 	}
 	CView::OnActivateView(bActivate, pActivateView, pDeactiveView);
 }
