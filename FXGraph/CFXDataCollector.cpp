@@ -144,6 +144,10 @@ void CFXDataCollector::CollectRecurse(CFXDataCollectorItem* pRow, CFXBlockFuncti
 		pos1 = pBlock->m_OutputPins.GetHeadPosition();
 		while (pos1) {
 			CFXPin* pPin = pBlock->m_OutputPins.GetNext(pos1);
+			if (!m_Columns[pPin->m_ID]) {
+				CFXDataCollectorColumn* pColumn = new CFXDataCollectorColumn(pPin->m_ID, pPin->GetName(), pPin->m_Type);
+				m_Columns[pPin->m_ID] = pColumn;
+			}
 			pRow->m_Values[pPin->m_ID] = pPin->GetValue();
 		}
 		if (pBlockFunc) {
