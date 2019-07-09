@@ -40,12 +40,16 @@ CFXBlock::~CFXBlock(void)
 {
 	POSITION pos = m_InputPins.GetHeadPosition();
 	while (pos){
-		delete m_InputPins.GetNext(pos);
+		CFXPin* pPin = m_InputPins.GetNext(pos);
+		RemovePinLinks(pPin);
+		delete pPin;
 	}
 	m_InputPins.RemoveAll();
 	pos = m_OutputPins.GetHeadPosition();
 	while (pos){
-		delete m_OutputPins.GetNext(pos);
+		CFXPin* pPin = m_OutputPins.GetNext(pos);
+		RemovePinLinks(pPin);
+		delete pPin;
 	}
 	m_OutputPins.RemoveAll();
 }
@@ -478,8 +482,8 @@ void CFXBlock::RemovePin(CFXPin* pPin)
 			if (m_InputPins.GetCount()-1 < m_PinInMinCount)
 				return;
 			m_InputPins.RemoveAt(pos);
+			RemovePinLinks(pPin);
 			delete pPin;
-			// TODO: Удалить все линки связанные с этим пином
 			CalcPinCoords();
 			return;
 		}
@@ -492,9 +496,10 @@ void CFXBlock::RemovePin(CFXPin* pPin)
 			if (m_OutputPins.GetCount()-1 < m_PinOutMinCount)
 				return;
 			m_OutputPins.RemoveAt(pos);
+			RemovePinLinks(pPin);
 			delete pPin;
 			CalcPinCoords();
-			// TODO: Удалить все линки связанные с этим пином
+			
 			return;
 		}
 		m_OutputPins.GetNext(pos);
