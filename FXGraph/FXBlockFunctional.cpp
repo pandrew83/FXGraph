@@ -46,25 +46,40 @@ CFXBlockFunctional::~CFXBlockFunctional(void)
 	}
 }
 
-CFXPin* CFXBlockFunctional::AddInputPin(CFXPinType type, CString funcName, bool bAllowConst, bool bAllowParam, bool bConst, bool bLinkable){
+CFXPin* CFXBlockFunctional::AddInputPin(CFXPinType type, CString funcName, bool bAllowConst, bool bAllowParam, bool bConst, int nFormat, bool bLinkable){
 	CFXPin* pPin = CFXBlock::AddInputPin(type,funcName,bAllowConst,bAllowParam,bConst,0,bLinkable);
 	if (pPin){
 		CString name;
 		name.Format(_T("pin.%d"),pPin->m_ID);
 		pPin->SetName(name);
 		CFXBlockFunctionalPin* pBlock = new CFXBlockFunctionalPin(this,pPin);
+		pPin->AddConnectedPin(pBlock->m_OutputPins.GetHead());
 		m_Blocks.AddTail(pBlock);
 	}
 	return pPin;
 }
 
-CFXPin* CFXBlockFunctional::AddOutputPin(CFXPinType type, CString funcName, bool bAllowConst, bool bAllowParam, bool bConst, bool bLinkable){
+CFXPin* CFXBlockFunctional::AddOutputPin(CFXPinType type, CString funcName, bool bAllowConst,  bool bAllowParam, bool bConst, int nFormat,bool bLinkable){
 	CFXPin* pPin = CFXBlock::AddOutputPin(type,funcName,bAllowConst,bAllowParam,bConst,0,bLinkable);
 	if (pPin){
 		CFXBlockFunctionalPin* pBlock = new CFXBlockFunctionalPin(this,pPin);
+		pPin->AddConnectedPin(pBlock->m_InputPins.GetHead());
 		m_Blocks.AddTail(pBlock);
 	}
 	return pPin;
+}
+
+void CFXBlockFunctional::RemovePin(CFXPin* pPin)
+{
+	POSITION pos = pPin->GetConnectedPins();
+	while (pos) {
+		CFXPin* pConnectedPin = pPin->GetNextConnectedPin(pos);
+		CFXBlockFunctionalPin* pFuncPin = dynamic_cast<CFXBlockFunctionalPin*>(pConnectedPin->m_pBlock);
+		ASSERT(pFuncPin);
+		pFuncPin->RemoveBlock();
+		pPin->RemoveConnectedPin(pConnectedPin);
+	}
+	CFXBlock::RemovePin(pPin);
 }
 
 

@@ -107,6 +107,8 @@
 #include "CFXBlockSensorTRD4WPt1000.h"
 #include "CFXBlockSensorTRD4WP50.h"
 #include "CFXBlockSensorTRD4WP100.h"
+#include "CFXBlockPID.h"
+
 #include "CommentDlg.h"
 
 #ifdef _DEBUG
@@ -1284,10 +1286,19 @@ void CFXGraphView::OnBlockPinRemove()
 				pPin->m_pParam->m_pPin = NULL;
 			}
 			CFXBlock* pBlock = dynamic_cast<CFXBlock*>(pPin->m_pBlock);
+			CFXBlockFunctional* pFuncBlock = dynamic_cast<CFXBlockFunctional*>(pPin->m_pBlock);
+			if (pFuncBlock) {
+				CFXGraphView* pView = pDoc->GetBlockView(pFuncBlock);
+				if (pView) {
+					pView->m_pCur = NULL;
+					pView->m_Selected.RemoveAll();
+				}
+			}
 			pPin->Remove();
 			pBlock->Invalidate(this,REGION_LEFT|REGION_RIGHT);
-//			Invalidate(0);
 			m_pCur = NULL;
+			m_Selected.RemoveAll();
+			UpdatePropertiesWnd();
 		}
 	}
 }
@@ -1323,6 +1334,7 @@ void CFXGraphView::OnBlockOutputpinAddFloat()
 	if (m_pCur){
 		CFXBlock* pBlock = (CFXBlock*)m_pCur;
 		pBlock->AddOutputPin(Float,_T(""));
+		pBlock->Invalidate(this, REGION_RIGHT);
 //		Invalidate(0);
 	}
 }
@@ -1429,280 +1441,6 @@ CFXBlock* CFXGraphView::AddBlock(DWORD ID, CPoint point)
 	CObject* pObj = CRuntimeClass::CreateObject(objName);
 	CFXBlock* pBlock = dynamic_cast<CFXBlock*>(pObj);
 	pBlock->Create(m_pBlock);
-	//switch(ID){
-	//	case BLOCK_FUNCTIONAL:
-	//		pBlock = new CFXBlockFunctional(m_pBlock);
-	//		break;
-	//	case BLOCK_LOGICAL_AND:
-	//		pBlock = new CFXBlockLogicalAnd(m_pBlock);
-	//		break;
-	//	case BLOCK_LOGICAL_OR:
-	//		pBlock = new CFXBlockLogicalOr(m_pBlock);
-	//		break;
-	//	case BLOCK_LOGICAL_NOT:
-	//		pBlock = new CFXBlockLogicalNot(m_pBlock);
-	//		break;
-	//	case BLOCK_LOGICAL_XOR:
-	//		pBlock = new CFXBlockLogicalXor(m_pBlock);
-	//		break;
-	//	case BLOCK_CONTROLLER_NIMOD01:
-	//		pBlock = new CFXBlockControllerNiMod01(m_pBlock);
-	//		break;
-	//	case BLOCK_MATH_INT_ADD:
-	//		pBlock = new CFXBlockMathIntAdd(m_pBlock);
-	//		break;
-	//	case BLOCK_MATH_INT_SUB:
-	//		pBlock = new CFXBlockMathIntSub(m_pBlock);
-	//		break;
-	//	case BLOCK_MATH_INT_MUL:
-	//		pBlock = new CFXBlockMathIntMul(m_pBlock);
-	//		break;
-	//	case BLOCK_MATH_INT_DIV:
-	//		pBlock = new CFXBlockMathIntDiv(m_pBlock);
-	//		break;
-	//	case BLOCK_MATH_INT_MOD:
-	//		pBlock = new CFXBlockMathIntMod(m_pBlock);
-	//		break;
-	//	case BLOCK_MATH_INT_ABS:
-	//		pBlock = new CFXBlockMathIntAbs(m_pBlock);
-	//		break;
-	//	case BLOCK_MATH_INT_EQUAL:
-	//		pBlock = new CFXBlockMathIntEqual(m_pBlock);
-	//		break;
-	//	case BLOCK_MATH_INT_GREAT:
-	//		pBlock = new CFXBlockMathIntGreat(m_pBlock);
-	//		break;
-	//	case BLOCK_MATH_INT_GREATEQUAL:
-	//		pBlock = new CFXBlockMathIntGreatEqual(m_pBlock);
-	//		break;
-	//	case BLOCK_MATH_INT_LESS:
-	//		pBlock = new CFXBlockMathIntLess(m_pBlock);
-	//		break;
-	//	case BLOCK_MATH_INT_LESSEQUAL:
-	//		pBlock = new CFXBlockMathIntLessEqual(m_pBlock);
-	//		break;
-	//	case BLOCK_MATH_INT_NOTEQUAL:
-	//		pBlock = new CFXBlockMathIntNotEqual(m_pBlock);
-	//		break;
-	//	case BLOCK_MATH_FLOAT_ADD:
-	//		pBlock = new CFXBlockMathFloatAdd(m_pBlock);
-	//		break;
-	//	case BLOCK_MATH_FLOAT_SUB:
-	//		pBlock = new CFXBlockMathFloatSub(m_pBlock);
-	//		break;
-	//	case BLOCK_MATH_FLOAT_MUL:
-	//		pBlock = new CFXBlockMathFloatMul(m_pBlock);
-	//		break;
-	//	case BLOCK_MATH_FLOAT_DIV:
-	//		pBlock = new CFXBlockMathFloatDiv(m_pBlock);
-	//		break;
-	//	case BLOCK_MATH_FLOAT_FLOOR:
-	//		pBlock = new CFXBlockMathFloatFloor(m_pBlock);
-	//		break;
-	//	case BLOCK_MATH_FLOAT_ROUND:
-	//		pBlock = new CFXBlockMathFloatRound(m_pBlock);
-	//		break;
-	//	case BLOCK_MATH_COS:
-	//		pBlock = new CFXBlockMathCos(m_pBlock);
-	//		break;
-	//	case BLOCK_MATH_SIN:
-	//		pBlock = new CFXBlockMathSin(m_pBlock);
-	//		break;
-	//	case BLOCK_MATH_TAN:
-	//		pBlock = new CFXBlockMathTan(m_pBlock);
-	//		break;
-	//	case BLOCK_MATH_SQRT:
-	//		pBlock = new CFXBlockMathSqrt(m_pBlock);
-	//		break;
-	//	case BLOCK_MATH_POW:
-	//		pBlock = new CFXBlockMathPow(m_pBlock);
-	//		break;
-	//	case BLOCK_MATH_LOG:
-	//		pBlock = new CFXBlockMathLog(m_pBlock);
-	//		break;
-	//	case BLOCK_MATH_LOG10:
-	//		pBlock = new CFXBlockMathLog10(m_pBlock);
-	//		break;
-	//	case BLOCK_MATH_ACOS:
-	//		pBlock = new CFXBlockMathAcos(m_pBlock);
-	//		break;
-	//	case BLOCK_MATH_ASIN:
-	//		pBlock = new CFXBlockMathAsin(m_pBlock);
-	//		break;
-	//	case BLOCK_MATH_ATAN:
-	//		pBlock = new CFXBlockMathAtan(m_pBlock);
-	//		break;
-	//	case BLOCK_MATH_EXP:
-	//		pBlock = new CFXBlockMathExp(m_pBlock);
-	//		break;
-	//	case BLOCK_MATH_CAST_FLOAT_INT:
-	//		pBlock = new CFXBlockMathCastFloatInt(m_pBlock);
-	//		break;
-	//	case BLOCK_MATH_CAST_INT_FLOAT:
-	//		pBlock = new CFXBlockMathCastIntFloat(m_pBlock);
-	//		break;
-	//	case BLOCK_COMMENT:
-	//		pBlock = new CFXBlockComment(m_pBlock);
-	//		break;
-	//	case BLOCK_MATH_BITWISE_AND:
-	//		pBlock = new CFXBlockMathBitwiseAnd(m_pBlock);
-	//		break;
-	//	case BLOCK_MATH_BITWISE_OR:
-	//		pBlock = new CFXBlockMathBitwiseOr(m_pBlock);
-	//		break;
-	//	case BLOCK_MATH_BITWISE_XOR:
-	//		pBlock = new CFXBlockMathBitwiseXor(m_pBlock);
-	//		break;
-	//	case BLOCK_MATH_BITWISE_NOT:
-	//		pBlock = new CFXBlockMathBitwiseNot(m_pBlock);
-	//		break;
-	//	case BLOCK_MATH_BITWISE_SHIFT_LEFT:
-	//		pBlock = new CFXBlockMathBitwiseShiftLeft(m_pBlock);
-	//		break;
-	//	case BLOCK_MATH_BITWISE_SHIFT_RIGHT:
-	//		pBlock = new CFXBlockMathBitwiseShiftRight(m_pBlock);
-	//		break;
-	//	case BLOCK_MATH_BITWISE_PACK:
-	//		pBlock = new CFXBlockMathBitwisePack(m_pBlock);
-	//		break;
-	//	case BLOCK_MATH_BITWISE_UNPACK:
-	//		pBlock = new CFXBlockMathBitwiseUnpack(m_pBlock);
-	//		break;
-	//	case BLOCK_EXTENSION_NIMODA01:
-	//		pBlock = new CFXBlockExtensionA01(m_pBlock);
-	//		break;
-	//	case BLOCK_MATH_FLOAT_GREAT:
-	//		pBlock = new CFXBlockMathFloatGreat(m_pBlock);
-	//		break;
-	//	case BLOCK_MATH_FLOAT_GREATEQUAL:
-	//		pBlock = new CFXBlockMathFloatGreatEqual(m_pBlock);
-	//		break;
-	//	case BLOCK_MATH_FLOAT_LESS:
-	//		pBlock = new CFXBlockMathFloatLess(m_pBlock);
-	//		break;
-	//	case BLOCK_MATH_FLOAT_LESSEQUAL:
-	//		pBlock = new CFXBlockMathFloatLessEqual(m_pBlock);
-	//		break;
-	//	case BLOCK_MATH_FLOAT_EQUAL:
-	//		pBlock = new CFXBlockMathFloatEqual(m_pBlock);
-	//		break;
-	//	case BLOCK_MATH_FLOAT_NOTEQUAL:
-	//		pBlock = new CFXBlockMathFloatNotEqual(m_pBlock);
-	//		break;
-	//	case BLOCK_MATH_FLOAT_ABS:
-	//		pBlock = new CFXBlockMathFloatAbs(m_pBlock);
-	//		break;
-	//	case BLOCK_COMPARATOR_UP:
-	//		pBlock = new CFXBlockComparatorUp(m_pBlock);
-	//		break;
-	//	case BLOCK_COMPARATOR_DOWN:
-	//		pBlock = new CFXBlockComparatorDown(m_pBlock);
-	//		break;
-	//	case BLOCK_LOGICAL_RISING_EDGE:
-	//		pBlock = new CFXBlockLogicalRisingEdge(m_pBlock);
-	//		break;
-	//	case BLOCK_LOGICAL_FALLING_EDGE:
-	//		pBlock = new CFXBlockLogicalFallingEdge(m_pBlock);
-	//		break;
-	//	case BLOCK_LOGICAL_FRONTS:
-	//		pBlock = new CFXBlockLogicalFronts(m_pBlock);
-	//		break;
-	//	case BLOCK_LOGICAL_TRIGGER_RS:
-	//		pBlock = new CFXBlockLogicalTriggerRS(m_pBlock);
-	//		break;
-	//	case BLOCK_LOGICAL_TRIGGER_SR:
-	//		pBlock = new CFXBlockLogicalTriggerSR(m_pBlock);
-	//		break;
-	//	case BLOCK_LOGICAL_TRIGGER_RS_RE:
-	//		pBlock = new CFXBlockLogicalTriggerRSRisingEdge(m_pBlock);
-	//		break;
-	//	case BLOCK_COUNTER:
-	//		pBlock = new CFXBlockCounter(m_pBlock);
-	//		break;
-	//	case BLOCK_ANTIBOUNCE:
-	//		pBlock = new CFXBlockAntiBounce(m_pBlock);
-	//		break;
-	//	case BLOCK_DELAY_ON:
-	//		pBlock = new CFXBlockDelayOn(m_pBlock);
-	//		break;
-	//	case BLOCK_DELAY_OFF:
-	//		pBlock = new CFXBlockDelayOff(m_pBlock);
-	//		break;
-	//	case BLOCK_TRANSFORM_CURRENT:
-	//		pBlock = new CFXBlockTransformCurrent(m_pBlock);
-	//		break;
-	//	case BLOCK_TRANSFORM_LINEAR:
-	//		pBlock = new CFXBlockTransformLinear(m_pBlock);
-	//		break;
-	//	case BLOCK_TRANSFORM_LINEAR_LIMITS:
-	//		pBlock = new CFXBlockTransformLinearLimits(m_pBlock);
-	//		break;
-	//	case BLOCK_SENSOR_TRD_2W_M50:
-	//		pBlock = new CFXBlockSensorTRD2WM50(m_pBlock);
-	//		break;
-	//	case BLOCK_SENSOR_TRD_2W_M100:
-	//		pBlock = new CFXBlockSensorTRD2WM100(m_pBlock);
-	//		break;
-	//	case BLOCK_SENSOR_TRD_2W_P50:
-	//		pBlock = new CFXBlockSensorTRD2WP50(m_pBlock);
-	//		break;
-	//	case BLOCK_SENSOR_TRD_2W_P100:
-	//		pBlock = new CFXBlockSensorTRD2WP100(m_pBlock);
-	//		break;
-	//	case BLOCK_SENSOR_TRD_2W_PT100:
-	//		pBlock = new CFXBlockSensorTRD2WPt100(m_pBlock);
-	//		break;
-	//	case BLOCK_SENSOR_TRD_2W_PT500:
-	//		pBlock = new CFXBlockSensorTRD2WPt500(m_pBlock);
-	//		break;
-	//	case BLOCK_SENSOR_TRD_2W_PT1000:
-	//		pBlock = new CFXBlockSensorTRD2WPt1000(m_pBlock);
-	//		break;
-	//	case BLOCK_SENSOR_TRD_3W_M50:
-	//		pBlock = new CFXBlockSensorTRD3WM50(m_pBlock);
-	//		break;
-	//	case BLOCK_SENSOR_TRD_3W_M100:
-	//		pBlock = new CFXBlockSensorTRD3WM100(m_pBlock);
-	//		break;
-	//	case BLOCK_SENSOR_TRD_3W_P50:
-	//		pBlock = new CFXBlockSensorTRD3WP50(m_pBlock);
-	//		break;
-	//	case BLOCK_SENSOR_TRD_3W_P100:
-	//		pBlock = new CFXBlockSensorTRD3WP100(m_pBlock);
-	//		break;
-	//	case BLOCK_SENSOR_TRD_3W_PT100:
-	//		pBlock = new CFXBlockSensorTRD3WPt100(m_pBlock);
-	//		break;
-	//	case BLOCK_SENSOR_TRD_3W_PT500:
-	//		pBlock = new CFXBlockSensorTRD3WPt500(m_pBlock);
-	//		break;
-	//	case BLOCK_SENSOR_TRD_3W_PT1000:
-	//		pBlock = new CFXBlockSensorTRD3WPt1000(m_pBlock);
-	//		break;
-	//	case BLOCK_SENSOR_TRD_4W_M50:
-	//		pBlock = new CFXBlockSensorTRD4WM50(m_pBlock);
-	//		break;
-	//	case BLOCK_SENSOR_TRD_4W_M100:
-	//		pBlock = new CFXBlockSensorTRD4WM100(m_pBlock);
-	//		break;
-	//	case BLOCK_SENSOR_TRD_4W_P50:
-	//		pBlock = new CFXBlockSensorTRD4WP50(m_pBlock);
-	//		break;
-	//	case BLOCK_SENSOR_TRD_4W_P100:
-	//		pBlock = new CFXBlockSensorTRD4WP100(m_pBlock);
-	//		break;
-	//	case BLOCK_SENSOR_TRD_4W_PT100:
-	//		pBlock = new CFXBlockSensorTRD4WPt100(m_pBlock);
-	//		break;
-	//	case BLOCK_SENSOR_TRD_4W_PT500:
-	//		pBlock = new CFXBlockSensorTRD4WPt500(m_pBlock);
-	//		break;
-	//	case BLOCK_SENSOR_TRD_4W_PT1000:
-	//		pBlock = new CFXBlockSensorTRD4WPt1000(m_pBlock);
-	//		break;
-	//	default:
-	//		return NULL;
-	//}
 	pBlock->SetXY(point);
 
 	m_pBlock->AddBlock(pBlock);
@@ -1736,6 +1474,13 @@ bool CFXGraphView::OnUpdateProperty(int nProperty, variant_t& value)
 				return false;
 			m_pCur->SetName(CString(value));
 			pPin = dynamic_cast<CFXPin*>(m_pCur);
+			if (pPin) {
+				POSITION pos = pPin->GetConnectedPins();
+				while (pos) {
+					CFXPin* pCur = pPin->GetNextConnectedPin(pos);
+					pCur->SetName(pPin->GetName());
+				}
+			}
 			m_pCur->Invalidate(this,REGION_NAME);
 			return true;
 		case PROP_FUNCNAME:

@@ -158,6 +158,11 @@
     <ClInclude Include="CFXBlockAntiBounce.h" />
     <ClInclude Include="CFXBlockDelayOff.h" />
     <ClInclude Include="CFXBlockDelayOn.h" />
+    <ClInclude Include="CFXBlockDemoTu154.h" />
+    <ClInclude Include="CFXBlockPID.h" />
+    <ClInclude Include="CFXBlockSetupBool.h" />
+    <ClInclude Include="CFXBlockSetupFloat.h" />
+    <ClInclude Include="CFXBlockSetupInt.h" />
     <ClInclude Include="CFXBlockTransformLinear.h" />
     <ClInclude Include="CFXBlockTransformCurrent.h" />
     <ClInclude Include="CFXBlockSensorTRD2WM100.h" />
@@ -287,6 +292,11 @@
     <ClCompile Include="CFXBlockAntiBounce.cpp" />
     <ClCompile Include="CFXBlockDelayOff.cpp" />
     <ClCompile Include="CFXBlockDelayOn.cpp" />
+    <ClCompile Include="CFXBlockDemoTu154.cpp" />
+    <ClCompile Include="CFXBlockPID.cpp" />
+    <ClCompile Include="CFXBlockSetupBool.cpp" />
+    <ClCompile Include="CFXBlockSetupFloat.cpp" />
+    <ClCompile Include="CFXBlockSetupInt.cpp" />
     <ClCompile Include="CFXBlockTransformLinear.cpp" />
     <ClCompile Include="CFXBlockTransformCurrent.cpp" />
     <ClCompile Include="CFXBlockSensorTRD2WM100.cpp" />

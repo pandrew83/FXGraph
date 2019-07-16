@@ -38,7 +38,7 @@ protected:
 	CRect m_RectLeft;
 	CRect m_RectRight;
 public:
-	void Create(CFXObject* pObject);
+	virtual void Create(CFXObject* pObject);
 	void InvalidateName(CFXGraphView* pView);
 	void InvalidateBlock(CFXGraphView* pView);
 	void InvalidateLeft(CFXGraphView* pView);
@@ -127,7 +127,7 @@ public:
 	int GetPropertyList(void);
 	virtual void FillProperties(CPropertiesWnd* pWnd);
 //	CFXPin* GetPinByID(int pin_id);
-	void RemovePin(CFXPin* pPin);
+	virtual void RemovePin(CFXPin* pPin);
 	virtual void Serialize(CArchive& ar);
 	void RemoveBlock(void);
 	virtual bool Check(void);

@@ -334,6 +334,11 @@ void CFXGraphApp::FillObjectDescriptors()
 	ods->Add({ GROUP_FUNCBLOCKS, _T(""), _T("Функциональные блоки"), 0, true });
 	ods->Add({ BLOCK_FUNCTIONAL,  _T("CFXBlockFunctional"), _T("Функциональный блок"), GROUP_FUNCBLOCKS });
 
+	// Уставка
+	ods->Add({ GROUP_SETUP,_T(""),_T("Уставка"),0,true });
+	ods->Add({ BLOCK_SETUP_FLOAT,_T("CFXBlockSetupFloat"),_T("Уставка вещественного"),GROUP_SETUP });
+	ods->Add({ BLOCK_SETUP_INT,_T("CFXBlockSetupInt"),_T("Уставка целого"),GROUP_SETUP });
+	ods->Add({ BLOCK_SETUP_BOOL,_T("CFXBlockSetupBool"),_T("Уставка логического"),GROUP_SETUP });
 	// Математика
 	ods->Add({ GROUP_MATH, _T(""), _T("Математика"), 0, true });
 	// Математика-целочисленная
@@ -469,7 +474,10 @@ void CFXGraphApp::FillObjectDescriptors()
 	ods->Add({ BLOCK_TRANSFORM_LINEAR,  _T("CFXBlockTransformLinear"), _T("Линейное преобразование"), GROUP_OTHER });
 	ods->Add({ BLOCK_TRANSFORM_LINEAR_LIMITS,  _T("CFXBlockTransformLinearLimits"), _T("Линейное преобразование с ограничением"), GROUP_OTHER });
 	
+	ods->Add({ BLOCK_PID, _T("CFXBlockPID"),_T("ПИД-Регулятор"), GROUP_OTHER });
 	
+	ods->Add({ GROUP_DEMO,_T(""), _T("Демонстрация"), 0, true });
+	ods->Add({ BLOCK_DEMO_TU154, _T("CFXBlockDemoTu154"),_T("Ту-154"),GROUP_DEMO });
 	//ods->Add({ FXLINK,  _T("CFXLink"),
 	//ods->Add({ FXPIN,  _T("CFXPin"),
 	//ods->Add({ BLOCK_FUNCTIONAL_PIN,  _T("CFXBlockFunctionalPin"),

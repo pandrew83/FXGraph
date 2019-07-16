@@ -156,6 +156,14 @@ enum CFXPinDir {Input,Output};
 #define BLOCK_TRANSFORM_LINEAR				451
 #define BLOCK_TRANSFORM_LINEAR_LIMITS		452
 
+#define BLOCK_PID							460
+
+#define BLOCK_SETUP_FLOAT					461
+#define BLOCK_SETUP_INT						462
+#define BLOCK_SETUP_BOOL					463
+
+#define BLOCK_DEMO_TU154					500
+
 #define FXLINK								1001
 #define FXPIN								2001
 
@@ -178,6 +186,8 @@ enum CFXPinDir {Input,Output};
 #define GROUP_SENSORS_TRD_3W				10016
 #define GROUP_SENSORS_TRD_4W				10017
 #define GROUP_OTHER							10018
+#define GROUP_DEMO							10019
+#define GROUP_SETUP							10020
 
 //#include "FXGraphView.h"		
 

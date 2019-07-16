@@ -27,8 +27,10 @@ public:
 	}
 	void Serialize(CArchive& ar);
 	CFXLink* AddLink(CFXPin* pPin1, CFXPin* pPin2);
-	virtual CFXPin* AddInputPin(CFXPinType type, CString funcName, bool bAllowConst=true, bool bAllowParam=true, bool bConst=false, bool bLinkable=true);
-	virtual CFXPin* AddOutputPin(CFXPinType type, CString funcName, bool bAllowConst=true, bool bAllowParam=true, bool bConst=false, bool bLinkable=true);
+//	virtual CFXPin* AddInputPin(CFXPinType type, CString funcName, bool bAllowConst = true, bool bAllowParam = true, bool bConst = false, int nFormat = 0, bool bLinkable = true);
+	virtual CFXPin* AddInputPin(CFXPinType type, CString funcName, bool bAllowConst = true, bool bAllowParam = true, bool bConst = false, int nFormat = 0,bool bLinkable=true);
+	virtual CFXPin* AddOutputPin(CFXPinType type, CString funcName, bool bAllowConst=true, bool bAllowParam=true, bool bConst=false, int nFormat = 0, bool bLinkable=true);
+	virtual void RemovePin(CFXPin* pPin);
 protected:
 	int m_LastID;
 public:
