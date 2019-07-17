@@ -1,12 +1,12 @@
 #pragma once
 #include "FXBlock.h"
-class CFXBlockSetupBool :
+class CFXBlockSetupLogical :
 	public CFXBlock
 {
 public:
-	DECLARE_SERIAL(CFXBlockSetupBool);
-	CFXBlockSetupBool();
-	~CFXBlockSetupBool();
+	DECLARE_SERIAL(CFXBlockSetupLogical);
+	CFXBlockSetupLogical();
+	~CFXBlockSetupLogical();
 	void Initialize();
 	void Create(CFXObject* pObject);
 	bool Calc();

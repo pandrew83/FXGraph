@@ -1,21 +1,21 @@
 #include "stdafx.h"
-#include "CFXBlockSetupBool.h"
-IMPLEMENT_SERIAL(CFXBlockSetupBool, CFXBlock, 1);
+#include "CFXBlockSetupLogical.h"
+IMPLEMENT_SERIAL(CFXBlockSetupLogical, CFXBlock, 1);
 
-CFXBlockSetupBool::CFXBlockSetupBool()
+CFXBlockSetupLogical::CFXBlockSetupLogical()
 {
 }
 
-CFXBlockSetupBool::~CFXBlockSetupBool()
+CFXBlockSetupLogical::~CFXBlockSetupLogical()
 {
 }
 
-void CFXBlockSetupBool::Initialize()
+void CFXBlockSetupLogical::Initialize()
 {
 	CFXBlock::Initialize();
 }
 
-void CFXBlockSetupBool::Create(CFXObject* pObject)
+void CFXBlockSetupLogical::Create(CFXObject* pObject)
 {
 	CFXBlock::Create(pObject);
 	m_MinHeight = 50;
@@ -27,7 +27,7 @@ void CFXBlockSetupBool::Create(CFXObject* pObject)
 	AddOutputPin(Logical, _T("Output"), true, true, true);
 }
 
-bool CFXBlockSetupBool::Calc()
+bool CFXBlockSetupLogical::Calc()
 {
 	if (!CFXBlock::Calc())
 		return false;

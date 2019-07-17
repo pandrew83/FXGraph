@@ -98,6 +98,9 @@ enum CFXPinDir {Input,Output};
 #define BLOCK_MATH_FLOAT_ABS				160
 #define BLOCK_MATH_FLOAT_FLOOR				161
 #define BLOCK_MATH_FLOAT_ROUND				162
+#define BLOCK_MATH_FLOAT_MIN				163
+#define BLOCK_MATH_FLOAT_MAX				164
+#define BLOCK_MATH_FLOAT_LIMITS				165
 
 #define BLOCK_MATH_COS						170
 #define BLOCK_MATH_SIN						171
@@ -157,10 +160,13 @@ enum CFXPinDir {Input,Output};
 #define BLOCK_TRANSFORM_LINEAR_LIMITS		452
 
 #define BLOCK_PID							460
-
 #define BLOCK_SETUP_FLOAT					461
 #define BLOCK_SETUP_INT						462
-#define BLOCK_SETUP_BOOL					463
+#define BLOCK_SETUP_LOGICAL					463
+
+#define BLOCK_MEMORY_FLOAT					470
+#define BLOCK_MEMORY_INT					471
+#define BLOCK_MEMORY_LOGICAL				472
 
 #define BLOCK_DEMO_TU154					500
 
@@ -180,6 +186,7 @@ enum CFXPinDir {Input,Output};
 #define GROUP_DELAY							10010
 #define GROUP_COUNTERS_TRIGGERS				10011
 #define GROUP_TRIGGERS						10012
+#define GROUP_MEMORY						10021
 #define GROUP_CONTROLLERS					10013
 #define GROUP_SENSORS						10014
 #define GROUP_SENSORS_TRD_2W				10015

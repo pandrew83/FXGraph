@@ -338,7 +338,7 @@ void CFXGraphApp::FillObjectDescriptors()
 	ods->Add({ GROUP_SETUP,_T(""),_T("Уставка"),0,true });
 	ods->Add({ BLOCK_SETUP_FLOAT,_T("CFXBlockSetupFloat"),_T("Уставка вещественного"),GROUP_SETUP });
 	ods->Add({ BLOCK_SETUP_INT,_T("CFXBlockSetupInt"),_T("Уставка целого"),GROUP_SETUP });
-	ods->Add({ BLOCK_SETUP_BOOL,_T("CFXBlockSetupBool"),_T("Уставка логического"),GROUP_SETUP });
+	ods->Add({ BLOCK_SETUP_LOGICAL,_T("CFXBlockSetupLogical"),_T("Уставка логического"),GROUP_SETUP });
 	// Математика
 	ods->Add({ GROUP_MATH, _T(""), _T("Математика"), 0, true });
 	// Математика-целочисленная
@@ -371,6 +371,9 @@ void CFXGraphApp::FillObjectDescriptors()
 	ods->Add({ BLOCK_MATH_FLOAT_ABS,  _T("CFXBlockMathFloatAbs"), _T("Модуль числа"), GROUP_MATH_FLOAT });
 	ods->Add({ BLOCK_MATH_FLOAT_FLOOR,  _T("CFXBlockMathFloatFloor"), _T("Floor"), GROUP_MATH_FLOAT });
 	ods->Add({ BLOCK_MATH_FLOAT_ROUND,  _T("CFXBlockMathFloatRound"), _T("Round"), GROUP_MATH_FLOAT });
+	ods->Add({ BLOCK_MATH_FLOAT_MIN,  _T("CFXBlockMathFloatMin"), _T("Min"), GROUP_MATH_FLOAT });
+	ods->Add({ BLOCK_MATH_FLOAT_MAX,  _T("CFXBlockMathFloatMax"), _T("Max"), GROUP_MATH_FLOAT });
+	ods->Add({ BLOCK_MATH_FLOAT_LIMITS,_T("CFXBlockMathFloatLimits"),_T("Ограничения"),GROUP_MATH_FLOAT });
 	ods->Add({ BLOCK_MATH_COS,  _T("CFXBlockMathCos"), _T("Cos"), GROUP_MATH_FLOAT });
 	ods->Add({ BLOCK_MATH_SIN,  _T("CFXBlockMathSin"), _T("Sin"), GROUP_MATH_FLOAT });
 	ods->Add({ BLOCK_MATH_TAN,  _T("CFXBlockMathTan"), _T("Tan"), GROUP_MATH_FLOAT });
@@ -382,7 +385,6 @@ void CFXGraphApp::FillObjectDescriptors()
 	ods->Add({ BLOCK_MATH_ASIN,  _T("CFXBlockMathAsin"), _T("Asin"), GROUP_MATH_FLOAT });
 	ods->Add({ BLOCK_MATH_ATAN,  _T("CFXBlockMathAtan"), _T("Atan"), GROUP_MATH_FLOAT });
 	ods->Add({ BLOCK_MATH_EXP,  _T("CFXBlockMathExp"), _T("Exp"), GROUP_MATH_FLOAT });
-
 	// Математика-битовая
 	ods->Add({ GROUP_MATH_BITWISE, _T(""), _T("Битовая"), GROUP_MATH, true });
 	ods->Add({ BLOCK_MATH_BITWISE_AND,  _T("CFXBlockMathBitwiseAnd"), _T("Битовое И"), GROUP_MATH_BITWISE });
@@ -420,7 +422,7 @@ void CFXGraphApp::FillObjectDescriptors()
 	ods->Add({ BLOCK_DELAY_ON,  _T("CFXBlockDelayOn"), _T("Задержка включения"), GROUP_DELAY });
 	ods->Add({ BLOCK_DELAY_OFF,  _T("CFXBlockDelayOff"), _T("Задержка выключения"), GROUP_DELAY });
 	
-	// Счетчики, триггеры
+	// Счетчики, триггеры, память
 	ods->Add({ GROUP_COUNTERS_TRIGGERS, _T(""), _T("Счетчики, триггеры"), 0, true });
 	ods->Add({ BLOCK_COUNTER,  _T("CFXBlockCounter"), _T("Счетчик"), GROUP_COUNTERS_TRIGGERS });
 
@@ -430,6 +432,11 @@ void CFXGraphApp::FillObjectDescriptors()
 	ods->Add({ BLOCK_LOGICAL_TRIGGER_SR,  _T("CFXBlockLogicalTriggerSR"), _T("SR-триггер"), GROUP_TRIGGERS });
 	ods->Add({ BLOCK_LOGICAL_TRIGGER_RS_RE,  _T("CFXBlockLogicalTriggerRSRisingEdge"), _T("RS-триггер по передним фронтам"), GROUP_TRIGGERS });
 	
+	ods->Add({ GROUP_MEMORY, _T(""), _T("Память"), GROUP_COUNTERS_TRIGGERS,true });
+	ods->Add({ BLOCK_MEMORY_FLOAT, _T("CFXBlockMemoryFloat"), _T("Память (вещ)"),GROUP_MEMORY });
+	ods->Add({ BLOCK_MEMORY_INT, _T("CFXBlockMemoryInt"), _T("Память (цел)"),GROUP_MEMORY });
+	ods->Add({ BLOCK_MEMORY_LOGICAL, _T("CFXBlockMemoryLogical"), _T("Память (лог)"),GROUP_MEMORY });
+
 	// Контроллеры
 	ods->Add({ GROUP_CONTROLLERS, _T(""), _T("Триггеры"), 0, true });
 	ods->Add({ BLOCK_CONTROLLER_NIMOD01,  _T("CFXBlockControllerNiMod01"), _T("Контроллер NiMod-A01"), GROUP_CONTROLLERS });

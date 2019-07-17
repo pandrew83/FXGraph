@@ -668,23 +668,23 @@ void CFXBlock::Initialize(void)
 			pPin->SetValue(pPin->m_pParam->m_Value);
 		}
 	}
-	pos = m_OutputPins.GetHeadPosition();
-	while (pos){
-		CFXPin* pPin = m_OutputPins.GetNext(pos);
-		switch(pPin->m_Type){
-			case Logical:
-				pPin->SetValue(false);
-				break;
-			case Float:
-				pPin->SetValue((double)0);
-				break;
-			case Int:
-				pPin->SetValue(0);
-				break;
-		}
-		if (pPin->m_pParam)
-			pPin->m_pParam->m_Value = pPin->GetValue();
-	}
+	//pos = m_OutputPins.GetHeadPosition();
+	//while (pos){
+	//	CFXPin* pPin = m_OutputPins.GetNext(pos);
+	//	switch(pPin->m_Type){
+	//		case Logical:
+	//			pPin->SetValue(false);
+	//			break;
+	//		case Float:
+	//			pPin->m_Value = 0;
+	//			break;
+	//		case Int:
+	//			pPin->m_V;
+	//			break;
+	//	}
+	//	if (pPin->m_pParam)
+	//		pPin->m_pParam->m_Value = pPin->GetValue();
+	//}
 }
 
 
