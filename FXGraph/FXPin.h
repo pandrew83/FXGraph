@@ -26,6 +26,7 @@ class CFXObject;
 class CFXPin : public CFXObject
 {
 	friend class CFXBlock;
+	friend class CFXBlockVisualShowFloat;
 public:
 	enum{
 		INT,
@@ -48,6 +49,8 @@ protected:
 //	CFXPin* m_pConnectedPin;
 	variant_t m_Value;
 public:
+	virtual void SetName(CString name);
+	virtual bool SetProperty(int nProperty, variant_t& value, CFXGraphView* pView);
 	void GetPinLinks(CListLink& lst);
 	void CalcRects(CFXGraphView* pView);
 	void AddConnectedPin(CFXPin* pPin){

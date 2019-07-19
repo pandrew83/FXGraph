@@ -37,13 +37,15 @@ protected:
 	CRect m_RectBlock;
 	CRect m_RectLeft;
 	CRect m_RectRight;
-public:
-	virtual void Create(CFXObject* pObject);
 	void InvalidateName(CFXGraphView* pView);
 	void InvalidateBlock(CFXGraphView* pView);
 	void InvalidateLeft(CFXGraphView* pView);
 	void InvalidateRight(CFXGraphView* pView);
 	void InvalidateLinks(CFXGraphView* pView);
+	int m_NetworkID;
+public:
+	virtual void Create(CFXObject* pObject);
+	virtual bool SetProperty(int nProperty, variant_t& value, CFXGraphView* pView);
 	~CFXBlock(void);
 	void Invalidate(CFXGraphView* pView, int regions);
 	void GetPinLinks(CListLink& lst, CFXPin* pPin);
@@ -119,7 +121,7 @@ public:
 	//		id++;
 	//	}
 	//}
-	void Draw(CFXGraphView*pView);
+	virtual void Draw(CFXGraphView*pView);
 	virtual void Move(int dx, int dy){
 		CFXObject::Move(dx,dy);
 		CalcPinCoords();
@@ -138,7 +140,6 @@ public:
 	void RemovePinLinks(CFXPin* pPin);
 	CFXLink* GetLink(CFXPin* pPin1, CFXPin* pPin2);
 	bool m_bBreakPoint;
-	int m_NetworkID;
 	virtual void Initialize(void);
 	virtual bool IsRemovable();
 };

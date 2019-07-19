@@ -107,6 +107,8 @@
 #include "CFXBlockSensorTRD4WPt1000.h"
 #include "CFXBlockSensorTRD4WP50.h"
 #include "CFXBlockSensorTRD4WP100.h"
+#include "CFXBlockVisualShowFloat.h"
+
 #include "CFXBlockPID.h"
 
 #include "CommentDlg.h"
@@ -1453,95 +1455,110 @@ bool CFXGraphView::OnUpdateProperty(int nProperty, variant_t& value)
 	TracePrint(TRACE_LEVEL_1,"CFXGraphView::OnUpdateProperty");
 	if (!m_pCur)
 		return false;
-	CFXGraphDoc* pDoc = (CFXGraphDoc*)GetDocument();
-	CFXPin* pPin;
-	CFXBlock* pBlock;
-	switch(nProperty){
-		case PROP_COORDX:	
-			if (value.vt != VT_I4)
-				return false;
-			m_pCur->SetX((int)value);
-			m_pCur->Invalidate(this,REGION_COORD);
-			return true;
-		case PROP_COORDY:
-			if (value.vt != VT_I4)
-				return false;
-			m_pCur->SetY((int)value);
-			m_pCur->Invalidate(this,REGION_COORD);
-			return true;
-		case PROP_NAME:
-			if (value.vt != VT_BSTR)
-				return false;
-			m_pCur->SetName(CString(value));
-			pPin = dynamic_cast<CFXPin*>(m_pCur);
-			if (pPin) {
-				POSITION pos = pPin->GetConnectedPins();
-				while (pos) {
-					CFXPin* pCur = pPin->GetNextConnectedPin(pos);
-					pCur->SetName(pPin->GetName());
-				}
-			}
-			m_pCur->Invalidate(this,REGION_NAME);
-			return true;
-		case PROP_FUNCNAME:
-			if (value.vt != VT_BSTR)
-				return false;
-			pPin = dynamic_cast<CFXPin*>(m_pCur);
-			if (pPin){
-				pPin->SetFuncName(CString(value));
-				pPin->Invalidate(this,REGION_FUNCNAME);
-				return true;
-			}
-			return false;
-		case PROP_PARAM:
-			if (value.vt != VT_BSTR)
-				return false;
-			pPin = dynamic_cast<CFXPin*>(m_pCur);
-			if (pPin){
-				CFXParam* pParam = NULL;
-				if (pPin->m_Dir == Input)
-					pParam = pDoc->GetInputParam(CString(value));
-				else
-					pParam = pDoc->GetOutputParam(CString(value));
-				pPin->m_bConst = false;
-				pPin->SetParam(pParam);
-				pPin->Invalidate(this,REGION_VALUE);
-				return true;
-			}
-			return false;
-		case PROP_CONST:
-			pPin = dynamic_cast<CFXPin*>(m_pCur);
-			pPin->m_bConst = (bool)value;
-			if (value){
-				pPin->SetParam(NULL);
-			}
-			pPin->Invalidate(this,REGION_VALUE);
-			return TRUE;
-		case PROP_VALUE:
-			pPin = dynamic_cast<CFXPin*>(m_pCur);
-			pPin->SetValue(value);
-			pPin->Invalidate(this,REGION_VALUE);
-			return true;
-		case PROP_FORMAT:
-			pPin = dynamic_cast<CFXPin*>(m_pCur);
-			pPin->m_Format = value;
-			pPin->Invalidate(this,REGION_VALUE);
-			return true;
-		case PROP_NETWORK_ID:
-			pBlock = dynamic_cast<CFXBlock*>(m_pCur);
-			pBlock->m_NetworkID = value;
-			return true;
-		case PROP_WIDTH:
-			pBlock = dynamic_cast<CFXBlock*>(m_pCur);
-			pBlock->SetWidth(value);
-			pBlock->Invalidate(this, REGION_COORD);
-			return true;
-		case PROP_HEIGHT:
-			pBlock = dynamic_cast<CFXBlock*>(m_pCur);
-			pBlock->SetHeight(value);
-			pBlock->Invalidate(this, REGION_COORD);
-			return true;
+	if (m_pCur->SetProperty(nProperty, value,this)) {
+		return true;
 	}
+	//CFXGraphDoc* pDoc = (CFXGraphDoc*)GetDocument();
+	//CFXPin* pPin;
+	//CFXBlock* pBlock;
+	//CFXBlockVisualShowFloat* pBlockVisualShowFloat;
+	//switch(nProperty){
+	//	case PROP_COORDX:	
+	//		if (value.vt != VT_I4)
+	//			return false;
+	//		m_pCur->SetX((int)value);
+	//		m_pCur->Invalidate(this,REGION_COORD);
+	//		return true;
+	//	case PROP_COORDY:
+	//		if (value.vt != VT_I4)
+	//			return false;
+	//		m_pCur->SetY((int)value);
+	//		m_pCur->Invalidate(this,REGION_COORD);
+	//		return true;
+	//	case PROP_NAME:
+	//		if (value.vt != VT_BSTR)
+	//			return false;
+	//		m_pCur->SetName(CString(value));
+	//		pPin = dynamic_cast<CFXPin*>(m_pCur);
+	//		if (pPin) {
+	//			POSITION pos = pPin->GetConnectedPins();
+	//			while (pos) {
+	//				CFXPin* pCur = pPin->GetNextConnectedPin(pos);
+	//				pCur->SetName(pPin->GetName());
+	//			}
+	//		}
+	//		m_pCur->Invalidate(this,REGION_NAME);
+	//		return true;
+	//	case PROP_FUNCNAME:
+	//		if (value.vt != VT_BSTR)
+	//			return false;
+	//		pPin = dynamic_cast<CFXPin*>(m_pCur);
+	//		if (pPin){
+	//			pPin->SetFuncName(CString(value));
+	//			pPin->Invalidate(this,REGION_FUNCNAME);
+	//			return true;
+	//		}
+	//		return false;
+	//	case PROP_PARAM:
+	//		if (value.vt != VT_BSTR)
+	//			return false;
+	//		pPin = dynamic_cast<CFXPin*>(m_pCur);
+	//		if (pPin){
+	//			CFXParam* pParam = NULL;
+	//			if (pPin->m_Dir == Input)
+	//				pParam = pDoc->GetInputParam(CString(value));
+	//			else
+	//				pParam = pDoc->GetOutputParam(CString(value));
+	//			pPin->m_bConst = false;
+	//			pPin->SetParam(pParam);
+	//			pPin->Invalidate(this,REGION_VALUE);
+	//			return true;
+	//		}
+	//		return false;
+	//	case PROP_CONST:
+	//		pPin = dynamic_cast<CFXPin*>(m_pCur);
+	//		pPin->m_bConst = (bool)value;
+	//		if (value){
+	//			pPin->SetParam(NULL);
+	//		}
+	//		pPin->Invalidate(this,REGION_VALUE);
+	//		return TRUE;
+	//	case PROP_VALUE:
+	//		pPin = dynamic_cast<CFXPin*>(m_pCur);
+	//		pPin->SetValue(value);
+	//		pPin->Invalidate(this,REGION_VALUE);
+	//		pBlockVisualShow = dynamic_cast<CFXBlockVisualShow*>(pPin->m_pBlock);
+	//		if (pBlockVisualShowFloat) {
+	//			pBlockVisualShowFloat->Invalidate(this, REGION_BLOCK);
+	//		}
+	//		return true;
+	//	case PROP_FORMAT:
+	//		pPin = dynamic_cast<CFXPin*>(m_pCur);
+	//		pBlockVisualShowFloat = dynamic_cast<CFXBlockVisualShowFloat*>(m_pCur);
+	//		if (pPin) {
+	//			pPin->m_Format = value;
+	//			pPin->Invalidate(this, REGION_VALUE);
+	//		}
+	//		if (pBlockVisualShowFloat) {
+	//			pBlockVisualShowFloat->SetFormat(value);
+	//			pBlockVisualShowFloat->Invalidate(this, REGION_BLOCK);
+	//		}
+	//		return true;
+	//	case PROP_NETWORK_ID:
+	//		pBlock = dynamic_cast<CFXBlock*>(m_pCur);
+	//		pBlock->m_NetworkID = value;
+	//		return true;
+	//	case PROP_WIDTH:
+	//		pBlock = dynamic_cast<CFXBlock*>(m_pCur);
+	//		pBlock->SetWidth(value);
+	//		pBlock->Invalidate(this, REGION_COORD);
+	//		return true;
+	//	case PROP_HEIGHT:
+	//		pBlock = dynamic_cast<CFXBlock*>(m_pCur);
+	//		pBlock->SetHeight(value);
+	//		pBlock->Invalidate(this, REGION_COORD);
+	//		return true;
+	//}
 	return FALSE;
 }
 

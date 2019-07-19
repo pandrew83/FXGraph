@@ -253,6 +253,67 @@ void CFXPin::Serialize(CArchive& ar)
 	}
 }
 
+void CFXPin::SetName(CString name)
+{
+	CFXObject::SetName(name);
+	POSITION pos = GetConnectedPins();
+	while (pos) {
+		CFXPin* pCur = GetNextConnectedPin(pos);
+		pCur->SetName(name);
+	}
+
+}
+
+bool CFXPin::SetProperty(int nProperty, variant_t& value, CFXGraphView* pView)
+{
+	CFXGraphDoc* pDoc = GetActiveDocument();
+	if (CFXObject::SetProperty(nProperty, value, pView))
+		return true;
+	if (nProperty == PROP_FUNCNAME) {
+		if (value.vt != VT_BSTR)
+			return false;
+		SetFuncName(CString(value));
+		Invalidate(pView,REGION_FUNCNAME);
+		return true;
+	}
+	if (nProperty == PROP_PARAM) {
+		if (value.vt != VT_BSTR)
+			return false;
+		CFXParam* pParam = NULL;
+		if (m_Dir == Input)
+			pParam = pDoc->GetInputParam(CString(value));
+		else
+			pParam = pDoc->GetOutputParam(CString(value));
+		m_bConst = false;
+		SetParam(pParam);
+		Invalidate(pView,REGION_VALUE);
+		return true;
+	}
+	if (nProperty == PROP_CONST) {
+		if (value.vt != VT_BOOL)
+			return false;
+		m_bConst = (bool)value;
+		if (value){
+			SetParam(NULL);
+		}
+		Invalidate(pView,REGION_VALUE);
+		return TRUE;
+	}
+	if (nProperty == PROP_VALUE) {
+		SetValue(value);
+		Invalidate(pView,REGION_VALUE);
+		return true;
+	}
+	if (nProperty == PROP_FORMAT) {
+		if (value.vt != VT_BSTR)
+			return false;
+		m_Format = value;
+		Invalidate(pView, REGION_VALUE);
+		return true;
+	}
+	return false;
+}
+
 void CFXPin::GetPinLinks(CListLink& lst){
 	((CFXBlock*)m_pBlock)->GetPinLinks(lst,this);
 }

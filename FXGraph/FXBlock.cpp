@@ -35,6 +35,34 @@ void CFXBlock::Create(CFXObject*pObject)
 	m_pNextBlock = NULL;
 }
 
+bool CFXBlock::SetProperty(int nProperty, variant_t& value, CFXGraphView* pView)
+{
+	if (CFXObject::SetProperty(nProperty, value, pView))
+		return true;
+	if (nProperty == PROP_WIDTH) {
+		if (value.vt != VT_I4)
+			return false;
+		SetWidth(value);
+		Invalidate(pView, REGION_COORD);
+		return true;
+	}
+	if (nProperty == PROP_HEIGHT) {
+		if (value.vt != VT_I4)
+			return false;
+		SetHeight(value);
+		Invalidate(pView, REGION_COORD);
+		return true;
+	}
+	if (nProperty == PROP_NETWORK_ID) {
+		if (value.vt != VT_I4)
+			return false;
+		m_NetworkID = value;
+		return true;
+	}
+
+	return false;
+}
+
 
 CFXBlock::~CFXBlock(void)
 {

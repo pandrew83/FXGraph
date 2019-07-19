@@ -474,7 +474,12 @@ void CFXGraphApp::FillObjectDescriptors()
 	ods->Add({ BLOCK_SENSOR_TRD_4W_PT100,  _T("CFXBlockSensorTRD4WPt100"), _T("Pt100"), GROUP_SENSORS_TRD_4W });
 	ods->Add({ BLOCK_SENSOR_TRD_4W_PT500,  _T("CFXBlockSensorTRD4WPt500"), _T("Pt500"), GROUP_SENSORS_TRD_4W });
 	ods->Add({ BLOCK_SENSOR_TRD_4W_PT1000,  _T("CFXBlockSensorTRD4WPt1000"), _T("Pt1000"), GROUP_SENSORS_TRD_4W });
-	
+	ods->Add({ GROUP_SIMULATION, _T(""),_T("Симуляция"),0,true });
+	ods->Add({ GROUP_SIMULATION_VISUAL,_T(""),_T("Отображение, ввод"),GROUP_SIMULATION,true });
+	ods->Add({ BLOCK_SIMULATION_VISUAL_SHOW_FLOAT,_T("CFXBlockVisualShowFloat"),_T("Отображение вещественное"),GROUP_SIMULATION_VISUAL});
+	ods->Add({ BLOCK_SIMULATION_VISUAL_SHOW_INT,_T("CFXBlockVisualShowInt"),_T("Отображение целое"),GROUP_SIMULATION_VISUAL });
+	ods->Add({ BLOCK_SIMULATION_VISUAL_SHOW_LOGICAL,_T("CFXBlockVisualShowLogical"),_T("Отображение логическое"),GROUP_SIMULATION_VISUAL });
+
 	// Прочие
 	ods->Add({ GROUP_OTHER, _T(""), _T("Прочие"), 0, true });
 	ods->Add({ BLOCK_TRANSFORM_CURRENT,  _T("CFXBlockTransformCurrent"), _T("Токовый 0-20мА, 4-20мА"), GROUP_OTHER });

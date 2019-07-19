@@ -14,6 +14,13 @@ void CFXBlockController::Create(CFXObject* pBlock){
 	m_Ticks = 0;
 }
 
+bool CFXBlockController::SetProperty(int nProperty, variant_t& value, CFXGraphView* pView)
+{
+	if (CFXBlock::SetProperty(nProperty, value, pView))
+		return true;
+	return false;
+}
+
 CFXBlockController::~CFXBlockController(void)
 {
 }

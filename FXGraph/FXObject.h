@@ -168,6 +168,10 @@ enum CFXPinDir {Input,Output};
 #define BLOCK_MEMORY_INT					471
 #define BLOCK_MEMORY_LOGICAL				472
 
+#define BLOCK_SIMULATION_VISUAL_SHOW_FLOAT	480
+#define BLOCK_SIMULATION_VISUAL_SHOW_INT	481
+#define BLOCK_SIMULATION_VISUAL_SHOW_LOGICAL	482
+
 #define BLOCK_DEMO_TU154					500
 
 #define FXLINK								1001
@@ -195,6 +199,8 @@ enum CFXPinDir {Input,Output};
 #define GROUP_OTHER							10018
 #define GROUP_DEMO							10019
 #define GROUP_SETUP							10020
+#define GROUP_SIMULATION					10021
+#define GROUP_SIMULATION_VISUAL				10022
 
 //#include "FXGraphView.h"		
 
@@ -237,7 +243,7 @@ public:
 		m_X = 0;
 		m_Y = 0;
 	}
-//	virtual CString GetClassDescriptor() = 0;
+	virtual bool SetProperty(int nProperty, variant_t& value, CFXGraphView* pView);
 protected:
 	int m_X;
 	int m_Y;

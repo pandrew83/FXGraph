@@ -9,6 +9,7 @@ public:
 	CFXBlockController(void);
 	~CFXBlockController(void);
 	void Create(CFXObject* pObject);
+	virtual bool SetProperty(int nProperty, variant_t& value, CFXGraphView* pView);
 protected:
 	int m_Ticks;
 	int m_TicksPerSec;

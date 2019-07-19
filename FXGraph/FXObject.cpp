@@ -34,6 +34,32 @@ CFXObject::CFXObject(void)
 	//m_pBlock = NULL;
 }
 
+bool CFXObject::SetProperty(int nProperty, variant_t& value, CFXGraphView* pView)
+{
+	if (nProperty == PROP_COORDX) {
+		if (value.vt != VT_I4)
+			return false;
+		SetX(value);
+		Invalidate(pView, REGION_COORD);
+		return true;
+	}
+	if (nProperty == PROP_COORDY) {
+		if (value.vt != VT_I4)
+			return false;
+		SetY(value);
+		Invalidate(pView, REGION_COORD);
+		return true;
+	}
+	if (nProperty == PROP_NAME) {
+		if (value.vt != VT_BSTR)
+			return false;
+		SetName(CString(value));
+		Invalidate(pView, REGION_NAME);
+		return true;
+	}
+	return false;
+}
+
 
 CFXObject::~CFXObject(void)
 {
@@ -89,9 +115,6 @@ void CFXObject::FillProperties(CPropertiesWnd* pWnd){
 
 	pProp = new CMFCPropertyGridProperty( _T("Y"), (_variant_t) m_Y, _T("Указывает положение блока"),PROP_COORDY);
 	pCtrl->AddProperty(pProp);
-//	pWnd->m_Properties[PROP_COORDX]->SetValue((_variant_t)m_X);
-//	pWnd->m_Properties[PROP_COORDY]->SetValue((_variant_t)m_Y);
-//	pWnd->m_Properties[PROP_NAME]->SetValue((_variant_t)m_Name);
 }
 
 

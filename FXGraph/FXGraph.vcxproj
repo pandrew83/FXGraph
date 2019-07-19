@@ -193,6 +193,7 @@
     <ClInclude Include="CFXBlockSensorTRD4WPt1000.h" />
     <ClInclude Include="CFXBlockSensorTRD4WPt500.h" />
     <ClInclude Include="CFXBlockTransformLinearLimits.h" />
+    <ClInclude Include="CFXBlockVisualShowFloat.h" />
     <ClInclude Include="CFXDataCollector.h" />
     <ClInclude Include="CFXGraphic.h" />
     <ClInclude Include="CFXGraphicVariable.h" />
@@ -333,6 +334,7 @@
     <ClCompile Include="CFXBlockSensorTRD4WPt1000.cpp" />
     <ClCompile Include="CFXBlockSensorTRD4WPt500.cpp" />
     <ClCompile Include="CFXBlockTransformLinearLimits.cpp" />
+    <ClCompile Include="CFXBlockVisualShowFloat.cpp" />
     <ClCompile Include="CFXDataCollector.cpp" />
     <ClCompile Include="CFXGraphic.cpp" />
     <ClCompile Include="CFXGraphicVariable.cpp" />
